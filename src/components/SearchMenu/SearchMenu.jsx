@@ -26,8 +26,8 @@ export const SearchMenu = () => {
   const dispatch = useDispatch();
   const [inputVal, setInputVal] = useState("");
 
-  const testArr3 = ["123asd123", "123as123d"];
-  const testArr4 = ["123asd123", "123as123d"];
+  const testArr3 = ["заглушка", "заглушка","заглушка","заглушка","заглушка", "заглушка","заглушка","заглушка",];
+  const testArr4 = ["заглушка", "заглушка","заглушка","заглушка","заглушка", "заглушка","заглушка","заглушка",];
 
   useEffect(() => {
     axios
