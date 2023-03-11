@@ -1,0 +1,82 @@
+.statistics {
+    background: #46464b;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 28px 28px;
+    width: 90%;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        &__controlls {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+
+            &__header {
+                font-family: "BasisGrotesquePro";
+                font-style: normal;
+                font-weight: 700;
+                font-size: 18px;
+                color: #ffffff;
+                user-select: none;
+                cursor: pointer;
+            }
+
+            &__btnBox {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                background: #151517;
+                border: 2px solid #5e5e65;
+                border-radius: 30px;
+                overflow: hidden;
+                gap: 15px;
+                padding: 10px 25px;
+
+                &__icon {
+                    width: 10px;
+                    height: 10px;
+                }
+
+                &__btn1 {
+                    border: 0;
+                    outline: 0;
+                    background: #151517;
+                    font-family: "BasisGrotesquePro";
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: #ffffff;
+                }
+            }
+
+            &__btn2 {
+                font-family: "BasisGrotesquePro";
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                color: #ffffff;
+                background: #151517;
+                border: 2px solid #5e5e65;
+                border-radius: 30px;
+                padding: 10px 25px;
+            }
+
+            &__btn3 {
+                font-family: "BasisGrotesquePro";
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                color: #ffffff;
+                background: #151517;
+                border-radius: 60px;
+                padding: 10px 25px;
+            }
+        }
+    }
+}

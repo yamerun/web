@@ -1,0 +1,93 @@
+.Header {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    &__logo {
+      margin-right: 80px;
+    }
+
+    &__rightSide {
+      display: flex;
+      flex-direction: row;
+      column-gap: 27%;
+      align-items: center;
+    }
+
+    &__logInBtn {
+      background-color: #151517;
+      color: #ffffff;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      border: 2px solid #ffffff;
+      border-radius: 30px;
+      height: 45px;
+      padding-left: 30px;
+      padding-right: 30px;
+      font-family: "BasisGrotesquePro";
+    }
+
+    &__menu {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+      gap: 100px;
+    }
+
+    &__btn {
+      color: #ffffff;
+      text-decoration: none;
+      list-style: none;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 20px;
+      font-family: "BasisGrotesquePro";
+    }
+
+    &__search {
+      display: flex;
+      align-items: center;
+      padding-left: 10%;
+
+      &__input {
+        background-color: #151517;
+        border: 0;
+        outline: none;
+        width: 140px;
+        height: 30px;
+        color: #ffffff;
+        font-family: "BasisGrotesquePro";
+        font-size: 20px;
+
+        &::placeholder {
+          color: #ffffff;
+          padding-left: 50%;
+          font-weight: 400;
+          font-size: 20px;
+          font-family: "BasisGrotesquePro";
+        }
+      }
+
+      &__searchBtn {
+        background: #151517;
+        background-image: url("../../assets/imgs/search.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: 50px;
+        width: 30px;
+        border: 0;
+      }
+    }
+  }
+}
