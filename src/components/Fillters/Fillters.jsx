@@ -5,9 +5,11 @@ import { Statistics } from "../Statistics/Statistics";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setitemexchangeReducer } from "../../store/itemsSlice/itemsSlice";
 
 export const Fillters = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const NavProps = [
     "Курсы обмена",
@@ -47,10 +49,15 @@ export const Fillters = () => {
     axios
       .get(`http://146.59.87.222/api/exchangers/get?exchanger_id=${exchangeId}`)
       .then(function (response) {
-        dispatch(setitemexchangeReducer(response.data.data.name));
+        dispatch(setitemexchangeReducer(response.data.data));
+        console.log(response.data.data)
       })
       .catch(function (error) {});
   }, [exchangeId]);
+
+  const goToItemPage = () => {
+    navigate('/exchangePage')
+  }
 
   return (
     <div className={style.Fillters}>
@@ -83,43 +90,81 @@ export const Fillters = () => {
           <div className={style.Fillters__categories__body}>
             {itemExchangeRates.map((item) => (
               <div className={style.Fillters__categories__body__content}>
-                <h1
-                  className={style.Fillters__categories__body__content__header}
-                >
-                  {exchange}
-                </h1>
                 <div
-                  className={
-                    style.Fillters__categories__body__content__giveItAway
-                  }
+                  className={style.Fillters__categories__body__content__column}
                 >
-                  <h1
+                  <button
+                  onClick={()=>goToItemPage()}
                     className={
-                      style.Fillters__categories__body__content__giveItAway__header
+                      style.Fillters__categories__body__content__column__btn
+                    }
+                  />
+                  <p
+                    className={
+                      style.Fillters__categories__body__content__column__header
                     }
                   >
-                    {Math.trunc(item.out)}
-                  </h1>
-                  <h1
+                    {exchange.name}
+                  </p>
+                </div>
+                <div
+                  className={style.Fillters__categories__body__content__column}
+                >
+                  <p
                     className={
-                      style.Fillters__categories__body__content__giveItAway__header
+                      style.Fillters__categories__body__content__column__header
+                    }
+                  >
+                    1
+                  </p>
+                  <p
+                    className={
+                      style.Fillters__categories__body__content__column__header2
                     }
                   >
                     {item.from}
-                  </h1>
-                  <h1
+                  </p>
+                </div>
+                <div
+                  className={style.Fillters__categories__body__content__column}
+                >
+                  <p
                     className={
-                      style.Fillters__categories__body__content__giveItAway__header
+                      style.Fillters__categories__body__content__column__header
                     }
                   >
-                    {item.minamount}
-                  </h1>
+                    {(Math.round(item.out * 100) / 100).toFixed(2)}
+                  </p>
+                  <p
+                    className={
+                      style.Fillters__categories__body__content__column__header2
+                    }
+                  >
+                    {item.to}
+                  </p>
                 </div>
-                <h1
-                  className={style.Fillters__categories__body__content__header}
+                <div
+                  className={style.Fillters__categories__body__content__column}
                 >
-                  {item.to}
-                </h1>
+                  <p
+                    className={
+                      style.Fillters__categories__body__content__column__header
+                    }
+                  >
+                    {(Math.round(item.amount * 100) / 100).toFixed(2)}
+                  </p>
+                </div>
+                <div
+                  className={style.Fillters__categories__body__content__column}
+                >
+                  <p
+                    className={
+                      style.Fillters__categories__body__content__column__header
+                    }
+                  >
+                    0/5082
+                  </p>
+                </div>
               </div>
             ))}
           </div>

@@ -5,11 +5,16 @@ import { MainPage } from "./pages/MainPage/MainPage";
 import "./assets/styles/Common.css";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import { ItemPage } from "./pages/itemPage/itemPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainPage />,
+  },
+  {
+    path: "/exchangePage",
+    element: <ItemPage/>,
   },
 ]);
 

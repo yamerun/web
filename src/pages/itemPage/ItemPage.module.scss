@@ -1,0 +1,116 @@
+.itemPage {
+  &__container {
+    margin-top: 2%;
+    margin-left: 13%;
+    display: flex;
+    flex-direction: column;
+    &__review {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f3f3f3;
+      padding-top: 30px;
+    }
+
+    &__header {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 45px;
+      color: #f3f3f3;
+    }
+
+    &__items {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 30px;
+
+      &__item {
+        background: #2d2d31;
+        border-radius: 20px;
+        width: 26%;
+        height: 660px;
+        position: relative;
+
+        &__btn {
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          border: 2px solid white;
+          background: #2d2d31;
+          padding: 10px 20px;
+          border-radius: 20px;
+          color: white;
+          position: absolute;
+          bottom: 30px;
+          left: 30px;
+        }
+      }
+
+      &__item2 {
+        background: #2d2d31;
+        border-radius: 20px;
+        width: 26%;
+        height: 660px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        &__container {
+          display: flex;
+          flex-direction: column;
+          padding-top: 20px;
+          padding-left: 20px;
+          padding-right: 20px;
+
+          width: 100%;
+
+          &__status {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            padding: 10px;
+            width: 95%;
+            border-bottom: 1px solid #5e5e65;
+            padding-bottom: 25px;
+
+            &__header {
+              font-family: "BasisGrotesquePro";
+              font-style: normal;
+              font-weight: 700;
+              font-size: 16px;
+              color: #f3f3f3;
+            }
+
+            &__header2 {
+              font-family: "BasisGrotesquePro";
+              font-style: normal;
+              font-weight: 700;
+              font-size: 16px;
+              color: #77d22d;
+              border: 2px solid #77d22d;
+              padding: 10px 20px;
+              border-radius: 20px;
+              position: absolute;
+              left: 70%;
+            }
+
+            &__headerInfo {
+              font-family: "BasisGrotesquePro";
+              font-style: normal;
+              font-weight: 700;
+              font-size: 16px;
+              color: #f3f3f3;
+              position: absolute;
+              left: 70%;
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}

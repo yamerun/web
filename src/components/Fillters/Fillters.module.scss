@@ -41,32 +41,51 @@
       &__content {
         display: flex;
         flex-direction: row;
-        gap:60px;
+        align-items: center;
+        background: #46464B;
+        padding-left: 10px;
+        padding-right: 10px;
 
+        gap: 89px;
 
-        &__header {
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 13px;
-          color: #ffffff;
-        }
-
-        &__giveItAway {
+        &__column {
           display: flex;
           flex-direction: row;
-          gap:10px;
+          align-items: center;
+          gap: 5px;
 
           &__header {
-            font-family: "BasisGrotesquePro";
+            font-family: 'BasisGrotesquePro';
             font-style: normal;
             font-weight: 700;
             font-size: 13px;
+            line-height: 17px;
+            color: #F3F3F3;
 
-            color: #ffffff;
+          }
+
+          &__header2 {
+            font-family: 'BasisGrotesquePro';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 17px;
+            color: #F3F3F3;
+            opacity: 0.5;
+          }
+
+          &__btn {
+            background-color: #2d2d31;
+            border: 0;
+            outline: 0;
+            width: 20px;
+            height: 20px;
+            background: url('../../assets/imgs/openInfo.svg');
+            background-repeat: no-repeat;
           }
         }
       }
+
     }
   }
 

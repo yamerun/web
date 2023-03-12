@@ -67,6 +67,7 @@ export const SearchMenu = () => {
       )
       .then(function (response) {
         dispatch(setitemExchangeRatesReducer(response.data.data));
+        console.log(response.data.data)
       })
       .catch(function (error) {});
   }, [itemId]);
