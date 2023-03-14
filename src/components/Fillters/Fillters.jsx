@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { setitemexchangeReducer } from "../../store/itemsSlice/itemsSlice";
 
 export const Fillters = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const NavProps = [
     "Курсы обмена",
@@ -21,9 +21,10 @@ export const Fillters = () => {
   ];
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
-  const { itemExchangeRates, exchangeId, exchange } = useSelector((state) => ({
+  const [exchageId, setExchangeId] = useState("");
+
+  const { itemExchangeRates, exchange } = useSelector((state) => ({
     itemExchangeRates: state.itemsSlice.itemExchangeRates,
-    exchangeId: state.itemsSlice.exchangeId,
     exchange: state.itemsSlice.exchange,
   }));
 
@@ -46,18 +47,21 @@ export const Fillters = () => {
   };
 
   useEffect(() => {
+    itemExchangeRates.map((item) => setExchangeId(item.exchanger_id));
     axios
-      .get(`http://146.59.87.222/api/exchangers/get?exchanger_id=${exchangeId}`)
+      .get(`http://146.59.87.222/api/exchangers/get?exchanger_id=${exchageId}`)
       .then(function (response) {
         dispatch(setitemexchangeReducer(response.data.data));
-        console.log(response.data.data)
+        console.log(exchange.name);
       })
       .catch(function (error) {});
-  }, [exchangeId]);
+  }, [exchageId, itemExchangeRates]);
 
   const goToItemPage = () => {
-    navigate('/exchangePage')
-  }
+    navigate("/exchangePage");
+  };
+
+  //console.log(exchange.name)
 
   return (
     <div className={style.Fillters}>
@@ -94,7 +98,7 @@ export const Fillters = () => {
                   className={style.Fillters__categories__body__content__column}
                 >
                   <button
-                  onClick={()=>goToItemPage()}
+                    onClick={() => goToItemPage()}
                     className={
                       style.Fillters__categories__body__content__column__btn
                     }

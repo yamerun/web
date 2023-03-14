@@ -8,7 +8,7 @@ export const Header = () => {
     "Обменники",
     "Партнерам",
     "Помощь",
-    "Контакты",
+    "Статьи",
   ];
   const navigate = useNavigate();
 

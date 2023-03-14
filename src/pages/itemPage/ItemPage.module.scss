@@ -4,6 +4,7 @@
     margin-left: 13%;
     display: flex;
     flex-direction: column;
+
     &__review {
       font-family: "BasisGrotesquePro";
       font-style: normal;
@@ -26,6 +27,45 @@
       flex-direction: row;
       align-items: center;
       gap: 30px;
+
+      &__item3 {
+        background: #2d2d31;
+        border-radius: 20px;
+        width: 26%;
+        height: 660px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        &__rating {
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 21px;
+          color: #f3f3f3;
+        }
+
+        &__text {
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 23px;
+
+          color: #f3f3f3;
+        }
+
+        &__review {
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 900;
+          font-size: 25px;
+          text-transform: uppercase;
+          color: #f3f3f3;
+          width: 75%;
+        }
+      }
 
       &__item {
         background: #2d2d31;

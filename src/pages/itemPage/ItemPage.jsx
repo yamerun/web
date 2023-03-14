@@ -172,7 +172,13 @@ export const ItemPage = () => {
               </h1>
             </div>
           </div>
-          <div className={style.itemPage__container__items__item}>3</div>
+          <div className={style.itemPage__container__items__item3}>
+           <h1 className={style.itemPage__container__items__item3__review}>Описание обменника от администратора Change.Pro </h1>
+            <p className={style.itemPage__container__items__item3__text}>{exchange.description}</p>
+            <p className={style.itemPage__container__items__item3__rating}>Рейтинг на Change.Pro               {exchange.rating}</p>
+          </div>
+
+
         </div>
       </div>
     </div>
