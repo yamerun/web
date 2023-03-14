@@ -10,6 +10,9 @@
     flex-direction: row;
     &__logo {
       margin-right: 80px;
+      @media screen and (max-width:1479px){
+        margin-right: 40px;
+      }
     }
 
     &__rightSide {
@@ -17,6 +20,13 @@
       flex-direction: row;
       column-gap: 27%;
       align-items: center;
+
+      @media screen and (max-width:1479px){
+        column-gap: 10%;
+      }
+      @media screen and (max-width:1366px){
+        column-gap: 14%;
+      }
     }
 
     &__logInBtn {
@@ -31,6 +41,8 @@
       padding-left: 30px;
       padding-right: 30px;
       font-family: "BasisGrotesquePro";
+
+     
     }
 
     &__menu {
@@ -43,6 +55,14 @@
       flex-direction: row;
       margin-top: 10px;
       gap: 100px;
+
+      @media screen and (max-width:1621px){
+        gap: 60px;
+      }
+      @media screen and (max-width:1479px){
+        gap: 30px;
+      }
+     
     }
 
     &__btn {

@@ -10,6 +10,11 @@
         text-transform: uppercase;       
         color: #F3F3F3;
         line-height: 60px;
+
+        @media screen and (max-width:1679px){
+            font-size: 22px;
+            width:500px;
+          }
         
     }
 

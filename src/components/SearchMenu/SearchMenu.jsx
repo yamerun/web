@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import {
   setFillterItems2Reducer,
   setFillterItemsReducer,
+  setItems2Reducer,
   setItemsReducer,
 } from "../../store/itemsSlice/itemsSlice";
 import { setitemIdReducer } from "../../store/itemsSlice/itemsSlice";
@@ -13,49 +14,43 @@ import { setitemexchangeIdReducer } from "../../store/itemsSlice/itemsSlice";
 import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
+import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
 import axios from "axios";
 
 export const SearchMenu = () => {
   const ref = useRef(null);
-  const { items, currentTo, currentFrom, filltered, filltered2 } = useSelector(
-    (state) => ({
-      items: state.itemsSlice.items,
-      currentTo: state.itemsSlice.currentTo,
-      currentFrom: state.itemsSlice.currentFrom,
-      filltered: state.itemsSlice.filltered,
-      filltered2: state.itemsSlice.filltered2,
-    })
-  );
+  const {
+    items,
+    currentTo,
+    currentFrom,
+    filltered,
+    filltered2,
+    items2,
+    Emoney,
+    itemsbyEmoney,
+    itemsbyEmoney2,
+    Emoney2,
+  } = useSelector((state) => ({
+    items: state.itemsSlice.items,
+    currentTo: state.itemsSlice.currentTo,
+    currentFrom: state.itemsSlice.currentFrom,
+    filltered: state.itemsSlice.filltered,
+    filltered2: state.itemsSlice.filltered2,
+    items2: state.itemsSlice.items2,
+    Emoney: state.itemsSlice.Emoney,
+    itemsbyEmoney: state.itemsSlice.itemsbyEmoney,
+    itemsbyEmoney2: state.itemsSlice.itemsbyEmoney2,
+    Emoney2: state.itemsSlice.Emoney2,
+  }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInput2Value] = useState("");
-
-  const testArr3 = [
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-  ];
-  const testArr4 = [
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-    "заглушка",
-  ];
-
   useEffect(() => {
     axios
       .get(`http://146.59.87.222/api/exchangers/currencies/list`)
       .then(function (response) {
         dispatch(setItemsReducer(response.data.data));
+        dispatch(setItems2Reducer(response.data.data));
       })
       .catch(function (error) {});
   }, []);
@@ -69,7 +64,10 @@ export const SearchMenu = () => {
     dispatch(setitemexchangeIdReducer(exchanger));
     dispatch(setCurrentItemFromReducer(e.target.textContent));
     dispatch(setItemReducer(e.target.textContent));
-    console.log(currentFrom);
+  };
+
+  const getItemTo = (e) => {
+    dispatch(setCurrentItemToReducer(e.target.textContent));
   };
 
   useEffect(() => {}, [filltered, filltered2]);
@@ -81,6 +79,7 @@ export const SearchMenu = () => {
       )
       .then(function (response) {
         dispatch(setitemExchangeRatesReducer(response.data.data));
+        console.log(response.data.data)
       })
       .catch(function (error) {});
   }, [currentFrom, currentTo]);
@@ -134,15 +133,31 @@ export const SearchMenu = () => {
             </>
           ) : (
             <>
-              {items.map((item) => (
-                <li
-                  className={style.SearchMenu__item}
-                  id={item.id}
-                  onClick={(e) => getItemFrom(e)}
-                >
-                  {item.currency}
-                </li>
-              ))}
+              {Emoney == "" ? (
+                <>
+                  {items.map((item) => (
+                    <li
+                      className={style.SearchMenu__item}
+                      id={item.id}
+                      onClick={(e) => getItemFrom(e)}
+                    >
+                      {item.currency}
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {itemsbyEmoney.map((item) => (
+                    <li
+                      className={style.SearchMenu__item}
+                      id={item.id}
+                      onClick={(e) => getItemFrom(e)}
+                    >
+                      {item.currency}
+                    </li>
+                  ))}
+                </>
+              )}
             </>
           )}
         </ul>
@@ -153,7 +168,7 @@ export const SearchMenu = () => {
                 <li
                   className={style.SearchMenu__item}
                   id={item.id}
-                  onClick={(e) => getItemFrom(e)}
+                  onClick={(e) => getItemTo(e)}
                 >
                   {item.currency}
                 </li>
@@ -161,15 +176,31 @@ export const SearchMenu = () => {
             </>
           ) : (
             <>
-              {items.map((item) => (
-                <li
-                  className={style.SearchMenu__item}
-                  id={item.id}
-                  onClick={(e) => getItemFrom(e)}
-                >
-                  {item.currency}
-                </li>
-              ))}
+              {Emoney2 == "" ? (
+                <>
+                  {items2.map((item) => (
+                    <li
+                      className={style.SearchMenu__item}
+                      id={item.id}
+                      onClick={(e) => getItemTo(e)}
+                    >
+                      {item.currency}
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {itemsbyEmoney2.map((item) => (
+                    <li
+                      className={style.SearchMenu__item}
+                      id={item.id}
+                      onClick={(e) => getItemTo(e)}
+                    >
+                      {item.currency}
+                    </li>
+                  ))}
+                </>
+              )}
             </>
           )}
         </ul>
@@ -179,18 +210,7 @@ export const SearchMenu = () => {
           Электронные деньги
         </p>
       </div>
-      <div className={style.SearchMenu__itemsPayment}>
-        <ul className={style.SearchMenu__itemsList}>
-          {testArr3.map((item) => (
-            <li className={style.SearchMenu__item}>{item}</li>
-          ))}
-        </ul>
-        <ul className={style.SearchMenu__itemsList}>
-          {testArr4.map((item) => (
-            <li className={style.SearchMenu__item}>{item}</li>
-          ))}
-        </ul>
-      </div>
+      <EmoneyFillter />
       <div className={style.SearchMenu__ShowMore}>
         <button
           className={style.SearchMenu__ShowMorebtn}
@@ -200,12 +220,3 @@ export const SearchMenu = () => {
     </div>
   );
 };
-
-
-
- 
-
-
-
-
-

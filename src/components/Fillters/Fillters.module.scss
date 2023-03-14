@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width:1679px){
+    width:77%;
+  }
 
   &__inActive {
     visibility: hidden;
@@ -22,6 +25,9 @@
     gap: 80px;
     border-top: 1px solid #5e5e65;
     margin-top: 20px;
+    @media screen and (max-width:1679px){
+      gap: 60px;
+    }
 
     &__header {
       font-family: "BasisGrotesquePro";
@@ -45,8 +51,10 @@
         background: #46464B;
         padding-left: 10px;
         padding-right: 10px;
-
-        gap: 89px;
+        gap: 70px;
+        @media screen and (max-width:1679px){
+          gap: 56px;
+        }
 
         &__column {
           display: flex;

@@ -52,7 +52,6 @@ export const Fillters = () => {
       .get(`http://146.59.87.222/api/exchangers/get?exchanger_id=${exchageId}`)
       .then(function (response) {
         dispatch(setitemexchangeReducer(response.data.data));
-        console.log(exchange.name);
       })
       .catch(function (error) {});
   }, [exchageId, itemExchangeRates]);
@@ -60,8 +59,6 @@ export const Fillters = () => {
   const goToItemPage = () => {
     navigate("/exchangePage");
   };
-
-  //console.log(exchange.name)
 
   return (
     <div className={style.Fillters}>
