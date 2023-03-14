@@ -2,7 +2,11 @@ import React, { useRef, useEffect, useState } from "react";
 import style from "./SearchMenu.module.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setItemsReducer } from "../../store/itemsSlice/itemsSlice";
+import {
+  setFillterItems2Reducer,
+  setFillterItemsReducer,
+  setItemsReducer,
+} from "../../store/itemsSlice/itemsSlice";
 import { setitemIdReducer } from "../../store/itemsSlice/itemsSlice";
 import { setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
 import { setitemexchangeIdReducer } from "../../store/itemsSlice/itemsSlice";
@@ -13,21 +17,18 @@ import axios from "axios";
 
 export const SearchMenu = () => {
   const ref = useRef(null);
-  const {
-    items,
-    filltered,
-    filltered2,
-    currentTo,
-    currentFrom,
-  } = useSelector((state) => ({
-    items: state.itemsSlice.items,
-    itemId: state.itemsSlice.itemId,
-    exchangeId: state.itemsSlice.exchangeId,
-    item: state.itemsSlice.item,
-    currentTo: state.itemsSlice.currentTo,
-    currentFrom: state.itemsSlice.currentFrom,
-  }));
+  const { items, currentTo, currentFrom, filltered, filltered2 } = useSelector(
+    (state) => ({
+      items: state.itemsSlice.items,
+      currentTo: state.itemsSlice.currentTo,
+      currentFrom: state.itemsSlice.currentFrom,
+      filltered: state.itemsSlice.filltered,
+      filltered2: state.itemsSlice.filltered2,
+    })
+  );
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState("");
+  const [inputValue2, setInput2Value] = useState("");
 
   const testArr3 = [
     "заглушка",
@@ -71,14 +72,9 @@ export const SearchMenu = () => {
     console.log(currentFrom);
   };
 
-  const getItemTo = (e, exchanger) => {
-    dispatch(setCurrentItemToReducer(e.target.textContent));
-    console.log(currentTo);
-  };
   useEffect(() => {}, [filltered, filltered2]);
 
   useEffect(() => {
-   
     axios
       .get(
         `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
@@ -89,6 +85,16 @@ export const SearchMenu = () => {
       .catch(function (error) {});
   }, [currentFrom, currentTo]);
 
+  const setInputValueForSearch = (e) => {
+    setInputValue(e.target.value);
+    dispatch(setFillterItemsReducer(inputValue));
+  };
+
+  const setInputValue2ForSearch = (e) => {
+    setInput2Value(e.target.value);
+    dispatch(setFillterItems2Reducer(inputValue2));
+  };
+
   return (
     <div className={style.SearchMenu}>
       <div className={style.SearchMenu__inputs}>
@@ -96,6 +102,8 @@ export const SearchMenu = () => {
           <input
             className={style.SearchMenu__inputField}
             placeholder="Отдаете"
+            onChange={(e) => setInputValueForSearch(e)}
+            value={inputValue}
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -104,32 +112,66 @@ export const SearchMenu = () => {
           <input
             className={style.SearchMenu__inputField}
             placeholder="Получаете"
+            onChange={(e) => setInputValue2ForSearch(e)}
+            value={inputValue2}
           />
           <button className={style.SearchMenu__btn} />
         </div>
       </div>
       <div className={style.SearchMenu__items} ref={ref}>
         <ul className={style.SearchMenu__itemsList}>
-          {items.map((item) => (
-            <li
-              className={style.SearchMenu__item}
-              id={item.id}
-              onClick={(e) => getItemFrom(e)}
-            >
-              {item.currency}
-            </li>
-          ))}
+          {inputValue.length != 0 ? (
+            <>
+              {filltered.map((item) => (
+                <li
+                  className={style.SearchMenu__item}
+                  id={item.id}
+                  onClick={(e) => getItemFrom(e)}
+                >
+                  {item.currency}
+                </li>
+              ))}
+            </>
+          ) : (
+            <>
+              {items.map((item) => (
+                <li
+                  className={style.SearchMenu__item}
+                  id={item.id}
+                  onClick={(e) => getItemFrom(e)}
+                >
+                  {item.currency}
+                </li>
+              ))}
+            </>
+          )}
         </ul>
         <ul className={style.SearchMenu__itemsList}>
-          {items.map((item) => (
-            <li
-              className={style.SearchMenu__item}
-              id={item.id}
-              onClick={(e) => getItemTo(e)}
-            >
-              {item.currency}
-            </li>
-          ))}
+          {inputValue2.length != 0 ? (
+            <>
+              {filltered2.map((item) => (
+                <li
+                  className={style.SearchMenu__item}
+                  id={item.id}
+                  onClick={(e) => getItemFrom(e)}
+                >
+                  {item.currency}
+                </li>
+              ))}
+            </>
+          ) : (
+            <>
+              {items.map((item) => (
+                <li
+                  className={style.SearchMenu__item}
+                  id={item.id}
+                  onClick={(e) => getItemFrom(e)}
+                >
+                  {item.currency}
+                </li>
+              ))}
+            </>
+          )}
         </ul>
       </div>
       <div className={style.SearchMenu__itemsPayment__header}>
@@ -159,43 +201,11 @@ export const SearchMenu = () => {
   );
 };
 
-/*   {filltered2.length != 0 ? (
-            <>
-              {filltered2.map((item) => (
-                <li className={style.SearchMenu__item} id={item.id}>
-                  {item.to}
-                </li>
-              ))}
-            </>
-          ) : (
-            <>
-              {variants.length != 0 ? (
-                <>
-                  {variants.map((item) => (
-                    <li className={style.SearchMenu__item} id={item.id}>
-                      {item.to}
-                    </li>
-                  ))}
-                </>
-              ) : (
-                <>
-                  {items.map((item) => (
-                    <li className={style.SearchMenu__item} id={item.id}>
-                      {item.to}
-                    </li>
-                  ))}
-                </>
-              )}
-            </>
-          )} */
 
-//useEffect(() => {
-// axios
-// .get(
-// `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${item}`
-//  )
-// .then(function (response) {
-//   dispatch(setVariantsReducer(response.data.data));
-//   })
-//  .catch(function (error) {});
-// }, [item]);
+
+ 
+
+
+
+
+

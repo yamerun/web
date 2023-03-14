@@ -24,11 +24,6 @@ const itemsSlice = createSlice({
     setItemsReducer(state, action) {
       state.items = action.payload;
     },
-    setFillterItemsReducer(state, action) {
-      state.filltered = state.items.filter((item) =>
-        item.from.toLowerCase().includes(action.payload.toLocaleLowerCase())
-      );
-    },
     setitemIdReducer(state, action) {
       state.itemId = action.payload 
     },
@@ -60,12 +55,23 @@ const itemsSlice = createSlice({
     setCurrentItemToReducer(state, action) {
       state.currentTo = action.payload
      },
+     setFillterItemsReducer(state, action) {
+      state.filltered = state.items.filter((item) =>
+        item.currency.toLowerCase().includes(action.payload.toLocaleLowerCase())
+      );
+    },
+    setFillterItems2Reducer(state, action) {
+      state.filltered2 = state.items.filter((item) =>
+        item.currency.toLowerCase().includes(action.payload.toLocaleLowerCase())
+      );
+    },
   },
 });
 
 export const {
   setItemsReducer,
   setFillterItemsReducer,
+  setFillterItems2Reducer,
   setitemIdReducer,
   setitemExchangeRatesReducer,
   setitemexchangeIdReducer,
