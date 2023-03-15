@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
 import { Statistics } from "../Statistics/Statistics";
@@ -22,7 +22,10 @@ export const Fillters = () => {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
   const [exchageId, setExchangeId] = useState("");
+  const [exchageIdAll, setExchangeIdAll] = useState("");
+  const [exchangeAll, setExchangeAll] = useState([]);
 
+  const [all, setAll] = useState([]);
   const { itemExchangeRates, exchange } = useSelector((state) => ({
     itemExchangeRates: state.itemsSlice.itemExchangeRates,
     exchange: state.itemsSlice.exchange,
@@ -52,13 +55,47 @@ export const Fillters = () => {
       .get(`http://146.59.87.222/api/exchangers/get?exchanger_id=${exchageId}`)
       .then(function (response) {
         dispatch(setitemexchangeReducer(response.data.data));
+        console.log(response.data.data);
       })
-      .catch(function (error) {});
+      .catch(function (error) { });
   }, [exchageId, itemExchangeRates]);
+
+  useEffect(() => {
+    all.map((item) => setExchangeIdAll(item.exchanger_id));
+    axios
+      .get(
+        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+      )
+      .then(function (response) {
+        setAll(response.data.data.slice(0, 7));
+      });
+    axios
+      .get(
+        `http://146.59.87.222/api/exchangers/get?exchanger_id=${exchageIdAll}`
+      )
+      .then(function (response) {
+        setExchangeAll(response.data.data);
+      })
+      .catch(function (error) { });
+  }, [exchageIdAll, all]);
 
   const goToItemPage = () => {
     navigate("/exchangePage");
   };
+
+  const goToExchange = () => {
+    window.open(exchange.site_url);
+  };
+  const goToExchange2 = () => {
+    window.open(exchangeAll.site_url);
+  };
+
+  const goToItemPagefromEchageAll = () => {
+    navigate("/exchangePage");
+    dispatch(setitemexchangeReducer(exchangeAll));
+  };
+
+  console.log(all);
 
   return (
     <div className={style.Fillters}>
@@ -82,92 +119,220 @@ export const Fillters = () => {
       ) : (
         <div>
           <div className={style.Fillters__categories}>
-            <h1 className={style.Fillters__categories__header}>Обменник ↑↓</h1>
-            <h1 className={style.Fillters__categories__header}>Отдаете ↑</h1>
-            <h1 className={style.Fillters__categories__header}>Получаете ↓</h1>
-            <h1 className={style.Fillters__categories__header}>Резерв</h1>
-            <h1 className={style.Fillters__categories__header}>Отзывы</h1>
+            <h1 className={style.Fillters__categories__exchange}>
+              Обменник ↑↓
+            </h1>
+            <h1 className={style.Fillters__categories__from}>Отдаете ↑</h1>
+            <h1 className={style.Fillters__categories__to}>Получаете ↓</h1>
+            <h1 className={style.Fillters__categories__reserve}>Резерв</h1>
+            <h1 className={style.Fillters__categories__comment}>Отзывы</h1>
+            <h1 className={style.Fillters__categories__status}>Статус</h1>
           </div>
+
           <div className={style.Fillters__categories__body}>
-            {itemExchangeRates.map((item) => (
-              <div className={style.Fillters__categories__body__content}>
-                <div
-                  className={style.Fillters__categories__body__content__column}
-                >
-                  <button
-                    onClick={() => goToItemPage()}
+            {itemExchangeRates.length != 0
+              ? itemExchangeRates.map((item) => (
+                <div className={style.Fillters__categories__body__content}>
+                  <div
                     className={
-                      style.Fillters__categories__body__content__column__btn
-                    }
-                  />
-                  <p
-                    className={
-                      style.Fillters__categories__body__content__column__header
+                      style.Fillters__categories__body__content__excahange
                     }
                   >
-                    {exchange.name}
-                  </p>
+                    <button
+                      onClick={() => goToItemPage()}
+                      className={
+                        style.Fillters__categories__body__content__excahange__btn
+                      }
+                    />
+                    <p
+                      onClick={goToExchange}
+                      className={
+                        style.Fillters__categories__body__content__excahange__header
+                      }
+                    >
+                      {exchange.name}
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__from
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__from__header
+                      }
+                    >
+                      1
+                    </p>
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__from__header2
+                      }
+                    >
+                      {item.from}
+                    </p>
+                  </div>
+                  <div
+                    className={style.Fillters__categories__body__content__to}
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__to__header
+                      }
+                    >
+                      {(Math.round(item.out * 100) / 100).toFixed(2)}
+                    </p>
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__to__header2
+                      }
+                    >
+                      {item.to}
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__reserve
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__reserve__header
+                      }
+                    >
+                      {(Math.round(item.amount * 100) / 100).toFixed(2)}
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__comment
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__comment__header
+                      }
+                    >
+                      0/5082
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__status
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__status__header
+                      }
+                    >
+                      {exchange.status}
+                    </p>
+                  </div>
                 </div>
-                <div
-                  className={style.Fillters__categories__body__content__column}
-                >
-                  <p
+              ))
+              : all.map((item) => (
+                <div className={style.Fillters__categories__body__content}>
+                  <div
                     className={
-                      style.Fillters__categories__body__content__column__header
+                      style.Fillters__categories__body__content__excahange
                     }
                   >
-                    1
-                  </p>
-                  <p
+                    <button
+                      onClick={() => goToItemPagefromEchageAll()}
+                      className={
+                        style.Fillters__categories__body__content__excahange__btn
+                      }
+                    />
+                    <p
+                      onClick={goToExchange2}
+                      className={
+                        style.Fillters__categories__body__content__excahange__header
+                      }
+                    >
+                      {exchangeAll.name}
+                    </p>
+                  </div>
+                  <div
                     className={
-                      style.Fillters__categories__body__content__column__header2
+                      style.Fillters__categories__body__content__from
                     }
                   >
-                    {item.from}
-                  </p>
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__from__header
+                      }
+                    >
+                      1
+                    </p>
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__from__header2
+                      }
+                    >
+                      {item.from}
+                    </p>
+                  </div>
+                  <div
+                    className={style.Fillters__categories__body__content__to}
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__to__header
+                      }
+                    >
+                      {(Math.round(item.out * 100) / 100).toFixed(2)}
+                    </p>
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__to__header2
+                      }
+                    >
+                      {item.to}
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__reserve
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__reserve__header
+                      }
+                    >
+                      {(Math.round(item.amount * 100) / 100).toFixed(2)}
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__comment
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__comment__header
+                      }
+                    >
+                      0/5082
+                    </p>
+                  </div>
+                  <div
+                    className={
+                      style.Fillters__categories__body__content__status
+                    }
+                  >
+                    <p
+                      className={
+                        style.Fillters__categories__body__content__status__header
+                      }
+                    >
+                      {exchangeAll.status}
+                    </p>
+                  </div>
                 </div>
-                <div
-                  className={style.Fillters__categories__body__content__column}
-                >
-                  <p
-                    className={
-                      style.Fillters__categories__body__content__column__header
-                    }
-                  >
-                    {(Math.round(item.out * 100) / 100).toFixed(2)}
-                  </p>
-                  <p
-                    className={
-                      style.Fillters__categories__body__content__column__header2
-                    }
-                  >
-                    {item.to}
-                  </p>
-                </div>
-                <div
-                  className={style.Fillters__categories__body__content__column}
-                >
-                  <p
-                    className={
-                      style.Fillters__categories__body__content__column__header
-                    }
-                  >
-                    {(Math.round(item.amount * 100) / 100).toFixed(2)}
-                  </p>
-                </div>
-                <div
-                  className={style.Fillters__categories__body__content__column}
-                >
-                  <p
-                    className={
-                      style.Fillters__categories__body__content__column__header
-                    }
-                  >
-                    0/5082
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       )}

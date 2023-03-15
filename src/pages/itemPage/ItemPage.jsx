@@ -3,7 +3,7 @@ import style from "./ItemPage.module.scss";
 import { Header } from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 
-export const ItemPage = () => {
+export const ItemPage = (exchange) => {
   const { exchange } = useSelector((state) => ({
     exchange: state.itemsSlice.exchange,
   }));

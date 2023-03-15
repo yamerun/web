@@ -103,7 +103,8 @@ const itemsSlice = createSlice({
 },
 setResult2(state, action) {
   state.result2 = action.payload
-}
+},
+
   }
  
 });

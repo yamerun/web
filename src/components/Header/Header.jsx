@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 export const Header = () => {
   const menuBtns = [
     "Монторинг",
-    "Обменники",
-    "Партнерам",
-    "Помощь",
-    "Статьи",
+   "Обменники",
+  "Партнерам",
+   "Помощь",
+   "Статьи",
   ];
   const navigate = useNavigate();
 
@@ -38,10 +38,11 @@ export const Header = () => {
               <input
                 className={style.Header__container__search__input}
                 placeholder="Поиск"
+                disabled
               />
               <button className={style.Header__container__search__searchBtn} />
             </div>
-            <button className={style.Header__container__logInBtn}>Войти</button>
+         
           </div>
         </div>
       </div>
