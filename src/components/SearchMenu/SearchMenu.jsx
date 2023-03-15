@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useMemo } from "react";
 import style from "./SearchMenu.module.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
+  setFillteredItemsEmoneyReducer,
   setFillterItems2Reducer,
   setFillterItemsReducer,
   setItems2Reducer,
@@ -19,29 +20,14 @@ import axios from "axios";
 
 export const SearchMenu = () => {
   const ref = useRef(null);
-  const {
-    items,
-    currentTo,
-    currentFrom,
-    filltered,
-    filltered2,
-    items2,
-    Emoney,
-    itemsbyEmoney,
-    itemsbyEmoney2,
-    Emoney2,
-  } = useSelector((state) => ({
-    items: state.itemsSlice.items,
-    currentTo: state.itemsSlice.currentTo,
-    currentFrom: state.itemsSlice.currentFrom,
-    filltered: state.itemsSlice.filltered,
-    filltered2: state.itemsSlice.filltered2,
-    items2: state.itemsSlice.items2,
-    Emoney: state.itemsSlice.Emoney,
-    itemsbyEmoney: state.itemsSlice.itemsbyEmoney,
-    itemsbyEmoney2: state.itemsSlice.itemsbyEmoney2,
-    Emoney2: state.itemsSlice.Emoney2,
-  }));
+  const { items, currentTo, currentFrom, filltered, Emoney, Emoney2 } =
+    useSelector((state) => ({
+      items: state.itemsSlice.items,
+      currentTo: state.itemsSlice.currentTo,
+      currentFrom: state.itemsSlice.currentFrom,
+      Emoney: state.itemsSlice.Emoney,
+      Emoney2: state.itemsSlice.Emoney2,
+    }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInput2Value] = useState("");
@@ -53,7 +39,7 @@ export const SearchMenu = () => {
         dispatch(setItems2Reducer(response.data.data));
       })
       .catch(function (error) {});
-  }, []);
+  }, [items]);
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
@@ -64,13 +50,27 @@ export const SearchMenu = () => {
     dispatch(setitemexchangeIdReducer(exchanger));
     dispatch(setCurrentItemFromReducer(e.target.textContent));
     dispatch(setItemReducer(e.target.textContent));
+    const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
+    e.target.classList.add(`${style.active}`);
+    for (let i of btnElements) {
+      if (i != e.target) {
+        i.classList.remove(`${style.active}`);
+      }
+    }
   };
 
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
+    const btnElements = document.querySelectorAll(
+      `.${style.SearchMenu__item2}`
+    );
+    e.target.classList.add(`${style.active}`);
+    for (let i of btnElements) {
+      if (i != e.target) {
+        i.classList.remove(`${style.active}`);
+      }
+    }
   };
-
-  useEffect(() => {}, [filltered, filltered2]);
 
   useEffect(() => {
     axios
@@ -79,7 +79,7 @@ export const SearchMenu = () => {
       )
       .then(function (response) {
         dispatch(setitemExchangeRatesReducer(response.data.data));
-        console.log(response.data.data)
+        console.log(response.data.data);
       })
       .catch(function (error) {});
   }, [currentFrom, currentTo]);
@@ -93,6 +93,30 @@ export const SearchMenu = () => {
     setInput2Value(e.target.value);
     dispatch(setFillterItems2Reducer(inputValue2));
   };
+
+  const result = useMemo(() => {
+    if (inputValue.length !== 0) {
+      return items.filter((item) =>
+        item.currency.toLowerCase().includes(inputValue.toLocaleLowerCase())
+      );
+    } else if (Emoney != "") {
+      return items.filter((item) =>
+        item.currency_type.toLowerCase().includes(Emoney.toLocaleLowerCase())
+      );
+    } else return items;
+  }, [inputValue, Emoney, items]);
+
+  const result2 = useMemo(() => {
+    if (inputValue2.length !== 0) {
+      return items.filter((item) =>
+        item.currency.toLowerCase().includes(inputValue2.toLocaleLowerCase())
+      );
+    } else if (Emoney2 != "") {
+      return items.filter((item) =>
+        item.currency_type.toLowerCase().includes(Emoney2.toLocaleLowerCase())
+      );
+    } else return items;
+  }, [inputValue2, Emoney2, items]);
 
   return (
     <div className={style.SearchMenu}>
@@ -119,90 +143,26 @@ export const SearchMenu = () => {
       </div>
       <div className={style.SearchMenu__items} ref={ref}>
         <ul className={style.SearchMenu__itemsList}>
-          {inputValue.length != 0 ? (
-            <>
-              {filltered.map((item) => (
-                <li
-                  className={style.SearchMenu__item}
-                  id={item.id}
-                  onClick={(e) => getItemFrom(e)}
-                >
-                  {item.currency}
-                </li>
-              ))}
-            </>
-          ) : (
-            <>
-              {Emoney == "" ? (
-                <>
-                  {items.map((item) => (
-                    <li
-                      className={style.SearchMenu__item}
-                      id={item.id}
-                      onClick={(e) => getItemFrom(e)}
-                    >
-                      {item.currency}
-                    </li>
-                  ))}
-                </>
-              ) : (
-                <>
-                  {itemsbyEmoney.map((item) => (
-                    <li
-                      className={style.SearchMenu__item}
-                      id={item.id}
-                      onClick={(e) => getItemFrom(e)}
-                    >
-                      {item.currency}
-                    </li>
-                  ))}
-                </>
-              )}
-            </>
-          )}
+          {result.map((item) => (
+            <li
+              className={style.SearchMenu__item}
+              id={item.id}
+              onClick={(e) => getItemFrom(e)}
+            >
+              {item.currency}
+            </li>
+          ))}
         </ul>
         <ul className={style.SearchMenu__itemsList}>
-          {inputValue2.length != 0 ? (
-            <>
-              {filltered2.map((item) => (
-                <li
-                  className={style.SearchMenu__item}
-                  id={item.id}
-                  onClick={(e) => getItemTo(e)}
-                >
-                  {item.currency}
-                </li>
-              ))}
-            </>
-          ) : (
-            <>
-              {Emoney2 == "" ? (
-                <>
-                  {items2.map((item) => (
-                    <li
-                      className={style.SearchMenu__item}
-                      id={item.id}
-                      onClick={(e) => getItemTo(e)}
-                    >
-                      {item.currency}
-                    </li>
-                  ))}
-                </>
-              ) : (
-                <>
-                  {itemsbyEmoney2.map((item) => (
-                    <li
-                      className={style.SearchMenu__item}
-                      id={item.id}
-                      onClick={(e) => getItemTo(e)}
-                    >
-                      {item.currency}
-                    </li>
-                  ))}
-                </>
-              )}
-            </>
-          )}
+          {result2.map((item) => (
+            <li
+              className={style.SearchMenu__item2}
+              id={item.id}
+              onClick={(e) => getItemTo(e)}
+            >
+              {item.currency}
+            </li>
+          ))}
         </ul>
       </div>
       <div className={style.SearchMenu__itemsPayment__header}>

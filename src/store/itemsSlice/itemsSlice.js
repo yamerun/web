@@ -17,6 +17,9 @@ const initialState = {
   currentTo: "",
   Emoney: "",
   Emoney2: "",
+  fillteredByEmoney:[],
+  result:[],
+  result2:[]
 };
 
 const itemsSlice = createSlice({
@@ -90,7 +93,19 @@ const itemsSlice = createSlice({
           .includes(action.payload.toLocaleLowerCase())
       );
     },
+    setFillteredItemsEmoneyReducer(state, action) {
+      state.fillteredByEmoney = state.itemsbyEmoney.filter((item) =>
+        item.currency.toLowerCase().includes(action.payload.toLocaleLowerCase())
+      );   
   },
+  setResult(state, action) {
+    state.result = action.payload
+},
+setResult2(state, action) {
+  state.result2 = action.payload
+}
+  }
+ 
 });
 
 export const {
@@ -110,6 +125,9 @@ export const {
   setEmoneyReducer,
   setItemsEmoneyReducer,
   setItemsEmoneyReducer2,
-  setEmoneyReducer2
+  setEmoneyReducer2,
+  setFillteredItemsEmoneyReducer,
+  setResult,
+  setResult2
 } = itemsSlice.actions;
 export default itemsSlice.reducer;
