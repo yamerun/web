@@ -51,10 +51,13 @@
           font-style: normal;
           font-weight: 400;
           font-size: 18px;
-          line-height: 23px;
-
+           width: 400px;
+           max-height: 600px;
+           overflow-y: auto;
           color: #f3f3f3;
-        }
+          white-space: pre-wrap;
+          word-break: break-all;
+                }
 
         &__review {
           font-family: "BasisGrotesquePro";

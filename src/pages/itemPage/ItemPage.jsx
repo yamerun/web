@@ -3,7 +3,7 @@ import style from "./ItemPage.module.scss";
 import { Header } from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 
-export const ItemPage = (exchange) => {
+export const ItemPage = () => {
   const { exchange } = useSelector((state) => ({
     exchange: state.itemsSlice.exchange,
   }));
@@ -163,22 +163,22 @@ export const ItemPage = (exchange) => {
                   {/*exchange.country*/}0/69
                 </h1>
               </div>
-              <h1
-                className={
-                  style.itemPage__container__review
-                }
-              >
-               Оставить отзыв об обменнике →
+              <h1 className={style.itemPage__container__review}>
+                Оставить отзыв об обменнике →
               </h1>
             </div>
           </div>
           <div className={style.itemPage__container__items__item3}>
-           <h1 className={style.itemPage__container__items__item3__review}>Описание обменника от администратора Change.Pro </h1>
-            <p className={style.itemPage__container__items__item3__text}>{exchange.description}</p>
-            <p className={style.itemPage__container__items__item3__rating}>Рейтинг на Change.Pro               {exchange.rating}</p>
+            <h1 className={style.itemPage__container__items__item3__review}>
+              Описание обменника от администратора Change.Pro{" "}
+            </h1>
+            <p className={style.itemPage__container__items__item3__text}>
+              {exchange.description}
+ </p>
+            <p className={style.itemPage__container__items__item3__rating}>
+              Рейтинг на Change.Pro {exchange.rating}
+            </p>
           </div>
-
-
         </div>
       </div>
     </div>

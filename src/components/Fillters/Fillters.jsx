@@ -95,7 +95,7 @@ export const Fillters = () => {
     dispatch(setitemexchangeReducer(exchangeAll));
   };
 
-  console.log(all);
+ 
 
   return (
     <div className={style.Fillters}>
