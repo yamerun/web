@@ -1,5 +1,5 @@
 $hedaerw1: 95px;
-$hedaerw2: 73px;
+$hedaerw2: 40px;
 $hedaerw3: 90px;
 $hedaerw4: 53px;
 $hedaerw5: 57px;
@@ -110,7 +110,7 @@ $hedaerw6: 50px;
       margin-top: 5px;
       height: 300px;
       overflow-y: auto;
-
+      position: relative;
      
       &__content {
         display: flex;
@@ -120,6 +120,9 @@ $hedaerw6: 50px;
         border-radius: 7px;
         padding-left: 10px;
         padding-right: 10px;
+        height:40px;
+        padding-top: 7px;
+        padding-bottom: 10px;
         gap: 60px;
         overflow: hidden;
         margin: 5px;
@@ -168,6 +171,7 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw3;
+
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;

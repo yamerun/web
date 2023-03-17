@@ -31,22 +31,47 @@ export const SearchMenu = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInput2Value] = useState("");
+
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+    .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+    .then(function (response) {
+      dispatch(setItemsReducer(response.data.data));
+      dispatch(setItems2Reducer(response.data.data));
+    })
+    .catch(function (error) {});
+  }, []);
+
+
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+      )
       .then(function (response) {
-        dispatch(setItemsReducer(response.data.data));
-        dispatch(setItems2Reducer(response.data.data));
+        dispatch(setitemExchangeRatesReducer(response.data.data));
+        console.log(response.data.data);
       })
       .catch(function (error) {});
-  }, []);
+  }, [currentFrom,currentTo]);
+
+
+
+
+
+
+
+
+
+
+
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
   };
 
   const getItemFrom = (e, exchanger) => {
-
     dispatch(setitemIdReducer(e.target.id));
     dispatch(setCurrentItemFromReducer(e.target.textContent));
     dispatch(setItemReducer(e.target.textContent));
@@ -61,7 +86,7 @@ export const SearchMenu = () => {
 
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
-  
+
     const btnElements = document.querySelectorAll(
       `.${style.SearchMenu__item2}`
     );
@@ -72,19 +97,6 @@ export const SearchMenu = () => {
       }
     }
   };
-
-  useEffect(() => {
-    axios
-      .get(
-        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-      )
-      .then(function (response) {
-        dispatch(setitemExchangeRatesReducer(response.data.data));
-        console.log(response.data.data)
-
-      })
-      .catch(function (error) {});
-  }, [currentFrom, currentTo]);
 
   const setInputValueForSearch = (e) => {
     setInputValue(e.target.value);
@@ -120,8 +132,6 @@ export const SearchMenu = () => {
     } else return items;
   }, [inputValue2, Emoney2, items]);
 
-
-  
   return (
     <div className={style.SearchMenu}>
       <div className={style.SearchMenu__inputs}>
@@ -151,7 +161,7 @@ export const SearchMenu = () => {
             <li
               className={style.SearchMenu__item}
               id={item.id}
-              onClick={(e) => getItemFrom(e,item)}
+              onClick={(e) => getItemFrom(e, item)}
             >
               {item.currency}
             </li>

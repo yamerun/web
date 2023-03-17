@@ -10,7 +10,7 @@ import { setitemexchangeIdReducer } from "../../store/itemsSlice/itemsSlice";
 import { setitemexchangeReducer } from "../../store/itemsSlice/itemsSlice";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { LoadingSpin } from "../LoadingSpin/LoadingSpin";
 export const Fillters = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,15 +51,7 @@ export const Fillters = () => {
     } else setOpen(false);
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
-      )
-      .then(function (response) {
-        setAll(response.data.data.slice(0, 7));
-      });
-  }, []);
+  
 
   const goToItemPage = () => {
     navigate("/exchangePage");
@@ -74,16 +66,32 @@ export const Fillters = () => {
 
  
   useEffect(() => {
-    axios
-      .get(`http://146.59.87.222/api/exchangers/get?exchanger_id=${exchangeId}`)
-      .then(function (response) {
-        dispatch(setitemexchangeReducer(response.data.data));
-      })
-      .then(function (response) {})
-      .catch(function (error) {});
+    const getCurrentFromToItems = () => {
+      axios
+        .get(
+          `http://146.59.87.222/api/exchangers/get?exchanger_id=${exchangeId}`
+        )
+        .then(function (response) {
+          dispatch(setitemexchangeReducer(response.data.data));
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+    };
+    setInterval(getCurrentFromToItems, 5000);
   }, [exchangeId]);
 
-
+  useEffect(() => {
+    const getCurrenciesAll = () => {
+      axios
+        .get(
+          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+        )
+        .then(function (response) {
+          setAll(response.data.data.slice(0, 7));
+        });
+    };
+    setInterval(getCurrenciesAll, 5000);
+  }, []);
 
   return (
     <div className={style.Fillters}>
@@ -118,6 +126,8 @@ export const Fillters = () => {
           </div>
 
           <div className={style.Fillters__categories__body}>
+
+          {itemExchangeRates.length === 0 && all.length === 0 &&(<LoadingSpin/>)}
             {itemExchangeRates.length != 0
               ? itemExchangeRates.map((item) => (
                   <div className={style.Fillters__categories__body__content}>
@@ -126,8 +136,8 @@ export const Fillters = () => {
                         style.Fillters__categories__body__content__excahange
                       }
                     >
-                      <button
-                        onClick={() => goToItemPage()}
+                      <Link
+                        to={`/${item.exchanger_id}`}
                         className={
                           style.Fillters__categories__body__content__excahange__btn
                         }
@@ -215,7 +225,7 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__status__header
                         }
                       >
-                        {exchange.status}
+                        {item.exchanger.status}
                       </p>
                     </div>
                   </div>
@@ -316,7 +326,7 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__status__header
                         }
                       >
-                        {/*exchangeAll.status*/}
+                        {item.exchanger.status}
                       </p>
                     </div>
                   </div>
