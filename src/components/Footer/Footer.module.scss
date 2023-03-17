@@ -1,0 +1,90 @@
+.Footer {
+    margin-top: 50px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 600px;
+    justify-content: center;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 600px;
+        border-top: 1px solid #5E5E65;
+        padding-top: 20px;
+    }
+
+    &__box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10px;
+        gap: 30px;
+     
+
+        &__btn {
+            font-family: "BasisGrotesquePro";
+            font-style: normal;
+            line-height: 21px;
+            text-align: center;
+            color: #f3f3f3;
+            background: #151517;
+            border: 2px solid #f3f3f3;
+            font-weight: 700;
+             font-size: 18px;
+             padding: 11px 25px;
+             border-radius: 20px;
+        }
+
+        &__icons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        &__info {
+            font-family: "BasisGrotesquePro";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 21px;
+            text-align: center;
+            color: #f3f3f3;
+            opacity: 0.5;
+
+            &__infoBox {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+
+                &__link {
+                    font-family: "BasisGrotesquePro";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 21px;
+                    text-align: center;
+                    color: #f3f3f3;
+                    opacity: 0.5;
+                    text-decoration: underline;
+                }
+                &__link2 {
+                    font-family: "BasisGrotesquePro";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 21px;
+                    text-align: center;
+                    color: #f3f3f3;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+}

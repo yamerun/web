@@ -6,6 +6,7 @@ import { Navigation } from "../../components/Navigation/Navigation";
 import { Advertisement } from "../../components/Advertisement/Advertisement";
 import { Fillters } from "../../components/Fillters/Fillters";
 import { Article } from "../../components/Article/Article";
+import { Footer } from "../../components/Footer/Footer";
 export const MainPage = () => {
   const NavProps = ["Таблица", "Список", "Популярное"];
 
@@ -22,7 +23,9 @@ export const MainPage = () => {
           <Fillters />
           <Article/>
         </div>
+      
       </div>
+      <Footer/>
     </div>
   );
 };

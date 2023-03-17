@@ -22,24 +22,7 @@ export const EmoneyFillter = () => {
     })
   );
 
-  useEffect(() => {
-    axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/types`)
-      .then(function (response) {
-      })
-      .catch(function (error) {});
-  }, []);
 
-  useEffect(() => {
-    axios
-      .get(
-        `http://146.59.87.222/api/exchangers/currencies/list?currency_type_id=1`
-      )
-      .then(function (response) {
-        console.log(response.data.data);
-      })
-      .catch(function (error) {});
-  }, []);
 
   const getEmoney = (title, e) => {
     dispatch(setEmoneyReducer(title));

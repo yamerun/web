@@ -6,6 +6,10 @@ import "./assets/styles/Common.css";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { ItemPage } from "./pages/itemPage/itemPage";
+import { exchangeLoader } from "./pages/itemPage/itemPage";
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -13,8 +17,9 @@ const router = createBrowserRouter([
     element: <MainPage />,
   },
   {
-    path: "/exchangePage",
-    element: <ItemPage/>,
+    path: "/:id",
+    element: <ItemPage />,
+    loader:exchangeLoader,
   },
 ]);
 

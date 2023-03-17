@@ -101,10 +101,17 @@ $hedaerw6: 50px;
       cursor: pointer;
       width: $hedaerw6;
     }
+
+    &__body::-webkit-scrollbar {
+      display: none;
+    }
+    
     &__body {
-      margin-top: 15px;
+      margin-top: 5px;
       height: 300px;
       overflow-y: auto;
+
+     
       &__content {
         display: flex;
         flex-direction: row;

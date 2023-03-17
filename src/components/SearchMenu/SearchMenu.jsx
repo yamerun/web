@@ -39,15 +39,15 @@ export const SearchMenu = () => {
         dispatch(setItems2Reducer(response.data.data));
       })
       .catch(function (error) {});
-  }, [items]);
+  }, []);
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
   };
 
   const getItemFrom = (e, exchanger) => {
+
     dispatch(setitemIdReducer(e.target.id));
-    dispatch(setitemexchangeIdReducer(exchanger));
     dispatch(setCurrentItemFromReducer(e.target.textContent));
     dispatch(setItemReducer(e.target.textContent));
     const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
@@ -61,6 +61,7 @@ export const SearchMenu = () => {
 
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
+  
     const btnElements = document.querySelectorAll(
       `.${style.SearchMenu__item2}`
     );
@@ -79,6 +80,7 @@ export const SearchMenu = () => {
       )
       .then(function (response) {
         dispatch(setitemExchangeRatesReducer(response.data.data));
+        console.log(response.data.data)
 
       })
       .catch(function (error) {});
@@ -118,6 +120,8 @@ export const SearchMenu = () => {
     } else return items;
   }, [inputValue2, Emoney2, items]);
 
+
+  
   return (
     <div className={style.SearchMenu}>
       <div className={style.SearchMenu__inputs}>
@@ -147,7 +151,7 @@ export const SearchMenu = () => {
             <li
               className={style.SearchMenu__item}
               id={item.id}
-              onClick={(e) => getItemFrom(e)}
+              onClick={(e) => getItemFrom(e,item)}
             >
               {item.currency}
             </li>
