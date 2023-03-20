@@ -132,6 +132,7 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw2;
+          padding-bottom: 11px;
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -148,11 +149,12 @@ $hedaerw6: 50px;
             font-family: "BasisGrotesquePro";
             font-style: normal;
             font-weight: 700;
-            font-size: 10px;
+            font-size: 9px;
             line-height: 17px;
             color: #f3f3f3;
             opacity: 0.5;
             text-align: center;
+            margin:0;
           }
 
           &__btn {
@@ -171,6 +173,7 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw3;
+          padding-bottom:11px;
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -186,11 +189,13 @@ $hedaerw6: 50px;
             font-family: "BasisGrotesquePro";
             font-style: normal;
             font-weight: 700;
-            font-size: 10px;
+            font-size: 9px;
             line-height: 17px;
             color: #f3f3f3;
             opacity: 0.5;
             text-align: center;
+            margin:0;
+
           }
           &__btn {
             background-color: #2d2d31;
@@ -223,7 +228,7 @@ $hedaerw6: 50px;
           display: flex;
           flex-direction: row;
           align-items: center;
-          gap: 5px;
+          gap: 10px;
           text-align: center;
           width: $hedaerw1;
           &__header {
@@ -236,6 +241,7 @@ $hedaerw6: 50px;
             color: #f3f3f3;
             text-align: center;
             cursor: pointer;
+            padding-bottom: 10px;
           }
 
           &__btn {

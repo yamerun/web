@@ -4,6 +4,7 @@ import { Header } from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
@@ -18,7 +19,12 @@ export const exchangeLoader = async ({ params }) => {
 export const ItemPage = () => {
   const { item } = useLoaderData();
   console.log(item);
+  const navigate = useNavigate()
 
+  const navigateToSite = (url) => {
+  window.open(`${url}`)
+   
+  }
   return (
     <div className={style.itemPage}>
     <Header />
@@ -26,7 +32,7 @@ export const ItemPage = () => {
       <h1 className={style.itemPage__container__header}>{item.data.name}</h1>
       <div className={style.itemPage__container__items}>
         <div className={style.itemPage__container__items__item}>
-          <button className={style.itemPage__container__items__item__btn}>
+          <button className={style.itemPage__container__items__item__btn} onClick={() => navigateToSite(item.data.site_url)}>
             Перейти на {item.name}
           </button>
         </div>
@@ -45,6 +51,7 @@ export const ItemPage = () => {
                 Статус:
               </h1>
               <h1
+              style={{borderColor:`${item.data.color}`}}
                 className={
                   style.itemPage__container__items__item2__container__status__header2
                 }

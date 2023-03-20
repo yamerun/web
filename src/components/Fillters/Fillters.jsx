@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect, useCallback,useMemo } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
 import { Statistics } from "../Statistics/Statistics";
@@ -6,9 +12,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setitemexchangeIdReducer } from "../../store/itemsSlice/itemsSlice";
-import { setitemexchangeReducer } from "../../store/itemsSlice/itemsSlice";
-import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { LoadingSpin } from "../LoadingSpin/LoadingSpin";
 export const Fillters = () => {
@@ -25,13 +28,9 @@ export const Fillters = () => {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState([]);
-  const { itemExchangeRates, exchange, exchangeId } = useSelector((state) => ({
+  const { itemExchangeRates } = useSelector((state) => ({
     itemExchangeRates: state.itemsSlice.itemExchangeRates,
-    exchange: state.itemsSlice.exchange,
-    exchangeId: state.itemsSlice.exchangeId,
   }));
-
-
 
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
@@ -51,37 +50,16 @@ export const Fillters = () => {
     } else setOpen(false);
   };
 
-  
-
-  const goToItemPage = () => {
-    navigate("/exchangePage");
-  };
-
-  const goToExchange = () => {
-    //  window.open(exchange.site_url);
-  };
-  const goToExchange2 = () => {
-    //   window.open(exchangeAll.site_url);
-  };
-
- 
   useEffect(() => {
-    const getCurrentFromToItems = () => {
-      axios
-        .get(
-          `http://146.59.87.222/api/exchangers/get?exchanger_id=${exchangeId}`
-        )
-        .then(function (response) {
-          dispatch(setitemexchangeReducer(response.data.data));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
-    };
-    setInterval(getCurrentFromToItems, 5000);
-  }, [exchangeId]);
-
-  useEffect(() => {
-    const getCurrenciesAll = () => {
+    axios
+      .get(
+        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+      )
+      .then(function (response) {
+        setAll(response.data.data.slice(0, 7));
+        console.log(response)
+      });
+    const getCurrenciesAll = setInterval(() => {
       axios
         .get(
           `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
@@ -89,9 +67,13 @@ export const Fillters = () => {
         .then(function (response) {
           setAll(response.data.data.slice(0, 7));
         });
-    };
-    setInterval(getCurrenciesAll, 5000);
+    }, 5000);
+    return () => clearInterval(getCurrenciesAll);
   }, []);
+
+  const openItemSite = (url) => {
+    window.open(`${url}`)
+  }
 
   return (
     <div className={style.Fillters}>
@@ -124,10 +106,7 @@ export const Fillters = () => {
             <h1 className={style.Fillters__categories__comment}>Отзывы</h1>
             <h1 className={style.Fillters__categories__status}>Статус</h1>
           </div>
-
           <div className={style.Fillters__categories__body}>
-
-          {itemExchangeRates.length === 0 && all.length === 0 &&(<LoadingSpin/>)}
             {itemExchangeRates.length != 0
               ? itemExchangeRates.map((item) => (
                   <div className={style.Fillters__categories__body__content}>
@@ -137,16 +116,16 @@ export const Fillters = () => {
                       }
                     >
                       <Link
-                        to={`/${item.exchanger_id}`}
+                        to={`/${item.exchanger.id}`}
                         className={
                           style.Fillters__categories__body__content__excahange__btn
                         }
                       />
                       <p
-                        onClick={goToExchange}
                         className={
                           style.Fillters__categories__body__content__excahange__header
                         }
+                        onClik={() => openItemSite()}
                       >
                         {item.exchanger.name}
                       </p>
@@ -225,7 +204,7 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__status__header
                         }
                       >
-                        {item.exchanger.status}
+                        {item.exchanger.status.title}
                       </p>
                     </div>
                   </div>
@@ -238,13 +217,12 @@ export const Fillters = () => {
                       }
                     >
                       <Link
-                        to={`/${item.exchanger_id}`}
+                        to={`/${item.exchanger.id}`}
                         className={
                           style.Fillters__categories__body__content__excahange__btn
                         }
                       />
                       <p
-                        onClick={goToExchange2}
                         className={
                           style.Fillters__categories__body__content__excahange__header
                         }
@@ -326,15 +304,16 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__status__header
                         }
                       >
-                        {item.exchanger.status}
+                        {item.exchanger.status.title}
                       </p>
                     </div>
                   </div>
                 ))}
           </div>
         </div>
-      )}
+      )}*/
     </div>
   );
 };
+
 

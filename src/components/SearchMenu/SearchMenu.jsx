@@ -46,26 +46,35 @@ export const SearchMenu = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-      )
-      .then(function (response) {
-        dispatch(setitemExchangeRatesReducer(response.data.data));
-        console.log(response.data.data);
-      })
-      .catch(function (error) {});
-  }, [currentFrom,currentTo]);
+    .get(
+      `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+    )
+    .then(function (response) {
+      dispatch(setitemExchangeRatesReducer(response.data.data));
+      console.log(response.data.data);
+    })
+    .then(function (response) {})
+    .catch(function (error) {});
+    
+    const get =  setInterval(() => {
+      axios
+        .get(
+          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+        )
+        .then(function (response) {
+          dispatch(setitemExchangeRatesReducer(response.data.data));
+          console.log(response.data.data);
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+    },3000)
+
+    return () => clearInterval(get);
+  }, [currentTo, currentFrom]);
 
 
 
-
-
-
-
-
-
-
-
+  
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
