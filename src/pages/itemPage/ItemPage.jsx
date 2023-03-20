@@ -19,12 +19,10 @@ export const exchangeLoader = async ({ params }) => {
 export const ItemPage = () => {
   const { item } = useLoaderData();
   console.log(item);
-  const navigate = useNavigate()
-
   const navigateToSite = (url) => {
   window.open(`${url}`)
-   
   }
+  const navigate = useNavigate()
   return (
     <div className={style.itemPage}>
     <Header />
@@ -33,8 +31,9 @@ export const ItemPage = () => {
       <div className={style.itemPage__container__items}>
         <div className={style.itemPage__container__items__item}>
           <button className={style.itemPage__container__items__item__btn} onClick={() => navigateToSite(item.data.site_url)}>
-            Перейти на {item.name}
+            Перейти на {item.data.name}
           </button>
+          <img alt='logo' src={`${item.data.logo}`}/>
         </div>
         <div className={style.itemPage__container__items__item2}>
           <div className={style.itemPage__container__items__item2__container}>
@@ -51,12 +50,12 @@ export const ItemPage = () => {
                 Статус:
               </h1>
               <h1
-              style={{borderColor:`${item.data.color}`}}
+              style={{borderColor:`${item.data.status.color}`}}
                 className={
                   style.itemPage__container__items__item2__container__status__header2
                 }
               >
-                {item.data.status}
+                {item.data.status.title}
               </h1>
             </div>
             <div

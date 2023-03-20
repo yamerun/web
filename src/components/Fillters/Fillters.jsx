@@ -125,7 +125,7 @@ export const Fillters = () => {
                         className={
                           style.Fillters__categories__body__content__excahange__header
                         }
-                        onClik={() => openItemSite()}
+                        onClick={() => openItemSite(item.exchanger.site_url)}
                       >
                         {item.exchanger.name}
                       </p>
@@ -226,6 +226,7 @@ export const Fillters = () => {
                         className={
                           style.Fillters__categories__body__content__excahange__header
                         }
+                        onClick={() => openItemSite(item.exchanger.site_url)}
                       >
                         {item.exchanger.name}
                       </p>
