@@ -1,17 +1,20 @@
 .itemPage {
-  &__container {
-    margin-top: 2%;
-    margin-left: 13%;
-    display: flex;
+  height:100%;
+  &__reviews {
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
+    display: flex;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+    height: 100%;
 
-    &__review {
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
+    &__close {
       color: #f3f3f3;
-      padding-top: 30px;
+      background: none;
+      border:none
     }
 
     &__header {
@@ -19,9 +22,35 @@
       font-style: normal;
       font-weight: 900;
       font-size: 45px;
+      text-transform: uppercase;
+      color: #f3f3f3;
+      user-select: none;
+    }
+  }
+  &__container {
+    margin-top: 10px;
+    margin-left: 13%;
+    display: flex;
+    flex-direction: column;
+
+    &__Addreview {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f3f3f3;
+      padding-top: 30px;
+      background-color: #2d2d31;
+      outline: none;
+      border: 0;
+    }
+    &__header {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 45px;
       color: #f3f3f3;
     }
-
     &__items {
       display: flex;
       flex-direction: row;
@@ -36,7 +65,6 @@
         display: flex;
         flex-direction: column;
         position: relative;
-
         &__rating {
           font-family: "BasisGrotesquePro";
           font-style: normal;
@@ -45,20 +73,18 @@
           line-height: 21px;
           color: #f3f3f3;
         }
-
         &__text {
           font-family: "BasisGrotesquePro";
           font-style: normal;
           font-weight: 400;
           font-size: 18px;
-           width: 400px;
-           max-height: 600px;
-           overflow-y: auto;
+          width: 400px;
+          max-height: 600px;
+          overflow-y: auto;
           color: #f3f3f3;
           white-space: pre-wrap;
           word-break: break-all;
-                }
-
+        }
         &__review {
           font-family: "BasisGrotesquePro";
           font-style: normal;
@@ -69,14 +95,12 @@
           width: 75%;
         }
       }
-
       &__item {
         background: #2d2d31;
         border-radius: 20px;
         width: 26%;
         height: 660px;
         position: relative;
-
         &__btn {
           font-family: "BasisGrotesquePro";
           font-style: normal;
@@ -92,7 +116,6 @@
           left: 30px;
         }
       }
-
       &__item2 {
         background: #2d2d31;
         border-radius: 20px;
@@ -101,16 +124,13 @@
         display: flex;
         justify-content: center;
         position: relative;
-
         &__container {
           display: flex;
           flex-direction: column;
           padding-top: 20px;
           padding-left: 20px;
           padding-right: 20px;
-
           width: 100%;
-
           &__status {
             display: flex;
             flex-direction: row;
@@ -119,7 +139,6 @@
             width: 95%;
             border-bottom: 1px solid #5e5e65;
             padding-bottom: 25px;
-
             &__header {
               font-family: "BasisGrotesquePro";
               font-style: normal;
@@ -127,7 +146,6 @@
               font-size: 16px;
               color: #f3f3f3;
             }
-
             &__header2 {
               font-family: "BasisGrotesquePro";
               font-style: normal;
@@ -140,7 +158,6 @@
               position: absolute;
               left: 70%;
             }
-
             &__headerInfo {
               font-family: "BasisGrotesquePro";
               font-style: normal;
