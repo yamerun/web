@@ -21,11 +21,10 @@ export const MainPage = () => {
         <div className={style.MainPage__rightMenu}>
           <Advertisement />
           <Fillters />
-          <Article/>
+          <Article />
         </div>
-      
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

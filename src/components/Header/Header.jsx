@@ -2,12 +2,17 @@ import React from "react";
 import style from "./Header.module.scss";
 import logo from "../../assets/imgs/logo.svg";
 import { useNavigate } from "react-router-dom";
+
 export const Header = () => {
   const menuBtns = ["Мониторинг", "Обменники", "Партнерам", "Помощь", "Статьи"];
   const navigate = useNavigate();
   const goToMain = () => {
     navigate("/");
   };
+  const goToAccount = () => {
+    navigate("/login");
+  };
+ 
   return (
     <header className={style.Header}>
       <div className={style.Header__container}>
@@ -34,6 +39,7 @@ export const Header = () => {
               />
               <button className={style.Header__container__search__searchBtn} />
             </div>
+            <button className={style.Header__container__logInBtn} onClick={goToAccount}>Войти</button>
           </div>
         </div>
       </div>

@@ -1,0 +1,32 @@
+.Inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  &__fieldsBox {
+    display: flex;
+    flex-direction: column;
+    &__input {
+      max-width: 340px;
+      width: 300px;
+      height: 35px;
+      background: #151517;
+      border: 2px solid #5e5e65;
+      border-radius: 30px;
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: #f3f3f3;
+      opacity: 0.5;
+      padding-left: 10px;
+    }
+    &__header {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      color: #f3f3f3;
+    }
+  }
+}

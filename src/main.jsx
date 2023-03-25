@@ -7,9 +7,9 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { ItemPage } from "./pages/itemPage/itemPage";
 import { exchangeLoader } from "./pages/itemPage/itemPage";
-
-
-
+import { PersonalAccount } from "./pages/PersonalAccount/PersonalAccount";
+import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage/Register";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,19 @@ const router = createBrowserRouter([
     path: "/:id",
     element: <ItemPage />,
     loader:exchangeLoader,
+  },
+  {
+    path: "/account",
+    element: <PersonalAccount/>,
+   
+  },
+  {
+    path: "/login",
+    element: <LoginPage/>,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage/>,
   },
 ]);
 

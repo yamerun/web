@@ -232,10 +232,15 @@ export const ItemPage = () => {
           >
             ✕
           </button>
+          <div className={style.itemPage__reviews__headerBox}>
           <h1 className={style.itemPage__reviews__header}>
             Отзывы {item.data.name}
           </h1>  
-          {review != null && review.map((item) => <Comments props={item} />)}
+         <button className={style.itemPage__reviews__button}>
+          Оставить отзыв
+         </button>
+          </div>
+          {review != null ? review.map((item) => <Comments props={item} />) : (<div></div>)}
         </div>
       )}
       <Footer />

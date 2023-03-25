@@ -1,5 +1,5 @@
 .itemPage {
-  height:100%;
+  height: 100%;
   &__reviews {
     align-items: center;
     justify-content: center;
@@ -10,11 +10,18 @@
     background-color: rgba(0, 0, 0, 0.6);
     color: rgba(0, 0, 0, 0.6);
     height: 100%;
+    width:100%;
+
+    &__headerBox {
+      display: flex;
+      align-items: center;
+      gap:35px;
+    }
 
     &__close {
       color: #f3f3f3;
       background: none;
-      border:none
+      border: none;
     }
 
     &__header {
@@ -26,9 +33,23 @@
       color: #f3f3f3;
       user-select: none;
     }
+
+    &__button {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      color: #f3f3f3;
+      background: none;
+      border:1px solid white;
+      padding:10px 25px;
+      border-radius:20px;
+      
+    }
   }
   &__container {
-    margin-top: 10px;
+    margin-top: 110px;
     margin-left: 13%;
     display: flex;
     flex-direction: column;

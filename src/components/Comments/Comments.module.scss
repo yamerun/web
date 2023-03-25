@@ -1,18 +1,35 @@
 .Review {
   background: #2d2d31;
   border-radius: 20px;
-  margin:15px;
+  margin: 15px;
   max-width: 50%;
 
   &__textBox {
     padding-left: 25px;
     padding-right: 25px;
+
     &__user {
-        gap:50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      gap: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    &__userContainer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &__userName {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      color: #f3f3f3;
+      opacity: 0.5;
+    }
+
     &__text {
       font-family: "BasisGrotesquePro";
       font-style: normal;

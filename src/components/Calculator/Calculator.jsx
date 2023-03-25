@@ -1,7 +1,9 @@
 import React from "react";
 import style from "./Calculator.module.scss";
-
+import { useSelector } from "react-redux";
 export const Calculator = () => {
+
+
   return (
     <div className={style.Calculator}>
       <div className={style.Calculator__container}>

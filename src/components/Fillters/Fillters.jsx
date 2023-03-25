@@ -57,7 +57,7 @@ export const Fillters = () => {
       )
       .then(function (response) {
         setAll(response.data.data.slice(0, 7));
-        console.log(response)
+        console.log(response);
       });
     const getCurrenciesAll = setInterval(() => {
       axios
@@ -72,8 +72,8 @@ export const Fillters = () => {
   }, []);
 
   const openItemSite = (url) => {
-    window.open(`${url}`)
-  }
+    window.open(`${url}`);
+  };
 
   return (
     <div className={style.Fillters}>
@@ -191,7 +191,17 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__comment__header
                         }
                       >
-                        0/5082
+                        {item.exchanger.user_reviews}
+                      </p>
+                      <p
+                        className={
+                          style.Fillters__categories__body__content__comment__header
+                        }
+                        style={
+                          item.exchanger.count_reviews == 0 ? { color: "red" } :{color:'white'}
+                        }
+                      >
+                        ({item.exchanger.count_reviews})
                       </p>
                     </div>
                     <div
@@ -292,7 +302,17 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__comment__header
                         }
                       >
-                        0/5082
+                        {item.exchanger.user_reviews}
+                      </p>
+                      <p
+                        className={
+                          style.Fillters__categories__body__content__comment__header
+                        }
+                        style={
+                          item.exchanger.count_reviews == 0 && { color: "red" }
+                        }
+                      >
+                        ({item.exchanger.count_reviews})
                       </p>
                     </div>
                     <div
@@ -312,9 +332,8 @@ export const Fillters = () => {
                 ))}
           </div>
         </div>
-      )}*/
+      )}
+      */
     </div>
   );
 };
-
-

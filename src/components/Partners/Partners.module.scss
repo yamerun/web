@@ -1,0 +1,20 @@
+.Partners {
+    display: flex;
+    flex-direction: column;
+    margin-left: 13%;
+    gap:15px;
+    align-items: center;
+
+    &__column {
+        display: flex;
+        flex-direction: row;
+        gap:15px;
+ 
+        &__box {
+            width: 180px;
+            height: 100px;
+            background: #2D2D31;
+            border-radius: 20px
+        }
+    }
+}
