@@ -10,7 +10,7 @@ import { exchangeLoader } from "./pages/itemPage/itemPage";
 import { PersonalAccount } from "./pages/PersonalAccount/PersonalAccount";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/Register";
-
+import { AccountLoader } from "./pages/PersonalAccount/PersonalAccount";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,17 +22,17 @@ const router = createBrowserRouter([
     loader:exchangeLoader,
   },
   {
-    path: "/account",
-    element: <PersonalAccount/>,
-   
-  },
-  {
     path: "/login",
     element: <LoginPage/>,
   },
   {
     path: "/register",
     element: <RegisterPage/>,
+  },
+  {
+    path: "/account",
+    element: <PersonalAccount/>,
+    loader:AccountLoader,
   },
 ]);
 

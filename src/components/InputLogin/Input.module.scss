@@ -1,10 +1,22 @@
 .Inputs {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 17px;
+
   &__fieldsBox {
     display: flex;
     flex-direction: column;
+
+    &__error {
+      font-family: 'BasisGrotesquePro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      color: #F3F3F3;
+      opacity: 0.5;
+
+    }
+
     &__input {
       max-width: 340px;
       width: 300px;
@@ -20,6 +32,7 @@
       opacity: 0.5;
       padding-left: 10px;
     }
+
     &__header {
       font-family: "BasisGrotesquePro";
       font-style: normal;

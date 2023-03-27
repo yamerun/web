@@ -1,0 +1,98 @@
+.RegisterPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  &__footer {
+    position: absolute;
+    bottom: 10px;
+  }
+
+  &__form {
+    background: #2d2d31;
+    border-radius: 30px;
+    width: 15.5%;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+  &__header {
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 120%;
+    color: #f3f3f3;
+  }
+
+  &__header2 {
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #f3f3f3;
+  }
+
+  &__registerVariants {
+    display: flex;
+    flex-direction: row;
+    gap: 19px;
+  }
+
+  &__btn {
+    max-width: 340px;
+    width: 320px;
+    height: 40px;
+    border-radius: 30px;
+    background-color: #2d2d31;
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #f3f3f3;
+    border: 1px solid #f3f3f3;
+  }
+
+  &__text {
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 17px;
+    text-align: center;
+    color: #f3f3f3;
+    opacity: 0.5;
+  }
+
+  &__goToLogin {
+    border-top: 1px solid #5e5e65;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__link {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      text-decoration-line: underline;
+      color: #f3f3f3;
+    }
+
+    &__text {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 21px;
+      color: #f3f3f3;
+      opacity: 0.5;
+    }
+  }
+}

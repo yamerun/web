@@ -6,6 +6,7 @@ import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
 import { Footer } from "../../components/Footer/Footer";
+
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
   const res = await fetch(
@@ -14,6 +15,7 @@ export const exchangeLoader = async ({ params }) => {
   const item = await res.json();
   return { id, item };
 };
+
 export const ItemPage = () => {
   const { item } = useLoaderData();
   console.log(item);
@@ -23,7 +25,7 @@ export const ItemPage = () => {
   const navigate = useNavigate();
   const [review, setReview] = useState();
   const [isOpen, setIsOpen] = useState(false);
-
+  
   useEffect(() => {
     axios
       .get(

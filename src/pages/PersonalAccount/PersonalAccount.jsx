@@ -2,7 +2,24 @@ import style from "./PersonalAccount.module.scss";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { Partners } from "../../components/Partners/Partners";
+import { useLoaderData, useNavigate } from "react-router-dom";
+export const AccountLoader = async () => {
+  const key = localStorage.getItem("jwt");
+  if (key) {
+    const res = await fetch(`http://146.59.87.222/api/user/get`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    });
+    const item = await res.json();
+    return { item };
+  } else useNavigate("/login");
+};
+
 export const PersonalAccount = () => {
+  const { item } = useLoaderData();
+  console.log(item);
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
       `.${style.PersonalAccount__container__leftBar__navigation__list__item}`
@@ -24,7 +41,7 @@ export const PersonalAccount = () => {
             className={style.PersonalAccount__container__leftBar__navigation}
           >
             <h1 className={style.PersonalAccount__container__leftBar__userName}>
-              Имя юзера
+              {item.data.name}
             </h1>
             <ul
               className={
@@ -126,15 +143,15 @@ export const PersonalAccount = () => {
       </div>
       <div className={style.PersonalAccount__container__bottom}>
         <div className={style.PersonalAccount__container__bottom__controlls}>
-        <h1 className={style.PersonalAccount__container__bottom__header}>
-          Рекомендации Change.pro
-        </h1>
-        <h1 className={style.PersonalAccount__container__bottom__navigation}>
-          Смотреть все →
-        </h1>
+          <h1 className={style.PersonalAccount__container__bottom__header}>
+            Рекомендации Change.pro
+          </h1>
+          <h1 className={style.PersonalAccount__container__bottom__navigation}>
+            Смотреть все →
+          </h1>
         </div>
-       
-      <Partners/>
+
+        <Partners />
       </div>
       <Footer />
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Footer.module.scss";
 import logo from "../../assets/imgs/logo.svg";
-
 import img1 from "../../assets/imgs/yt.svg";
 import img2 from "../../assets/imgs/vk.svg";
 import img3 from "../../assets/imgs/tg.svg";
@@ -44,5 +43,4 @@ export const Footer = () => {
   );
 };
 
-/* border-top: 1px solid #5E5E65;
-        padding-top: 20px;*/
+
