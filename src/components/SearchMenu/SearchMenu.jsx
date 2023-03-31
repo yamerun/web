@@ -16,6 +16,7 @@ import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
+import { setStatistics } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
 
 export const SearchMenu = () => {
@@ -43,36 +44,47 @@ export const SearchMenu = () => {
   }, []);
 
 
-
   useEffect(() => {
     axios
-    .get(
-      `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-    )
-    .then(function (response) {
-      dispatch(setitemExchangeRatesReducer(response.data.data));
-      console.log(response.data.data);
-    })
-    .then(function (response) {})
-    .catch(function (error) {});
-    
-    const get =  setInterval(() => {
+      .get(
+        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+      )
+      .then(function (response) {
+        dispatch(setitemExchangeRatesReducer(response.data.data));
+      })
+      .then(function (response) {})
+      .catch(function (error) {});
+
+    const get = setInterval(() => {
       axios
         .get(
           `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
         )
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
-          console.log(response.data.data);
+
         })
         .then(function (response) {})
         .catch(function (error) {});
-    },3000)
+    }, 3000);
 
     return () => clearInterval(get);
   }, [currentTo, currentFrom]);
 
+  
+ useEffect(()=> {
+  axios
+  .get(
+    `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=1`
+  )
+  .then(function (response) {
+    dispatch(setStatistics(response.data.data));
+  })
+  .catch(function (error) {
 
+  });
+
+ },[currentFrom,currentTo])
 
   
 
@@ -164,6 +176,7 @@ export const SearchMenu = () => {
           <button className={style.SearchMenu__btn} />
         </div>
       </div>
+      
       <div className={style.SearchMenu__items} ref={ref}>
         <ul className={style.SearchMenu__itemsList}>
           {result.map((item) => (
@@ -188,11 +201,18 @@ export const SearchMenu = () => {
           ))}
         </ul>
       </div>
+  
       <div className={style.SearchMenu__itemsPayment__header}>
+        
         <p className={style.SearchMenu__itemsPayment__header__content}>
           Электронные деньги
         </p>
+        
       </div>
+      <button
+          className={style.SearchMenu__ShowMorebtn}
+          onClick={() => ShowMore()}
+        />
       <EmoneyFillter />
       <div className={style.SearchMenu__ShowMore}>
         <button

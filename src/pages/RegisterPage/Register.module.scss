@@ -1,12 +1,18 @@
 .RegisterPage {
   display: flex;
   align-items: center;
-  justify-content: center;
+
   height: 100%;
+  flex-direction: column;
 
   &__footer {
     position: absolute;
     bottom: 10px;
+  }
+
+  &__logo {
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   &__form {

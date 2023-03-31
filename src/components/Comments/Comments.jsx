@@ -17,7 +17,7 @@ export const Comments = ({ props }) => {
               numberOfStars={5}
               name="rating"
               starDimension="20px"
-              starSpacing="5px"
+              starSpacing="3px"
             />
           </div>
           <h1 className={style.Review__textBox__createdAt}>

@@ -2,17 +2,31 @@ import React from "react";
 import style from "./Header.module.scss";
 import logo from "../../assets/imgs/logo.svg";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 export const Header = () => {
   const menuBtns = ["Мониторинг", "Обменники", "Партнерам", "Помощь", "Статьи"];
   const navigate = useNavigate();
   const goToMain = () => {
     navigate("/");
   };
+
   const goToAccount = () => {
-    navigate("/login");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    };
+    axios
+      .get(`http://146.59.87.222/api/user/get`, config)
+      .then(function (response) {
+        navigate("/account");
+      })
+      .catch(function (error) {
+        if (error) {
+          navigate("/login");
+        }
+      });
   };
- 
   return (
     <header className={style.Header}>
       <div className={style.Header__container}>
@@ -39,7 +53,12 @@ export const Header = () => {
               />
               <button className={style.Header__container__search__searchBtn} />
             </div>
-            <button className={style.Header__container__logInBtn} onClick={goToAccount}>Войти</button>
+            <button
+              className={style.Header__container__logInBtn}
+              onClick={goToAccount}
+            >
+              Войти
+            </button>
           </div>
         </div>
       </div>

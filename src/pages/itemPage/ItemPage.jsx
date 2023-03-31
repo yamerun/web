@@ -40,6 +40,9 @@ export const ItemPage = () => {
       });
   }, []);
 
+
+
+
   const ShowReviews = () => {
     setIsOpen(true);
   };

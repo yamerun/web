@@ -8,13 +8,18 @@
     &__column {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap:15px;
+        width: 60%;
  
         &__box {
             width: 180px;
             height: 100px;
             background: #2D2D31;
-            border-radius: 20px
+            border-radius: 20px;
+            display:flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

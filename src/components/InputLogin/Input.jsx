@@ -18,9 +18,6 @@ export const Input = () => {
   const InputPassField = (e) => {
     dispatch(setLoginPassword(e.target.value));
   };
-
-
-
   return (
     <div className={style.Inputs}>
       <div className={style.Inputs__fieldsBox}>

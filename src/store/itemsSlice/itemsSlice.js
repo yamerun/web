@@ -19,7 +19,8 @@ const initialState = {
   Emoney2: "",
   fillteredByEmoney:[],
   result:[],
-  result2:[]
+  result2:[],
+  statistics:[]
 };
 
 const itemsSlice = createSlice({
@@ -104,6 +105,9 @@ const itemsSlice = createSlice({
 setResult2(state, action) {
   state.result2 = action.payload
 },
+setStatistics(state, action) {
+  state.statistics = action.payload
+},
 
   }
  
@@ -129,6 +133,7 @@ export const {
   setEmoneyReducer2,
   setFillteredItemsEmoneyReducer,
   setResult,
-  setResult2
+  setResult2,
+  setStatistics
 } = itemsSlice.actions;
 export default itemsSlice.reducer;

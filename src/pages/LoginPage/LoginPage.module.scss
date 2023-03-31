@@ -5,6 +5,10 @@
   justify-content: center;
   height:100%;
 
+  &__logo {
+    margin-bottom: 40px;
+  }
+
   &__footer {
     position: absolute;
     bottom:10px;
