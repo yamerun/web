@@ -17,10 +17,11 @@ const initialState = {
   currentTo: "",
   Emoney: "",
   Emoney2: "",
-  fillteredByEmoney:[],
-  result:[],
-  result2:[],
-  statistics:[]
+  result: [],
+  result2: [],
+  statistics: [],
+  calculated: [],
+  loginStatus: "",
 };
 
 const itemsSlice = createSlice({
@@ -80,37 +81,24 @@ const itemsSlice = createSlice({
     setEmoneyReducer2(state, action) {
       state.Emoney2 = action.payload;
     },
-    setItemsEmoneyReducer(state, action) {
-      state.itemsbyEmoney = state.items.filter((item) =>
-        item.currency_type
-          .toLowerCase()
-          .includes(action.payload.toLocaleLowerCase())
-      );
-    },
-    setItemsEmoneyReducer2(state, action) {
-      state.itemsbyEmoney2 = state.items2.filter((item) =>
-        item.currency_type
-          .toLowerCase()
-          .includes(action.payload.toLocaleLowerCase())
-      );
-    },
-    setFillteredItemsEmoneyReducer(state, action) {
-      state.fillteredByEmoney = state.itemsbyEmoney.filter((item) =>
-        item.currency.toLowerCase().includes(action.payload.toLocaleLowerCase())
-      );   
-  },
-  setResult(state, action) {
-    state.result = action.payload
-},
-setResult2(state, action) {
-  state.result2 = action.payload
-},
-setStatistics(state, action) {
-  state.statistics = action.payload
-},
 
-  }
- 
+    setResult(state, action) {
+      state.result = action.payload;
+    },
+    setResult2(state, action) {
+      state.result2 = action.payload;
+    },
+    setStatistics(state, action) {
+      state.statistics = action.payload;
+    },
+    setCalculated(state, action) {
+      state.calculated = action.payload;
+    },
+
+    setLoginStatus(state, action) {
+      state.loginStatus = action.payload;
+    },
+  },
 });
 
 export const {
@@ -128,12 +116,12 @@ export const {
   setCurrentItemFromReducer,
   setCurrentItemToReducer,
   setEmoneyReducer,
-  setItemsEmoneyReducer,
-  setItemsEmoneyReducer2,
   setEmoneyReducer2,
-  setFillteredItemsEmoneyReducer,
+
   setResult,
   setResult2,
-  setStatistics
+  setStatistics,
+  setCalculated,
+  setLoginStatus,
 } = itemsSlice.actions;
 export default itemsSlice.reducer;

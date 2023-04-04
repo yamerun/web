@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import style from "./Calculator.module.scss";
 import { useSelector } from "react-redux";
+import axios from "axios";
 export const Calculator = () => {
+  /* const {  currentTo, currentFrom} =
+  useSelector((state) => ({
+    calculated:state.itemsSlice.caluclated,
+    currentTo: state.itemsSlice.currentTo,
+    currentFrom: state.itemsSlice.currentFrom,
+  }));
+  const [activeFrom,setActiveFrom] = useState(false)
+  const [activeTo,setActiveTo] = useState(false)
+  const [calculatedFrom,setCalculatedFrom] = useState('')
+  const [calculatedTo,setCalculatedTo] = useState('')
 
+ const ref = useRef(null)
+ const ref2 = useRef(null)
+
+  const ChooseFrom = () => {
+   setCalculatedFrom(currentFrom)
+   console.log(calculatedFrom)
+
+  };
+
+  const ChooseTo = () => {
+   setCalculatedTo(currentTo)
+   console.log(calculatedTo)
+  };*/
 
   return (
     <div className={style.Calculator}>
@@ -25,7 +49,7 @@ export const Calculator = () => {
             <input className={style.Calculator__inputControlls__fieldInput} />
             <input
               className={style.Calculator__inputControlls__fieldValue}
-              value="DOGE"
+           
               disabled
             />
           </div>
@@ -41,3 +65,31 @@ export const Calculator = () => {
     </div>
   );
 };
+
+/*   useEffect(() => {
+      axios
+        .get(
+          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+        )
+        .then(function (response) {
+          dispatch(setitemExchangeRatesReducer(response.data.data));
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+
+      const get = setInterval(() => {
+        axios
+          .get(
+            `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+          )
+          .then(function (response) {
+            dispatch(setitemExchangeRatesReducer(response.data.data));
+
+          })
+          .then(function (response) {})
+          .catch(function (error) {});
+      }, 3000);
+
+    return () => clearInterval(get);
+  }, [currentTo, currentFrom]);
+*/

@@ -3,12 +3,14 @@ import style from "./Header.module.scss";
 import logo from "../../assets/imgs/logo.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 export const Header = () => {
   const menuBtns = ["Мониторинг", "Обменники", "Партнерам", "Помощь", "Статьи"];
   const navigate = useNavigate();
   const goToMain = () => {
     navigate("/");
   };
+
 
   const goToAccount = () => {
     const config = {
@@ -27,6 +29,8 @@ export const Header = () => {
         }
       });
   };
+
+  const jwt = localStorage.getItem("jwt");
   return (
     <header className={style.Header}>
       <div className={style.Header__container}>
@@ -45,23 +49,33 @@ export const Header = () => {
             </ul>
           </nav>
           <div className={style.Header__container__rightSide}>
-            <div className={style.Header__container__search}>
-              <input
-                className={style.Header__container__search__input}
-                placeholder="Поиск"
-                disabled
-              />
-              <button className={style.Header__container__search__searchBtn} />
-            </div>
-            <button
-              className={style.Header__container__logInBtn}
-              onClick={goToAccount}
-            >
-              Войти
-            </button>
+
+
+            {jwt == null ? (
+              <button
+                className={style.Header__container__logInBtn}
+                onClick={goToAccount}
+              >
+                Войти
+              </button>
+            ) : (
+              <button
+                className={style.Header__container__lc}
+                onClick={goToAccount}
+              >
+                Личный кабинет
+              </button>
+            )}
           </div>
         </div>
       </div>
     </header>
   );
 };
+
+/*  <button
+                className={style.Header__container__logInBtn}
+                onClick={goToAccount}
+              >
+                Войти
+              </button>*/

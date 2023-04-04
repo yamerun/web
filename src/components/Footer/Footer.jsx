@@ -5,7 +5,7 @@ import img1 from "../../assets/imgs/yt.svg";
 import img2 from "../../assets/imgs/vk.svg";
 import img3 from "../../assets/imgs/tg.svg";
 import img4 from "../../assets/imgs/hz.svg";
-
+import { useNavigate } from "react-router-dom";
 export const Footer = () => {
 
     const scrollUp = () => {
@@ -15,11 +15,16 @@ export const Footer = () => {
             behavior: 'smooth',
           });
     }
+
+    const navigate = useNavigate()
+    const gotomain = () => {
+      navigate('/')
+    }
   return (
     <div className={style.Footer}>
       <div className={style.Footer__container}>
         <div className={style.Footer__box}>
-          <img src={logo} />
+          <img src={logo} onClick={gotomain}/>
           <h3 className={style.Footer__box__info}>©2023 Change.Pro</h3>
           <div className={style.Footer__box__info__infoBox}>
             <h3 className={style.Footer__box__info__infoBox__link}>Условия </h3>

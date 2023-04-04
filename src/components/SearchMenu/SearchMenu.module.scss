@@ -8,6 +8,7 @@
   min-width: 340px;
   margin-top: 17px;
   overflow: hidden;
+  justify-content: center;
 
   &__exchanger {
     position: absolute;
@@ -106,6 +107,7 @@
         font-weight: 700;
         font-size: 20px;
         color: #ffffff;
+        user-select: none;
       }
     }
   }

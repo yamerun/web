@@ -3,6 +3,10 @@ import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import { Partners } from "../../components/Partners/Partners";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setLoginStatus } from "../../store/itemsSlice/itemsSlice";
+import { useEffect } from "react";
 export const AccountLoader = async () => {
   const key = localStorage.getItem("jwt");
   if (key) {
@@ -17,7 +21,10 @@ export const AccountLoader = async () => {
   } else useNavigate("/login");
 };
 
+
 export const PersonalAccount = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { item } = useLoaderData();
   console.log(item);
   const handleSelect = (e) => {
@@ -31,7 +38,18 @@ export const PersonalAccount = () => {
       }
     }
   };
+ useEffect(()=>{
+  dispatch(setLoginStatus(item.name))
+    
+ },[])
 
+
+ 
+
+ const LogOut = () => {
+  localStorage.removeItem('jwt')
+  navigate('/login')
+ }
   return (
     <div className={style.PersonalAccount}>
       <Header />
@@ -80,7 +98,10 @@ export const PersonalAccount = () => {
               >
                 Мои отзывы
               </li>
+
+              <li className={style.PersonalAccount__logOut} onClick={LogOut}>Выйти из Аккаунта</li>
             </ul>
+           
           </nav>
         </div>
 
@@ -152,6 +173,8 @@ export const PersonalAccount = () => {
         </div>
 
         <Partners />
+     
+        
       </div>
       <Footer />
     </div>

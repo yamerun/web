@@ -3,7 +3,7 @@ import style from "./MainPage.module.scss";
 import { Header } from "../../components/Header/Header";
 import { SearchMenu } from "../../components/SearchMenu/SearchMenu";
 import { Navigation } from "../../components/Navigation/Navigation";
-import { Advertisement } from "../../components/Advertisement/Advertisement";
+import { Carousel } from "../../components/Advertisement/Carousel";
 import { Fillters } from "../../components/Fillters/Fillters";
 import { Article } from "../../components/Article/Article";
 import { Footer } from "../../components/Footer/Footer";
@@ -19,7 +19,7 @@ export const MainPage = () => {
           <SearchMenu />
         </div>
         <div className={style.MainPage__rightMenu}>
-          <Advertisement />
+          <Carousel/>
           <Fillters />
           <Article />
         </div>

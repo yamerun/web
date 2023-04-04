@@ -1,0 +1,87 @@
+.carousel-container {
+  position: relative;
+  width: 88%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.carousel-wrapper {
+  width: 400%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.4s ease-in-out;
+  gap: 12px;
+}
+
+.slide {
+  width: 33.33%;
+  height: auto;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    width: 100%;
+  }
+}
+
+.slide:nth-child(1) {
+  background-color: #e91e63;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.slide:nth-child(2) {
+  background-color: #673ab7;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.slide:nth-child(3) {
+  background-color: #2196f3;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.slide:nth-child(4) {
+  background-color: #4caf50;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-button.left {
+  left: 0;
+}
+
+.carousel-button.right {
+  right: 0;
+}

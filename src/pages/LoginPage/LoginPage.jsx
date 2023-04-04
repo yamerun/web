@@ -6,7 +6,7 @@ import { Input } from "../../components/InputLogin/Input";
 import { Link } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
-import logo from '../../assets/imgs/changePro.png'
+import logo from "../../assets/imgs/changePro.png";
 export const LoginPage = () => {
   const navigate = useNavigate();
   const [err, setErr] = useState("");
@@ -32,26 +32,29 @@ export const LoginPage = () => {
 
   return (
     <div className={style.LoginPage}>
-      <img alt='logo' src={logo} className={style.LoginPage__logo}/>
-      <div className={style.LoginPage__form}>
-        <h1 className={style.LoginPage__header}>Авторизация</h1>
-        <Input />
-        <button className={style.LoginPage__btn} onClick={Login}>
-          Войти →
-        </button>
-        <span  style={{color:'white'}} >{err}</span>
-        <div className={style.LoginPage__goToRegister}>
-          <Link className={style.LoginPage__goToRegister__link} to="/register">
-            Зарегистрироваться
-          </Link>
-          <h1 className={style.LoginPage__goToRegister__header}>
-            Если вы новый пользователь
-          </h1>
+      <div className={style.LoginPage__formBox}>
+        <img alt="logo" src={logo} className={style.LoginPage__logo} />
+        <div className={style.LoginPage__form}>
+          <h1 className={style.LoginPage__header}>Авторизация</h1>
+          <Input />
+          <button className={style.LoginPage__btn} onClick={Login}>
+            Войти →
+          </button>
+          <span style={{ color: "white" }}>{err}</span>
+          <div className={style.LoginPage__goToRegister}>
+            <Link
+              className={style.LoginPage__goToRegister__link}
+              to="/register"
+            >
+              Зарегистрироваться
+            </Link>
+            <h1 className={style.LoginPage__goToRegister__header}>
+              Если вы новый пользователь
+            </h1>
+          </div>
         </div>
       </div>
-      <div className={style.LoginPage__footer}>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

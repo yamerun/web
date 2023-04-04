@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Statistics.module.scss";
 import img from '../../assets/imgs/buttonOpen.svg'
-import { Chart } from "../Chart/Chart";
+import { LineChart } from "../Chart/LineChart";
 export const Statistics = () => {
   return (
     <div className={style.statistics}>
@@ -17,7 +17,7 @@ export const Statistics = () => {
           <button className={style.statistics__container__controlls__btn2}>24 часа</button>
           <button className={style.statistics__container__controlls__btn3}>показать</button>
         </div>
-        <div><Chart/></div>
+        <div><LineChart/></div>
       </div>
     </div>
   );

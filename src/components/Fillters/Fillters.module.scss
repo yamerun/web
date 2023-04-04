@@ -119,20 +119,26 @@ $hedaerw6: 50px;
         background: #46464b;
         border-radius: 7px;
         padding-left: 10px;
-        padding-right: 10px;
-        height:40px;
+        padding-right: 20px;
+        height:20px;
         padding-top: 7px;
         padding-bottom: 10px;
         gap: 60px;
         overflow: hidden;
         margin: 5px;
+
+
+        &:hover {
+          background: #343436;
+          transition: linear 0.3s;
+        }
         &__from {
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
           width: $hedaerw2;
-          padding-bottom: 11px;
+          
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -173,7 +179,7 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw3;
-          padding-bottom:11px;
+
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -228,9 +234,11 @@ $hedaerw6: 50px;
           display: flex;
           flex-direction: row;
           align-items: center;
-          gap: 10px;
+          white-space: nowrap;
           text-align: center;
           width: $hedaerw1;
+          position: relative;
+        
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -242,6 +250,8 @@ $hedaerw6: 50px;
             text-align: center;
             cursor: pointer;
             padding-bottom: 10px;
+            padding-left: 25px;
+            overflow: hidden;
           }
 
           &__btn {
@@ -252,6 +262,7 @@ $hedaerw6: 50px;
             height: 20px;
             background: url("../../assets/imgs/openInfo.svg");
             background-repeat: no-repeat;
+            position: absolute;
           }
         }
         &__comment {

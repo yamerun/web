@@ -3,7 +3,6 @@ import style from "./SearchMenu.module.scss";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
-  setFillteredItemsEmoneyReducer,
   setFillterItems2Reducer,
   setFillterItemsReducer,
   setItems2Reducer,
@@ -11,12 +10,10 @@ import {
 } from "../../store/itemsSlice/itemsSlice";
 import { setitemIdReducer } from "../../store/itemsSlice/itemsSlice";
 import { setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
-import { setitemexchangeIdReducer } from "../../store/itemsSlice/itemsSlice";
 import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
-import { setStatistics } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
 
 export const SearchMenu = () => {
@@ -35,14 +32,13 @@ export const SearchMenu = () => {
 
   useEffect(() => {
     axios
-    .get(`http://146.59.87.222/api/exchangers/currencies/list`)
-    .then(function (response) {
-      dispatch(setItemsReducer(response.data.data));
-      dispatch(setItems2Reducer(response.data.data));
-    })
-    .catch(function (error) {});
+      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+      .then(function (response) {
+        dispatch(setItemsReducer(response.data.data));
+        dispatch(setItems2Reducer(response.data.data));
+      })
+      .catch(function (error) {});
   }, []);
-
 
   useEffect(() => {
     axios
@@ -62,7 +58,6 @@ export const SearchMenu = () => {
         )
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
-
         })
         .then(function (response) {})
         .catch(function (error) {});
@@ -71,22 +66,16 @@ export const SearchMenu = () => {
     return () => clearInterval(get);
   }, [currentTo, currentFrom]);
 
-  
- useEffect(()=> {
-  axios
-  .get(
-    `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=1`
-  )
-  .then(function (response) {
-    dispatch(setStatistics(response.data.data));
-  })
-  .catch(function (error) {
-
-  });
-
- },[currentFrom,currentTo])
-
-  
+  //  useEffect(() => {
+  //   axios
+  //   .get(
+  //  `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=1`
+  //    )
+  //  .then(function (response) {
+  //  dispatch(setStatistics(response.data.data));
+  // })
+  // .catch(function (error) {});
+  //}, [currentFrom, currentTo]);
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
@@ -134,10 +123,6 @@ export const SearchMenu = () => {
       return items.filter((item) =>
         item.currency.toLowerCase().includes(inputValue.toLocaleLowerCase())
       );
-    } else if (Emoney != "") {
-      return items.filter((item) =>
-        item.currency_type.toLowerCase().includes(Emoney.toLocaleLowerCase())
-      );
     } else return items;
   }, [inputValue, Emoney, items]);
 
@@ -145,10 +130,6 @@ export const SearchMenu = () => {
     if (inputValue2.length !== 0) {
       return items.filter((item) =>
         item.currency.toLowerCase().includes(inputValue2.toLocaleLowerCase())
-      );
-    } else if (Emoney2 != "") {
-      return items.filter((item) =>
-        item.currency_type.toLowerCase().includes(Emoney2.toLocaleLowerCase())
       );
     } else return items;
   }, [inputValue2, Emoney2, items]);
@@ -176,7 +157,15 @@ export const SearchMenu = () => {
           <button className={style.SearchMenu__btn} />
         </div>
       </div>
-      
+      <div className={style.SearchMenu__itemsPayment__header}>
+        <p className={style.SearchMenu__itemsPayment__header__content}>
+          Криптовалюта
+        </p>
+      </div>
+      <button
+        className={style.SearchMenu__ShowMorebtn}
+        onClick={() => ShowMore()}
+      />
       <div className={style.SearchMenu__items} ref={ref}>
         <ul className={style.SearchMenu__itemsList}>
           {result.map((item) => (
@@ -201,18 +190,16 @@ export const SearchMenu = () => {
           ))}
         </ul>
       </div>
-  
+
       <div className={style.SearchMenu__itemsPayment__header}>
-        
         <p className={style.SearchMenu__itemsPayment__header__content}>
           Электронные деньги
         </p>
-        
       </div>
       <button
-          className={style.SearchMenu__ShowMorebtn}
-          onClick={() => ShowMore()}
-        />
+        className={style.SearchMenu__ShowMorebtn}
+        onClick={() => ShowMore()}
+      />
       <EmoneyFillter />
       <div className={style.SearchMenu__ShowMore}>
         <button

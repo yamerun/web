@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
 import { Footer } from "../../components/Footer/Footer";
-
+import { AddComment } from "../../components/AddComment/AddComment";
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
   const res = await fetch(
@@ -18,37 +18,42 @@ export const exchangeLoader = async ({ params }) => {
 
 export const ItemPage = () => {
   const { item } = useLoaderData();
-  console.log(item);
   const navigateToSite = (url) => {
     window.open(`${url}`);
   };
   const navigate = useNavigate();
   const [review, setReview] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  
+
   useEffect(() => {
-    axios
-      .get(
-        `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${item.data.id}`
-      )
-      .then(function (response) {
-        setReview(response.data.data);
-      })
+  
+   
+      axios
+        .get(
+          `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${item.data.id}`
+        )
+        .then(function (response) {
+          setReview(response.data.data);
+        })
 
-      .catch(function (error) {
-        console.log(error);
-      });
+        .catch(function (error) {
+          console.log(error);
+        });
+
   }, []);
-
-
-
 
   const ShowReviews = () => {
     setIsOpen(true);
+    console.log(review)
   };
   const HideReviews = () => {
     setIsOpen(false);
   };
+
+
+
+  //http://146.59.87.222/api/content/get
+ 
 
   return (
     <div className={style.itemPage}>
@@ -63,7 +68,10 @@ export const ItemPage = () => {
             >
               Перейти на {item.data.name}
             </button>
-            <img alt="logo" src={`${item.data.logo}`} />
+            <iframe
+              src={item.data.iframe.src}
+              className={style.itemPage__container__Iframe}
+            />
           </div>
           <div className={style.itemPage__container__items__item2}>
             <div className={style.itemPage__container__items__item2__container}>
@@ -230,25 +238,32 @@ export const ItemPage = () => {
         </div>
       </div>
       {isOpen && (
-        <div className={style.itemPage__reviews}>
-          <button
-            className={style.itemPage__reviews__close}
-            onClick={HideReviews}
-          >
-            ✕
-          </button>
-          <div className={style.itemPage__reviews__headerBox}>
-          <h1 className={style.itemPage__reviews__header}>
-            Отзывы {item.data.name}
-          </h1>  
-         <button className={style.itemPage__reviews__button}>
-          Оставить отзыв
-         </button>
-          </div>
-          {review != null ? review.map((item) => <Comments props={item} />) : (<div></div>)}
+        <div>
+          <AddComment HideReviews={HideReviews} id={item.data.id} />
         </div>
       )}
+      <div className={style.itemPage__comments}>
+        <h1 className={style.itemPage__reviews__header}>
+          Отзывы {item.data.name}
+        </h1>
+        {review != null ? (
+          review.map((item) => <Comments props={item} review={review} />)
+        ) : (
+          <div></div>
+        )}
+      </div>
       <Footer />
     </div>
   );
 };
+
+/*    <button
+            className={style.itemPage__reviews__close}
+            onClick={HideReviews}
+          >
+            ✕
+          </button>*/
+
+/* <div className={style.itemPage__reviews}>
+       
+        </div>*/

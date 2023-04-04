@@ -1,33 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import style from "./Emoney.module.scss";
-import axios from "axios";
+
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {
-  setEmoneyReducer,
-  setEmoneyReducer2,
-  setFillteredItemsEmoneyReducer,
-  setItemsEmoneyReducer,
-  setItemsEmoneyReducer2,
-} from "../../store/itemsSlice/itemsSlice";
+import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
+import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
+import { useCallback } from "react";
 export const EmoneyFillter = () => {
   const dispatch = useDispatch();
-  const { Emoney, items, itemsbyEmoney, Emoney2, itemsbyEmoney2 } = useSelector(
-    (state) => ({
-      Emoney: state.itemsSlice.Emoney,
-      items: state.itemsSlice.items,
-      itemsbyEmoney: state.itemsSlice.itemsbyEmoney,
-      Emoney2: state.itemsSlice.Emoney2,
-      itemsbyEmoney2: state.itemsSlice.itemsbyEmoney2,
-    })
-  );
-
-
+  const { Emoney, items, Emoney2,currentTo,currentFrom } = useSelector((state) => ({
+    Emoney: state.itemsSlice.Emoney,
+    items: state.itemsSlice.items,
+    Emoney2: state.itemsSlice.Emoney2,
+    currentTo: state.itemsSlice.currentTo,
+    currentFrom: state.itemsSlice.currentFrom,
+  }));
+ const [to,setTo] = useState('')
+ const [from,setFrom] = useState('')
 
   const getEmoney = (title, e) => {
-    dispatch(setEmoneyReducer(title));
-    dispatch(setItemsEmoneyReducer(Emoney));
-
+    setFrom(title)
     const btnElements = document.querySelectorAll(
       `.${style.ItemsPayment__item}`
     );
@@ -37,18 +29,11 @@ export const EmoneyFillter = () => {
         i.classList.remove(`${style.active}`);
       }
     }
-
-
-  };
-
-  useEffect(() => {
-    dispatch(setItemsEmoneyReducer(Emoney));
-    dispatch(setItemsEmoneyReducer2(Emoney2));
-  }, [Emoney, Emoney2]);
+  }
 
   const getEmoney2 = (title, e) => {
-    dispatch(setEmoneyReducer2(title));
-    dispatch(setItemsEmoneyReducer2(Emoney2));
+    setTo(title)
+
     const btnElements = document.querySelectorAll(
       `.${style.ItemsPayment__item2}`
     );
@@ -58,8 +43,15 @@ export const EmoneyFillter = () => {
         i.classList.remove(`${style.active}`);
       }
     }
-  };
+  }
 
+useEffect(()=>{
+  dispatch(setCurrentItemFromReducer(from))
+  dispatch(setCurrentItemToReducer(to))
+  console.log(to)
+  console.log(from)
+},[from,to])
+  
 
   return (
     <div className={style.ItemsPayment}>
@@ -67,7 +59,7 @@ export const EmoneyFillter = () => {
         {items.map((item) => (
           <li
             className={style.ItemsPayment__item}
-            onClick={(e) => getEmoney(item.currency_type, e)}
+            onClick={(e) => getEmoney(item.title, e)}
           >
             {item.title}
           </li>
@@ -77,7 +69,7 @@ export const EmoneyFillter = () => {
         {items.map((item) => (
           <li
             className={style.ItemsPayment__item2}
-            onClick={(e) => getEmoney2(item.currency_type, e)}
+            onClick={(e) => getEmoney2(item.title, e)}
           >
             {item.title}
           </li>

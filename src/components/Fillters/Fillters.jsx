@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useRef, useState, useEffect } from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
 import { Statistics } from "../Statistics/Statistics";
@@ -13,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { LoadingSpin } from "../LoadingSpin/LoadingSpin";
+
 export const Fillters = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -198,7 +192,9 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__comment__header
                         }
                         style={
-                          item.exchanger.count_reviews == 0 ? { color: "red" } :{color:'white'}
+                          item.exchanger.count_reviews == 0
+                            ? { color: "red" }
+                            : { color: "white" }
                         }
                       >
                         ({item.exchanger.count_reviews})
@@ -308,9 +304,9 @@ export const Fillters = () => {
                         className={
                           style.Fillters__categories__body__content__comment__header
                         }
-                        style={
-                          item.exchanger.count_reviews == 0 && { color: "red" }
-                        }
+                        style={{
+                          color: item.exchanger.count_reviews == 0 && "red",
+                        }}
                       >
                         ({item.exchanger.count_reviews})
                       </p>
@@ -333,7 +329,6 @@ export const Fillters = () => {
           </div>
         </div>
       )}
-      */
     </div>
   );
 };
