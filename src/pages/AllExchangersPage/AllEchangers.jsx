@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef,useEffect, useState } from "react";
 import style from "./allExchange.module.scss";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
@@ -24,7 +24,9 @@ export const AllEchangers = () => {
   const [searchResult2, setSearchResult2] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selected2, setSelected2] = useState([]);
-
+  
+const ref = useRef(null)
+const ref2 = useRef(null)
   useEffect(() => {
     if (selected.length == 0) {
       setResultExchangers(item.data);
@@ -205,6 +207,15 @@ export const AllEchangers = () => {
     setSelected2(e.target.textContent);
   };
 
+
+  useEffect(()=>{
+ if(selected.length != 0) {
+  ref.current.classList.add(`${style.hide}`)
+ }
+ if(selected2.length != 0) {
+  ref2.current.classList.add(`${style.hide}`)
+ }
+  },[selected,selected2])
   return (
     <div className={style.Exchangers}>
       <Header />
@@ -233,7 +244,7 @@ export const AllEchangers = () => {
                 </div>
 
                 {inputVal.length != 0 && (
-                  <div
+                  <div ref={ref}
                     className={
                       style.Exchangers__content__body__seacrh__input__results
                     }
@@ -269,7 +280,7 @@ export const AllEchangers = () => {
                   />
                 </div>
                 {inputVal2.length != 0 && (
-                  <div
+                  <div ref={ref2}
                     className={
                       style.Exchangers__content__body__seacrh__input__results
                     }
@@ -280,8 +291,21 @@ export const AllEchangers = () => {
                   </div>
                 )}
               </div>
+
             </div>
+
+
           </div>
+                      <div  className={
+                      style.Exchangers__content__body__seacrh__selected
+                    }>
+            <span className={
+                      style.Exchangers__content__body__seacrh__selected__name
+                    }>{selected}</span>
+            <span className={
+                      style.Exchangers__content__body__seacrh__selected__name
+                    }>{selected2}</span>
+            </div>
           <nav className={style.Exchangers__content__body__nav}>
             <h1 className={style.Exchangers__content__body__nav__name}>
               Обменники
