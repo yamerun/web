@@ -1,10 +1,11 @@
 .Navigation {
     display: flex;
-
+    
     &__items {
         display: flex;
         flex-direction: row;
-        gap: 4%;
+        align-items: center;
+        gap:50px;
     }
 
     &__item {

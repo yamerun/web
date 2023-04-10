@@ -3,6 +3,7 @@
   width: 88%;
   height: 300px;
   overflow: hidden;
+  display: none;
 }
 
 .carousel-wrapper {

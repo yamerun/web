@@ -11,6 +11,11 @@ import { PersonalAccount } from "./pages/PersonalAccount/PersonalAccount";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/Register";
 import { AccountLoader } from "./pages/PersonalAccount/PersonalAccount";
+import { AllEchangers } from "./pages/AllExchangersPage/AllEchangers";
+import { exchangersLoader } from "./pages/AllExchangersPage/AllEchangers";
+import { Articles } from "./pages/Articles/Article";
+import { ForPartners } from "./pages/forPartners/forPartners";
+import { Articlepage } from "./pages/ArticlePage/ArticlePage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,20 +24,41 @@ const router = createBrowserRouter([
   {
     path: "/:id",
     element: <ItemPage />,
-    loader:exchangeLoader,
+    loader: exchangeLoader,
   },
   {
     path: "/login",
-    element: <LoginPage/>,
+    element: <LoginPage />,
   },
   {
     path: "/register",
-    element: <RegisterPage/>,
+    element: <RegisterPage />,
   },
   {
     path: "/account",
-    element: <PersonalAccount/>,
-    loader:AccountLoader,
+    element: <PersonalAccount />,
+    loader: AccountLoader,
+  },
+  {
+    path: "/exchangers",
+    element: <AllEchangers />,
+    loader: exchangersLoader,
+  },
+  {
+    path: "/articles",
+    element: <Articles />,
+  },
+  {
+    path: "/help",
+    element: <ForPartners />,
+  },
+  {
+    path: "/forPartners",
+    element: <ForPartners />,
+  },
+  {
+    path: "/articlepage",
+    element: <Articlepage />,
   },
 ]);
 

@@ -40,18 +40,25 @@ export const RegisterPage = () => {
       });
   };
 
+  const goMain = () => {
+    navigate("/");
+  };
 
   return (
     <div className={style.RegisterPage}>
-      <img alt="logo" src={logo} className={style.RegisterPage__logo} />
+      <img
+        alt="logo"
+        src={logo}
+        className={style.RegisterPage__logo}
+        onClick={goMain}
+      />
       <div className={style.RegisterPage__form}>
         <h1 className={style.RegisterPage__header}>Регистрация</h1>
         <div>
           <h1 className={style.RegisterPage__header2}>Регистрация в 1 клик</h1>
           <div className={style.RegisterPage__registerVariants}>
             <img src={img} alt="vk" />
-           
-            
+
             <img src={img2} alt="gmail" />
             <img src={img3} alt="twitter" />
             <img src={img4} alt="ok" />

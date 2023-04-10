@@ -8,7 +8,7 @@ import { Fillters } from "../../components/Fillters/Fillters";
 import { Article } from "../../components/Article/Article";
 import { Footer } from "../../components/Footer/Footer";
 export const MainPage = () => {
-  const NavProps = ["Таблица", "Список", "Популярное"];
+  const NavProps = ["Список", "Популярное"];
 
   return (
     <div className={style.MainPage}>

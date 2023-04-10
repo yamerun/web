@@ -4,13 +4,12 @@ import logo from "../../assets/imgs/logo.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 export const Header = () => {
-  const menuBtns = ["Мониторинг", "Обменники", "Партнерам", "Помощь", "Статьи"];
   const navigate = useNavigate();
   const goToMain = () => {
     navigate("/");
   };
-
 
   const goToAccount = () => {
     const config = {
@@ -29,8 +28,8 @@ export const Header = () => {
         }
       });
   };
-
   const jwt = localStorage.getItem("jwt");
+
   return (
     <header className={style.Header}>
       <div className={style.Header__container}>
@@ -43,14 +42,22 @@ export const Header = () => {
           />
           <nav>
             <ul className={style.Header__container__buttons}>
-              {menuBtns.map((item) => (
-                <li className={style.Header__container__btn}>{item}</li>
-              ))}
+              <li className={style.Header__container__btn}>Мониторинг</li>
+              <Link className={style.Header__container__btn} to="/exchangers">
+                Обменники
+              </Link>
+              <Link className={style.Header__container__btn} to="/forPartners">
+                Партнерам
+              </Link>
+              <Link className={style.Header__container__btn} to="/help">
+                Помощь
+              </Link>
+              <Link className={style.Header__container__btn} to="/articles">
+                Статьи
+              </Link>
             </ul>
           </nav>
           <div className={style.Header__container__rightSide}>
-
-
             {jwt == null ? (
               <button
                 className={style.Header__container__logInBtn}

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
 import { Footer } from "../../components/Footer/Footer";
 import { AddComment } from "../../components/AddComment/AddComment";
+import StarRatings from "react-star-ratings";
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
   const res = await fetch(
@@ -53,10 +54,13 @@ export const ItemPage = () => {
 
 
   //http://146.59.87.222/api/content/get
- 
+ let height = window.screen.height
 
   return (
     <div className={style.itemPage}>
+           {isOpen && (
+          <AddComment HideReviews={HideReviews} id={item.data.id} h={height}/>
+      )}
       <Header />
       <div className={style.itemPage__container}>
         <h1 className={style.itemPage__container__header}>{item.data.name}</h1>
@@ -231,17 +235,24 @@ export const ItemPage = () => {
             <p className={style.itemPage__container__items__item3__text}>
               {item.data.description}
             </p>
+         <div className={style.itemPage__container__items__item3__rating__box}>
+         <StarRatings
+          rating={item.data.rating}
+          starRatedColor="yellow"
+          numberOfStars={10}
+          starDimension={15}
+          starSpacing={3}
+          name='rating'
+        />
             <p className={style.itemPage__container__items__item3__rating}>
-              Рейтинг на Change.Pro {item.data.rating}/10
+              Рейтинг на Change.Pro {item.data.rating} /10
             </p>
+         </div>
+           
+            
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div>
-          <AddComment HideReviews={HideReviews} id={item.data.id} />
-        </div>
-      )}
       <div className={style.itemPage__comments}>
         <h1 className={style.itemPage__reviews__header}>
           Отзывы {item.data.name}
@@ -251,19 +262,10 @@ export const ItemPage = () => {
         ) : (
           <div></div>
         )}
+          
       </div>
       <Footer />
     </div>
   );
 };
 
-/*    <button
-            className={style.itemPage__reviews__close}
-            onClick={HideReviews}
-          >
-            ✕
-          </button>*/
-
-/* <div className={style.itemPage__reviews}>
-       
-        </div>*/

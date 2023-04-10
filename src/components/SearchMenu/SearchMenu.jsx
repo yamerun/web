@@ -14,22 +14,25 @@ import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
+import { setStatistics } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
 
 export const SearchMenu = () => {
   const ref = useRef(null);
-  const { items, currentTo, currentFrom, filltered, Emoney, Emoney2 } =
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const { items, currentTo, currentFrom, filltered, Emoney, Emoney2, perHour } =
     useSelector((state) => ({
       items: state.itemsSlice.items,
       currentTo: state.itemsSlice.currentTo,
       currentFrom: state.itemsSlice.currentFrom,
       Emoney: state.itemsSlice.Emoney,
       Emoney2: state.itemsSlice.Emoney2,
+      perHour: state.itemsSlice.perHour,
     }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInput2Value] = useState("");
-
   useEffect(() => {
     axios
       .get(`http://146.59.87.222/api/exchangers/currencies/list`)
@@ -39,7 +42,6 @@ export const SearchMenu = () => {
       })
       .catch(function (error) {});
   }, []);
-
   useEffect(() => {
     axios
       .get(
@@ -50,7 +52,6 @@ export const SearchMenu = () => {
       })
       .then(function (response) {})
       .catch(function (error) {});
-
     const get = setInterval(() => {
       axios
         .get(
@@ -66,21 +67,23 @@ export const SearchMenu = () => {
     return () => clearInterval(get);
   }, [currentTo, currentFrom]);
 
-  //  useEffect(() => {
-  //   axios
-  //   .get(
-  //  `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=1`
-  //    )
-  //  .then(function (response) {
-  //  dispatch(setStatistics(response.data.data));
-  // })
-  // .catch(function (error) {});
-  //}, [currentFrom, currentTo]);
+  useEffect(() => {
+    if (currentFrom && currentTo != undefined)
+      axios
+        .get(
+          `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentTo}&to=${currentFrom}&perHour=${perHour}`
+        )
+        .then(function (response) {
+          dispatch(setStatistics(response.data.data));
+        });
+  }, [currentFrom, currentTo, perHour]);
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
   };
-
+  const ShowMoreToBot = () => {
+    ref2.current.classList.toggle(`${style.showEmoney}`);
+  };
   const getItemFrom = (e, exchanger) => {
     dispatch(setitemIdReducer(e.target.id));
     dispatch(setCurrentItemFromReducer(e.target.textContent));
@@ -93,7 +96,6 @@ export const SearchMenu = () => {
       }
     }
   };
-
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
 
@@ -107,17 +109,96 @@ export const SearchMenu = () => {
       }
     }
   };
-
   const setInputValueForSearch = (e) => {
-    setInputValue(e.target.value);
-    dispatch(setFillterItemsReducer(inputValue));
+    const translitMap = {
+      й: "q",
+      ц: "w",
+      у: "e",
+      к: "r",
+      е: "t",
+      н: "y",
+      г: "u",
+      ш: "i",
+      щ: "o",
+      з: "p",
+      х: "[",
+      ъ: "]",
+      ф: "a",
+      ы: "s",
+      в: "d",
+      а: "f",
+      п: "g",
+      р: "h",
+      о: "j",
+      л: "k",
+      д: "l",
+      ж: ";",
+      э: "'",
+      я: "z",
+      ч: "x",
+      с: "c",
+      м: "v",
+      и: "b",
+      т: "n",
+      ь: "m",
+      б: ",",
+      ю: ".",
+    };
+    let result = "";
+    for (let i = 0; i < e.target.value.length; i++) {
+      const char = e.target.value.charAt(i);
+      const translitChar = translitMap[char.toLowerCase()] || char;
+      result +=
+        char === char.toLowerCase() ? translitChar : translitChar.toUpperCase();
+    }
+    setInputValue(result);
+    dispatch(setFillterItemsReducer(result));
   };
-
   const setInputValue2ForSearch = (e) => {
-    setInput2Value(e.target.value);
-    dispatch(setFillterItems2Reducer(inputValue2));
+    const translitMap = {
+      й: "q",
+      ц: "w",
+      у: "e",
+      к: "r",
+      е: "t",
+      н: "y",
+      г: "u",
+      ш: "i",
+      щ: "o",
+      з: "p",
+      х: "[",
+      ъ: "]",
+      ф: "a",
+      ы: "s",
+      в: "d",
+      а: "f",
+      п: "g",
+      р: "h",
+      о: "j",
+      л: "k",
+      д: "l",
+      ж: ";",
+      э: "'",
+      я: "z",
+      ч: "x",
+      с: "c",
+      м: "v",
+      и: "b",
+      т: "n",
+      ь: "m",
+      б: ",",
+      ю: ".",
+    };
+    let result = "";
+    for (let i = 0; i < e.target.value.length; i++) {
+      const char = e.target.value.charAt(i);
+      const translitChar = translitMap[char.toLowerCase()] || char;
+      result +=
+        char === char.toLowerCase() ? translitChar : translitChar.toUpperCase();
+    }
+    setInput2Value(result);
+    dispatch(setFillterItems2Reducer(result));
   };
-
   const result = useMemo(() => {
     if (inputValue.length !== 0) {
       return items.filter((item) =>
@@ -134,8 +215,13 @@ export const SearchMenu = () => {
     } else return items;
   }, [inputValue2, Emoney2, items]);
 
+  const ShowMoreEmoney = () => {
+    ref2.current.classList.toggle(`${style.showEmoney}`);
+
+  };
+
   return (
-    <div className={style.SearchMenu}>
+    <div className={style.SearchMenu} ref={ref3}>
       <div className={style.SearchMenu__inputs}>
         <div className={style.SearchMenu__contolls}>
           <input
@@ -190,7 +276,6 @@ export const SearchMenu = () => {
           ))}
         </ul>
       </div>
-
       <div className={style.SearchMenu__itemsPayment__header}>
         <p className={style.SearchMenu__itemsPayment__header__content}>
           Электронные деньги
@@ -198,13 +283,15 @@ export const SearchMenu = () => {
       </div>
       <button
         className={style.SearchMenu__ShowMorebtn}
-        onClick={() => ShowMore()}
+        onClick={() => ShowMoreEmoney()}
       />
-      <EmoneyFillter />
+      <div className={style.SearchMenu__Emoney} ref={ref2}>
+        <EmoneyFillter />
+      </div>
       <div className={style.SearchMenu__ShowMore}>
         <button
           className={style.SearchMenu__ShowMorebtn}
-          onClick={() => ShowMore()}
+          onClick={() => ShowMoreToBot()}
         />
       </div>
     </div>

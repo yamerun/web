@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-//import style from "./Chart.module.scss";
-//import axios from "axios";
-//import { useSelector } from "react-redux";
-//import { useDispatch } from "react-redux";
-//import { setStatistics } from "../../store/itemsSlice/itemsSlice";
+import axios from "axios";
+import { useSelector } from "react-redux";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,39 +23,39 @@ ChartJS.register(
   Legend
 );
 
-
-
-export const data = {
-
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: { min: [123], max: [21312] },
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: { min: [123], max: [21312] },
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
-
 export const LineChart = () => {
-  return <Line options={options} data={data} />;
+  const { currentTo, currentFrom, statistics } = useSelector((state) => ({
+    currentTo: state.itemsSlice.currentTo,
+    currentFrom: state.itemsSlice.currentFrom,
+    statistics: state.itemsSlice.statistics,
+  }));
+
+  const labels = statistics.map((item) => item.created_at);
+  const data = labels.map((_, index) => ({
+    in: statistics[index].in,
+    out: statistics[index].out,
+  }));
+
+  const datasets = [
+    {
+      data: [data.map((item) => item.out), data.map((item) => item.in)],
+      fill: false,
+      borderColor: `#CD5C5C`,
+    },
+  ];
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  return (
+    <div>
+      <Line data={{ labels: labels, datasets: datasets }} options={options} />
+    </div>
+  );
 };
+

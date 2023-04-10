@@ -22,6 +22,7 @@ const initialState = {
   statistics: [],
   calculated: [],
   loginStatus: "",
+  perHour:'',
 };
 
 const itemsSlice = createSlice({
@@ -98,6 +99,9 @@ const itemsSlice = createSlice({
     setLoginStatus(state, action) {
       state.loginStatus = action.payload;
     },
+    setStatisticPerHour(state, action) {
+      state.perHour = action.payload;
+    },
   },
 });
 
@@ -117,11 +121,11 @@ export const {
   setCurrentItemToReducer,
   setEmoneyReducer,
   setEmoneyReducer2,
-
   setResult,
   setResult2,
   setStatistics,
   setCalculated,
   setLoginStatus,
+  setStatisticPerHour
 } = itemsSlice.actions;
 export default itemsSlice.reducer;

@@ -3,12 +3,13 @@ import style from "./Calculator.module.scss";
 import { useSelector } from "react-redux";
 import axios from "axios";
 export const Calculator = () => {
-  /* const {  currentTo, currentFrom} =
+   const {  currentTo, currentFrom} =
   useSelector((state) => ({
     calculated:state.itemsSlice.caluclated,
     currentTo: state.itemsSlice.currentTo,
     currentFrom: state.itemsSlice.currentFrom,
   }));
+  /*
   const [activeFrom,setActiveFrom] = useState(false)
   const [activeTo,setActiveTo] = useState(false)
   const [calculatedFrom,setCalculatedFrom] = useState('')
@@ -46,17 +47,16 @@ export const Calculator = () => {
         </div>
         <div className={style.Calculator__inputControlls}>
           <div className={style.Calculator__inputControlls__fields}>
-            <input className={style.Calculator__inputControlls__fieldInput} />
+            <input className={style.Calculator__inputControlls__fieldInput} type="number" min={1}/>
             <input
               className={style.Calculator__inputControlls__fieldValue}
-           
               disabled
+              placeholder={currentFrom}
             />
           </div>
-          <input
-            className={style.Calculator__inputControlls__field2}
-            value="Без комиссий ПС"
-          />
+          <button className={style.Calculator__inputControlls__field2}>
+            Без комиссий ПС
+          </button>
           <button className={style.Calculator__inputControlls__btn}>
             Рассчитать
           </button>

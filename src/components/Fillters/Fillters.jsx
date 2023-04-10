@@ -50,7 +50,7 @@ export const Fillters = () => {
         `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
       )
       .then(function (response) {
-        setAll(response.data.data.slice(0, 7));
+        setAll(response.data.data.slice(0, 20));
         console.log(response);
       });
     const getCurrenciesAll = setInterval(() => {
@@ -59,7 +59,7 @@ export const Fillters = () => {
           `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
         )
         .then(function (response) {
-          setAll(response.data.data.slice(0, 7));
+          setAll(response.data.data.slice(0, 20));
         });
     }, 5000);
     return () => clearInterval(getCurrenciesAll);

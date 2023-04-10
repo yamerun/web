@@ -10,6 +10,13 @@
   overflow: hidden;
   justify-content: center;
 
+
+
+  &__Emoney {
+    max-height: 200px;
+    overflow: hidden;
+  }
+
   &__exchanger {
     position: absolute;
     visibility: hidden;
@@ -82,7 +89,6 @@
   }
 
   &__itemsPayment {
-    margin-top: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -96,7 +102,6 @@
       text-align: left;
       background: #46464b;
       width: 100%;
-      margin-top: 30px;
       display: flex;
       align-items: center;
 
@@ -169,4 +174,13 @@
     max-height: none;
     overflow: auto;
   }
+}
+.showEmoney {
+  max-height: none;
+  overflow: auto;
+  transition: 0.5s;
+}
+
+.fullsize {
+  height:100%;
 }

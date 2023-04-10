@@ -5,7 +5,7 @@
     align-items: center;
     padding: 28px 28px;
     width: 90%;
-
+    height:320px;
     &__container {
         display: flex;
         flex-direction: column;
@@ -21,10 +21,40 @@
                 font-family: "BasisGrotesquePro";
                 font-style: normal;
                 font-weight: 700;
-                font-size: 18px;
+                font-size: 15px;
                 color: #ffffff;
                 user-select: none;
                 cursor: pointer;
+            }
+
+            &__body {
+                background: #151517;
+                border: 2px solid #5e5e65;
+                border-radius: 30px;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                padding-top: 3px;
+                padding-bottom: 3px;
+                padding-left: 6px;
+                padding-right: 6px;
+                gap:5px;
+                &__input {
+                    background: none;
+                    width:50px;
+                    height:10px;
+                    color:rgb(255, 255, 255);
+                    border:0;
+                    font-weight: 600;
+                }
+
+                &__text {
+                    color:white;
+                    padding: 2px;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
             }
 
             &__btnBox {
@@ -36,7 +66,7 @@
                 border-radius: 30px;
                 overflow: hidden;
                 gap: 15px;
-                padding: 10px 25px;
+                padding: 5px 15px;
 
                 &__icon {
                     width: 10px;
@@ -50,7 +80,7 @@
                     font-family: "BasisGrotesquePro";
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 16px;
+                    font-size: 14px;
                     color: #ffffff;
                 }
             }
@@ -71,11 +101,11 @@
                 font-family: "BasisGrotesquePro";
                 font-style: normal;
                 font-weight: 700;
-                font-size: 16px;
+                font-size: 14px;
                 color: #ffffff;
                 background: #151517;
                 border-radius: 60px;
-                padding: 10px 25px;
+                padding: 5px 15px;
             }
         }
     }

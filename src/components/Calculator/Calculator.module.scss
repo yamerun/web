@@ -8,12 +8,11 @@ $md-radio-ripple-size: 15px;
   background: #46464b;
   border-radius: 30px;
   border: 1px solid black;
-  margin: 10px 20px;
-  
+  width: 100%;
+
   &__container {
     display: flex;
-    padding: 25px 25px;
-    
+    padding: 15px 15px;
   }
   &__radiobtn {
     display: flex;
@@ -71,36 +70,37 @@ $md-radio-ripple-size: 15px;
   &__inputControlls {
     display: flex;
     flex-direction: row;
-    gap: 25px;
+    gap: 15px;
     align-items: center;
     margin-left: 4%;
 
     &__fields {
-    display: flex;
-    background: #151517;
-    border: 2px solid #5E5E65;
-    border-radius: 30px;
-    height:35px;
-    overflow: hidden;
-      }
+      display: flex;
+      background: #151517;
+      border: 2px solid #5e5e65;
+      border-radius: 30px;
+      height: 35px;
+      overflow: hidden;
+    }
 
     &__fieldInput {
       background: #151517;
-      border:0;
-      width:45%;
-      font-family: 'BasisGrotesquePro';
+      border: 0;
+      width: 50px;
+      font-family: "BasisGrotesquePro";
       font-style: normal;
       font-weight: 700;
       font-size: 16px;
-      color: #FFFFFF;  
+      color: #ffffff;
       padding-left: 11px;
+      user-select: none;
     }
 
     &__fieldValue {
       background: #151517;
-      border:0;
-      width:28%;
-      font-family: 'BasisGrotesquePro';
+      border: 0;
+
+      font-family: "BasisGrotesquePro";
       font-style: normal;
       font-weight: 700;
       font-size: 16px;
@@ -115,9 +115,9 @@ $md-radio-ripple-size: 15px;
       border: 2px solid #5e5e65;
       border-radius: 30px;
       color: #ffff;
-      height: 35px;
+      height: 40px;
       padding-left: 15px;
-      width: 90%;
+      width: 60%;
     }
     &__btn {
       font-family: "BasisGrotesquePro";

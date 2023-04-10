@@ -30,10 +30,14 @@ export const LoginPage = () => {
       });
   };
 
+  const goMain = () => {
+    navigate('/')
+  }
+
   return (
     <div className={style.LoginPage}>
       <div className={style.LoginPage__formBox}>
-        <img alt="logo" src={logo} className={style.LoginPage__logo} />
+        <img alt="logo" src={logo} className={style.LoginPage__logo} onClick={goMain}/>
         <div className={style.LoginPage__form}>
           <h1 className={style.LoginPage__header}>Авторизация</h1>
           <Input />
