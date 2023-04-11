@@ -20,7 +20,7 @@ const initialState = {
   result: [],
   result2: [],
   statistics: [],
-  calculated: [],
+  calculated: false,
   loginStatus: "",
   perHour:'',
 };

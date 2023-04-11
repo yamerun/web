@@ -21,7 +21,7 @@ export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items, currentTo, currentFrom, filltered, Emoney, Emoney2, perHour } =
+  const { items, currentTo, currentFrom, filltered, Emoney, Emoney2, perHour,calculated } =
     useSelector((state) => ({
       items: state.itemsSlice.items,
       currentTo: state.itemsSlice.currentTo,
@@ -29,6 +29,7 @@ export const SearchMenu = () => {
       Emoney: state.itemsSlice.Emoney,
       Emoney2: state.itemsSlice.Emoney2,
       perHour: state.itemsSlice.perHour,
+      calculated:state.itemsSlice.calculated
     }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -43,7 +44,8 @@ export const SearchMenu = () => {
       .catch(function (error) {});
   }, []);
   useEffect(() => {
-    axios
+    if (calculated !== true) {
+      axios
       .get(
         `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
       )
@@ -65,7 +67,9 @@ export const SearchMenu = () => {
     }, 3000);
 
     return () => clearInterval(get);
-  }, [currentTo, currentFrom]);
+    }
+  
+  }, [currentTo, currentFrom,calculated]);
 
   useEffect(() => {
     if (currentFrom && currentTo != undefined)

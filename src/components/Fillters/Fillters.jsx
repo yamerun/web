@@ -51,7 +51,6 @@ export const Fillters = () => {
       )
       .then(function (response) {
         setAll(response.data.data.slice(0, 20));
-        console.log(response);
       });
     const getCurrenciesAll = setInterval(() => {
       axios
@@ -68,6 +67,8 @@ export const Fillters = () => {
   const openItemSite = (url) => {
     window.open(`${url}`);
   };
+
+  console.log(itemExchangeRates)
 
   return (
     <div className={style.Fillters}>
@@ -134,7 +135,7 @@ export const Fillters = () => {
                           style.Fillters__categories__body__content__from__header
                         }
                       >
-                        1
+                       {Math.floor(item.in)}
                       </p>
                       <p
                         className={

@@ -2,94 +2,125 @@ import React, { useEffect, useState, useRef } from "react";
 import style from "./Calculator.module.scss";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {
+  setCalculated,
+  setitemExchangeRatesReducer,
+} from "../../store/itemsSlice/itemsSlice";
+
 export const Calculator = () => {
-   const {  currentTo, currentFrom} =
-  useSelector((state) => ({
-    calculated:state.itemsSlice.caluclated,
+  const dispatch = useDispatch();
+
+  const { calculated, currentTo, currentFrom } = useSelector((state) => ({
+    calculated: state.itemsSlice.calculated,
     currentTo: state.itemsSlice.currentTo,
     currentFrom: state.itemsSlice.currentFrom,
   }));
-  /*
-  const [activeFrom,setActiveFrom] = useState(false)
-  const [activeTo,setActiveTo] = useState(false)
-  const [calculatedFrom,setCalculatedFrom] = useState('')
-  const [calculatedTo,setCalculatedTo] = useState('')
+  const [val, setVal] = useState("");
+  const [val2, setVal2] = useState("");
 
- const ref = useRef(null)
- const ref2 = useRef(null)
+  const inputGive = useRef(null);
+  const inputGet = useRef(null);
 
-  const ChooseFrom = () => {
-   setCalculatedFrom(currentFrom)
-   console.log(calculatedFrom)
+  const setCalculetedAmountGive = (e) => {
+    setVal(e.target.value);
 
+    if (inputGive.current.value.length !== 0) {
+      setVal(e.target.value);
+      inputGet.current.disabled = true;
+    } else inputGet.current.disabled = false;
   };
 
-  const ChooseTo = () => {
-   setCalculatedTo(currentTo)
-   console.log(calculatedTo)
-  };*/
+  const setCalculetedAmountGet = (e) => {
+    if (inputGet.current.value.length !== 0) {
+      setVal2(e.target.value);
+      inputGive.current.disabled = true;
+    } else inputGive.current.disabled = false;
+  };
+
+  const getCalculatedValue = () => {
+    if (inputGet.current.value.length !== 0) {
+      axios
+        .get(
+          `http://146.59.87.222/api/calc?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
+        )
+        .then(function (response) {
+          dispatch(setitemExchangeRatesReducer(response.data.data));
+          dispatch(setCalculated(true));
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+    }
+
+    if (inputGive.current.value.length !== 0) {
+      axios
+        .get(
+          `http://146.59.87.222/api/calc?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
+        )
+        .then(function (response) {
+          dispatch(setitemExchangeRatesReducer(response.data.data));
+          dispatch(setCalculated(true));
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+    }
+  };
+
+  console.log(calculated);
+
+  const clearCalculate = () => {
+    dispatch(setCalculated(false));
+  };
 
   return (
     <div className={style.Calculator}>
       <div className={style.Calculator__container}>
-        <div className={style.Calculator__radiobtn}>
-          <div className={style.Calculator__radiobtn__radio}>
-            <input id="1" type="radio" name="g" />
-            <label for="1">Получаете</label>
+        <div className={style.Calculator__container__info}>
+          <div className={style.Calculator__container__info__item}>
+            <span>Oтдаете : </span>
+            <input
+              className={style.Calculator__container__info__item__input}
+              onChange={(e) => setCalculetedAmountGive(e)}
+              type="number"
+              min="0"
+              ref={inputGive}
+            />
+            <span className={style.Calculator__container__info__item__name}>
+              {" "}
+              {currentFrom}
+            </span>
           </div>
-          <div
-            className={style.Calculator__checkboxControlls__separation}
-          ></div>
-          <div className={style.Calculator__radiobtn__radio}>
-            <input id="2" type="radio" name="g" />
-            <label for="2">Отдаёте</label>
+          <div className={style.Calculator__container__info__item}>
+            <span>Получаете : </span>
+            <input
+              className={style.Calculator__container__info__item__input}
+              onChange={(e) => setCalculetedAmountGet(e)}
+              ref={inputGet}
+            />
+            <span className={style.Calculator__container__info__item__name}>
+              {" "}
+              {currentTo}
+            </span>
           </div>
         </div>
+        <button
+          className={style.Calculator__inputControlls__btn}
+          onClick={getCalculatedValue}
+        >
+          Рассчитать
+        </button>
         <div className={style.Calculator__inputControlls}>
-          <div className={style.Calculator__inputControlls__fields}>
-            <input className={style.Calculator__inputControlls__fieldInput} type="number" min={1}/>
-            <input
-              className={style.Calculator__inputControlls__fieldValue}
-              disabled
-              placeholder={currentFrom}
-            />
-          </div>
-          <button className={style.Calculator__inputControlls__field2}>
+          <button className={style.Calculator__inputControlls__btn}>
             Без комиссий ПС
           </button>
-          <button className={style.Calculator__inputControlls__btn}>
-            Рассчитать
+          <button
+            onClick={clearCalculate}
+            className={style.Calculator__inputControlls__btn}
+          >
+            Очистить фильтры
           </button>
         </div>
       </div>
     </div>
   );
 };
-
-/*   useEffect(() => {
-      axios
-        .get(
-          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-        )
-        .then(function (response) {
-          dispatch(setitemExchangeRatesReducer(response.data.data));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
-
-      const get = setInterval(() => {
-        axios
-          .get(
-            `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-          )
-          .then(function (response) {
-            dispatch(setitemExchangeRatesReducer(response.data.data));
-
-          })
-          .then(function (response) {})
-          .catch(function (error) {});
-      }, 3000);
-
-    return () => clearInterval(get);
-  }, [currentTo, currentFrom]);
-*/
