@@ -21,10 +21,9 @@ export const AccountLoader = async () => {
   } else useNavigate("/login");
 };
 
-
 export const PersonalAccount = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { item } = useLoaderData();
   console.log(item);
   const handleSelect = (e) => {
@@ -38,18 +37,14 @@ export const PersonalAccount = () => {
       }
     }
   };
- useEffect(()=>{
-  dispatch(setLoginStatus(item.name))
-    
- },[])
+  useEffect(() => {
+    dispatch(setLoginStatus(item.name));
+  }, []);
 
-
- 
-
- const LogOut = () => {
-  localStorage.removeItem('jwt')
-  navigate('/login')
- }
+  const LogOut = () => {
+    localStorage.removeItem("jwt");
+    navigate("/login");
+  };
   return (
     <div className={style.PersonalAccount}>
       <Header />
@@ -98,13 +93,12 @@ export const PersonalAccount = () => {
               >
                 Мои отзывы
               </li>
-
-              <li className={style.PersonalAccount__logOut} onClick={LogOut}>Выйти из Аккаунта</li>
+              <li className={style.PersonalAccount__logOut} onClick={LogOut}>
+                Выйти из Аккаунта
+              </li>
             </ul>
-           
           </nav>
         </div>
-
         <div className={style.PersonalAccount__container__rightBar}>
           <div className={style.PersonalAccount__container__userStatistics}>
             <div
@@ -173,8 +167,6 @@ export const PersonalAccount = () => {
         </div>
 
         <Partners />
-     
-        
       </div>
       <Footer />
     </div>

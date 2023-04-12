@@ -10,7 +10,6 @@ import {
 
 export const Calculator = () => {
   const dispatch = useDispatch();
-
   const { calculated, currentTo, currentFrom } = useSelector((state) => ({
     calculated: state.itemsSlice.calculated,
     currentTo: state.itemsSlice.currentTo,
@@ -18,7 +17,6 @@ export const Calculator = () => {
   }));
   const [val, setVal] = useState("");
   const [val2, setVal2] = useState("");
-
   const inputGive = useRef(null);
   const inputGet = useRef(null);
 
@@ -65,9 +63,6 @@ export const Calculator = () => {
         .catch(function (error) {});
     }
   };
-
-  console.log(calculated);
-
   const clearCalculate = () => {
     dispatch(setCalculated(false));
   };

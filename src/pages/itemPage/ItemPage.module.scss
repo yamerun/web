@@ -1,6 +1,6 @@
 .itemPage {
-height:100%;
-width:100%;
+  height: 100%;
+  width: 100%;
   &__reviews {
     align-items: center;
     justify-content: center;
@@ -11,12 +11,12 @@ width:100%;
     background-color: rgba(0, 0, 0, 0.6);
     color: rgba(0, 0, 0, 0.6);
     height: 100%;
-    width:100%;
+    width: 100%;
 
     &__headerBox {
       display: flex;
       align-items: center;
-      gap:35px;
+      gap: 35px;
     }
 
     &__close {
@@ -43,10 +43,9 @@ width:100%;
       line-height: 23px;
       color: #f3f3f3;
       background: none;
-      border:1px solid white;
-      padding:10px 25px;
-      border-radius:20px;
-      
+      border: 1px solid white;
+      padding: 10px 25px;
+      border-radius: 20px;
     }
   }
 
@@ -64,9 +63,14 @@ width:100%;
     overflow: hidden;
 
     &__Iframe {
-      width:100%;
-      border-radius: 20px;
-      height:99%;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+    }
+
+    &__link {
+      color: white;
+      font-family: "BasisGrotesquePro";
     }
 
     &__Addreview {
@@ -217,4 +221,14 @@ width:100%;
       }
     }
   }
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  transition: linear 0.6s;
 }

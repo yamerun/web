@@ -1,0 +1,16 @@
+.ClearAll {
+    background: #46464b;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    border:1px solid white;
+    &__btn {
+        color:white;
+        background:none;
+        border: 0;
+        font-family: "BasisGrotesquePro";
+    }
+}

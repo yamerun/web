@@ -8,6 +8,7 @@ import { Comments } from "../../components/Comments/Comments";
 import { Footer } from "../../components/Footer/Footer";
 import { AddComment } from "../../components/AddComment/AddComment";
 import StarRatings from "react-star-ratings";
+import { LoadingSpin } from "../../components/LoadingSpin/LoadingSpin";
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
   const res = await fetch(
@@ -25,56 +26,66 @@ export const ItemPage = () => {
   const navigate = useNavigate();
   const [review, setReview] = useState();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [load, setLoad] = useState(true);
   useEffect(() => {
-  
-   
-      axios
-        .get(
-          `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${item.data.id}`
-        )
-        .then(function (response) {
-          setReview(response.data.data);
-        })
+    axios
+      .get(
+        `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${item.data.id}`
+      )
+      .then(function (response) {
+        setReview(response.data.data);
+      })
 
-        .catch(function (error) {
-          console.log(error);
-        });
-
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   const ShowReviews = () => {
     setIsOpen(true);
-    console.log(review)
+    console.log(review);
   };
   const HideReviews = () => {
     setIsOpen(false);
   };
+  let height = window.screen.height;
 
-
-
-  //http://146.59.87.222/api/content/get
- let height = window.screen.height
-
-  return (
-    <div className={style.itemPage}>
-           {isOpen && (
-          <AddComment HideReviews={HideReviews} id={item.data.id} h={height}/>
-      )}
-      <Header />
-      <div className={style.itemPage__container}>
-        <h1 className={style.itemPage__container__header}>{item.data.name}</h1>
-        <div className={style.itemPage__container__items}>
-          <div className={style.itemPage__container__items__item}>
-            <button
+  setTimeout(() => {
+    setLoad(false);
+  }, 4000);
+  /*            <button
               className={style.itemPage__container__items__item__btn}
               onClick={() => navigateToSite(item.data.site_url)}
             >
               Перейти на {item.data.name}
-            </button>
+            </button>*/
+
+  console.log(item.data);
+
+  return (
+    <div className={style.itemPage}>
+      {isOpen && (
+        <AddComment HideReviews={HideReviews} id={item.data.id} h={height} />
+      )}
+      <Header />
+      <div className={style.itemPage__container}>
+        <h1 className={style.itemPage__container__header}>{item.data.name}</h1>
+        <a
+          href={item.data.site_url}
+          className={style.itemPage__container__link}
+        >
+          {" "}
+          {item.data.site_url}
+        </a>
+        <div className={style.itemPage__container__items}>
+          <div className={style.itemPage__container__items__item}>
+            {load === true && <LoadingSpin />}
+
             <iframe
               src={item.data.iframe.src}
-              className={style.itemPage__container__Iframe}
+              className={
+                load !== false ? style.itemPage__container__Iframe : style.show
+              }
             />
           </div>
           <div className={style.itemPage__container__items__item2}>
@@ -235,21 +246,21 @@ export const ItemPage = () => {
             <p className={style.itemPage__container__items__item3__text}>
               {item.data.description}
             </p>
-         <div className={style.itemPage__container__items__item3__rating__box}>
-         <StarRatings
-          rating={item.data.rating}
-          starRatedColor="yellow"
-          numberOfStars={10}
-          starDimension={15}
-          starSpacing={3}
-          name='rating'
-        />
-            <p className={style.itemPage__container__items__item3__rating}>
-              Рейтинг на Change.Pro {item.data.rating} /10
-            </p>
-         </div>
-           
-            
+            <div
+              className={style.itemPage__container__items__item3__rating__box}
+            >
+              <StarRatings
+                rating={item.data.rating}
+                starRatedColor="yellow"
+                numberOfStars={10}
+                starDimension={15}
+                starSpacing={3}
+                name="rating"
+              />
+              <p className={style.itemPage__container__items__item3__rating}>
+                Рейтинг на Change.Pro {item.data.rating} /10
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -262,10 +273,8 @@ export const ItemPage = () => {
         ) : (
           <div></div>
         )}
-          
       </div>
       <Footer />
     </div>
   );
 };
-

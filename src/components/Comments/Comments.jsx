@@ -3,6 +3,7 @@ import style from "./Comments.module.scss";
 import StarRatings from "react-star-ratings";
 
 export const Comments = ({ props }) => {
+  console.log(props)
   return (
     <div className={style.Review}>
       <div className={style.Review__user}>

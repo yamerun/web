@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
 import { Statistics } from "../Statistics/Statistics";
+import {ClearAll} from '../ClearAllFillters/ClearAllFillters'
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -72,6 +73,9 @@ export const Fillters = () => {
 
   return (
     <div className={style.Fillters}>
+      <div className={itemExchangeRates.length != 0 ? style.show : style.hide}>
+      <ClearAll/>
+      </div>
       <nav className={style.Fillters__navigation}>
         <ul className={style.Fillters__navigation__items}>
           {NavProps.map((item) => (
