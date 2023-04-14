@@ -1,112 +1,148 @@
 .statistics {
-    background: #46464b;
-    border-radius: 30px;
+  background: #46464b;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 28px 28px;
+  width: 90%;
+
+  &__container {
     display: flex;
-    align-items: center;
-    padding: 28px 28px;
-    width: 90%;
-    height:320px;
-    &__container {
+    flex-direction: column;
+
+    &__controlls {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+
+      &__header {
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        color: #ffffff;
+        user-select: none;
+        cursor: pointer;
+      }
+
+      &__body {
+        background: #151517;
+        border: 2px solid #5e5e65;
+        border-radius: 30px;
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 6px;
+        padding-right: 6px;
+        gap: 5px;
+        user-select: none;
+        &__menu {
+          width: 30px;
+          height: 20px;
+          background-color: #151517;
+          color: white;
 
-        &__controlls {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
+          &__selector {
+            background-color: #151517;
+            border-radius: 12px;
+            padding: 3px;
+            border: 1px solid white;
+            width: 20px;
+            margin-right: 15px;
+            position: relative;
+            z-index: 10;
 
-            &__header {
+
+            &__list {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              gap: 3px;
+              width: 100%;
+
+              overflow-y: scroll;
+              overflow-x: hidden;
+              &::-webkit-scrollbar {
+                display:none;
+              }
+
+              &__item {
+                color: #d3d3d3;
                 font-family: "BasisGrotesquePro";
-                font-style: normal;
-                font-weight: 700;
-                font-size: 15px;
-                color: #ffffff;
+                width: 100%;
+                list-style-type: none;
                 user-select: none;
-                cursor: pointer;
+              }
             }
-
-            &__body {
-                background: #151517;
-                border: 2px solid #5e5e65;
-                border-radius: 30px;
-                display:flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                padding-top: 3px;
-                padding-bottom: 3px;
-                padding-left: 6px;
-                padding-right: 6px;
-                gap:5px;
-                &__input {
-                    background: none;
-                    width:50px;
-                    height:10px;
-                    color:rgb(255, 255, 255);
-                    border:0;
-                    font-weight: 600;
-                }
-
-                &__text {
-                    color:white;
-                    padding: 2px;
-                    font-weight: 600;
-                    font-size: 14px;
-                }
-            }
-
-            &__btnBox {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                background: #151517;
-                border: 2px solid #5e5e65;
-                border-radius: 30px;
-                overflow: hidden;
-                gap: 15px;
-                padding: 5px 15px;
-
-                &__icon {
-                    width: 10px;
-                    height: 10px;
-                }
-
-                &__btn1 {
-                    border: 0;
-                    outline: 0;
-                    background: #151517;
-                    font-family: "BasisGrotesquePro";
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 14px;
-                    color: #ffffff;
-                }
-            }
-
-            &__btn2 {
-                font-family: "BasisGrotesquePro";
-                font-style: normal;
-                font-weight: 700;
-                font-size: 16px;
-                color: #ffffff;
-                background: #151517;
-                border: 2px solid #5e5e65;
-                border-radius: 30px;
-                padding: 10px 25px;
-            }
-
-            &__btn3 {
-                font-family: "BasisGrotesquePro";
-                font-style: normal;
-                font-weight: 700;
-                font-size: 14px;
-                color: #ffffff;
-                background: #151517;
-                border-radius: 60px;
-                padding: 5px 15px;
-            }
+          }
         }
+        &__text {
+          color: white;
+          padding: 2px;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+
+      &__btnBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #151517;
+        border: 2px solid #5e5e65;
+        border-radius: 30px;
+        overflow: hidden;
+        gap: 15px;
+        padding: 5px 15px;
+
+        &__icon {
+          width: 10px;
+          height: 10px;
+        }
+
+        &__btn1 {
+          border: 0;
+          outline: 0;
+          background: #151517;
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 14px;
+          color: #ffffff;
+        }
+      }
+
+      &__btn2 {
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        color: #ffffff;
+        background: #151517;
+        border: 2px solid #5e5e65;
+        border-radius: 30px;
+        padding: 10px 25px;
+      }
+
+      &__btn3 {
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        color: #ffffff;
+        background: #151517;
+        border-radius: 60px;
+        padding: 5px 15px;
+      }
     }
+  }
+}
+
+.chart_container {
+
 }

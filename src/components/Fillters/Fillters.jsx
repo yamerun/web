@@ -1,17 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
-import { Statistics } from "../Statistics/Statistics";
-import {ClearAll} from '../ClearAllFillters/ClearAllFillters'
-import axios from "axios";
+import { ClearAll } from "../ClearAllFillters/ClearAllFillters";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-
+import { ExchangeRates } from "../ExchangeRates/ExchangeRates";
+import { TwiceExchange } from "../TwiceExchange/TwiceExchange";
 export const Fillters = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const NavProps = [
     "Курсы обмена",
     "Калькулятор",
@@ -20,12 +14,17 @@ export const Fillters = () => {
     "Статистика",
     "Настроить",
   ];
-  const ref = useRef(null);
+  const calc = useRef(null);
+  const twiceChange = useRef(null)
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState([]);
-  const { itemExchangeRates } = useSelector((state) => ({
-    itemExchangeRates: state.itemsSlice.itemExchangeRates,
-  }));
+  const { itemExchangeRates, currentFrom, currentTo } = useSelector(
+    (state) => ({
+      itemExchangeRates: state.itemsSlice.itemExchangeRates,
+      currentFrom: state.itemsSlice.currentFrom,
+      currentTo: state.itemsSlice.currentTo,
+    })
+  );
 
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
@@ -38,43 +37,27 @@ export const Fillters = () => {
       }
     }
     if (e.target.textContent == "Калькулятор") {
-      ref.current.classList.add(`${style.Fillters__open}`);
-    } else ref.current.classList.remove(`${style.Fillters__open}`);
+      calc.current.classList.add(`${style.Fillters__open}`);
+    } else calc.current.classList.remove(`${style.Fillters__open}`);
+
+    if (e.target.textContent == "Двойной обмен") {
+      twiceChange.current.classList.add(`${style.Fillters__open}`);
+    } else twiceChange.current.classList.remove(`${style.Fillters__open}`);
+
+
     if (e.target.textContent == "Статистика") {
       setOpen(true);
     } else setOpen(false);
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
-      )
-      .then(function (response) {
-        setAll(response.data.data.slice(0, 20));
-      });
-    const getCurrenciesAll = setInterval(() => {
-      axios
-        .get(
-          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
-        )
-        .then(function (response) {
-          setAll(response.data.data.slice(0, 20));
-        });
-    }, 5000);
-    return () => clearInterval(getCurrenciesAll);
-  }, []);
-
-  const openItemSite = (url) => {
-    window.open(`${url}`);
-  };
-
-  console.log(itemExchangeRates)
+  console.log(itemExchangeRates);
 
   return (
     <div className={style.Fillters}>
-      <div className={itemExchangeRates.length != 0 ? style.show : style.hide}>
-      <ClearAll/>
+      <div
+        className={currentFrom && currentTo !== "" ? style.show : style.hide}
+      >
+        <ClearAll />
       </div>
       <nav className={style.Fillters__navigation}>
         <ul className={style.Fillters__navigation__items}>
@@ -88,252 +71,14 @@ export const Fillters = () => {
           ))}
         </ul>
       </nav>
-      <div ref={ref} className={style.Fillters__inActive}>
+      <div ref={calc} className={style.Fillters__inActive}>
         <Calculator />
       </div>
-      {open != false ? (
-        <Statistics />
-      ) : (
-        <div>
-          <div className={style.Fillters__categories}>
-            <h1 className={style.Fillters__categories__exchange}>
-              Обменник ↑↓
-            </h1>
-            <h1 className={style.Fillters__categories__from}>Отдаете ↑</h1>
-            <h1 className={style.Fillters__categories__to}>Получаете ↓</h1>
-            <h1 className={style.Fillters__categories__reserve}>Резерв</h1>
-            <h1 className={style.Fillters__categories__comment}>Отзывы</h1>
-            <h1 className={style.Fillters__categories__status}>Статус</h1>
-          </div>
-          <div className={style.Fillters__categories__body}>
-            {itemExchangeRates.length != 0
-              ? itemExchangeRates.map((item) => (
-                  <div className={style.Fillters__categories__body__content}>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__excahange
-                      }
-                    >
-                      <Link
-                        to={`/${item.exchanger.id}`}
-                        className={
-                          style.Fillters__categories__body__content__excahange__btn
-                        }
-                      />
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__excahange__header
-                        }
-                        onClick={() => openItemSite(item.exchanger.site_url)}
-                      >
-                        {item.exchanger.name}
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__from
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__from__header
-                        }
-                      >
-                       {Math.floor(item.in)}
-                      </p>
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__from__header2
-                        }
-                      >
-                        {item.from}
-                      </p>
-                    </div>
-                    <div
-                      className={style.Fillters__categories__body__content__to}
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__to__header
-                        }
-                      >
-                        {(Math.round(item.out * 100) / 100).toFixed(2)}
-                      </p>
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__to__header2
-                        }
-                      >
-                        {item.to}
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__reserve
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__reserve__header
-                        }
-                      >
-                        {(Math.round(item.amount * 100) / 100).toFixed(2)}
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__comment
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__comment__header
-                        }
-                      >
-                        {item.exchanger.user_reviews}
-                      </p>
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__comment__header
-                        }
-                        style={
-                          item.exchanger.count_reviews == 0
-                            ? { color: "red" }
-                            : { color: "white" }
-                        }
-                      >
-                        ({item.exchanger.count_reviews})
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__status
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__status__header
-                        }
-                      >
-                        {item.exchanger.status.title}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              : all.map((item) => (
-                  <div className={style.Fillters__categories__body__content}>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__excahange
-                      }
-                    >
-                      <Link
-                        to={`/${item.exchanger.id}`}
-                        className={
-                          style.Fillters__categories__body__content__excahange__btn
-                        }
-                      />
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__excahange__header
-                        }
-                        onClick={() => openItemSite(item.exchanger.site_url)}
-                      >
-                        {item.exchanger.name}
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__from
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__from__header
-                        }
-                      >
-                        1
-                      </p>
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__from__header2
-                        }
-                      >
-                        {item.from}
-                      </p>
-                    </div>
-                    <div
-                      className={style.Fillters__categories__body__content__to}
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__to__header
-                        }
-                      >
-                        {(Math.round(item.out * 100) / 100).toFixed(2)}
-                      </p>
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__to__header2
-                        }
-                      >
-                        {item.to}
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__reserve
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__reserve__header
-                        }
-                      >
-                        {(Math.round(item.amount * 100) / 100).toFixed(2)}
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__comment
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__comment__header
-                        }
-                      >
-                        {item.exchanger.user_reviews}
-                      </p>
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__comment__header
-                        }
-                        style={{
-                          color: item.exchanger.count_reviews == 0 && "red",
-                        }}
-                      >
-                        ({item.exchanger.count_reviews})
-                      </p>
-                    </div>
-                    <div
-                      className={
-                        style.Fillters__categories__body__content__status
-                      }
-                    >
-                      <p
-                        className={
-                          style.Fillters__categories__body__content__status__header
-                        }
-                      >
-                        {item.exchanger.status.title}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-          </div>
-        </div>
-      )}
+      <div ref={twiceChange} className={style.Fillters__inActive}>
+          <TwiceExchange/>
+      </div>
+      <ExchangeRates open={open} />
     </div>
   );
 };
+

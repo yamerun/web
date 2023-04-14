@@ -1,0 +1,61 @@
+.TwiceChange {
+  background: #46464b;
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  &__btn {
+    background-color: black;
+    border-radius: 7px;
+    border: 0;
+    color: white;
+    font-family: "BasisGrotesquePro";
+    font-weight: 600;
+    padding: 10px;
+  }
+
+  &__inputMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    &__input {
+      width: 40px;
+      border-radius: 3px;
+      border: 0;
+      background-color: black;
+      color: white;
+      margin: 5px;
+    }
+
+    &__text {
+      font-family: "BasisGrotesquePro";
+      color: white;
+      font-weight: 600;
+    }
+
+    &__currentFrom {
+        font-family: "BasisGrotesquePro";
+        color: white;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    &__currentTo {
+        font-family: "BasisGrotesquePro";
+        color: white;
+        font-weight: 400;
+        font-size: 12px;
+    }
+  }
+}

@@ -21,27 +21,20 @@ export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const {
-    items,
-    currentTo,
-    currentFrom,
-    filltered,
-    Emoney,
-    Emoney2,
-    perHour,
-    calculated,
-  } = useSelector((state) => ({
-    items: state.itemsSlice.items,
-    currentTo: state.itemsSlice.currentTo,
-    currentFrom: state.itemsSlice.currentFrom,
-    Emoney: state.itemsSlice.Emoney,
-    Emoney2: state.itemsSlice.Emoney2,
-    perHour: state.itemsSlice.perHour,
-    calculated: state.itemsSlice.calculated,
-  }));
+  const { items, currentTo, currentFrom, Emoney, Emoney2, perHour } =
+    useSelector((state) => ({
+      items: state.itemsSlice.items,
+      currentTo: state.itemsSlice.currentTo,
+      currentFrom: state.itemsSlice.currentFrom,
+      Emoney: state.itemsSlice.Emoney,
+      Emoney2: state.itemsSlice.Emoney2,
+      perHour: state.itemsSlice.perHour,
+      calculated: state.itemsSlice.calculated,
+    }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInput2Value] = useState("");
+
   useEffect(() => {
     axios
       .get(`http://146.59.87.222/api/exchangers/currencies/list`)
@@ -51,43 +44,6 @@ export const SearchMenu = () => {
       })
       .catch(function (error) {});
   }, []);
-  useEffect(() => {
-    if (calculated !== true) {
-      axios
-        .get(
-          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-        )
-        .then(function (response) {
-          dispatch(setitemExchangeRatesReducer(response.data.data));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
-      const get = setInterval(() => {
-        axios
-          .get(
-            `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-          )
-          .then(function (response) {
-            dispatch(setitemExchangeRatesReducer(response.data.data));
-          })
-          .then(function (response) {})
-          .catch(function (error) {});
-      }, 3000);
-
-      return () => clearInterval(get);
-    }
-  }, [currentTo, currentFrom, calculated]);
-
-  useEffect(() => {
-    if (currentFrom && currentTo != undefined)
-      axios
-        .get(
-          `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentTo}&to=${currentFrom}&perHour=${perHour}`
-        )
-        .then(function (response) {
-          dispatch(setStatistics(response.data.data));
-        });
-  }, [currentFrom, currentTo, perHour]);
 
   const ShowMore = () => {
     ref.current.classList.toggle(`${style.show}`);
