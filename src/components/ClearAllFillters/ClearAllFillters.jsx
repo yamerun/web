@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./ClearAll.module.scss";
-import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
+import { setCurrentItemFromReducer, setisTwice } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCalculated } from "../../store/itemsSlice/itemsSlice";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ export const ClearAll = () => {
     dispatch(setCurrentItemFromReducer(undefined));
     dispatch(setCurrentItemToReducer(undefined));
     dispatch(setCalculated(false));
+    dispatch(setisTwice(false))
   };
   return (
     <div className={style.ClearAll}>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
   setCalculated,
+  setisTwice,
   setitemExchangeRatesReducer,
 } from "../../store/itemsSlice/itemsSlice";
 
@@ -45,6 +46,7 @@ export const Calculator = () => {
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
           dispatch(setCalculated(true));
+          dispatch(setisTwice(false));
         })
         .then(function (response) {})
         .catch(function (error) {});
@@ -58,6 +60,7 @@ export const Calculator = () => {
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
           dispatch(setCalculated(true));
+          dispatch(setisTwice(false));
         })
         .then(function (response) {})
         .catch(function (error) {});
@@ -81,7 +84,7 @@ export const Calculator = () => {
               ref={inputGive}
             />
             <span className={style.Calculator__container__info__item__name}>
-              {" "}
+
               {currentFrom}
             </span>
           </div>
@@ -93,7 +96,6 @@ export const Calculator = () => {
               ref={inputGet}
             />
             <span className={style.Calculator__container__info__item__name}>
-              {" "}
               {currentTo}
             </span>
           </div>

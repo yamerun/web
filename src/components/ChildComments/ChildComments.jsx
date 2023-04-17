@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
-import style from "./Comments.module.scss";
+import React, { useState, useEffect } from "react";
 import StarRatings from "react-star-ratings";
 import { Like } from "../Like/Like";
 import { Dislike } from "../Dislike/Dislike";
 import axios from "axios";
-import { ChildComments } from "../ChildComments/ChildComments";
+import style from "./ChildComments.module.scss";
 
-export const Comments = ({ props }) => {
+export const ChildComments = ({ props }) => {
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-  const [active, setActive] = useState(false);
-
   useEffect(() => {
     const isLike = localStorage.getItem(`isLike${props.id}`);
     const isDislike = localStorage.getItem(`isDislike${props.id}`);
@@ -20,13 +17,7 @@ export const Comments = ({ props }) => {
       setDislike(true);
     }
   }, [props.id]);
-
-  const OpenChildComments = () => {
-    if (props.child_reviews !== undefined) {
-      setActive(!active);
-    }
-  };
-
+  
   const RateLike = () => {
     axios
       .post(
@@ -44,7 +35,9 @@ export const Comments = ({ props }) => {
         setLike(true);
         setDislike(false);
       })
-      .catch(function (error) {});
+      .catch(function (error) {
+        setErr(err);
+      });
   };
 
   const RateDisLike = () => {
@@ -67,53 +60,41 @@ export const Comments = ({ props }) => {
   };
 
   return (
-    <div className={style.Review}>
-      <div className={style.Review__user}>
-        <h1 className={style.Review__user__name}>{props.author.name}</h1>
+    <div className={style.ChildComments}>
+      <div className={style.ChildComments__user}>
+        <h1 className={style.ChildComments__user__name}>{props.author.name}</h1>
         <StarRatings
           rating={props.rating}
           starRatedColor="yellow"
           numberOfStars={5}
           name="rating"
-          starDimension="20px"
-          starSpacing="3px"
+          starDimension="10px"
+          starSpacing="2px"
         />
-        <h1 className={style.Review__user__createdAt}>{props.created_at}</h1>
+        <h1 className={style.ChildComments__user__createdAt}>
+          {props.created_at}
+        </h1>
       </div>
-      <div className={style.Review__textBox}>
-        <p className={style.Review__textBox__text}>{props.comment}</p>
+      <div className={style.ChildComments__textBox}>
+        <p className={style.ChildComments__textBox__text}>{props.comment}</p>
       </div>
-      <div className={style.Review__footer}>
-        <div className={style.Review__likeOrDislike}>
+      <div className={style.ChildComments__footer}>
+        <div className={style.ChildComments__likeOrDislike}>
           <button
             onClick={RateLike}
-            className={style.Review__likeOrDislike__btn}
+            className={style.ChildComments__likeOrDislike__btn}
           >
             <Like color={"green"} />
             <p style={{ color: "green" }}> {props.likes}</p>
           </button>
           <button
             onClick={RateDisLike}
-            className={style.Review__likeOrDislike__btn}
+            className={style.ChildComments__likeOrDislike__btn}
           >
             <Dislike color={"red"} />
             <p style={{ color: "red" }}>{props.dislikes}</p>
           </button>
         </div>
-        <div>
-          <button
-            className={style.Review__footer__btn}
-            onClick={OpenChildComments}
-          >
-            ответов : {props.count_child_reviews}
-          </button>
-        </div>
-      </div>
-      <div className={style.Review__childs}>
-        {active &&
-          props.child_reviews.map((item) => (
-            <ChildComments props={item} style={{ width: "100%" }} />
-          ))}
       </div>
     </div>
   );

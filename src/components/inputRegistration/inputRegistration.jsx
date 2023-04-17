@@ -14,30 +14,14 @@ export const InputRegistration = (e) => {
   };
 
   const changePassValue = (e) => {
-    const newValue = e.target.value.replace(
-      /^[\s.`":'$@~;]*|[\s.`":'$@~;]*$/g,
-      ""
-    );
-    if (newValue != e.target.value) e.target.value = newValue;
     dispatch(setPassword(newValue));
   };
 
-  const emailIsValid = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
   const changeEmailValue = (e) => {
-    if (emailIsValid(e.target.value) === true) {
       dispatch(setEmail(e.target.value));
-    }
   };
 
-  const changeNameValue = (e) => {
-    const newValue = e.target.value.replace(
-      /^[\s.`":'$@~;]*|[\s.`":'$@~;]*$/g,
-      ""
-    );
-    if (newValue != e.target.value) e.target.value = newValue;
+  const changeNameValue = (e) => {;
     dispatch(setName(newValue));
   };
 

@@ -23,6 +23,8 @@ const initialState = {
   calculated: false,
   loginStatus: "",
   perHour:'',
+  isTwice:false,
+  twiceExchanger:[],
 };
 
 const itemsSlice = createSlice({
@@ -102,6 +104,12 @@ const itemsSlice = createSlice({
     setStatisticPerHour(state, action) {
       state.perHour = action.payload;
     },
+    setisTwice(state, action) {
+      state.isTwice = action.payload;
+    },
+    setTwiceExchanger(state, action) {
+      state.twiceExchanger = action.payload;
+    },
   },
 });
 
@@ -126,6 +134,8 @@ export const {
   setStatistics,
   setCalculated,
   setLoginStatus,
-  setStatisticPerHour
+  setStatisticPerHour,
+  setTwiceExchanger,
+  setisTwice
 } = itemsSlice.actions;
 export default itemsSlice.reducer;

@@ -53,14 +53,8 @@ export const ItemPage = () => {
   setTimeout(() => {
     setLoad(false);
   }, 4000);
-  /*            <button
-              className={style.itemPage__container__items__item__btn}
-              onClick={() => navigateToSite(item.data.site_url)}
-            >
-              Перейти на {item.data.name}
-            </button>*/
 
-  console.log(item.data);
+  console.log(review);
 
   return (
     <div className={style.itemPage}>

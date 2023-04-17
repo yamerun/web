@@ -1,20 +1,10 @@
-.Review {
-  background: #2d2d31;
+.ChildComments {
+  background: #27272b;
   border-radius: 20px;
-  margin: 15px;
-  max-width: 50%;
   position: relative;
-  width: 30%;
-  margin-top: 30px;
-
-  &__childs {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:10px;
-    margin-bottom: 10px;
-  }
+  width: 90%;
+  border:1px solid rgb(107, 107, 107);
+ 
 
   &__footer {
     width: 100%;
@@ -27,6 +17,7 @@
       font-family: "BasisGrotesquePro";
       border: 0;
       background: none;
+      font-size: 13px;
     }
   }
 
@@ -38,7 +29,7 @@
     flex-direction: row;
     margin: 10px;
     padding: 0;
-
+    font-size: 13px;
     &__btn {
       border: 0;
       background: #2d2d31;
@@ -52,13 +43,14 @@
     align-items: center;
     margin: 10px;
     position: relative;
+
     &__name {
       font-family: "BasisGrotesquePro";
       font-style: normal;
       font-weight: 700;
-      font-size: 16px;
       color: #f3f3f3;
       opacity: 0.5;
+      font-size: 12px;
     }
 
     &__createdAt {
@@ -66,7 +58,7 @@
       font-family: "BasisGrotesquePro";
       font-style: normal;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 13px;
       text-align: right;
       color: #f3f3f3;
       opacity: 0.5;
@@ -84,7 +76,7 @@
       font-family: "BasisGrotesquePro";
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 13px;
       color: #f3f3f3;
     }
   }
