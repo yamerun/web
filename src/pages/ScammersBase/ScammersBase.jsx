@@ -73,6 +73,7 @@ export const ScammersBase = () => {
                 }
               />
             </div>
+            
             <div className={style.ScammersBase__mainContainer__checkBoxes}>
               <Checkbox
                 label="По имени"
@@ -97,6 +98,7 @@ export const ScammersBase = () => {
             </div>
           </div>
         </div>
+        <div className={style.separate}> </div>
           <div
             className={style.ScammersBase__mainContainer__textContents__headers}
           >
