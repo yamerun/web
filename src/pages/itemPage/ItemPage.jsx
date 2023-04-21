@@ -159,7 +159,7 @@ export const ItemPage = () => {
                     style.itemPage__container__items__item2__container__status__headerInfo
                   }
                 >
-                  {item.data.sum_reserves}
+                  {item.data.sum_reserves} &#8381;
                 </h1>
               </div>
               <div
@@ -259,7 +259,7 @@ export const ItemPage = () => {
                     style.itemPage__container__items__item2__container__status__headerInfo
                   }
                 >
-                  {item.data.country}0/69
+                  0/69
                 </h1>
               </div>
               <button

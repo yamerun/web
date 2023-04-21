@@ -13,11 +13,18 @@
     margin-top: 40px;
 
     &__infoContainer {
-      margin-top: 30px;
+      margin-top: 10px;
       display: flex;
       flex-direction: row;
       width: 95%;
       justify-content: space-between;
+     
+      padding: 15px;
+      border-radius: 7px;
+
+      &:hover {
+        background-color: #46464b;
+      }
 
       &__info {
         display: flex; 
@@ -93,7 +100,6 @@
     }
 
     &__checkBoxes {
-      padding-left: 20%;
       display: flex;
       gap:10px;
       align-items: center;
@@ -102,14 +108,15 @@
 
     &__textContents {
       width: 100%;
-      background: #46464b;
+      background: #2d2d31;
       border-radius: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
       height: 900px;
-      margin-top: 30px;
+      margin-top: 10px;
       padding: 15px;
+      font-family: "BasisGrotesquePro";
       &__count {
         color: white;
         font-family: "BasisGrotesquePro";
@@ -126,19 +133,24 @@
       }
       &__btn {
         color: white;
-        background-color: #46464b;
+        background-color: #2d2d31;
         border: 2px solid #fe0000;
         border-radius: 60px;
         padding-left: 30px;
         padding-right: 30px;
         padding-top: 10px;
         padding-bottom: 10px;
+        font-weight: 700;
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        letter-spacing: 0.6px;
+        font-size: 14px;
       }
     }
 
     &__searchMenu {
       width: 100%;
-      background: #46464b;
+      background: #2d2d31;
       border-radius: 50px;
       margin-top: 30px;
 
@@ -146,6 +158,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
+        gap: 20px;
         padding: 15px;
         &__inputBox {
           background-color: #151517;
@@ -164,6 +178,7 @@
             background-size: 100% 100%;
             border: 0;
             margin: 10px;
+
           }
 
           &__input {
@@ -171,6 +186,8 @@
             border: 0;
             height: 35px;
             padding-left: 10px;
+            color:white;
+            font-family: "BasisGrotesquePro";
             &::placeholder {
               font-family: "BasisGrotesquePro";
               font-style: normal;

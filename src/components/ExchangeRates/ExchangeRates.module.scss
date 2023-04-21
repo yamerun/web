@@ -50,7 +50,7 @@ $hedaerw6: 50px;
     display: flex;
     flex-direction: row;
     margin-top: 10px;
-    width: 93%;
+    width: 92%;
     justify-content: space-between;
     align-items: center;
     padding-left: 15px;
@@ -70,7 +70,7 @@ $hedaerw6: 50px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
-      width: $hedaerw1;
+      width: 145px;
     }
     &__from {
       font-family: "BasisGrotesquePro";
@@ -81,7 +81,6 @@ $hedaerw6: 50px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
-      width: $hedaerw2;
     }
     &__to {
       font-family: "BasisGrotesquePro";

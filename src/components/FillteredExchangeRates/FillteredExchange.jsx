@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
 import { TwiceChanhgeExchanger } from "../TwiceChangeExchanger/TwiceChange";
 import axios from "axios";
+import { Marks } from "../Marks/Marks";
 export const FillteredExchangeRates = () => {
   const dispatch = useDispatch();
   const { itemExchangeRates, calculated, currentFrom, currentTo, isTwice } =
@@ -70,6 +71,7 @@ export const FillteredExchangeRates = () => {
               {item.exchanger.name}
             </p>
           </div>
+          <Marks/>
           <div className={style.Fillters__categories__body__content__from}>
             <p
               className={

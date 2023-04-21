@@ -69,8 +69,8 @@ export const ExchangerNotifications = () => {
             <div  className={style.switchCheckBox}>
               <div className={style.switchCheckBox__container}>
                 <div className={style.switch}>
-                  <input type="checkbox" id="switch" />
-                  <label for="switch"></label>
+                  <input type="checkbox" id="switch3" />
+                  <label for="switch3"></label>
                 </div>
 
                 <h1 className={style.switchCheckBox__container__header}> О недоступности экспортного файла курсов</h1>
@@ -78,24 +78,24 @@ export const ExchangerNotifications = () => {
 
               <div className={style.switchCheckBox__container}>
                 <div className={style.switch}>
-                  <input type="checkbox" id="switch2" />
-                  <label for="switch2"></label>
+                  <input type="checkbox" id="switch4" />
+                  <label for="switch4"></label>
                 </div>
 
                 <h1 className={style.switchCheckBox__container__header}>О новых отзывах</h1>
               </div>
               <div className={style.switchCheckBox__container}>
                 <div className={style.switch}>
-                  <input type="checkbox" id="switch2" />
-                  <label for="switch2"></label>
+                  <input type="checkbox" id="switch5" />
+                  <label for="switch5"></label>
                 </div>
 
                 <h1 className={style.switchCheckBox__container__header}>О новых комментариях к отзывам</h1>
               </div>
               <div className={style.switchCheckBox__container}>
                 <div className={style.switch}>
-                  <input type="checkbox" id="switch2" />
-                  <label for="switch2"></label>
+                  <input type="checkbox" id="switch6" />
+                  <label for="switch6"></label>
                 </div>
 
                 <h1 className={style.switchCheckBox__container__header}>О новых комментариях к отзывам</h1>

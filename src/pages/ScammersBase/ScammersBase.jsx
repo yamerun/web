@@ -48,40 +48,7 @@ export const ScammersBase = () => {
           >
             База мошенников и неадекватов
           </h1>
-          <nav
-            className={style.ScammersBase__mainContainer__leftMenu__navigation}
-          >
-            <ul>
-              <li
-                className={
-                  style.ScammersBase__mainContainer__leftMenu__navigation__item
-                }
-              >
-                API для автоматического поиска
-              </li>
-              <li
-                className={
-                  style.ScammersBase__mainContainer__leftMenu__navigation__item
-                }
-              >
-                API для автоматического добавления
-              </li>
-              <li
-                className={
-                  style.ScammersBase__mainContainer__leftMenu__navigation__item
-                }
-              >
-                Как самостоятельно блокировать фишинговые и мошеннические сайты
-              </li>
-              <li
-                className={
-                  style.ScammersBase__mainContainer__leftMenu__navigation__item
-                }
-              >
-                Рекомендации по обработке заявок
-              </li>
-            </ul>
-          </nav>
+
         </div>
         <div className={style.ScammersBase__mainContainer__searchMenu}>
           <div
@@ -128,6 +95,7 @@ export const ScammersBase = () => {
             </div>
           </div>
         </div>
+        
         <div className={style.ScammersBase__mainContainer__textContents}>
           <div
             className={style.ScammersBase__mainContainer__textContents__headers}
@@ -216,3 +184,39 @@ export const ScammersBase = () => {
     </div>
   );
 };
+
+
+/*          <nav
+            className={style.ScammersBase__mainContainer__leftMenu__navigation}
+          >
+            <ul>
+              <li
+                className={
+                  style.ScammersBase__mainContainer__leftMenu__navigation__item
+                }
+              >
+                API для автоматического поиска
+              </li>
+              <li
+                className={
+                  style.ScammersBase__mainContainer__leftMenu__navigation__item
+                }
+              >
+                API для автоматического добавления
+              </li>
+              <li
+                className={
+                  style.ScammersBase__mainContainer__leftMenu__navigation__item
+                }
+              >
+                Как самостоятельно блокировать фишинговые и мошеннические сайты
+              </li>
+              <li
+                className={
+                  style.ScammersBase__mainContainer__leftMenu__navigation__item
+                }
+              >
+                Рекомендации по обработке заявок
+              </li>
+            </ul>
+          </nav>*/

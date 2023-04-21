@@ -42,7 +42,7 @@ export const Header = () => {
           />
           <nav>
             <ul className={style.Header__container__buttons}>
-              <li className={style.Header__container__btn}>Мониторинг</li>
+              <Link className={style.Header__container__btn} to="/">Мониторинг</Link>
               <Link className={style.Header__container__btn} to="/exchangers">
                 Обменники
               </Link>

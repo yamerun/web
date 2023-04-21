@@ -7,7 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { useSelector } from "react-redux";
-
+import { Marks } from "../../components/Marks/Marks";
 export const exchangersLoader = async () => {
   const res = await fetch(
     `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
@@ -348,6 +348,7 @@ export const AllEchangers = () => {
                   {item.exchanger.name}
                 </p>
               </div>
+              <Marks/>
               <div className={style.Exchangers__content__body__block__from}>
                 <p>1</p>
                 <p>{item.from}</p>
