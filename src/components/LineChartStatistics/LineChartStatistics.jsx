@@ -4,14 +4,18 @@ import { LineChart } from "../Chart/LineChart";
 import { StatisticsControll } from "../Statistics/StatisticsControll";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { setStatistic } from "../../store/itemsSlice/itemsSlice";
+import { useDispatch } from "react-redux";
 export const LineChartStatistics = () => {
   const [currentHour, setCurrentHour] = useState("");
   const [active, setActive] = useState(false);
   const [statPoints, setStatPoints] = useState([]);
-  const { currentFrom, currentTo } = useSelector((state) => ({
+  const { currentFrom, currentTo, stat } = useSelector((state) => ({
     currentFrom: state.itemsSlice.currentFrom,
     currentTo: state.itemsSlice.currentTo,
+    stat: state.itemsSlice.stat,
   }));
+  const dispatch = useDispatch();
 
   const setPerHour = (e) => {
     setCurrentHour(e.target.textContent);
@@ -27,11 +31,11 @@ export const LineChartStatistics = () => {
         `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=${currentHour}`
       )
       .then(function (response) {
-        setStatPoints(response.data.data);
+        // setStatPoints(response.data.data);
+        dispatch(setStatistic(response.data.data));
       });
   };
-
-  console.log(statPoints);
+  console.log(stat);
 
   return (
     <div className={style.statistics}>
@@ -42,7 +46,7 @@ export const LineChartStatistics = () => {
         active={active}
         currentHour={currentHour}
       />
-      {statPoints.length !== 0 && <LineChart props={statPoints} />}
+      {stat.length == 0 ? <div></div> : <LineChart prop={stat} />}
     </div>
   );
 };

@@ -5,7 +5,7 @@ export const TwiceChanhgeExchanger = () => {
   const { twiceExchanger } = useSelector((state) => ({
     twiceExchanger: state.itemsSlice.twiceExchanger,
   }));
-  console.log(twiceExchanger);
+
   return (
     <div className={style.TwiceExchange}>
       {twiceExchanger.length === 0 ? (

@@ -1,0 +1,52 @@
+.ExchangerMarks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  &__tableBox {
+    margin-top: 40px;
+    border-radius: 30px;
+    padding: 20px;
+    color: white;
+    &__header {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 45px;
+      color: #f3f3f3;
+    }
+    &__table {
+      border: 0;
+      background: #2d2d31;
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    &__tableNav {
+      background: #2d2d31;
+      color: white;
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+    }
+
+    &__tableCell {
+      border: solid 1px #2d2d31;
+      color: white;
+      padding: 10px;
+      white-space: pre-wrap;
+      max-width: 150px;
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 13px;
+      width: 200px;
+      text-align: center;
+    }
+  }
+}

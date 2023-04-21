@@ -1,10 +1,13 @@
-import React, { useRef,useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import style from "./allExchange.module.scss";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
+import { useSelector } from "react-redux";
+
 export const exchangersLoader = async () => {
   const res = await fetch(
     `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
@@ -24,9 +27,11 @@ export const AllEchangers = () => {
   const [searchResult2, setSearchResult2] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selected2, setSelected2] = useState([]);
-  
-const ref = useRef(null)
-const ref2 = useRef(null)
+  const { isExchangerRole } = useSelector((state) => ({
+    isExchangerRole: state.AccountSlice.isExchangerRole,
+  }));
+  const ref = useRef(null);
+  const ref2 = useRef(null);
   useEffect(() => {
     if (selected.length == 0) {
       setResultExchangers(item.data);
@@ -207,18 +212,19 @@ const ref2 = useRef(null)
     setSelected2(e.target.textContent);
   };
 
-
-  useEffect(()=>{
- if(selected.length != 0) {
-  ref.current.classList.add(`${style.hide}`)
- }
- if(selected2.length != 0) {
-  ref2.current.classList.add(`${style.hide}`)
- }
-  },[selected,selected2])
+  useEffect(() => {
+    if (selected.length != 0) {
+      ref.current.classList.add(`${style.hide}`);
+    }
+    if (selected2.length != 0) {
+      ref2.current.classList.add(`${style.hide}`);
+    }
+  }, [selected, selected2]);
   return (
     <div className={style.Exchangers}>
       <Header />
+      {isExchangerRole === true && <ExchangerAccountNavigation />}
+
       <div className={style.Exchangers__content}>
         <div className={style.Exchangers__content__body}>
           <div className={style.Exchangers__content__body__seacrh}>
@@ -244,7 +250,8 @@ const ref2 = useRef(null)
                 </div>
 
                 {inputVal.length != 0 && (
-                  <div ref={ref}
+                  <div
+                    ref={ref}
                     className={
                       style.Exchangers__content__body__seacrh__input__results
                     }
@@ -280,7 +287,8 @@ const ref2 = useRef(null)
                   />
                 </div>
                 {inputVal2.length != 0 && (
-                  <div ref={ref2}
+                  <div
+                    ref={ref2}
                     className={
                       style.Exchangers__content__body__seacrh__input__results
                     }
@@ -291,21 +299,24 @@ const ref2 = useRef(null)
                   </div>
                 )}
               </div>
-
             </div>
-
-
           </div>
-                      <div  className={
-                      style.Exchangers__content__body__seacrh__selected
-                    }>
-            <span className={
-                      style.Exchangers__content__body__seacrh__selected__name
-                    }>{selected}</span>
-            <span className={
-                      style.Exchangers__content__body__seacrh__selected__name
-                    }>{selected2}</span>
-            </div>
+          <div className={style.Exchangers__content__body__seacrh__selected}>
+            <span
+              className={
+                style.Exchangers__content__body__seacrh__selected__name
+              }
+            >
+              {selected}
+            </span>
+            <span
+              className={
+                style.Exchangers__content__body__seacrh__selected__name
+              }
+            >
+              {selected2}
+            </span>
+          </div>
           <nav className={style.Exchangers__content__body__nav}>
             <h1 className={style.Exchangers__content__body__nav__name}>
               Обменники

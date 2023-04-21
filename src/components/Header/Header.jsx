@@ -58,7 +58,7 @@ export const Header = () => {
             </ul>
           </nav>
           <div className={style.Header__container__rightSide}>
-            {jwt == null ? (
+            {jwt === null ? (
               <button
                 className={style.Header__container__logInBtn}
                 onClick={goToAccount}

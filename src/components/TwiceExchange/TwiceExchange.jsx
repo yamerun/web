@@ -90,8 +90,11 @@ export const TwiceExchange = () => {
       <button className={style.TwiceChange__btn} onClick={getCalculatedValue}>
         Рассчитать
       </button>
+      <div className={style.TwiceChange__btnBox}>
       <button className={style.TwiceChange__btn}>Без комиссий ПС</button>
       <button className={style.TwiceChange__btn}>Очистить фильтры</button>
+      </div>
+
     </div>
   );
 };

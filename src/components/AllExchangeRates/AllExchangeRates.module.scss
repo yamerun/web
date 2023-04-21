@@ -21,6 +21,7 @@ $hedaerw6: 50px;
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         background: #46464b;
         border-radius: 7px;
         padding-left: 10px;
@@ -28,7 +29,7 @@ $hedaerw6: 50px;
         height: 20px;
         padding-top: 7px;
         padding-bottom: 10px;
-        gap: 60px;
+        width:93%;
         overflow: hidden;
         margin: 5px;
 
@@ -217,3 +218,7 @@ $hedaerw6: 50px;
     }
   }
 }
+
+
+
+   

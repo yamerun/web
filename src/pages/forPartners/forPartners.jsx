@@ -2,11 +2,20 @@ import React from "react";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import style from "./forPartners.module.scss";
+import { useSelector } from "react-redux";
+import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 
 export const ForPartners = () => {
+
+  const { isExchangerRole } = useSelector((state) => ({
+    isExchangerRole: state.AccountSlice.isExchangerRole,
+  }));
+
+
   return (
     <div className={style.forPartners}>
       <Header />
+      {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.forPartners__textbox}>
           <p >
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean

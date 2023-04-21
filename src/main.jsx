@@ -16,6 +16,12 @@ import { exchangersLoader } from "./pages/AllExchangersPage/AllEchangers";
 import { Articles } from "./pages/Articles/Article";
 import { ForPartners } from "./pages/forPartners/forPartners";
 import { Articlepage } from "./pages/ArticlePage/ArticlePage";
+import { ScammersBase } from "./pages/ScammersBase/ScammersBase";
+import { InfoPage } from "./pages/InfoPage/InfoPage";
+import { ExchangerReviews } from "./pages/ExchangerReviews/ExchangerReviews";
+import { ExchangerCourses } from "./pages/ExchangerCourses/ExchangerCourses";
+import { ExchangerMarks } from "./pages/Marks/Marks";
+import { ExchangerNotifications } from "./pages/ExchangerNotifications/ExchangerNotifications";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +65,30 @@ const router = createBrowserRouter([
   {
     path: "/articlepage",
     element: <Articlepage />,
+  },
+  {
+    path: "/scammersBase",
+    element: <ScammersBase />,
+  },
+  {
+    path: "/InfoPage",
+    element: <InfoPage />,
+  },
+  {
+    path: "/ExchangerReviews",
+    element: <ExchangerReviews />,
+  },
+  {
+    path: "/ExchangerCourses",
+    element: <ExchangerCourses />,
+  },
+  {
+    path: "/ExchangerMarks",
+    element: <ExchangerMarks />,
+  },
+  {
+    path: "/ExchangerNotifications",
+    element: <ExchangerNotifications />,
   },
 ]);
 

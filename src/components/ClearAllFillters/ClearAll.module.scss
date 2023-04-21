@@ -1,12 +1,13 @@
 .ClearAll {
-    background: #46464b;
+    background: none;
     display:flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px;
     margin: 10px;
-    border:1px solid white;
+    border:2px solid white;
+    width:150px;
     &__btn {
         color:white;
         background:none;

@@ -89,15 +89,15 @@ export const Comments = ({ props }) => {
             onClick={RateLike}
             className={style.Review__likeOrDislike__btn}
           >
-            <Like color={"green"} />
-            <p style={{ color: "green" }}> {props.likes}</p>
+            <Like />
+            <p style={{ color: "#77D22D" }}> {props.likes}</p>
           </button>
           <button
             onClick={RateDisLike}
             className={style.Review__likeOrDislike__btn}
           >
-            <Dislike color={"red"} />
-            <p style={{ color: "red" }}>{props.dislikes}</p>
+            <Dislike />
+            <p style={{ color: "#F3F3F3", opacity: 0.5 }}>{props.dislikes}</p>
           </button>
         </div>
         <div>

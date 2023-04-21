@@ -48,14 +48,13 @@
 
           &__selector {
             background-color: #151517;
-            border-radius: 12px;
+            border-radius: 7px;
             padding: 3px;
             border: 1px solid white;
-            width: 20px;
+            width: 50px;
             margin-right: 15px;
             position: relative;
             z-index: 10;
-
 
             &__list {
               display: flex;
@@ -68,7 +67,7 @@
               overflow-y: scroll;
               overflow-x: hidden;
               &::-webkit-scrollbar {
-                display:none;
+                display: none;
               }
 
               &__item {
@@ -143,6 +142,3 @@
   }
 }
 
-.chart_container {
-
-}

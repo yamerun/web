@@ -25,6 +25,8 @@ const initialState = {
   perHour:'',
   isTwice:false,
   twiceExchanger:[],
+  stat:[],
+  tooltip:undefined,
 };
 
 const itemsSlice = createSlice({
@@ -91,9 +93,7 @@ const itemsSlice = createSlice({
     setResult2(state, action) {
       state.result2 = action.payload;
     },
-    setStatistics(state, action) {
-      state.statistics = action.payload;
-    },
+
     setCalculated(state, action) {
       state.calculated = action.payload;
     },
@@ -109,6 +109,12 @@ const itemsSlice = createSlice({
     },
     setTwiceExchanger(state, action) {
       state.twiceExchanger = action.payload;
+    },
+    setStatistic(state, action) {
+      state.stat = action.payload;
+    },
+    setTooltip(state, action) {
+      state.tooltip = action.payload;
     },
   },
 });
@@ -131,11 +137,12 @@ export const {
   setEmoneyReducer2,
   setResult,
   setResult2,
-  setStatistics,
   setCalculated,
   setLoginStatus,
   setStatisticPerHour,
   setTwiceExchanger,
-  setisTwice
+  setisTwice,
+  setStatistic,
+  setTooltip
 } = itemsSlice.actions;
 export default itemsSlice.reducer;

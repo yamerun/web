@@ -15,16 +15,16 @@ export const Fillters = () => {
     "Настроить",
   ];
   const calc = useRef(null);
-  const twiceChange = useRef(null)
+  const twiceChange = useRef(null);
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState([]);
-  const { itemExchangeRates, currentFrom, currentTo } = useSelector(
-    (state) => ({
+  const { itemExchangeRates, currentFrom, currentTo, twiceExchanger } =
+    useSelector((state) => ({
       itemExchangeRates: state.itemsSlice.itemExchangeRates,
       currentFrom: state.itemsSlice.currentFrom,
       currentTo: state.itemsSlice.currentTo,
-    })
-  );
+      twiceExchanger: state.itemsSlice.twiceExchanger,
+    }));
 
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
@@ -44,13 +44,10 @@ export const Fillters = () => {
       twiceChange.current.classList.add(`${style.Fillters__open}`);
     } else twiceChange.current.classList.remove(`${style.Fillters__open}`);
 
-
     if (e.target.textContent == "Статистика") {
       setOpen(true);
     } else setOpen(false);
   };
-
-  console.log(itemExchangeRates);
 
   return (
     <div className={style.Fillters}>
@@ -75,10 +72,9 @@ export const Fillters = () => {
         <Calculator />
       </div>
       <div ref={twiceChange} className={style.Fillters__inActive}>
-          <TwiceExchange/>
+        <TwiceExchange />
       </div>
       <ExchangeRates open={open} />
     </div>
   );
 };
-

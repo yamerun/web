@@ -1,0 +1,118 @@
+.ExchangerCourses {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    margin-bottom: 20px;
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 45px;
+    color: #f3f3f3;
+  }
+
+  &__container {
+    margin-top: 40px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    &__tableBox {
+      display: flex;
+      width: 900px;
+      height: 500px;
+      background: #2d2d31;
+      border-radius: 30px;
+      padding: 20px;
+      flex-direction: column;
+
+      &__content {
+        width: 100%;
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        color: white;
+        margin-top: 30px;
+        &__list {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          list-style-type: none;
+          gap: 20px;
+          &__item {
+            max-width: 180px;
+            white-space: pre-wrap;
+            font-family: "BasisGrotesquePro";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 13px;
+          }
+        }
+      }
+      &__navigation {
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        color: white;
+        width: 100%;
+        &__list {
+          list-style-type: none;
+          display: flex;
+          // justify-content: space-between;
+          gap: 20px;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+.tableNav {
+  background: #2d2d31;
+  color: white;
+  font-family: "BasisGrotesquePro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px;
+  text-align: center;
+}
+
+.table {
+  border: 0;
+  background: #2d2d31;
+  border-radius: 20px;
+  padding: 20px;
+}
+.tableCell {
+  border: solid 1px #2d2d31;
+  color: white;
+  padding: 10px;
+  white-space: pre-wrap;
+  max-width: 150px;
+  font-family: "BasisGrotesquePro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+}
+
+.tableBox {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 40px;
+  height: 70%;
+}
+
+.ExchangerCourses {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

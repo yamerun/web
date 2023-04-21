@@ -1,0 +1,265 @@
+.ScammersBase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+
+  &__mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    margin-top: 40px;
+
+    &__infoContainer {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: row;
+      width: 95%;
+      justify-content: space-between;
+
+      &__info {
+        display: flex; 
+        flex-direction: column;
+        justify-content: left;
+        &__header {
+          color: white;
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          user-select: none;
+          padding-bottom: 15px;
+
+        }
+        &__text {
+          display:flex;
+          text-align: left;
+          flex-direction: column;
+          column-gap: 5px;
+          color: white;
+          font-family: "BasisGrotesquePro";
+          height:70px
+        }
+      }
+      &__contacts {
+        &__header {
+          color: white;
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          user-select: none;
+          padding-bottom: 15px;
+
+        }
+        &__text {
+          display:flex;
+          text-align: left;
+          flex-direction: column;
+          column-gap: 5px;
+          color: white;
+          font-family: "BasisGrotesquePro";
+          height:70px
+        }
+      }
+      &__description {
+         width: 400px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        &__header {
+          color: white;
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          user-select: none;
+          padding-bottom: 15px;
+
+        }
+        &__text {
+          display:flex;
+          text-align: left;
+          flex-direction: column;
+          column-gap: 5px;
+          color: white;
+          font-family: "BasisGrotesquePro";
+          max-height:200px;
+        }
+      }
+    }
+
+    &__checkBoxes {
+      padding-left: 20%;
+      display: flex;
+      gap:10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__textContents {
+      width: 100%;
+      background: #46464b;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 900px;
+      margin-top: 30px;
+      padding: 15px;
+      &__count {
+        color: white;
+        font-family: "BasisGrotesquePro";
+      }
+
+      &__headers {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 95%;
+        height: 50px;
+        border-bottom: 1px solid #2d2d31;
+        padding-bottom: 15px;
+      }
+      &__btn {
+        color: white;
+        background-color: #46464b;
+        border: 2px solid #fe0000;
+        border-radius: 60px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
+    &__searchMenu {
+      width: 100%;
+      background: #46464b;
+      border-radius: 50px;
+      margin-top: 30px;
+
+      &__container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 15px;
+        &__inputBox {
+          background-color: #151517;
+          border: 2px solid #5e5e65;
+          border-radius: 30px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          &__btn {
+            background: url("../../assets/imgs/search.svg");
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border: 0;
+            margin: 10px;
+          }
+
+          &__input {
+            background-color: #151517;
+            border: 0;
+            height: 35px;
+            padding-left: 10px;
+            &::placeholder {
+              font-family: "BasisGrotesquePro";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    &__leftMenu {
+      width: 100%;
+
+      &__pageHeader {
+        color: white;
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 900;
+        font-size: 45px;
+      }
+
+      &__navigation {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        color: white;
+        font-family: "BasisGrotesquePro";
+
+        &__item {
+          list-style-type: none;
+          font-weight: 700;
+          font-size: 16px;
+          border-top: 1px solid #5e5e65;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.checkbox {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+
+
+  &__check {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 100px;
+    background-color: #FFF;
+    border: 2px solid #00EA90;
+    box-shadow: 0px 0px 0px 0px #00EA90 inset;
+    transition: all 0.15s cubic-bezier(0, 1.05, 0.72, 1.07);
+  
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 4;
+        position: absolute;
+        transform: scale(0);
+        background-size: 50%;
+        background-image: url('https://s6.picofile.com/d/8392306668/bacc888c-bed7-41a9-bf24-f6ff0718f471/checkmark.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        transition-delay: 0.2s !important;
+        transition: all 0.25s cubic-bezier(0, 1.05, 0.72, 1.07);
+    }
+  }
+  
+
+  &:checked {
+
+      &__check {
+          border-color: #00EA90;
+          box-shadow: 0px 0px 0px 15px #00EA90 inset;
+
+          &::after {
+              opacity: 1;
+              transform: scale(1);
+          }
+      }
+  }
+}

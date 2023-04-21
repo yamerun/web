@@ -1,0 +1,119 @@
+.infoPage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__mainContainer {
+    width: 70%;
+    height: 70%;
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    &__infoBox {
+      background-color: #2d2d31;
+      width: 780px;
+      height: 580px;
+      border-radius: 30px;
+      padding: 20px;
+
+      &__articles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      &__items {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        &__item {
+          display: flex;
+          width: 100%;
+          margin: 4px;
+          padding: 10px;
+          &__headers {
+            width: 50%;
+            text-align: left;
+            color: white;
+            font-family: "BasisGrotesquePro";
+            display: flex;
+            gap: 10px;
+            font-weight: 700;
+          }
+        }
+      }
+
+      &__header {
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        color: white;
+        border-bottom: 1px solid #5e5e65;
+        padding-bottom: 25px;
+        padding-left: 10px;
+        padding-top: 10px;
+      }
+    }
+
+    &__moreInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      &__box {
+        background-color: #2d2d31;
+        width: 270px;
+        height: 270px;
+        padding: 20px;
+        border-radius: 30px;
+        &__text {
+          color: white;
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          height:45%;
+          margin-top: 20px;
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 16px;
+          border-bottom: 1px solid #5E5E65;
+          padding-bottom: 10px;
+        }
+
+        &__text2 {
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+            font-family: "BasisGrotesquePro";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            color:white;
+            padding-top: 10px;
+            border-top: 1px solid #5E5E65;
+            height:40%;
+        }
+        &__rating {
+            display: flex;
+            flex-direction: column;
+            font-family: "BasisGrotesquePro";
+            color:white;
+            margin-top: 10px;
+            &__element {
+                display: flex;
+                gap:10px;
+                align-items: center;
+            }
+        }
+      }
+    }
+  }
+}

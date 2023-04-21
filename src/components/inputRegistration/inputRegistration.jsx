@@ -14,27 +14,39 @@ export const InputRegistration = (e) => {
   };
 
   const changePassValue = (e) => {
-    dispatch(setPassword(newValue));
+    dispatch(setPassword(e.target.value));
   };
 
   const changeEmailValue = (e) => {
-      dispatch(setEmail(e.target.value));
+    dispatch(setEmail(e.target.value));
   };
 
-  const changeNameValue = (e) => {;
-    dispatch(setName(newValue));
+  const changeNameValue = (e) => {
+    dispatch(setName(e.target.value));
   };
 
   return (
     <div className={style.inputsReg}>
       <h1 className={style.inputsReg__header}>Имя</h1>
-      <input onChange={(e) => changeNameValue(e)} className={style.inputsReg__fields}/>
+      <input
+        onChange={(e) => changeNameValue(e)}
+        className={style.inputsReg__fields}
+      />
       <h1 className={style.inputsReg__header}>E-mail</h1>
-      <input onChange={(e) => changeEmailValue(e)} className={style.inputsReg__fields}/>
+      <input
+        onChange={(e) => changeEmailValue(e)}
+        className={style.inputsReg__fields}
+      />
       <h1 className={style.inputsReg__header}>Пароль</h1>
-      <input onChange={(e) => changePassValue(e)} className={style.inputsReg__fields}/>
+      <input
+        onChange={(e) => changePassValue(e)}
+        className={style.inputsReg__fields}
+      />
       <h1 className={style.inputsReg__header}>Подтвердите Пароль</h1>
-      <input onChange={(e) => ChangeVerifyPassstValue(e)} className={style.inputsReg__fields}/>
+      <input
+        onChange={(e) => ChangeVerifyPassstValue(e)}
+        className={style.inputsReg__fields}
+      />
     </div>
   );
 };

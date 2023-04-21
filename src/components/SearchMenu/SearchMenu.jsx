@@ -14,21 +14,18 @@ import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
-import { setStatistics } from "../../store/itemsSlice/itemsSlice";
+
 import axios from "axios";
 
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items, currentTo, currentFrom, Emoney, Emoney2, perHour } =
+  const { items,  Emoney, Emoney2,  } =
     useSelector((state) => ({
       items: state.itemsSlice.items,
-      currentTo: state.itemsSlice.currentTo,
-      currentFrom: state.itemsSlice.currentFrom,
       Emoney: state.itemsSlice.Emoney,
       Emoney2: state.itemsSlice.Emoney2,
-      perHour: state.itemsSlice.perHour,
       calculated: state.itemsSlice.calculated,
     }));
   const dispatch = useDispatch();

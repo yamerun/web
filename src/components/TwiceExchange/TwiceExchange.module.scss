@@ -1,12 +1,17 @@
 .TwiceChange {
-  background: #46464b;
-  width: 100%;
-  border-radius: 12px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
-
+  white-space: nowrap;
+  background-color: #46464b;
+  margin:5px;
+  border-radius: 10px;
+  padding: 15px 15px;
+  &__btnBox {
+    display: flex;
+    gap:15px;
+  }
   &__btn {
     background-color: black;
     border-radius: 7px;
@@ -19,8 +24,18 @@
 
   &__inputMenu {
     display: flex;
-    flex-direction: column;
+   gap:10px;
     align-items: center;
+    font-size: 12px;
+    white-space: nowrap;
+    text-align: left;
+
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "BasisGrotesquePro";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
   }
 
   &__container {

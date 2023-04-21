@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setLoginStatus } from "../../store/itemsSlice/itemsSlice";
 import { useEffect } from "react";
+import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
+import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 export const AccountLoader = async () => {
   const key = localStorage.getItem("jwt");
   if (key) {
@@ -17,6 +19,7 @@ export const AccountLoader = async () => {
       },
     });
     const item = await res.json();
+    localStorage.setItem("userRole", item.data.role.code);
     return { item };
   } else useNavigate("/login");
 };
@@ -25,7 +28,13 @@ export const PersonalAccount = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { item } = useLoaderData();
-  console.log(item);
+  const { isExchangerRole } = useSelector((state) => ({
+    isExchangerRole: state.AccountSlice.isExchangerRole,
+  }));
+  const role = localStorage.getItem("userRole");
+  const jwt = localStorage.getItem("jwt");
+
+  
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
       `.${style.PersonalAccount__container__leftBar__navigation__list__item}`
@@ -38,16 +47,21 @@ export const PersonalAccount = () => {
     }
   };
   useEffect(() => {
-    dispatch(setLoginStatus(item.name));
-  }, []);
+    if (jwt && role !== null && role === "exchanger") {
+      dispatch(setUserRole(true));
+    } else dispatch(setUserRole(false));
+  }, [jwt, role]);
 
   const LogOut = () => {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("userRole");
     navigate("/login");
   };
+
   return (
     <div className={style.PersonalAccount}>
       <Header />
+      {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.PersonalAccount__container}>
         <div className={style.PersonalAccount__container__leftBar}>
           <nav

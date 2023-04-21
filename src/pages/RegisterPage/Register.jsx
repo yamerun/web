@@ -58,11 +58,10 @@ export const RegisterPage = () => {
           <h1 className={style.RegisterPage__header2}>Регистрация в 1 клик</h1>
           <div className={style.RegisterPage__registerVariants}>
             <img src={img} alt="vk" />
-
             <img src={img2} alt="gmail" />
             <img src={img3} alt="twitter" />
             <img src={img4} alt="ok" />
-            <img src={img5} alt="At" />
+
           </div>
           <div className={style.RegisterPage__reg}>
             <h1 className={style.RegisterPage__header2}>

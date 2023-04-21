@@ -16,15 +16,16 @@
     font-family: "BasisGrotesquePro";
     align-items: center;
     background: #46464b;
-    padding: 5px;
-    border-radius: 12px;
+    padding: 13px;
+    border-radius: 17px;
     gap: 5px;
     white-space: nowrap;
     flex-wrap: nowrap;
     &__container {
       display: flex;
       flex-direction: row;
-      gap: 5px;
+      gap: 5px; 
+
     }
     &__link {
       color: white;
@@ -36,11 +37,12 @@
       letter-spacing: 1.2px;
     }
     &__box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 14px;
+    width: 42%;
       &__value {
         font-size: 12px;
         border-radius: 5px;

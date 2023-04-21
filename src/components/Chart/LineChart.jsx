@@ -1,90 +1,90 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import style from "./Chart.module.scss";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { Colors } from "chart.js";
 
-export const LineChart = ({ props }) => {
-  const width = 600;
-  const height = 300;
-  const data = props.values.map((item) => item.value);
-  // const labels = [5, 8, 12, 6, 10, 15]
-  const labels = props.values.map((item) => item.datetime.time);
-  const maxValue = Math.max(...data);
-  const minValue = Math.min(...data);
-  const yScale = (maxValue - minValue) / height;
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Colors
+);
 
-  // Новый код для расчета координат точек
-  const xValues = labels.map((label, i) => (i * width) / (labels.length - 1));
-  const yValues = data.map((y) => height - (y - minValue) / yScale);
-
-  // Создаем массив строк в формате "x координата,y координата"
-  const coordinates = xValues
-    .map((x, i) => `${x},${yValues[i].toFixed(2)}`)
-    .join(" ");
-
-  // Размер отображаемого диапазона лейблов
-  const displayRange = 10;
-  const [startIndex, setStartIndex] = useState(0);
-
-  const scrollLeft = () => {
-    if (startIndex > 0) {
-      setStartIndex((prev) => prev - 1);
+export const options = {
+  responsive: true,
+  elements: {
+    point:{
+        radius: 0
     }
-  };
-
-  const scrollRight = () => {
-    if (startIndex < labels.length - displayRange) {
-      setStartIndex((prev) => prev + 1);
+},
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: "Chart.js Line Chart",
+    },
+  },
+  scales: {
+    y: {
+        ticks: {
+          beginAtZero: true,
+            min:132123,
+            max:13123,
+        }
     }
-  };
+  }
+};
 
-  const labelElements = labels
-    .slice(startIndex, startIndex + displayRange)
-    .map((label, i) => {
-      const x = ((i + startIndex) * width) / (labels.length - 1);
-      const isActive = i + startIndex === labels.length - 1;
-      return (
-        <div
-          key={i}
-          className={`${style.label} ${isActive ? style.active : ""}`}
-        >
-          {label}
-        </div>
-      );
-    });
+export const LineChart = ({}) => {
+  const { currentTo, currentFrom, stat } = useSelector((state) => ({
+    currentTo: state.itemsSlice.currentTo,
+    currentFrom: state.itemsSlice.currentFrom,
+    stat: state.itemsSlice.stat,
+  }));
 
-  const leftArrowClasses = `${style.arrow} ${
-    startIndex > 0 ? style.active : ""
-  }`;
-  const rightArrowClasses = `${style.arrow} ${
-    startIndex < labels.length - displayRange ? style.active : ""
-  }`;
+  const labels = stat.values.map((item) => item.datetime.time);
+ 
+  const datasets = [
+    {
+      label: `${currentFrom} - ${currentTo}`,
+      data: stat.values.map((item) => item.value),
+      fill: true,
+      borderColor: "#77D22D",
+     
+    },
+  ];
+
+
 
   return (
-    <div className={style.chart}>
-      <svg width={width} height={height}>
-        <polyline
-          points={coordinates}
-          stroke="white"
-          strokeWidth={2}
-          fill="none"
+    <div>
+      {stat.length !== 0 && (
+        <Line
+          data={{ labels: labels, datasets: datasets }}
+          options={options}
+          className={style.Chart}
+          width={"600px"}
+          height={"400px"}
         />
-      </svg>
-      <div className={style.labelContainer}>
-        <div
-          onClick={scrollLeft}
-          className={`${leftArrowClasses} ${style.left}`}
-        >
-          &#10094;
-        </div>
-        <div className={style.labels}>{labelElements}</div>
-        <div
-          onClick={scrollRight}
-          className={`${rightArrowClasses} ${style.right}`}
-        >
-          &#10095;
-        </div>
-      </div>
+      )}
     </div>
   );
 };
