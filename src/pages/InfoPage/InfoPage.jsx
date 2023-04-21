@@ -245,7 +245,7 @@ export const InfoPage = () => {
             <div
               className={style.infoPage__mainContainer__moreInfo__box__rating}
             >
-              <h1>Рейтинг на MyWOT</h1>
+              <h1>Рейтинг на ChangePro</h1>
               <div
                 className={
                   style.infoPage__mainContainer__moreInfo__box__rating__element

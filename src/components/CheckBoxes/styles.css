@@ -3,10 +3,11 @@
   display: block;
   position: relative;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 20px;
   padding-left: 25px;
   color:White;
   display: flex;
+  gap:10px;
   align-items: center;
   text-align: center;
   font-family: "BasisGrotesquePro";
@@ -23,8 +24,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   background:none;
   border: 1px solid #fff;

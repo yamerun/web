@@ -10,17 +10,18 @@
     align-items: center;
     height: 100%;
     width: 80%;
-    margin-top: 40px;
+    margin-top: 20px;
 
     &__infoContainer {
-      margin-top: 10px;
+      margin-top: 20px;
       display: flex;
       flex-direction: row;
       width: 95%;
       justify-content: space-between;
-     
+      margin-top: 15px;
       padding: 15px;
       border-radius: 7px;
+
 
       &:hover {
         background-color: #46464b;
@@ -35,7 +36,7 @@
           font-family: "BasisGrotesquePro";
           font-style: normal;
           font-weight: 700;
-          font-size: 16px;
+          font-size: 30px;
           user-select: none;
           padding-bottom: 15px;
 
@@ -47,16 +48,19 @@
           column-gap: 5px;
           color: white;
           font-family: "BasisGrotesquePro";
-          height:70px
+          height:70px;
+          font-size: 22px;
         }
       }
       &__contacts {
+        border-left: 1px solid gray;
+        padding-left: 40px;
         &__header {
           color: white;
           font-family: "BasisGrotesquePro";
           font-style: normal;
           font-weight: 700;
-          font-size: 16px;
+          font-size: 30px;
           user-select: none;
           padding-bottom: 15px;
 
@@ -68,7 +72,8 @@
           column-gap: 5px;
           color: white;
           font-family: "BasisGrotesquePro";
-          height:70px
+          height:70px;
+          font-size: 22px;
         }
       }
       &__description {
@@ -76,15 +81,17 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-
+        border-left: 1px solid gray;
+        padding-left: 40px;
         &__header {
           color: white;
           font-family: "BasisGrotesquePro";
           font-style: normal;
           font-weight: 700;
-          font-size: 16px;
+          font-size: 30px;
           user-select: none;
           padding-bottom: 15px;
+        
 
         }
         &__text {
@@ -94,16 +101,18 @@
           column-gap: 5px;
           color: white;
           font-family: "BasisGrotesquePro";
-          max-height:200px;
+          max-height:340px;
+          font-size: 23px;
         }
       }
     }
 
     &__checkBoxes {
       display: flex;
-      gap:10px;
+      gap:20px;
       align-items: center;
       justify-content: center;
+      font-weight: 600;
     }
 
     &__textContents {
@@ -114,12 +123,16 @@
       flex-direction: column;
       align-items: center;
       height: 900px;
-      margin-top: 10px;
       padding: 15px;
+      margin-top: 20px;
       font-family: "BasisGrotesquePro";
+
       &__count {
         color: white;
         font-family: "BasisGrotesquePro";
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
       }
 
       &__headers {
@@ -130,6 +143,8 @@
         height: 50px;
         border-bottom: 1px solid #2d2d31;
         padding-bottom: 15px;
+        padding-top: 15px;
+
       }
       &__btn {
         color: white;
@@ -144,7 +159,8 @@
         font-family: "BasisGrotesquePro";
         font-style: normal;
         letter-spacing: 0.6px;
-        font-size: 14px;
+        font-size: 16px;
+        text-transform: uppercase;
       }
     }
 
@@ -152,15 +168,17 @@
       width: 100%;
       background: #2d2d31;
       border-radius: 50px;
-      margin-top: 30px;
 
       &__container {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content:left;
         gap: 20px;
-        padding: 15px;
+        padding-top: 15px;
+        padding-left: 15px;
+        border-bottom: 1px solid #5e5e65;
+        padding-bottom: 15px;
         &__inputBox {
           background-color: #151517;
           border: 2px solid #5e5e65;
@@ -169,6 +187,7 @@
           display: flex;
           flex-direction: row;
           align-items: center;
+          width:250px;
 
           &__btn {
             background: url("../../assets/imgs/search.svg");
@@ -188,6 +207,7 @@
             padding-left: 10px;
             color:white;
             font-family: "BasisGrotesquePro";
+            width:230px;
             &::placeholder {
               font-family: "BasisGrotesquePro";
               font-style: normal;

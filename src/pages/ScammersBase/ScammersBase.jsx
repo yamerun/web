@@ -50,6 +50,8 @@ export const ScammersBase = () => {
           </h1>
 
         </div>
+        
+        <div className={style.ScammersBase__mainContainer__textContents}>
         <div className={style.ScammersBase__mainContainer__searchMenu}>
           <div
             className={style.ScammersBase__mainContainer__searchMenu__container}
@@ -95,8 +97,6 @@ export const ScammersBase = () => {
             </div>
           </div>
         </div>
-        
-        <div className={style.ScammersBase__mainContainer__textContents}>
           <div
             className={style.ScammersBase__mainContainer__textContents__headers}
           >
@@ -127,7 +127,7 @@ export const ScammersBase = () => {
                   style.ScammersBase__mainContainer__infoContainer__info__text
                 }
               >
-                <p>№7398 - Неадекват</p>
+                <p style={{opacity:'0.7'}}>№7398 - Неадекват</p>
                 <p>Добавил Base-Exchange</p>
               </div>
             </div>
@@ -148,7 +148,7 @@ export const ScammersBase = () => {
                   style.ScammersBase__mainContainer__infoContainer__contacts__text
                 }
               >
-                <p>455852103210359655454</p> <p>vas.214@gmail.com</p>{" "}
+                <p style={{opacity:'0.7'}}>455852103210359655454</p> <p>vas.214@gmail.com</p>{" "}
                 <p>57.548.344.165</p>
               </div>
             </div>
@@ -165,6 +165,7 @@ export const ScammersBase = () => {
                 Описание
               </h1>
               <p
+              style={{opacity:'0.7'}}
                 className={
                   style.ScammersBase__mainContainer__infoContainer__description__text
                 }
