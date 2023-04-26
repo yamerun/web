@@ -18,16 +18,8 @@ export const Article = () => {
   }, []);
   return (
     <div className={style.Article}>
-      <div className={style.Article__header}>
-        <h1> {header}</h1>
-      </div>
-      <article className={style.Article__text}>{text}</article>
+      <h1 className={style.Article__header}> {header}</h1>
+      <p className={style.Article__text}>{text}</p>
     </div>
   );
 };
-
-/*        Несмотря на все более и более массовое принятие криптовалют по всему
-        миру, обойтись без фиатных денег пока невозможно. Держателям
-        криптовалюты все чаще необходимо регулярно продавать и покупать Bitсoin
-        и другие монеты. Но как это сделать, избежав мошенников и не потеряв
-        деньги из-за невыгодного курса?*/

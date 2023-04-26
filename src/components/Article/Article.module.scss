@@ -1,31 +1,32 @@
 .Article {
-    width:700px;
-    min-width: 200px;
-    padding-left: 10%;   
-    &__header {
-        font-family: 'BasisGrotesquePro';
-        font-style: normal;
-        font-weight: 900;
-        font-size: 30px;
-        text-transform: uppercase;       
-        color: #F3F3F3;
-        line-height: 60px;
+  width: 700px;
+  min-width: 200px;
+  white-space: pre-wrap;
 
-        @media screen and (max-width:1679px){
-            font-size: 22px;
-            width:500px;
-          }
-        
-    }
+  &__header {
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #f3f3f3;
+    line-height: 60px;
 
-    &__text {
-        font-family: 'BasisGrotesquePro';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 26px;
-        color: #F3F3F3;
-          
+    @media screen and (max-width: 1679px) {
+      font-size: 22px;
+      width: 500px;
     }
- 
+  }
+
+  &__text {
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #f3f3f3;
+    max-height: 800px;
+    white-space: pre-wrap;
+    text-align: left;
+    word-break: break-all;
+  }
 }

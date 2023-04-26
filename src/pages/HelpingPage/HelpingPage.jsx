@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import axios from "axios";
 
-
 export const HelpingPage = () => {
   const [data, setData] = useState("");
   const { isExchangerRole } = useSelector((state) => ({
@@ -27,6 +26,7 @@ export const HelpingPage = () => {
       <div className={style.HelpingPage__textbox}>
         <p className={style.HelpingPage__textbox__text}>{data}</p>
       </div>
+      
       <Footer />
     </div>
   );

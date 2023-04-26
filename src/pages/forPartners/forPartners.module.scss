@@ -1,24 +1,64 @@
-.forPartners  {
-    display:flex;
-    flex-direction: column;
+.forPartners {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__textbox {
+    margin-top: 50px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    height:100%;
-    &__textbox {
-        margin-top: 50px;
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        height:76%;
-        width:70%;
-        text-align: left;
-        color:white;
-        &__text {
-            width: 50%;
-            max-height: 800px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            white-space:pre-wrap ;
-        }
+
+    width: 70%;
+    text-align: left;
+    color: white;
+    &__text {
+      width: 50%;
+      max-height: 800px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: "BasisGrotesquePro";
     }
+  }
+  &__form {
+    background: #1f1f22;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 10px;
+    border-radius: 20px;
+    height: 220px;
+    width: 15%;
+    padding-top: 17px;
+    border: 1px solid rgb(77, 77, 77);
+    margin-top: 30px;
+
+    &__btn {
+      border: 1px solid white;
+      background: none;
+      border-radius: 20px;
+      padding: 10px;
+      color: white;
+      font-family: "BasisGrotesquePro";
+    }
+    &__input {
+      background-color: black;
+      font-family: "BasisGrotesquePro";
+      color: white;
+      border-radius: 15px;
+      outline: 0;
+      padding: 5px;
+      border: 1px solid rgb(114, 114, 114);
+      width: 190px;
+      height: 30px;
+      padding-left:8px;
+      &::placeholder {
+        color: white;
+        font-family: "BasisGrotesquePro";
+      }
+    }
+  }
 }
