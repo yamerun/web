@@ -22,6 +22,7 @@ import { ExchangerReviews } from "./pages/ExchangerReviews/ExchangerReviews";
 import { ExchangerCourses } from "./pages/ExchangerCourses/ExchangerCourses";
 import { ExchangerMarks } from "./pages/Marks/Marks";
 import { ExchangerNotifications } from "./pages/ExchangerNotifications/ExchangerNotifications";
+import { HelpingPage } from "./pages/HelpingPage/HelpingPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/help",
-    element: <ForPartners />,
+    element: <HelpingPage/>,
   },
   {
     path: "/forPartners",
