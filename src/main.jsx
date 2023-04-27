@@ -23,6 +23,7 @@ import { ExchangerCourses } from "./pages/ExchangerCourses/ExchangerCourses";
 import { ExchangerMarks } from "./pages/Marks/Marks";
 import { ExchangerNotifications } from "./pages/ExchangerNotifications/ExchangerNotifications";
 import { HelpingPage } from "./pages/HelpingPage/HelpingPage";
+import { ArticleLoader } from "./pages/Articles/Article";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,8 +65,9 @@ const router = createBrowserRouter([
     element: <ForPartners />,
   },
   {
-    path: "/articlepage",
+    path: "/article/:id",
     element: <Articlepage />,
+    loader:ArticleLoader,
   },
   {
     path: "/scammersBase",

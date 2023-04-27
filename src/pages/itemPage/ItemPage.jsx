@@ -14,9 +14,10 @@ import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNav
 import { ImageComponent } from "../../components/ImageComponent/Image";
 import { useDispatch } from "react-redux";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
+
+
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
-
   const res = await fetch(
     `http://146.59.87.222/api/exchangers/get?exchanger_id=${id}`
   );
