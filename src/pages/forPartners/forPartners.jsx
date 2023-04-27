@@ -34,22 +34,24 @@ export const ForPartners = () => {
 
   const sendForm = (id) => {
     setFinalRes(formData.filter((obj) => obj.form_id == id));
-    setFormId(id)
+    setFormId(id);
   };
-  
+
   useEffect(() => {
     if (finalRes.length === 0) {
       return;
     }
-    axios.post("http://146.59.87.222/api/forms/set", {
-      form_id: formId,
-      result: finalRes.map((item) => ({
-        field_id: item.id,
-        field_value: item.value,
-      })),
-    }).then(function (response) {});
-  }, [finalRes,formId]);
-  
+    axios
+      .post("http://146.59.87.222/api/forms/set", {
+        form_id: formId,
+        result: finalRes.map((item) => ({
+          field_id: item.id,
+          field_value: item.value,
+        })),
+      })
+      .then(function (response) {});
+  }, [finalRes, formId]);
+
   const changeInputVal = (e) => {
     let id = e.target.id;
     let value = e.target.value;
@@ -67,7 +69,7 @@ export const ForPartners = () => {
       }
     });
   };
-  
+
   return (
     <div className={style.forPartners}>
       <Header />
@@ -98,17 +100,4 @@ export const ForPartners = () => {
       <Footer />
     </div>
   );
-            }
-/*    <input
-              required={item.fields[1].is_required}
-              id={item.fields[1].id}
-              placeholder={item.fields[1].name}
-              className={style.forPartners__form__input}
-            />
-            <input
-              required={item.fields[2].is_required}
-              placeholder={item.fields[2].name}
-              id={item.fields[2].id}
-              type={item.fields[2].type}
-              className={style.forPartners__form__input}
-            />*/
+};
