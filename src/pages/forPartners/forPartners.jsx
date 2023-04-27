@@ -1,23 +1,21 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import style from "./forPartners.module.scss";
 import { useSelector } from "react-redux";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import axios from "axios";
+
 export const ForPartners = () => {
   const [data, setData] = useState("");
   const [form, setForm] = useState([]);
-  const [active, setActive] = useState(false);
-  const [value, setValue] = useState("");
-  const [value2, setValue2] = useState("");
-  const [value3, setValue3] = useState("");
-  const [inputId, setInputId] = useState(null);
-  const [inputId2, setInputId2] = useState(null);
-  const [formId,setFormId] = useState(null)
+  const [formData, setFormData] = useState([]);
+  const [finalRes, setFinalRes] = useState([]);
+  const [formId, setFormId] = useState(null);
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
   }));
+  const ref = useRef(null);
   useEffect(() => {
     axios
       .get(`http://146.59.87.222/api/content/page_partners`)
@@ -34,47 +32,42 @@ export const ForPartners = () => {
       });
   }, []);
 
-
-  const sendForm = (e) => {
-    setFormId(e.target.parentNode.id);
-    if (formId != null) {
-      axios
-      .post(`http://146.59.87.222/api/forms/set`, {
-        "form_id": formId,
-        "result": [
-          {
-            "field_id": 1,
-            "field_value": value,
-          },
-          {
-            "field_id": 2,
-            "field_value": value2,
-          },
-
-        ]
-      })
-      .then(function (response) {
-        
-
-      });
-    }
-   
-  };
-
-
-  const changeInputVal = (e) => {
-    setValue(e.target.value);
-    setInputId(e.target.id);
+  const sendForm = (id) => {
+    setFinalRes(formData.filter((obj) => obj.form_id == id));
+    setFormId(id)
   };
   
-  const changeInputVal2 = (e) => {
-    setValue2(e.target.value);
-    setInputId2(e.target.id)
-  }
-
-
-  console.log(inputId);
-  console.log(inputId2);
+  useEffect(() => {
+    if (finalRes.length === 0) {
+      return;
+    }
+    axios.post("http://146.59.87.222/api/forms/set", {
+      form_id: formId,
+      result: finalRes.map((item) => ({
+        field_id: item.id,
+        field_value: item.value,
+      })),
+    }).then(function (response) {});
+  }, [finalRes,formId]);
+  
+  const changeInputVal = (e) => {
+    let id = e.target.id;
+    let value = e.target.value;
+    let formsId = e.target.parentNode.id;
+    setFormData((prevState) => {
+      const index = prevState.findIndex((obj) => obj.id === id);
+      if (index === -1) {
+        return [...prevState, { form_id: formsId, value: value, id: id }];
+      } else {
+        return [
+          ...prevState.slice(0, index),
+          { form_id: formsId, value: value, id: id },
+          ...prevState.slice(index + 1),
+        ];
+      }
+    });
+  };
+  
   return (
     <div className={style.forPartners}>
       <Header />
@@ -87,23 +80,30 @@ export const ForPartners = () => {
           <div className={style.forPartners__form} id={item.id}>
             <button
               className={style.forPartners__form__btn}
-              onClick={(e) => sendForm(e)}
+              onClick={() => sendForm(item.id)}
             >
               {item.button_title}
             </button>
-            <input
-              required={item.fields[0].is_required}
-              id={item.fields[0].id}
-              placeholder={item.fields[0].name}
-              className={style.forPartners__form__input}
-              onChange={(e) => changeInputVal(e)}
-            />
-            <input
+            {item.fields.map((item) => (
+              <input
+                required={item.is_required}
+                id={item.id}
+                placeholder={item.name}
+                className={style.forPartners__form__input}
+                onChange={(e) => changeInputVal(e)}
+              />
+            ))}
+          </div>
+        ))}
+      <Footer />
+    </div>
+  );
+            }
+/*    <input
               required={item.fields[1].is_required}
               id={item.fields[1].id}
               placeholder={item.fields[1].name}
               className={style.forPartners__form__input}
-              onChange={(e) => changeInputVal2(e)}
             />
             <input
               required={item.fields[2].is_required}
@@ -111,10 +111,4 @@ export const ForPartners = () => {
               id={item.fields[2].id}
               type={item.fields[2].type}
               className={style.forPartners__form__input}
-            />
-          </div>
-        ))}
-      <Footer />
-    </div>
-  );
-};
+            />*/
