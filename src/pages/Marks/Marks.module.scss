@@ -5,48 +5,47 @@
   height: 100%;
 
   &__tableBox {
-    margin-top: 40px;
-    border-radius: 30px;
-    padding: 20px;
-    color: white;
-    &__header {
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 900;
-      font-size: 45px;
-      color: #f3f3f3;
-    }
+   width:70%;
+   display:flex;
+   flex-direction: column;
+   align-items: center;
+   height:100%;
+
+   
     &__table {
       border: 0;
       background: #2d2d31;
       border-radius: 20px;
       padding: 20px;
+      width:60%;
+      height:600px;
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      &__header {
+        display: flex;
+        align-self: flex-start;
+      }
+
+      flex-direction: column;
+      &__body {
+        margin-top: 30px;
+        width:95%;
+        border-top: 1px solid gray;
+        &__content {
+          display: flex;
+          width:100%;
+          justify-content: space-between;
+          margin-top: 10px;
+          &__box {
+            width:30%;
+            color:White;
+            text-align: left;
+            font-family: "BasisGrotesquePro";
+          }
+        }
+      }
     }
 
-    &__tableNav {
-      background: #2d2d31;
-      color: white;
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 10px;
-      width: 200px;
-      text-align: center;
-    }
-
-    &__tableCell {
-      border: solid 1px #2d2d31;
-      color: white;
-      padding: 10px;
-      white-space: pre-wrap;
-      max-width: 150px;
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 13px;
-      width: 200px;
-      text-align: center;
-    }
-  }
-}
+  
+}}

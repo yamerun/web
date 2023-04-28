@@ -9,32 +9,62 @@
     display: flex;
     justify-content: center;
     height: 80%;
-    width: 90%;
-    &__card {
-        margin-top: 40px;
-      width: 30%;
-      height: 60%;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;
 
-      &__img {
-        width: 100%;
-        background-color: grey;
-        height: 300px;
-      }
+    text-align: center;
 
-      &__text {
+    &__box {
+      background: #2b2b30;
+      padding: 25px;
+      border-radius: 7px;
+    }
+    &__footer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+
+      &__date {
         color: white;
-        padding: 20px;
         font-family: "BasisGrotesquePro";
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5;
       }
-     
+ 
 
-      &__header {
+    }
+    &__header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      &__views {
+        color: white;
         font-family: "BasisGrotesquePro";
-        font-size: 40px;
-        color:white;
-        padding-left: 40px;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5;
       }
-
+      &__tittle {
+        color: white;
+        font-family: "BasisGrotesquePro";
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5;
+      }
+    }
+    &__content {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      font-family: "BasisGrotesquePro";
+      white-space: pre-wrap;
     }
   }
 }

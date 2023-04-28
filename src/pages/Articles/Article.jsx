@@ -23,7 +23,7 @@ export const Articles = () => {
   const [articles, setArcicles] = useState([]);
 
   const goToArticle = ({id})  => {
-    navigate(`/article/:${id}`);
+    navigate(`/article/${id}`);
   };
 
   const { isExchangerRole } = useSelector((state) => ({
@@ -65,7 +65,7 @@ export const Articles = () => {
               </div>
               <div
                 className={style.Articles__container__article__text}
-                dangerouslySetInnerHTML={createMarkup(item.content)}
+                dangerouslySetInnerHTML={createMarkup(item)}
               ></div>
             </article>
           ))}

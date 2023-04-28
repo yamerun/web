@@ -27,6 +27,7 @@ const initialState = {
   twiceExchanger:[],
   stat:[],
   tooltip:undefined,
+  exchangerMarks:''
 };
 
 const itemsSlice = createSlice({
@@ -116,6 +117,9 @@ const itemsSlice = createSlice({
     setTooltip(state, action) {
       state.tooltip = action.payload;
     },
+    setEchangerMarks(state,action) {
+      state.exchangerMarks = action.payload
+    }
   },
 });
 
@@ -143,6 +147,7 @@ export const {
   setTwiceExchanger,
   setisTwice,
   setStatistic,
-  setTooltip
+  setTooltip,
+  setEchangerMarks
 } = itemsSlice.actions;
 export default itemsSlice.reducer;

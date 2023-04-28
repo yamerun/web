@@ -1,13 +1,12 @@
-
 .checkbox-container {
   display: block;
   position: relative;
   cursor: pointer;
   font-size: 20px;
   padding-left: 25px;
-  color:White;
+  color: White;
   display: flex;
-  gap:10px;
+  gap: 10px;
   align-items: center;
   text-align: center;
   font-family: "BasisGrotesquePro";
@@ -27,13 +26,12 @@
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background:none;
+  background: none;
   border: 1px solid #fff;
 }
 
-
 .checkbox-container input:checked ~ .checkmark {
-  background-color: #FE0000;
+  background-color: #fe0000;
 }
 
 .checkmark:after {
@@ -46,3 +44,10 @@
   display: block;
 }
 
+.checkbox-group {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+}

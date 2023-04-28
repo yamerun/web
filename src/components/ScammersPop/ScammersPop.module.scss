@@ -1,0 +1,117 @@
+.Modal {
+  position: absolute;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    333deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 0.2413340336134454) 0%,
+    rgba(0, 0, 0, 0.3533788515406162) 0%
+  );
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__variants {
+    position: absolute;
+    background-color: #151517;
+    user-select: none;
+    cursor: pointer;
+    padding: 5px;
+    list-style-type: none;
+    z-index: 999;
+    top: 50px;
+    width: 94%;
+    border-bottom: 2px solid #5e5e65;
+    border-left: 2px solid #5e5e65;
+    border-right: 2px solid #5e5e65;
+    border-radius: 0px 0px 20px 20px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: left;
+    background-color: #2d2d31;
+    width: 13%;
+    border-radius: 17px;
+    padding: 20px;
+    color: white;
+    font-family: "BasisGrotesquePro";
+    border: 2px solid #5e5e65;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    z-index: 999;
+
+    &__btn {
+      font-family: "BasisGrotesquePro";
+      background: none;
+      border: 2px solid #5e5e65;
+      color: white;
+      font-weight: 600;
+      border-radius: 20px;
+      padding: 5px;
+    }
+
+    &__inputMenu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &__header {
+      justify-content: space-between;
+      width: 100%;
+      display: flex;
+
+      &__tittle {
+        font-family: "BasisGrotesquePro";
+        font-style: normal;
+        font-weight: 900;
+        font-size: 20px;
+      }
+      &__btn {
+        background: url("../../assets/imgs/closeBtn.png");
+        border: 0;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 20px;
+      }
+    }
+
+    &__inputBox {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+
+      &__input {
+        background: #151517;
+        border: 2px solid #5e5e65;
+        border-radius: 30px;
+        padding: 5px;
+        color: white;
+        font-family: "BasisGrotesquePro";
+        height: 20px;
+      }
+
+      &__textarea {
+        background-color: #151517;
+        border: 2px solid #5e5e65;
+        border-radius: 30px;
+        width: 90%;
+        min-width: 90%;
+        max-width: 90%;
+        height: 180px;
+        max-height: 180px;
+        min-height: 180px;
+        padding: 10px;
+        color: white;
+        font-family: "BasisGrotesquePro";
+      }
+    }
+  }
+}

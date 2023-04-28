@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const AccountSlice = createSlice({
-  name: "itemList",
+  name: "userOptionsList",
   initialState,
   reducers: {
     setLogin(state, action) {

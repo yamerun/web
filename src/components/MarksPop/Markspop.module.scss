@@ -1,0 +1,60 @@
+.Marks {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    333deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 0.2413340336134454) 0%,
+    rgba(0, 0, 0, 0.3533788515406162) 0%
+  );
+
+  &__content {
+    width: 550px;
+    height: 630px;
+    background: #2d2d31;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 10px;
+      border-bottom: 1px solid gray;
+      &__input {
+        border-radius: 20px;
+        background-color: black;
+        height: 30px;
+        border: 1px solid gray;
+        color: white;
+        padding: 5px;
+        &::placeholder {
+          color: white;
+          font-family: "BasisGrotesquePro";
+        }
+      }
+    }
+    &__body {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px;
+      width: 90%;
+      &__item {
+        color: white;
+        margin: 5px;
+        text-align: left;
+        font-family: "BasisGrotesquePro";
+        opacity: 0.5;
+      }
+    }
+  }
+}
