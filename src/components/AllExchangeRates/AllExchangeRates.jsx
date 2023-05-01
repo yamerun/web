@@ -24,6 +24,7 @@ export const AllExchangeRates = () => {
         )
         .then(function (response) {
           setAll(response.data.data.slice(0, 20));
+          console.log(response.data.data);
         });
     }, 5000);
     return () => clearInterval(getCurrenciesAll);
@@ -49,7 +50,7 @@ export const AllExchangeRates = () => {
           {item.exchanger.name}
         </p>
       </div>
-      <Marks />
+      {item.marks.length != 0 && <Marks prop={item.marks} />}
       <div className={style.Fillters__categories__body__content__from}>
         <p className={style.Fillters__categories__body__content__from__header}>
           1

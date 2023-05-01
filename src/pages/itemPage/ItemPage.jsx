@@ -54,12 +54,16 @@ export const ItemPage = () => {
       });
   }, []);
 
+  const ref = useRef(null)
+
   const ShowReviews = () => {
     setIsOpen(true);
-    console.log(review);
+
+
   };
   const HideReviews = () => {
     setIsOpen(false);
+
   };
   let height = window.screen.height;
 
@@ -87,6 +91,7 @@ export const ItemPage = () => {
     } else dispatch(setUserRole(false));
   }, [jwt, role]);
 
+
   return (
     <div className={style.itemPage}>
       {isOpen && (
@@ -94,7 +99,7 @@ export const ItemPage = () => {
       )}
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}
-      <div className={style.itemPage__container}>
+      <div className={style.itemPage__container} ref={ref} >
         <div className={style.itemPage__container__exchangeInfo}>
           <ImageComponent imageInfo={imageData} />
           <h1 className={style.itemPage__container__header}>

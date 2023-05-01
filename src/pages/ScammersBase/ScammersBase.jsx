@@ -26,7 +26,7 @@ export const ScammersBase = () => {
   const [value, setValue] = useState("");
   const [searchResult, setResult] = useState([]);
   const [activeSearch, setActiveSearch] = useState(false);
-
+  const [update, setUpdate] = useState();
   useEffect(() => {
     if (jwt && role !== null && role === "exchanger") {
       dispatch(setUserRole(true));
@@ -51,7 +51,19 @@ export const ScammersBase = () => {
           setScammersList(response.data.data);
         });
     }
-  }, [activeSearch]);
+    if (update === true) {
+      axios
+        .get(`http://146.59.87.222/api/scammers/get`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+        .then(function (response) {
+          setScammersList(response.data.data);
+        });
+    }
+    return () => setUpdate(false);
+  }, [activeSearch, update]);
 
   const openPop = () => {
     setPopActive(!popActive);
@@ -115,7 +127,7 @@ export const ScammersBase = () => {
     <div className={style.ScammersBase}>
       <Header />
       <ExchangerAccountNavigation />
-      {popActive && <ScammersPop props={setPopActive} />}
+      {popActive && <ScammersPop props={setPopActive} setUpdate={setUpdate} />}
       <div className={style.ScammersBase__mainContainer}>
         <div className={style.ScammersBase__mainContainer__leftMenu}>
           <h1
@@ -172,7 +184,7 @@ export const ScammersBase = () => {
             <h1
               className={style.ScammersBase__mainContainer__textContents__count}
             >
-              Всего записей: 1
+             
             </h1>
           </div>
           <ul className={style.ScammersBase__mainContainer__nav}>

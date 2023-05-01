@@ -1,8 +1,7 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect, useState, useCallback } from "react";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
-import { useTable } from "react-table";
 import style from "./Marks.module.scss";
 import img from "../../assets/imgs/iconsRed.png";
 import img2 from "../../assets/imgs/icons8pencill.png";
@@ -16,12 +15,16 @@ import { MarkPop } from "../../components/MarksPop/MarksPop";
 export const ExchangerMarks = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [data, setData] = useState({});
-  const [active,setActive] = useState(false)
+  const [active, setActive] = useState(false);
+  const [succsess, setSuccess] = useState(false);
   const { exchangerMarks } = useSelector((state) => ({
     exchangerMarks: state.itemsSlice.exchangerMarks,
   }));
-
+  const { isExchangerRole } = useSelector((state) => ({
+    isExchangerRole: state.AccountSlice.isExchangerRole,
+  }));
+  const role = localStorage.getItem("userRole");
+  const jwt = localStorage.getItem("jwt");
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -34,36 +37,37 @@ export const ExchangerMarks = () => {
       .get(`http://146.59.87.222/api/marks/get`, config)
       .then(function (response) {
         dispatch(setEchangerMarks(response.data.data));
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, []);
+    if (succsess === true) {
+      axios
+        .get(`http://146.59.87.222/api/marks/get`, config)
+        .then(function (response) {
+          dispatch(setEchangerMarks(response.data.data));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    return () => setSuccess(false);
+  }, [succsess]);
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Дата обновления",
-        accessor: "date",
-      },
-      {
-        Header: "Направление обмена",
-        accessor: "side",
-      },
-      {
-        Header: "Метка",
-        accessor: "mark",
-      },
-      {
-        Header: "Действия",
-        accessor: "actions",
-      },
-    ],
-    []
-  );
-
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
-  const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
+  const columns = [
+    {
+      Header: "Дата обновления",
+    },
+    {
+      Header: "Направление обмена",
+    },
+    {
+      Header: "Метка",
+    },
+    {
+      Header: "Действия",
+    },
+  ];
 
   useEffect(() => {
     if (isExchangerRole === false) {
@@ -71,42 +75,75 @@ export const ExchangerMarks = () => {
     }
   }, [isExchangerRole]);
 
-  console.log(exchangerMarks);
-const opn = ()=> {
-  setActive(!active)
-}
+  const opn = () => {
+    setActive(!active);
+  };
+
+  const deleteMark = (id) => {
+    axios
+      .delete(`http://146.59.87.222/api/marks/delete?id=${id}`, config)
+      .then(function (response) {
+        setSuccess(true);
+      })
+      .then(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <div className={style.ExchangerMarks}>
       <Header />
       <ExchangerAccountNavigation />
-      {
-        active && (<MarkPop/>)
-      }
+      {active && <MarkPop prop={opn} setSuccess={setSuccess} />}
       <div className={style.ExchangerMarks__tableBox}>
         <div className={style.ExchangerMarks__tableBox__table}>
           <div className={style.ExchangerMarks__tableBox__table__header}>
-            <button onClick={ opn}>Добавить метку</button>
+            <button
+              onClick={opn}
+              className={style.ExchangerMarks__tableBox__table__btn}
+            >
+              Добавить метку
+            </button>
           </div>
+          <ul className={style.ExchangerMarks__tableBox__table__nav}>
+            {columns.map((item) => (
+              <li>{item.Header}</li>
+            ))}
+          </ul>
           <div className={style.ExchangerMarks__tableBox__table__body}>
             {exchangerMarks.length !== 0 ? (
               exchangerMarks.map((item) => (
-                <div className={style.ExchangerMarks__tableBox__table__body__content}>
-                  <div className={style.ExchangerMarks__tableBox__table__body__content__box}>
+                <div
+                  className={
+                    style.ExchangerMarks__tableBox__table__body__content
+                  }
+                >
+                  <div
+                    className={
+                      style.ExchangerMarks__tableBox__table__body__content__box
+                    }
+                  >
                     <p>{item.updated_at.date}</p>
                     <p>{item.updated_at.time}</p>
                   </div>
-                  <div className={style.ExchangerMarks__tableBox__table__body__content__box}>
+                  <div
+                    className={
+                      style.ExchangerMarks__tableBox__table__body__content__box
+                    }
+                  >
                     <p>
                       {item.from}&#8594;{item.to}
                     </p>
                   </div>
-                  <div className={style.ExchangerMarks__tableBox__table__body__content__box}>
+                  <div
+                    className={
+                      style.ExchangerMarks__tableBox__table__body__content__box
+                    }
+                  >
                     <p>{item.type.description}</p>
                   </div>
                   <div>
-                    <img src={img}/>
-                    <img src={img2}/>
-                    <img src={img3}/>
+                    <img src={img} onClick={() => deleteMark(item.id)} />
                   </div>
                 </div>
               ))
@@ -120,88 +157,3 @@ const opn = ()=> {
     </div>
   );
 };
-
-/* {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },
-    {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },
-    {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },
-    {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },
-    {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },
-    {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },
-    {
-      date: "16.03.2023,16:57",
-      side: "Binance USD (BUSD) → Сбербанк RUB ",
-      mark: "Ручной обмен",
-      reserve: "1 825 655",
-      actions: (
-        <div>
-          {" "}
-          <img src={img} /> <img src={img2} /> <img src={img3} />{" "}
-        </div>
-      ),
-    },*/

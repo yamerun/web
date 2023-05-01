@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import style from "./ScammersPop.module.scss";
+import { useCallback } from "react";
 
-export const ScammersPop = ({ props }) => {
+export const ScammersPop = ({ props, setUpdate }) => {
   const [name, setName] = useState("");
   const [contacts, setContacts] = useState("");
   const [walletId, setWalletId] = useState("");
@@ -44,7 +45,7 @@ export const ScammersPop = ({ props }) => {
     axios
       .post(`http://146.59.87.222/api/scammers/create`, data, config)
       .then(function (response) {
-        console.log(response);
+        setUpdate(true);
         props(false);
       });
   };
@@ -66,12 +67,12 @@ export const ScammersPop = ({ props }) => {
     setActive(!active);
   };
 
-  const close = () => {
+  const close = useCallback(() => {
     props(false);
-  };
+  }, []);
 
   return (
-    <div className={style.Modal} style={{height:window.innerHeight}}>
+    <div className={style.Modal} style={{ height: `${window.outerHeight}` }}>
       <div className={style.Modal__container}>
         <div className={style.Modal__container__header}>
           <h1 className={style.Modal__container__header__tittle}>
@@ -91,7 +92,7 @@ export const ScammersPop = ({ props }) => {
             />
           </div>
           <div className={style.Modal__container__inputBox}>
-            <h1>Контакты</h1>
+            <h1>Email</h1>
             <input
               className={style.Modal__container__inputBox__input}
               onChange={(e) => changeContacts(e)}

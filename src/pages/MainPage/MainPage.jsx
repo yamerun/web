@@ -26,9 +26,6 @@ export const MainPage = () => {
     } else dispatch(setUserRole(false));
   }, [jwt, role]);
 
-  console.log(role);
-  console.log(jwt);
-
   return (
     <div className={style.MainPage}>
       <Header />

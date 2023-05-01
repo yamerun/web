@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./AddComment.module.scss";
 import axios from "axios";
 import StarRatings from "react-star-ratings";
-export const AddComment = ({ HideReviews, id, review ,h}) => {
+export const AddComment = ({ HideReviews, id, review, h }) => {
   const Register = () => {
     axios
       .post(
@@ -25,6 +25,7 @@ export const AddComment = ({ HideReviews, id, review ,h}) => {
       .catch(function (error) {
         setError(error.message);
       });
+
   };
 
   const [rating, setRating] = useState(0);
@@ -36,7 +37,7 @@ export const AddComment = ({ HideReviews, id, review ,h}) => {
     setTextVal(e.target.value);
   };
   return (
-    <div className={style.AddComment} style={{height:h}}>
+    <div className={style.AddComment}>
       <div className={style.AddComment__form}>
         <div className={style.AddComment__inputBox}>
           <textarea
