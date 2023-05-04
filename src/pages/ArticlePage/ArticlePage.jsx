@@ -21,12 +21,12 @@ export const Articlepage = () => {
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.Article__container}>
         <div className={style.Article__container__box}>
+        <h1 className={style.Article__container__header__views}>
+            Просмотрено: {article.data.count_views} раз
+          </h1>
         <div className={style.Article__container__header}>
           <h1 className={style.Article__container__header__tittle}>
             {article.data.title}
-          </h1>
-          <h1 className={style.Article__container__header__views}>
-            Просмотрено: {article.data.count_views} раз
           </h1>
         </div>
         <article

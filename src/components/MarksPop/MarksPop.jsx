@@ -114,8 +114,6 @@ export const MarkPop = ({ prop, setSuccess }) => {
     prop();
   }, []);
 
-  console.log(marks);
-
   return (
     <div className={style.Marks}>
       <div className={style.Marks__content}>
@@ -124,7 +122,6 @@ export const MarkPop = ({ prop, setSuccess }) => {
             <input
               className={style.Marks__content__header__input}
               placeholder="from"
-        
               onChange={(e) => getFromValue(e)}
             />
             {value.length && searchResult.length != 0 && (
@@ -140,7 +137,6 @@ export const MarkPop = ({ prop, setSuccess }) => {
               className={style.Marks__content__header__input}
               placeholder="to"
               onChange={(e) => getToValue(e)}
-           
             />
             {value2.length && searchresult2.length != 0 && (
               <div className={style.Marks__content__header__variants}>
@@ -154,7 +150,10 @@ export const MarkPop = ({ prop, setSuccess }) => {
         <div className={style.Marks__content__body}>
           {marks.map((item) => (
             <div key={item.id} className={style.Marks__content__body__boxItem}>
-              <img src={`http://146.59.87.222${item.icon.path}`} className={style.Marks__content__body__img}/>
+              <img
+                src={`http://146.59.87.222${item.icon.path}`}
+                className={style.Marks__content__body__img}
+              />
               <p
                 className={style.Marks__content__body__item}
                 id={item.id}

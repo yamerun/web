@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   &__container {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,16 +12,17 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+      flex-direction: column;
       width: 60%;
     }
     &__article {
-      text-align: left;
-      width: 30%;
+      max-width: 700px;
       margin: 20px;
-      max-height: 400px;
+      max-height: 500px;
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: hidden;
       color: white;
+      padding: 10px;
       font-family: "BasisGrotesquePro";
       white-space: pre-wrap;
       display: flex;
@@ -31,7 +32,7 @@
       padding: 10px;
       background: #2b2b30;
       border-radius: 20px;
-
+      word-break: break-all;
       &__text {
         padding: 11px;
         letter-spacing: 0.6px;
@@ -46,7 +47,7 @@
         align-items: center;
         &__tittle {
           font-family: "BasisGrotesquePro";
-          font-size: 22px;
+          font-size: 18px;
           color: white;
           font-weight: 700;
           letter-spacing: 1px;

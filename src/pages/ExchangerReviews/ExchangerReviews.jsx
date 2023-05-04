@@ -1,4 +1,4 @@
-import React ,{useEffect}from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
@@ -8,9 +8,47 @@ import { Like } from "../../components/Like/Like";
 import { Dislike } from "../../components/Dislike/Dislike";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import { Comments } from "../../components/Comments/Comments";
+
+export const reviewloader = async () => {
+  const key = localStorage.getItem("jwt");
+  const id = localStorage.getItem("userId");
+
+  if (key) {
+    const res = await fetch(
+      `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      }
+    );
+
+    const res2 = await fetch(
+      `http://146.59.87.222/api/exchangers/get?exchanger_id=${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      }
+    );
+    const item = await res.json();
+
+    const item2 = await res2.json();
+
+    return { item, id, item2 };
+  } else useNavigate("/login");
+};
+
 export const ExchangerReviews = () => {
-  
+  const { item } = useLoaderData();
+  const { item2 } = useLoaderData();
+  const { id } = useLoaderData();
   const navigate = useNavigate();
+  const [review, setReview] = useState();
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
   }));
@@ -22,13 +60,15 @@ export const ExchangerReviews = () => {
       navigate("/");
     }
   }, [isExchangerRole]);
-  
+
+  console.log(item2);
+
   return (
     <div className={style.ExchangerReviews}>
-      <Header />
-      <ExchangerAccountNavigation />
-      <div className={style.ExchangerReviews__container}>
-        <div className={style.ExchangerReviews__ReviewArticle}>
+      <div className={style.ExchangerReviews__PageBox}>
+        <Header />
+        <ExchangerAccountNavigation />
+        <div className={style.ExchangerReviews__container}>
           <div className={style.ExchangerReviews__container__header}>
             <h1 className={style.ExchangerReviews__container__header__text}>
               Отзывы
@@ -41,14 +81,14 @@ export const ExchangerReviews = () => {
                   style.ExchangerReviews__container__header__ratingBox__text
                 }
               >
-                9.1
+              {item2.data.rating}
               </h1>
               <div
                 className={style.ExchangerReviews__container__header__ratings}
               >
                 <h1 style={{ opacity: "0.5" }}>Рейтинг</h1>
                 <StarRatings
-                  rating={4}
+                  rating={item2.data.rating}
                   starRatedColor="yellow"
                   numberOfStars={5}
                   name="rating"
@@ -58,289 +98,14 @@ export const ExchangerReviews = () => {
               </div>
             </div>
           </div>
-          <div className={style.ExchangerReviews__ReviewArticle__commentsBox}>
-            <div
-              className={
-                style.ExchangerReviews__ReviewArticle__commentsBox__comment
-              }
-            >
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__header
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__user
-                  }
-                >
-                  <h1 style={{ opacity: "0.5" }}>Term1k</h1>
-                  <StarRatings
-                    rating={4}
-                    starRatedColor="yellow"
-                    numberOfStars={5}
-                    name="rating"
-                    starDimension="20px"
-                    starSpacing="3px"
-                  />
-                </div>
-                <h1 style={{ opacity: "0.5" }}>13.02.2023, 14:34</h1>
-              </div>
-              <p
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__text
-                }
-              >
-                Несмотря на все более и более массовое принятие криптовалют по
-                всему миру, обойтись без фиатных денег пока невозможно.
-                Держателям криптовалюты все чаще необходимо регулярно продавать
-                и покупать Bitсoin и другие монеты. Но как это сделать, избежав
-                мошенников и не потеряв деньги из-за невыгодного курса?
-              </p>
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Like />
-                  <p style={{ color: "#77D22D" }}>10</p>
-                </div>
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Dislike />
-                  <p style={{ color: "white", opacity: "0.5" }}>0</p>
-                </div>
-
-                <button
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate__btn
-                  }
-                >
-                  Ответить
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={style.ExchangerReviews__ReviewArticle__commentsBox}>
-            <div
-              className={
-                style.ExchangerReviews__ReviewArticle__commentsBox__comment
-              }
-            >
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__header
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__user
-                  }
-                >
-                  <h1 style={{ opacity: "0.5" }}>Term1k</h1>
-                  <StarRatings
-                    rating={4}
-                    starRatedColor="yellow"
-                    numberOfStars={5}
-                    name="rating"
-                    starDimension="20px"
-                    starSpacing="3px"
-                  />
-                </div>
-                <h1 style={{ opacity: "0.5" }}>13.02.2023, 14:34</h1>
-              </div>
-              <p
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__text
-                }
-              >
-                Несмотря на все более и более массовое принятие криптовалют по
-                всему миру, обойтись без фиатных денег пока невозможно.
-                Держателям криптовалюты все чаще необходимо регулярно продавать
-                и покупать Bitсoin и другие монеты. Но как это сделать, избежав
-                мошенников и не потеряв деньги из-за невыгодного курса?
-              </p>
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Like />
-                  <p style={{ color: "#77D22D" }}>10</p>
-                </div>
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Dislike />
-                  <p style={{ color: "white", opacity: "0.5" }}>0</p>
-                </div>
-
-                <button
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate__btn
-                  }
-                >
-                  Ответить
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={style.ExchangerReviews__ReviewArticle__commentsBox}>
-            <div
-              className={
-                style.ExchangerReviews__ReviewArticle__commentsBox__comment
-              }
-            >
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__header
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__user
-                  }
-                >
-                  <h1 style={{ opacity: "0.5" }}>Term1k</h1>
-                  <StarRatings
-                    rating={4}
-                    starRatedColor="yellow"
-                    numberOfStars={5}
-                    name="rating"
-                    starDimension="20px"
-                    starSpacing="3px"
-                  />
-                </div>
-                <h1 style={{ opacity: "0.5" }}>13.02.2023, 14:34</h1>
-              </div>
-              <p
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__text
-                }
-              >
-                Несмотря на все более и более массовое принятие криптовалют по
-                всему миру, обойтись без фиатных денег пока невозможно.
-                Держателям криптовалюты все чаще необходимо регулярно продавать
-                и покупать Bitсoin и другие монеты. Но как это сделать, избежав
-                мошенников и не потеряв деньги из-за невыгодного курса?
-              </p>
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Like />
-                  <p style={{ color: "#77D22D" }}>10</p>
-                </div>
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Dislike />
-                  <p style={{ color: "white", opacity: "0.5" }}>0</p>
-                </div>
-
-                <button
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate__btn
-                  }
-                >
-                  Ответить
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className={style.ExchangerReviews__ReviewArticle__commentsBox}>
-            <div
-              className={
-                style.ExchangerReviews__ReviewArticle__commentsBox__comment
-              }
-            >
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__header
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__user
-                  }
-                >
-                  <h1 style={{ opacity: "0.5" }}>Term1k</h1>
-                  <StarRatings
-                    rating={4}
-                    starRatedColor="yellow"
-                    numberOfStars={5}
-                    name="rating"
-                    starDimension="20px"
-                    starSpacing="3px"
-                  />
-                </div>
-                <h1 style={{ opacity: "0.5" }}>13.02.2023, 14:34</h1>
-              </div>
-              <p
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__text
-                }
-              >
-                Несмотря на все более и более массовое принятие криптовалют по
-                всему миру, обойтись без фиатных денег пока невозможно.
-                Держателям криптовалюты все чаще необходимо регулярно продавать
-                и покупать Bitсoin и другие монеты. Но как это сделать, избежав
-                мошенников и не потеряв деньги из-за невыгодного курса?
-              </p>
-              <div
-                className={
-                  style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate
-                }
-              >
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Like />
-                  <p style={{ color: "#77D22D" }}>10</p>
-                </div>
-                <div
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__like
-                  }
-                >
-                  <Dislike />
-                  <p style={{ color: "white", opacity: "0.5" }}>0</p>
-                </div>
-
-                <button
-                  className={
-                    style.ExchangerReviews__ReviewArticle__commentsBox__comment__rate__btn
-                  }
-                >
-                  Ответить
-                </button>
-              </div>
-            </div>
+          <div className={style.ExchangerReviews__commentsBox}>
+            {item.data != null ? (
+              item.data.map((item) => (
+                <Comments props={item} review={setReview} w={"100%"} />
+              ))
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
       </div>

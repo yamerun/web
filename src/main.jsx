@@ -24,6 +24,8 @@ import { ExchangerMarks } from "./pages/Marks/Marks";
 import { ExchangerNotifications } from "./pages/ExchangerNotifications/ExchangerNotifications";
 import { HelpingPage } from "./pages/HelpingPage/HelpingPage";
 import { ArticleLoader } from "./pages/Articles/Article";
+import { infoloader } from "./pages/InfoPage/InfoPage";
+import { reviewloader } from "./pages/ExchangerReviews/ExchangerReviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -76,10 +78,12 @@ const router = createBrowserRouter([
   {
     path: "/InfoPage",
     element: <InfoPage />,
+    loader:infoloader
   },
   {
     path: "/ExchangerReviews",
     element: <ExchangerReviews />,
+    loader:reviewloader
   },
   {
     path: "/ExchangerCourses",

@@ -25,7 +25,6 @@ export const AddComment = ({ HideReviews, id, review, h }) => {
       .catch(function (error) {
         setError(error.message);
       });
-
   };
 
   const [rating, setRating] = useState(0);
@@ -57,8 +56,7 @@ export const AddComment = ({ HideReviews, id, review, h }) => {
                   index <= rating ? `${style.star__on}` : `${style.star__off}`
                 }
                 onClick={() => setRating(index)}
-                onMouseEnter={() => setHover(index)}
-                onMouseLeave={() => setHover(rating)}
+
               >
                 <span className={style.star}>&#9733;</span>
               </button>

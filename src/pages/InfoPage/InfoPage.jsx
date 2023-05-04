@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import style from "./InfoPage.module.scss";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { Header } from "../../components/Header/Header";
@@ -6,6 +6,30 @@ import { Footer } from "../../components/Footer/Footer";
 import StarRatings from "react-star-ratings";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { useLoaderData } from "react-router-dom";
+import img from "../../assets/imgs/iconsRed.png";
+import img2 from "../../assets/imgs/icons8pencill.png";
+import img3 from "../../assets/imgs/icons8green.png";
+
+export const infoloader = async () => {
+  const key = localStorage.getItem("jwt");
+  const id = localStorage.getItem("userId");
+  if (key) {
+    const res = await fetch(
+      `http://146.59.87.222/api/exchangers/get?exchanger_id=${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      }
+    );
+    const item = await res.json();
+
+    return { item, id };
+  } else useNavigate("/login");
+};
 
 export const InfoPage = () => {
   const navigate = useNavigate();
@@ -14,12 +38,72 @@ export const InfoPage = () => {
   }));
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
-
+  const { item } = useLoaderData();
+  const { id } = useLoaderData();
+  const [isListing, setIsListing] = useState(item.data.is_in_listing);
+  const [changeUrl, setChangeUrl] = useState(false);
+  const [urlVal, setUrlVal] = useState("");
+  const [newUrl, setnewUrl] = useState("");
   useEffect(() => {
     if (isExchangerRole === false) {
       navigate("/");
     }
   }, [isExchangerRole]);
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  const changeListing = () => {
+    if (isListing === true) {
+      setIsListing(false);
+    }
+    if (isListing === false) {
+      setIsListing(true);
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        `http://146.59.87.222/api/exchangers/edit`,
+        {
+          exchanger_id: item.data.id,
+          is_in_listing: isListing,
+        },
+        config
+      )
+      .then(function (response) {
+        console.log(response);
+      });
+  }, [isListing]);
+
+  const openChangeUrlValue = (e) => {
+    setChangeUrl(!changeUrl);
+  };
+
+  const postUrl = () => {
+    setChangeUrl(!false);
+    axios
+      .post(
+        `http://146.59.87.222/api/exchangers/edit`,
+        {
+          exchanger_id: item.data.id,
+          referal_url: urlVal,
+        },
+        config
+      )
+      .then(function (response) {
+        setnewUrl(response.data.data.referal_url);
+      });
+  };
+
+  const changeUrlValue = (e) => {
+    setUrlVal(e.target.value);
+  };
 
   return (
     <div className={style.infoPage}>
@@ -35,58 +119,63 @@ export const InfoPage = () => {
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
               >
-                <div
+                <h1
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Обменный пункт</h1>
-                </div>
-                <div
+                  Обменный пункт
+                </h1>
+                <h1
+                  style={{ opacity: "0.5" }}
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1 style={{ opacity: "0.5" }}>AlfaBit</h1>
-                </div>
+                  {item.data.name}
+                </h1>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
                 style={{ backgroundColor: "#46464B" }}
               >
+                <h1
+                  className={
+                    style.infoPage__mainContainer__infoBox__items__item__headers
+                  }
+                >
+                  Статус в листинге
+                </h1>
                 <div
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Статус в листинге</h1>
-                </div>
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  <h1 style={{ color: "#77D22D" }}>Включен</h1>
-                  <h1 style={{ textDecoration: "underline" }}>Выключить</h1>
+                  <h1
+                    style={{ textDecoration: "underline" }}
+                    onClick={changeListing}
+                  >
+                    {isListing === true ? "Выключить" : "Включить"}
+                  </h1>
                   <h1 style={{ opacity: "0.5" }}>курсы загружены</h1>
                 </div>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
               >
+                <h1
+                  className={
+                    style.infoPage__mainContainer__infoBox__items__item__headers
+                  }
+                >
+                  Загружено курсов
+                </h1>
                 <div
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Загружено курсов</h1>
-                </div>
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  <h1>1569</h1>
+                  <h1>{item.data.number_rates}</h1>
                   <h1 style={{ opacity: "0.5" }}>
                     для русскоязычной версии мониторинга{" "}
                   </h1>
@@ -96,139 +185,100 @@ export const InfoPage = () => {
                 className={style.infoPage__mainContainer__infoBox__items__item}
                 style={{ backgroundColor: "#46464B" }}
               >
+                <h1
+                  className={
+                    style.infoPage__mainContainer__infoBox__items__item__headers
+                  }
+                >
+                  Ошибочные курсы
+                </h1>
                 <div
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Экспорт загружен и обработан</h1>
-                </div>
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  {" "}
-                  <h1 style={{ opacity: "0.5" }}>за</h1>
-                  <h1>0.3526</h1>
-                  <h1 style={{ opacity: "0.5" }}>
-                    секунд ( 1.3 секунды назад ){" "}
-                  </h1>
-                </div>
-              </div>
-              <div
-                className={style.infoPage__mainContainer__infoBox__items__item}
-              >
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  <h1>Ошибочные курсы</h1>
-                </div>
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  {" "}
-                  <h1 style={{ color: "#FE0000" }}>21</h1>
+                  <h1 style={{ color: "#FE0000" }}>{item.data.error_rates}</h1>
                   <h1 style={{ opacity: "0.5" }}>курс отклонен </h1>
                 </div>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
-                style={{ backgroundColor: "#46464B" }}
               >
-                <div
+                <h1
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Сумма резервов</h1>
-                </div>
-                <div
+                  Сумма резервов
+                </h1>
+                <h1
+                  style={{ opacity: "0.5" }}
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1 style={{ opacity: "0.5" }}>$44 919 256</h1>
-                </div>
-              </div>
-              <div
-                className={style.infoPage__mainContainer__infoBox__items__item}
-              >
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  <h1>Дата начала работы</h1>
-                </div>
-                <div
-                  className={
-                    style.infoPage__mainContainer__infoBox__items__item__headers
-                  }
-                >
-                  <h1 style={{ opacity: "0.5" }}>20 февраля 2019</h1>
-                </div>
+                  ${item.data.sum_reserves}
+                </h1>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
                 style={{ backgroundColor: "#46464B" }}
               >
-                <div
+                <h1
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Передача GET-параметров</h1>
-                </div>
-                <div
+                  Дата начала работы
+                </h1>
+                <h1
+                  style={{ opacity: "0.5" }}
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1 style={{ color: "#77D22D" }}>Включенo</h1>
-                </div>
+                  {item.data.age}
+                </h1>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
               >
-                <div
+                <h1
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Страна обменного пункта</h1>
-                </div>
-                <div
+                  Экспорт загружен и обработан
+                </h1>
+                <h1
+                  style={{ opacity: "0.5" }}
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1 style={{ opacity: "0.5" }}>ОАЭ</h1>
-                </div>
+                  за {item.data.rates_update.time} /{" "}
+                  {item.data.rates_update.date}
+                </h1>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}
                 style={{ backgroundColor: "#46464B" }}
               >
-                <div
+                <h1
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1>Наличные направления </h1>
-                </div>
-                <div
+                  Страна обменного пункта
+                </h1>
+                <h1
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
+                  style={{ opacity: "0.5" }}
                 >
-                  <h1>Возможны </h1>
-                  <h1 style={{ opacity: "0.5" }}>Не возможны</h1>
-                </div>
+                  {item.data.country}
+                </h1>
               </div>
             </div>
           </div>
@@ -240,7 +290,7 @@ export const InfoPage = () => {
             </h1>
             <div className={style.infoPage__mainContainer__moreInfo__box__text}>
               <h1>В русскоязычной версии</h1>
-              <h1 style={{ opacity: "0.5" }}>7003</h1>
+              <h1 style={{ opacity: "0.5" }}></h1>
             </div>
             <div
               className={style.infoPage__mainContainer__moreInfo__box__rating}
@@ -252,10 +302,10 @@ export const InfoPage = () => {
                 }
               >
                 <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
-                  3.0
+                  {item.data.rating}
                 </h1>
                 <StarRatings
-                  rating={3}
+                  rating={item.data.rating}
                   starRatedColor="yellow"
                   numberOfStars={5}
                   name="rating"
@@ -274,16 +324,43 @@ export const InfoPage = () => {
             >
               <h1>Ссылка (рус)</h1>
               <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
-                www.bestchange.ru
+                {item.data.site_url}
               </h1>
             </div>
             <div
               className={style.infoPage__mainContainer__moreInfo__box__text2}
             >
               <h1>Ссылка на файл с курсами</h1>
-              <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
-                www.bestchange.ru
-              </h1>
+              {changeUrl === true ? (
+                <div className={style.infoPage__mainContainer__changeUrl}>
+                  <input
+                    onChange={(e) => changeUrlValue(e)}
+                    className={style.infoPage__mainContainer__changeUrl__input}
+                    placeholder="Введите новый URL"
+                  />
+                  <img
+                    onClick={postUrl}
+                    className={style.infoPage__mainContainer__changeUrl__btn}
+                    src={img3}
+                  />
+                  <img
+                    onClick={openChangeUrlValue}
+                    className={style.infoPage__mainContainer__changeUrl__btn}
+                    src={changeUrl === true && img}
+                  />
+                </div>
+              ) : (
+                <div className={style.infoPage__mainContainer__changeUrl}>
+                  <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
+                    {newUrl != "" ? newUrl : item.data.referal_url}
+                  </h1>
+                  <img
+                    onClick={openChangeUrlValue}
+                    className={style.infoPage__mainContainer__changeUrl__btn}
+                    src={changeUrl === true ? img : img2}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

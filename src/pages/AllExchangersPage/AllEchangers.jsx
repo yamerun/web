@@ -348,7 +348,7 @@ export const AllEchangers = () => {
                   {item.exchanger.name}
                 </p>
               </div>
-              <Marks/>
+              {item.marks.length != 0 && <Marks prop={item.marks} />}
               <div className={style.Exchangers__content__body__block__from}>
                 <p>1</p>
                 <p>{item.from}</p>
@@ -394,3 +394,5 @@ export const AllEchangers = () => {
     </div>
   );
 };
+
+

@@ -9,6 +9,7 @@ const initialState = {
   emailLogin: "",
   passwordLogin: "",
   isExchangerRole:false,
+  id:'',
 };
 
 const AccountSlice = createSlice({
@@ -38,7 +39,11 @@ const AccountSlice = createSlice({
     },
     setUserRole(state,action) {
       state.isExchangerRole = action.payload;
+    },
+    setItemId(state,action) {
+      state.id = action.payload;
     }
+
   },
 });
 
@@ -50,6 +55,7 @@ export const {
   setName,
   setLoginPassword,
   setLoginEmail,
-  setUserRole
+  setUserRole,
+  setItemId
 } = AccountSlice.actions;
 export default AccountSlice.reducer;

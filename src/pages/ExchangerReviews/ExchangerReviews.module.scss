@@ -2,80 +2,23 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  &__PageBox {
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+  }
 
-  &__ReviewArticle {
-    width: 80%;
-
-    &__commentsBox {
-      margin-top: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-
-      &__comment {
-        background: #2d2d31;
-        border-radius: 20px;
-        width: 100%;
-        height: 160px;
-        padding: 20px;
-        color: White;
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-
-        &__rate {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-top: 30px;
-          &__btn {
-            color: white;
-            text-decoration: underline;
-            background: none;
-            opacity: 0.5;
-            border: 0;
-            font-family: "BasisGrotesquePro";
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-          }
-        }
-
-        &__text {
-          font-style: normal;
-          font-weight: 400;
-          font-size: 16px;
-          margin-top: 20px;
-          text-align: left;
-        }
-
-        &__header {
-          display: flex;
-          width: 100%;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        &__user {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          color: White;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 16px;
-        }
-
-        &__like {
-          display: flex;
-          gap: 5px;
-        }
-      }
-    }
+  &__commentsBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
   }
 
   &__container {
@@ -83,6 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 95%;
 
     &__header {
       display: flex;

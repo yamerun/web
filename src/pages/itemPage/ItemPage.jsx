@@ -15,7 +15,6 @@ import { ImageComponent } from "../../components/ImageComponent/Image";
 import { useDispatch } from "react-redux";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 
-
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
   const res = await fetch(
@@ -35,6 +34,7 @@ export const ItemPage = () => {
   const [review, setReview] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [load, setLoad] = useState(true);
+  const [imgData,setImgData] = useState({})
 
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
@@ -47,6 +47,7 @@ export const ItemPage = () => {
       )
       .then(function (response) {
         setReview(response.data.data);
+        console.log(response.data.data);
       })
 
       .catch(function (error) {
@@ -54,36 +55,35 @@ export const ItemPage = () => {
       });
   }, []);
 
-  const ref = useRef(null)
+  const ref = useRef(null);
 
   const ShowReviews = () => {
     setIsOpen(true);
-
-
   };
   const HideReviews = () => {
     setIsOpen(false);
-
   };
   let height = window.screen.height;
 
   setTimeout(() => {
     setLoad(false);
   }, 4000);
-
-  const imageData = {
-    basename: item.data.logo.basename,
-    extension: item.data.logo.extension,
-    height: item.data.logo.height,
-    mimeType: item.data.logo.mimeType,
-    path: item.data.logo.path,
-    width: item.data.logo.width,
-  };
-
-  console.log(isExchangerRole);
+  
+  useEffect(()=>{
+    if(item.data.logo != undefined) {
+      setImgData({
+        basename: item.data.logo.basename,
+        extension: item.data.logo.extension,
+        height: item.data.logo.height,
+        mimeType: item.data.logo.mimeType,
+        path: item.data.logo.path,
+        width: item.data.logo.width,
+      })
+    }
+  },[item])
+  
   const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
-  console.log(jwt);
+  const jwt = localStorage.getItem("jwt");;
 
   useEffect(() => {
     if (jwt !== null && role !== null && role === "exchanger") {
@@ -91,7 +91,7 @@ export const ItemPage = () => {
     } else dispatch(setUserRole(false));
   }, [jwt, role]);
 
-
+  console.log(item);
   return (
     <div className={style.itemPage}>
       {isOpen && (
@@ -99,9 +99,11 @@ export const ItemPage = () => {
       )}
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}
-      <div className={style.itemPage__container} ref={ref} >
+      <div className={style.itemPage__container} ref={ref}>
         <div className={style.itemPage__container__exchangeInfo}>
-          <ImageComponent imageInfo={imageData} />
+          {item.data.logo != undefined && (
+            <ImageComponent imageInfo={imgData} />
+          )}
           <h1 className={style.itemPage__container__header}>
             {item.data.name}
           </h1>
@@ -306,7 +308,7 @@ export const ItemPage = () => {
           Отзывы {item.data.name}
         </h1>
         {review != null ? (
-          review.map((item) => <Comments props={item} review={review} />)
+          review.map((item) => <Comments props={item} review={setReview} w={'30%'}/>)
         ) : (
           <div></div>
         )}

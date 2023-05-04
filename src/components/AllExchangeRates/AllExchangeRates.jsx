@@ -24,7 +24,6 @@ export const AllExchangeRates = () => {
         )
         .then(function (response) {
           setAll(response.data.data.slice(0, 20));
-          console.log(response.data.data);
         });
     }, 5000);
     return () => clearInterval(getCurrenciesAll);

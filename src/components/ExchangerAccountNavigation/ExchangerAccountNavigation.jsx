@@ -1,13 +1,21 @@
 import React from "react";
 import style from "./ExchangerAccountNavigation.module.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+
 export const ExchangerAccountNavigation = () => {
+
+
+
+
   return (
     <nav className={style.exchangerNavigation}>
       <ul className={style.exchangerNavigation__itemsList}>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to="/infoPage"
+          to={`/infoPage`}
         >
           Информация
         </Link>
