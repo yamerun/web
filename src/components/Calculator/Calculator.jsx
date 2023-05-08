@@ -41,7 +41,7 @@ export const Calculator = () => {
     if (inputGet.current.value.length !== 0) {
       axios
         .get(
-          `http://146.59.87.222/api/calc?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
+          `https://change.pro/api/calc?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
         )
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
@@ -55,7 +55,7 @@ export const Calculator = () => {
     if (inputGive.current.value.length !== 0) {
       axios
         .get(
-          `http://146.59.87.222/api/calc?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
+          `https://change.pro/api/calc?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
         )
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));

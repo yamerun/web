@@ -34,7 +34,7 @@ export const SearchMenu = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+      .get(`https://change.pro/api/exchangers/currencies/list`)
       .then(function (response) {
         dispatch(setItemsReducer(response.data.data));
         dispatch(setItems2Reducer(response.data.data));

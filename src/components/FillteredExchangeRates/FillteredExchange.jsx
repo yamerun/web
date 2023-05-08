@@ -22,7 +22,7 @@ export const FillteredExchangeRates = () => {
     if (calculated !== true) {
       axios
         .get(
-          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+          `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
         )
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
@@ -32,7 +32,7 @@ export const FillteredExchangeRates = () => {
       const get = setInterval(() => {
         axios
           .get(
-            `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
+            `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
           )
           .then(function (response) {
             dispatch(setitemExchangeRatesReducer(response.data.data));

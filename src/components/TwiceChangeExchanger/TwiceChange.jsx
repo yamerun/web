@@ -7,7 +7,7 @@ export const TwiceChanhgeExchanger = () => {
   const { twiceExchanger } = useSelector((state) => ({
     twiceExchanger: state.itemsSlice.twiceExchanger,
   }));
-
+  //     {item.marks.length != 0 && <Marks prop={item.marks} />}
   return (
     <div className={style.TwiceExchange}>
       {twiceExchanger.length === 0 ? (
@@ -16,9 +16,7 @@ export const TwiceChanhgeExchanger = () => {
         twiceExchanger.map((item) => (
           <div className={style.TwiceExchange__bar}>
             <div className={style.TwiceExchange__bar__container}>
-           
               <div className={style.TwiceExchange__bar__box}>
-                 <Marks/>
                 <h1>{item.schema.from.currency}</h1>
                 <h1 className={style.TwiceExchange__bar__box__value}>
                   {Math.floor(item.schema.from.value)}
@@ -27,15 +25,13 @@ export const TwiceChanhgeExchanger = () => {
               &#8594;
               <div className={style.TwiceExchange__bar__box}>
                 <h1>
-                  {" "}
                   <h1>{item.schema.middle.currency} </h1>
                 </h1>
                 <h1 className={style.TwiceExchange__bar__box__value}>
-                  {Math.floor(item.schema.middle.value)} 
+                  {Math.floor(item.schema.middle.value)}
                 </h1>
               </div>
               &#8594;
-           
               <div className={style.TwiceExchange__bar__box}>
                 <h1>
                   <h1>{item.schema.to.currency} </h1>
@@ -45,12 +41,10 @@ export const TwiceChanhgeExchanger = () => {
                 </h1>
               </div>
             </div>
-          
             <div className={style.TwiceExchange__bar__box}>
               <h1>{Math.floor(item.schema.amount)}</h1>
               <h1>{item.schema.course}</h1>
             </div>
-          
           </div>
         ))
       )}

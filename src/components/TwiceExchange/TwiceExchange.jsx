@@ -36,7 +36,7 @@ export const TwiceExchange = () => {
     if (inputGet.current.value.length !== 0) {
       axios
         .get(
-          `http://146.59.87.222/api/twice_exchange?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
+          `https://change.pro/api/twice_exchange?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
         )
         .then(function (response) {
           dispatch(setTwiceExchanger(response.data.data))
@@ -49,7 +49,7 @@ export const TwiceExchange = () => {
     if (inputGive.current.value.length !== 0) {
       axios
         .get(
-          `http://146.59.87.222/api/twice_exchange?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
+          `https://change.pro/api/twice_exchange?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
         )
         .then(function (response) {
          dispatch(setTwiceExchanger(response.data.data))

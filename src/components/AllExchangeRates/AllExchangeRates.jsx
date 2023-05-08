@@ -12,7 +12,7 @@ export const AllExchangeRates = () => {
   useEffect(() => {
     axios
       .get(
-        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+        `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
       )
       .then(function (response) {
         setAll(response.data.data.slice(0, 20));
@@ -20,7 +20,7 @@ export const AllExchangeRates = () => {
     const getCurrenciesAll = setInterval(() => {
       axios
         .get(
-          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+          `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
         )
         .then(function (response) {
           setAll(response.data.data.slice(0, 20));

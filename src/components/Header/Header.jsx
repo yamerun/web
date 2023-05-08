@@ -18,7 +18,7 @@ export const Header = () => {
       },
     };
     axios
-      .get(`http://146.59.87.222/api/user/get`, config)
+      .get(`https://change.pro/api/user/get`, config)
       .then(function (response) {
         navigate("/account");
       })

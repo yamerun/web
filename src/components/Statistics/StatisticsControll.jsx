@@ -26,7 +26,7 @@ export const StatisticsControll = ({
     if (currentFrom && currentTo != undefined)
       axios
         .get(
-          `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentTo}&to=${currentFrom}&perHour=${perHour}`
+          `https://change.pro/api/rate_statistics/best_rate?from=${currentTo}&to=${currentFrom}&perHour=${perHour}`
         )
         .then(function (response) {
           dispatch(setStatistics(response.data.data));

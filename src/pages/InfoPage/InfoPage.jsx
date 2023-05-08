@@ -17,7 +17,7 @@ export const infoloader = async () => {
   const id = localStorage.getItem("userId");
   if (key) {
     const res = await fetch(
-      `http://146.59.87.222/api/exchangers/get?exchanger_id=${id}`,
+      `https://change.pro/api/exchangers/get?exchanger_id=${id}`,
       {
         method: "GET",
         headers: {
@@ -69,7 +69,7 @@ export const InfoPage = () => {
   useEffect(() => {
     axios
       .post(
-        `http://146.59.87.222/api/exchangers/edit`,
+        `https://change.pro/api/exchangers/edit`,
         {
           exchanger_id: item.data.id,
           is_in_listing: isListing,
@@ -77,7 +77,6 @@ export const InfoPage = () => {
         config
       )
       .then(function (response) {
-        console.log(response);
       });
   }, [isListing]);
 
@@ -89,7 +88,7 @@ export const InfoPage = () => {
     setChangeUrl(!false);
     axios
       .post(
-        `http://146.59.87.222/api/exchangers/edit`,
+        `https://change.pro/api/exchangers/edit`,
         {
           exchanger_id: item.data.id,
           referal_url: urlVal,
@@ -146,19 +145,15 @@ export const InfoPage = () => {
                 >
                   Статус в листинге
                 </h1>
-                <div
+                <h1
+                  style={{ textDecoration: "underline" }}
+                  onClick={changeListing}
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1
-                    style={{ textDecoration: "underline" }}
-                    onClick={changeListing}
-                  >
-                    {isListing === true ? "Выключить" : "Включить"}
-                  </h1>
-                  <h1 style={{ opacity: "0.5" }}>курсы загружены</h1>
-                </div>
+                  {isListing === true ? "Выключить" : "Включить"}
+                </h1>
               </div>
               <div
                 className={style.infoPage__mainContainer__infoBox__items__item}

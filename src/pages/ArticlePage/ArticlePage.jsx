@@ -30,6 +30,7 @@ export const Articlepage = () => {
           </h1>
         </div>
         <article
+          style={{color:'white'}}
           className={style.Article__container__content}
           dangerouslySetInnerHTML={createMarkup(article.data.content)}
         ></article>

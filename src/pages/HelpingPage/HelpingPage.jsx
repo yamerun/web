@@ -13,7 +13,7 @@ export const HelpingPage = () => {
   }));
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/content/page_helping`)
+      .get(`https://change.pro/api/content/page_helping`)
       .then(function (response) {
         setData(response.data.data.description);
       });

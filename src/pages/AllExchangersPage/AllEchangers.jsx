@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
 export const exchangersLoader = async () => {
   const res = await fetch(
-    `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+    `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
   );
   const item = await res.json();
   return { item };
@@ -38,7 +38,7 @@ export const AllEchangers = () => {
       const getCurrenciesAll = setInterval(() => {
         axios
           .get(
-            `http://146.59.87.222/api/exchangers/currencies/get?orderBy=amount&sort=asc`
+            `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
           )
           .then(function (response) {
             setResultExchangers(response.data.data);
@@ -50,7 +50,7 @@ export const AllEchangers = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+      .get(`https://change.pro/api/exchangers/currencies/list`)
       .then(function (response) {
         setVariants(response.data.data);
       })
@@ -59,7 +59,7 @@ export const AllEchangers = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+      .get(`https://change.pro/api/exchangers/currencies/list`)
       .then(function (response) {
         setVariants2(response.data.data);
       })
@@ -182,7 +182,7 @@ export const AllEchangers = () => {
   useEffect(() => {
     axios
       .get(
-        `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${selected}&to=${selected2}&limit=50`
+        `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${selected}&to=${selected2}&limit=50`
       )
       .then(function (response) {
         setResultExchangers(response.data.data);
@@ -192,7 +192,7 @@ export const AllEchangers = () => {
     const get = setInterval(() => {
       axios
         .get(
-          `http://146.59.87.222/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${selected}&to=${selected2}&limit=50`
+          `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${selected}&to=${selected2}&limit=50`
         )
         .then(function (response) {
           setResultExchangers(response.data.data);
@@ -248,8 +248,7 @@ export const AllEchangers = () => {
                     }
                   />
                 </div>
-
-                {inputVal.length != 0 && (
+                {inputVal.length  != 0  && searchResult.length != 0 && (
                   <div
                     ref={ref}
                     className={
@@ -286,7 +285,7 @@ export const AllEchangers = () => {
                     }
                   />
                 </div>
-                {inputVal2.length != 0 && (
+                {inputVal2.length != 0 && searchResult2.length != 0 && (
                   <div
                     ref={ref2}
                     className={

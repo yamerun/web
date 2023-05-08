@@ -55,7 +55,7 @@ export const Marks = ({ prop }) => {
         <div className={style.variants}>
           {prop.map((item) => (
             <img
-              src={`http://146.59.87.222${item.icon.path}`}
+              src={`https://change.pro${item.icon.path}`}
               className={style.img}
               id={item.id}
               onMouseEnter={(e) => ShowTip(item)}

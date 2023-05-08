@@ -18,7 +18,7 @@ import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
   const res = await fetch(
-    `http://146.59.87.222/api/exchangers/get?exchanger_id=${id}`
+    `https://change.pro/api/exchangers/get?exchanger_id=${id}`
   );
   const item = await res.json();
   return { id, item };
@@ -43,7 +43,7 @@ export const ItemPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${item.data.id}`
+        `https://change.pro/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${item.data.id}`
       )
       .then(function (response) {
         setReview(response.data.data);

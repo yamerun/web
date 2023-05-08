@@ -28,7 +28,7 @@ export const LineChartStatistics = () => {
   const getStatByPerHour = () => {
     axios
       .get(
-        `http://146.59.87.222/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=${currentHour}`
+        `https://change.pro/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=${currentHour}`
       )
       .then(function (response) {
         // setStatPoints(response.data.data);

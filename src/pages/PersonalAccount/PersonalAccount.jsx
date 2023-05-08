@@ -10,11 +10,11 @@ import { useEffect } from "react";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 import { setItemId } from "../../store/userAccountSlice/AccountSlice";
-
+import { Link } from "react-router-dom";
 export const AccountLoader = async () => {
   const key = localStorage.getItem("jwt");
   if (key) {
-    const res = await fetch(`http://146.59.87.222/api/user/get`, {
+    const res = await fetch(`https://change.pro/api/user/get`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -62,7 +62,6 @@ export const PersonalAccount = () => {
     navigate("/login");
   };
 
-  console.log(item);
 
   return (
     <div className={style.PersonalAccount}>
@@ -105,14 +104,15 @@ export const PersonalAccount = () => {
               >
                 История посещений обменников
               </li>
-              <li
+              <Link
                 className={
                   style.PersonalAccount__container__leftBar__navigation__list__item
                 }
                 onClick={(e) => handleSelect(e)}
+                to='/ExchangerReviews'
               >
                 Мои отзывы
-              </li>
+              </Link>
               <li className={style.PersonalAccount__logOut} onClick={LogOut}>
                 Выйти из Аккаунта
               </li>

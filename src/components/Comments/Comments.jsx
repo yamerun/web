@@ -34,7 +34,7 @@ export const Comments = ({ props, review ,w}) => {
   const RateLike = () => {
     axios
       .post(
-        "http://146.59.87.222/api/reviews/like",
+        "https://change.pro/api/reviews/like",
         {
           review_id: props.id,
         },
@@ -61,7 +61,7 @@ export const Comments = ({ props, review ,w}) => {
   const RateDisLike = () => {
     axios
       .post(
-        "http://146.59.87.222/api/reviews/dislike",
+        "https://change.pro/api/reviews/dislike",
         {
           review_id: props.id,
         },
@@ -84,7 +84,7 @@ export const Comments = ({ props, review ,w}) => {
   const addChildComment = () => {
     axios
       .post(
-        `http://146.59.87.222/api/reviews/create`,
+        `https://change.pro/api/reviews/create`,
         {
           comment: commentVal,
           rating: rating,
@@ -105,7 +105,6 @@ export const Comments = ({ props, review ,w}) => {
       });
   };
 
-  console.log([props]);
 
   return (
     <div className={style.Review} style={{width:w}}>

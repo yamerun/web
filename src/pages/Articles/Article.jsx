@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export const ArticleLoader = async ({ params }) => {
   const articleid = params.id;
   const response = await fetch(
-    `http://146.59.87.222/api/articles/get_detail?id=${articleid}`
+    `https://change.pro/api/articles/get_detail?id=${articleid}`
   );
   const article = await response.json();
 
@@ -22,7 +22,7 @@ export const Articles = () => {
   const navigate = useNavigate();
   const [articles, setArcicles] = useState([]);
 
-  const goToArticle = ({id})  => {
+  const goToArticle = ({ id }) => {
     navigate(`/article/${id}`);
   };
 
@@ -32,45 +32,135 @@ export const Articles = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/articles/get?limit=2&offset=0`)
+      .get(`https://change.pro/api/articles/get?limit=2&offset=0`)
       .then(function (response) {
         setArcicles(response.data.data);
       });
   }, []);
 
-  function createMarkup({content}) {
+  function createMarkup({ content }) {
     return { __html: `${content}` };
   }
 
   return (
     <div className={style.Articles}>
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
-      <div className={style.Articles__container}>
-        <div className={style.Articles__container__articles}>
-          {articles.map((item) => (
-            <article
-              className={style.Articles__container__article}
-              onClick={(e) => goToArticle(item)}
-            >
-              <div className={style.Articles__container__article__header}>
-                <h1
-                  className={style.Articles__container__article__header__tittle}
-                >
-                  {item.title}
-                </h1>
-                <p className={style.Articles__container__article__header__date}>
-                  {item.created_at.date} {item.created_at.time}
-                </p>
-              </div>
-              <div
-                className={style.Articles__container__article__text}
-                dangerouslySetInnerHTML={createMarkup(item)}
-              ></div>
-            </article>
-          ))}
-        </div>
+      <div className={style.Articles__header}>
+        <Header />
+        {isExchangerRole === true && <ExchangerAccountNavigation />}
       </div>
+      <div className={style.Articles__container__articles}>
+        {articles.map((item) => (
+          <article
+            className={style.Articles__container__article}
+            onClick={(e) => goToArticle(item)}
+          >
+            <div className={style.Articles__container__article__header}>
+              <h1
+                className={style.Articles__container__article__header__tittle}
+              >
+                {item.title}
+              </h1>
+              <p className={style.Articles__container__article__header__date}>
+                {item.created_at.date} {item.created_at.time}
+              </p>
+            </div>
+            <div
+             style={{color:'white'}}
+              className={style.Articles__container__article__text}
+              dangerouslySetInnerHTML={createMarkup(item)}
+            ></div>
+          </article>
+        ))}
+        {articles.map((item) => (
+          <article
+            className={style.Articles__container__article}
+            onClick={(e) => goToArticle(item)}
+          >
+            <div className={style.Articles__container__article__header}>
+              <h1
+                className={style.Articles__container__article__header__tittle}
+              >
+                {item.title}
+              </h1>
+              <p className={style.Articles__container__article__header__date}>
+                {item.created_at.date} {item.created_at.time}
+              </p>
+            </div>
+            <div
+             style={{color:'white'}}
+              className={style.Articles__container__article__text}
+              dangerouslySetInnerHTML={createMarkup(item)}
+            ></div>
+          </article>
+        ))}
+        {articles.map((item) => (
+          <article
+            className={style.Articles__container__article}
+            onClick={(e) => goToArticle(item)}
+          >
+            <div className={style.Articles__container__article__header}>
+              <h1
+                className={style.Articles__container__article__header__tittle}
+              >
+                {item.title}
+              </h1>
+              <p className={style.Articles__container__article__header__date}>
+                {item.created_at.date} {item.created_at.time}
+              </p>
+            </div>
+            <div
+             style={{color:'white'}}
+              className={style.Articles__container__article__text}
+              dangerouslySetInnerHTML={createMarkup(item)}
+            ></div>
+          </article>
+        ))}{" "}
+        {articles.map((item) => (
+          <article
+            className={style.Articles__container__article}
+            onClick={(e) => goToArticle(item)}
+          >
+            <div className={style.Articles__container__article__header}>
+              <h1
+                className={style.Articles__container__article__header__tittle}
+              >
+                {item.title}
+              </h1>
+              <p className={style.Articles__container__article__header__date}>
+                {item.created_at.date} {item.created_at.time}
+              </p>
+            </div>
+            <div
+             style={{color:'white'}}
+              className={style.Articles__container__article__text}
+              dangerouslySetInnerHTML={createMarkup(item)}
+            ></div>
+          </article>
+        ))}{" "}
+        {articles.map((item) => (
+          <article
+            className={style.Articles__container__article}
+            onClick={(e) => goToArticle(item)}
+          >
+            <div className={style.Articles__container__article__header}>
+              <h1
+                className={style.Articles__container__article__header__tittle}
+              >
+                {item.title}
+              </h1>
+              <p className={style.Articles__container__article__header__date}>
+                {item.created_at.date} {item.created_at.time}
+              </p>
+            </div>
+            <div
+               style={{color:'white'}}
+              className={style.Articles__container__article__text}
+              dangerouslySetInnerHTML={createMarkup(item)}
+            ></div>
+          </article>
+        ))}
+      </div>
+
       <Footer />
     </div>
   );

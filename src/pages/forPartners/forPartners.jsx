@@ -18,7 +18,7 @@ export const ForPartners = () => {
   const ref = useRef(null);
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/content/page_partners`)
+      .get(`https://change.pro/api/content/page_partners`)
       .then(function (response) {
         setData(response.data.data.description);
       });
@@ -26,7 +26,7 @@ export const ForPartners = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/forms/get?page=forPartners`)
+      .get(`https://change.pro/api/forms/get?page=forPartners`)
       .then(function (response) {
         setForm(response.data.data);
       });
@@ -42,7 +42,7 @@ export const ForPartners = () => {
       return;
     }
     axios
-      .post("http://146.59.87.222/api/forms/set", {
+      .post("https://change.pro/api/forms/set", {
         form_id: formId,
         result: finalRes.map((item) => ({
           field_id: item.id,
@@ -73,6 +73,7 @@ export const ForPartners = () => {
   return (
     <div className={style.forPartners}>
       <Header />
+      <div  className={style.forPartners__container}>
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.forPartners__textbox}>
         <p className={style.forPartners__textbox__text}>{data}</p>
@@ -97,6 +98,7 @@ export const ForPartners = () => {
             ))}
           </div>
         ))}
+      </div>
       <Footer />
     </div>
   );

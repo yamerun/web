@@ -6,7 +6,7 @@ export const Article = () => {
   const [text, setText] = useState("");
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/content/get`)
+      .get(`https://change.pro/api/content/get`)
       .then(function (response) {
         console.log(response.data.data.main_page.title_description);
         setText(response.data.data.main_page.description);

@@ -21,7 +21,7 @@ export const ChildComments = ({ props }) => {
   const RateLike = () => {
     axios
       .post(
-        "http://146.59.87.222/api/reviews/like",
+        "https://change.pro/api/reviews/like",
         {
           review_id: props.id,
         },
@@ -43,7 +43,7 @@ export const ChildComments = ({ props }) => {
   const RateDisLike = () => {
     axios
       .post(
-        "http://146.59.87.222/api/reviews/dislike",
+        "https://change.pro/api/reviews/dislike",
         {
           review_id: props.id,
         },

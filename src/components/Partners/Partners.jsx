@@ -6,7 +6,7 @@ export const Partners = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/partners/get`)
+      .get(`https://change.pro/api/partners/get`)
       .then(function (response) {
         setPartners(response.data.data);
       })

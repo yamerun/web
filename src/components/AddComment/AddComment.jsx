@@ -6,7 +6,7 @@ export const AddComment = ({ HideReviews, id, review, h }) => {
   const Register = () => {
     axios
       .post(
-        `http://146.59.87.222/api/reviews/create`,
+        `https://change.pro/api/reviews/create`,
         {
           comment: textVal,
           rating: rating,

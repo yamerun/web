@@ -17,7 +17,7 @@ export const reviewloader = async () => {
 
   if (key) {
     const res = await fetch(
-      `http://146.59.87.222/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${id}`,
+      `https://change.pro/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${id}`,
       {
         method: "GET",
         headers: {
@@ -27,7 +27,7 @@ export const reviewloader = async () => {
     );
 
     const res2 = await fetch(
-      `http://146.59.87.222/api/exchangers/get?exchanger_id=${id}`,
+      `https://change.pro/api/exchangers/get?exchanger_id=${id}`,
       {
         method: "GET",
         headers: {

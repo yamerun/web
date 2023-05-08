@@ -42,7 +42,7 @@ export const ScammersBase = () => {
   useEffect(() => {
     if (activeSearch === false) {
       axios
-        .get(`http://146.59.87.222/api/scammers/get`, {
+        .get(`https://change.pro/api/scammers/get`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           },
@@ -53,7 +53,7 @@ export const ScammersBase = () => {
     }
     if (update === true) {
       axios
-        .get(`http://146.59.87.222/api/scammers/get`, {
+        .get(`https://change.pro/api/scammers/get`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           },
@@ -85,7 +85,7 @@ export const ScammersBase = () => {
     setActiveSearch(true);
     axios
       .get(
-        `http://146.59.87.222/api/scammers/get?search=${value}&search_field=${finalResult}`,
+        `https://change.pro/api/scammers/get?search=${value}&search_field=${finalResult}`,
         config
       )
       .then(function (response) {

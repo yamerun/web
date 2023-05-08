@@ -34,7 +34,7 @@ export const ExchangerMarks = () => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/marks/get`, config)
+      .get(`https://change.pro/api/marks/get`, config)
       .then(function (response) {
         dispatch(setEchangerMarks(response.data.data));
       })
@@ -43,7 +43,7 @@ export const ExchangerMarks = () => {
       });
     if (succsess === true) {
       axios
-        .get(`http://146.59.87.222/api/marks/get`, config)
+        .get(`https://change.pro/api/marks/get`, config)
         .then(function (response) {
           dispatch(setEchangerMarks(response.data.data));
         })
@@ -81,7 +81,7 @@ export const ExchangerMarks = () => {
 
   const deleteMark = (id) => {
     axios
-      .delete(`http://146.59.87.222/api/marks/delete?id=${id}`, config)
+      .delete(`https://change.pro/api/marks/delete?id=${id}`, config)
       .then(function (response) {
         setSuccess(true);
       })

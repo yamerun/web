@@ -23,7 +23,7 @@ export const MarkPop = ({ prop, setSuccess }) => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/marks/types`, config)
+      .get(`https://change.pro/api/marks/types`, config)
       .then(function (response) {
         setMarks(response.data.data);
       });
@@ -39,7 +39,7 @@ export const MarkPop = ({ prop, setSuccess }) => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+      .get(`https://change.pro/api/exchangers/currencies/list`)
       .then(function (response) {
         setVariants(response.data.data);
       })
@@ -48,7 +48,7 @@ export const MarkPop = ({ prop, setSuccess }) => {
 
   useEffect(() => {
     axios
-      .get(`http://146.59.87.222/api/exchangers/currencies/list`)
+      .get(`https://change.pro/api/exchangers/currencies/list`)
       .then(function (response) {
         setVariants2(response.data.data);
       })
@@ -102,7 +102,7 @@ export const MarkPop = ({ prop, setSuccess }) => {
 
   const addToMark = () => {
     axios
-      .post(`http://146.59.87.222/api/marks/create`, data, config)
+      .post(`https://change.pro/api/marks/create`, data, config)
       .then(function (response) {
         setSuccess(true);
       })
@@ -151,7 +151,7 @@ export const MarkPop = ({ prop, setSuccess }) => {
           {marks.map((item) => (
             <div key={item.id} className={style.Marks__content__body__boxItem}>
               <img
-                src={`http://146.59.87.222${item.icon.path}`}
+                src={`https://change.pro${item.icon.path}`}
                 className={style.Marks__content__body__img}
               />
               <p

@@ -43,7 +43,7 @@ export const ScammersPop = ({ props, setUpdate }) => {
 
   const sendNewScamInfo = () => {
     axios
-      .post(`http://146.59.87.222/api/scammers/create`, data, config)
+      .post(`https://change.pro/api/scammers/create`, data, config)
       .then(function (response) {
         setUpdate(true);
         props(false);
@@ -56,7 +56,7 @@ export const ScammersPop = ({ props, setUpdate }) => {
 
   const getSelectVariants = () => {
     axios
-      .get(`http://146.59.87.222/api/scammers/types`, {
+      .get(`https://change.pro/api/scammers/types`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },

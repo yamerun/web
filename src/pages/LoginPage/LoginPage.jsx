@@ -17,7 +17,7 @@ export const LoginPage = () => {
 
   const Login = () => {
     axios
-      .post(`http://146.59.87.222/api/auth/login`, {
+      .post(`https://change.pro/api/auth/login`, {
         email: email,
         password: password,
       })

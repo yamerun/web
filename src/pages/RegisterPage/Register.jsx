@@ -25,7 +25,7 @@ export const RegisterPage = () => {
   const ref = useRef(null);
   const Register = () => {
     axios
-      .post(`http://146.59.87.222/api/auth/register`, {
+      .post(`https://change.pro/api/auth/register`, {
         name: name,
         email: email,
         password: password,
