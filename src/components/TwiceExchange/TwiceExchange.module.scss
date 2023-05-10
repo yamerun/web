@@ -4,54 +4,67 @@
   justify-content: space-between;
   flex-direction: row;
   white-space: nowrap;
-  background-color: #46464b;
-  margin:5px;
+  padding: 15px;
+  border:1px solid #46464b;
   border-radius: 10px;
-  padding: 15px 15px;
+
+  margin-top: 5px;
+
+
   &__btnBox {
     display: flex;
-    gap:15px;
+    gap: 15px;
   }
   &__btn {
-    background-color: black;
     border-radius: 7px;
     border: 0;
+    background: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    opacity: 1;
     color: white;
     font-family: "BasisGrotesquePro";
-    font-weight: 600;
+    font-weight: 700;
     padding: 10px;
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 
   &__inputMenu {
     display: flex;
-   gap:10px;
-    align-items: center;
     font-size: 12px;
     white-space: nowrap;
     text-align: left;
-
+    align-items: center;
+    flex-direction: column;
+    white-space: nowrap;
     color: #ffffff;
     font-weight: 600;
     font-family: "BasisGrotesquePro";
     text-transform: uppercase;
     letter-spacing: 1px;
-
+    gap:10px;
   }
 
   &__container {
+    width: 100%;
+    text-align: left;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: row;
-    flex-wrap: nowrap;
-    white-space: nowrap;
+    align-items: center;
     &__input {
-      width: 40px;
-      border-radius: 3px;
-      border: 0;
-      background-color: black;
+      width: 50px;
+      margin-left: 3px;
+      margin-right: 6px;
+      background-color: rgb(21, 21, 23);
       color: white;
-      margin: 5px;
+      border-width: 0px;
+      border-style: initial;
+      border-color: initial;
+      border-image: initial;
+      border-radius: 3px;
     }
 
     &__text {
@@ -61,16 +74,16 @@
     }
 
     &__currentFrom {
-        font-family: "BasisGrotesquePro";
-        color: white;
-        font-weight: 400;
-        font-size: 12px;
+      font-family: "BasisGrotesquePro";
+      color: white;
+      font-weight: 400;
+      font-size: 12px;
     }
     &__currentTo {
-        font-family: "BasisGrotesquePro";
-        color: white;
-        font-weight: 400;
-        font-size: 12px;
+      font-family: "BasisGrotesquePro";
+      color: white;
+      font-weight: 400;
+      font-size: 12px;
     }
   }
 }

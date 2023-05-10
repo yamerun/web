@@ -14,19 +14,20 @@ import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
-
+import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
 
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items,  Emoney, Emoney2,  } =
+  const { items, Emoney, Emoney2, isFilltersClear } =
     useSelector((state) => ({
       items: state.itemsSlice.items,
       Emoney: state.itemsSlice.Emoney,
       Emoney2: state.itemsSlice.Emoney2,
       calculated: state.itemsSlice.calculated,
+      isFilltersClear: state.itemsSlice.isFilltersClear
     }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -39,7 +40,7 @@ export const SearchMenu = () => {
         dispatch(setItemsReducer(response.data.data));
         dispatch(setItems2Reducer(response.data.data));
       })
-      .catch(function (error) {});
+      .catch(function (error) { });
   }, []);
 
   const ShowMore = () => {
@@ -59,10 +60,10 @@ export const SearchMenu = () => {
         i.classList.remove(`${style.active}`);
       }
     }
+    dispatch(setIsFilltersClear(false))
   };
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
-
     const btnElements = document.querySelectorAll(
       `.${style.SearchMenu__item2}`
     );
@@ -72,7 +73,25 @@ export const SearchMenu = () => {
         i.classList.remove(`${style.active}`);
       }
     }
+    dispatch(setIsFilltersClear(false))
   };
+
+  useEffect(() => {
+    if (isFilltersClear === true) {
+      const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
+      for (let i of btnElements) {
+        i.classList.remove(`${style.active}`);
+      }
+      const btnElements2 = document.querySelectorAll(
+        `.${style.SearchMenu__item2}`
+      );
+      for (let i of btnElements2) {
+          i.classList.remove(`${style.active}`);
+      }
+    }
+  }, [isFilltersClear])
+
+
   const setInputValueForSearch = (e) => {
     const translitMap = {
       й: "q",

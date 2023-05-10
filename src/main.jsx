@@ -26,13 +26,14 @@ import { HelpingPage } from "./pages/HelpingPage/HelpingPage";
 import { ArticleLoader } from "./pages/Articles/Article";
 import { infoloader } from "./pages/InfoPage/InfoPage";
 import { reviewloader } from "./pages/ExchangerReviews/ExchangerReviews";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainPage />,
   },
   {
-    path: "/:id",
+    path: "/ExchangerPage/:id",
     element: <ItemPage />,
     loader: exchangeLoader,
   },
@@ -97,6 +98,8 @@ const router = createBrowserRouter([
     path: "/ExchangerNotifications",
     element: <ExchangerNotifications />,
   },
+
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

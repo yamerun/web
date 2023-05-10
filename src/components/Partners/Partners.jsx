@@ -12,7 +12,7 @@ export const Partners = () => {
       })
       .catch(function (error) {});
   }, []);
-  console.log(partners);
+
   return (
     <div className={style.Partners}>
       <div className={style.Partners__column}>
@@ -26,9 +26,3 @@ export const Partners = () => {
     </div>
   );
 };
-
-/*style={{
-              backgroundImage: `${item.logo.path}`,
-              backgroundRepeat: "none",
-              backgroundSize: "100%",
-            }}*/

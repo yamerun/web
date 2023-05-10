@@ -5,6 +5,7 @@ import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCalculated } from "../../store/itemsSlice/itemsSlice";
 import { useDispatch } from "react-redux";
 import { setStatistic } from "../../store/itemsSlice/itemsSlice";
+import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 export const ClearAll = () => {
   const dispatch = useDispatch();
 
@@ -14,6 +15,7 @@ export const ClearAll = () => {
     dispatch(setCalculated(false));
     dispatch(setisTwice(false))
     dispatch(setStatistic([]))
+    dispatch(setIsFilltersClear(true))
   };
   return (
     <div className={style.ClearAll}>

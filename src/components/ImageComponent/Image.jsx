@@ -2,6 +2,7 @@ import './style.css'
 
 export const ImageComponent = ({ imageInfo }) => {
     const { basename, extension, height, mimeType, path, width } = imageInfo;
+    console.log(imageInfo)
   
     return (
       <div>

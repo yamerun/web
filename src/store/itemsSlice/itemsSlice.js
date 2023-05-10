@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   items: [],
   items2: [],
-  itemsbyEmoney: [],
-  itemsbyEmoney2: [],
   filltered: [],
   filltered2: [],
   itemId: "",
@@ -15,8 +13,6 @@ const initialState = {
   variants: [],
   currentFrom: "",
   currentTo: "",
-  Emoney: "",
-  Emoney2: "",
   result: [],
   result2: [],
   statistics: [],
@@ -27,7 +23,8 @@ const initialState = {
   twiceExchanger:[],
   stat:[],
   tooltip:undefined,
-  exchangerMarks:''
+  exchangerMarks:'',
+  isFilltersClear:true,
 };
 
 const itemsSlice = createSlice({
@@ -58,18 +55,16 @@ const itemsSlice = createSlice({
     setVariantsReducer(state, action) {
       state.variants = action.payload;
     },
+    setCurrentItemFromReducer(state, action) {
+      state.currentFrom = action.payload;
+    },
+    setCurrentItemToReducer(state, action) {
+      state.currentTo = action.payload;
+    },
     setFillterItemsToReducer(state, action) {
       state.variants = state.variants.filter((item) =>
         item.to.toLowerCase().includes(action.payload.toLocaleLowerCase())
       );
-    },
-
-    setCurrentItemFromReducer(state, action) {
-      state.currentFrom = action.payload;
-    },
-
-    setCurrentItemToReducer(state, action) {
-      state.currentTo = action.payload;
     },
     setFillterItemsReducer(state, action) {
       state.filltered = state.items.filter((item) =>
@@ -81,24 +76,15 @@ const itemsSlice = createSlice({
         item.currency.toLowerCase().includes(action.payload.toLocaleLowerCase())
       );
     },
-    setEmoneyReducer(state, action) {
-      state.Emoney = action.payload;
-    },
-    setEmoneyReducer2(state, action) {
-      state.Emoney2 = action.payload;
-    },
-
     setResult(state, action) {
       state.result = action.payload;
     },
     setResult2(state, action) {
       state.result2 = action.payload;
     },
-
     setCalculated(state, action) {
       state.calculated = action.payload;
     },
-
     setLoginStatus(state, action) {
       state.loginStatus = action.payload;
     },
@@ -119,6 +105,9 @@ const itemsSlice = createSlice({
     },
     setEchangerMarks(state,action) {
       state.exchangerMarks = action.payload
+    },
+    setIsFilltersClear(state,action) {
+      state.isFilltersClear = action.payload
     }
   },
 });
@@ -137,8 +126,6 @@ export const {
   setFillterItemsToReducer,
   setCurrentItemFromReducer,
   setCurrentItemToReducer,
-  setEmoneyReducer,
-  setEmoneyReducer2,
   setResult,
   setResult2,
   setCalculated,
@@ -148,6 +135,8 @@ export const {
   setisTwice,
   setStatistic,
   setTooltip,
-  setEchangerMarks
+  setEchangerMarks,
+  setIsFilltersClear
 } = itemsSlice.actions;
+
 export default itemsSlice.reducer;

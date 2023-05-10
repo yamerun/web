@@ -121,10 +121,10 @@ export const MarkPop = ({ prop, setSuccess }) => {
           <div className={style.Marks__content__header__box}>
             <input
               className={style.Marks__content__header__input}
-              placeholder="from"
+              placeholder="Отдаете"
               onChange={(e) => getFromValue(e)}
             />
-            {value.length && searchResult.length != 0 && (
+            {value.length != 0 && searchResult.length != 0 && (
               <div className={style.Marks__content__header__variants}>
                 {searchResult.map((item) => (
                   <p onClick={(e) => setFromValue(e)}>{item.currency}</p>
@@ -135,10 +135,10 @@ export const MarkPop = ({ prop, setSuccess }) => {
           <div className={style.Marks__content__header__box}>
             <input
               className={style.Marks__content__header__input}
-              placeholder="to"
+              placeholder="Получаете"
               onChange={(e) => getToValue(e)}
             />
-            {value2.length && searchresult2.length != 0 && (
+            {value2.length != 0 && searchresult2.length != 0 && (
               <div className={style.Marks__content__header__variants}>
                 {searchresult2.map((item) => (
                   <p onClick={(e) => setToValue(e)}>{item.currency}</p>

@@ -16,10 +16,19 @@ export const Article = () => {
         console.log(error);
       });
   }, []);
+
+  function createMarkup(text) {
+    return { __html: `${text}` };
+  }
+
   return (
     <div className={style.Article}>
       <h1 className={style.Article__header}> {header}</h1>
-      <p className={style.Article__text}>{text}</p>
+      <div
+      style={{color:'white'}}
+      className={style.Article__text}
+      dangerouslySetInnerHTML={createMarkup(text)}
+      ></div>
     </div>
   );
 };

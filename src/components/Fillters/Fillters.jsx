@@ -5,6 +5,9 @@ import { ClearAll } from "../ClearAllFillters/ClearAllFillters";
 import { useSelector } from "react-redux";
 import { ExchangeRates } from "../ExchangeRates/ExchangeRates";
 import { TwiceExchange } from "../TwiceExchange/TwiceExchange";
+import { useDispatch } from "react-redux";
+import { setisTwice } from "../../store/itemsSlice/itemsSlice";
+import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 export const Fillters = () => {
   const NavProps = [
     "Курсы обмена",
@@ -12,19 +15,19 @@ export const Fillters = () => {
     "Оповещение",
     "Двойной обмен",
     "Статистика",
-    "Настроить",
   ];
   const calc = useRef(null);
   const twiceChange = useRef(null);
   const [open, setOpen] = useState(false);
-  const [all, setAll] = useState([]);
-  const { itemExchangeRates, currentFrom, currentTo, twiceExchanger } =
-    useSelector((state) => ({
-      itemExchangeRates: state.itemsSlice.itemExchangeRates,
-      currentFrom: state.itemsSlice.currentFrom,
-      currentTo: state.itemsSlice.currentTo,
-      twiceExchanger: state.itemsSlice.twiceExchanger,
-    }));
+  const dispatch = useDispatch();
+
+  const { currentFrom, currentTo, isFilltersClear } = useSelector((state) => ({
+    itemExchangeRates: state.itemsSlice.itemExchangeRates,
+    currentFrom: state.itemsSlice.currentFrom,
+    currentTo: state.itemsSlice.currentTo,
+    twiceExchanger: state.itemsSlice.twiceExchanger,
+    isFilltersClear: state.itemsSlice.isFilltersClear,
+  }));
 
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
@@ -39,15 +42,30 @@ export const Fillters = () => {
     if (e.target.textContent == "Калькулятор") {
       calc.current.classList.add(`${style.Fillters__open}`);
     } else calc.current.classList.remove(`${style.Fillters__open}`);
-
     if (e.target.textContent == "Двойной обмен") {
       twiceChange.current.classList.add(`${style.Fillters__open}`);
     } else twiceChange.current.classList.remove(`${style.Fillters__open}`);
-
     if (e.target.textContent == "Статистика") {
       setOpen(true);
     } else setOpen(false);
+    if (e.target.textContent == "Двойной обмен") {
+      dispatch(setisTwice(true));
+    } else {
+      setOpen(false);
+      dispatch(setisTwice(false));
+    }
   };
+
+  useEffect(() => {
+    if (isFilltersClear === true) {
+      const btnElements = document.querySelectorAll(
+        `.${style.Fillters__navigation__item}`
+      );
+      for (let i of btnElements) {
+        i.classList.remove(`${style.active}`);
+      }
+    }
+  }, [isFilltersClear]);
 
   return (
     <div className={style.Fillters}>

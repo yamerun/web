@@ -26,6 +26,7 @@ export const FillteredExchangeRates = () => {
         )
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
+          console.log(response.data.data);
         })
         .then(function (response) {})
         .catch(function (error) {});
@@ -36,7 +37,7 @@ export const FillteredExchangeRates = () => {
           )
           .then(function (response) {
             dispatch(setitemExchangeRatesReducer(response.data.data));
-            console.log(response.data.data)
+           
           })
           .then(function (response) {})
           .catch(function (error) {});
@@ -49,11 +50,11 @@ export const FillteredExchangeRates = () => {
   const openItemSite = (url) => {
     window.open(`${url}`);
   };
+
   return isTwice === true ? (
     <TwiceChanhgeExchanger />
   ) : (
     <div>
-
       {itemExchangeRates.map((item) => (
         <div className={style.Fillters__categories__body__content}>
           <div className={style.Fillters__categories__body__content__excahange}>
@@ -72,12 +73,7 @@ export const FillteredExchangeRates = () => {
               {item.exchanger.name}
             </p>
           </div>
-          {
-            item.marks.length !== 0 && (
-              <Marks prop={item.marks}/>
-            )
-          }
-
+          {item.marks.length !== 0 && <Marks prop={item.marks} />}
           <div className={style.Fillters__categories__body__content__from}>
             <p
               className={

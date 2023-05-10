@@ -60,6 +60,7 @@ export const Calculator = () => {
         .then(function (response) {
           dispatch(setitemExchangeRatesReducer(response.data.data));
           dispatch(setCalculated(true));
+          console.log(response.data.data)
           dispatch(setisTwice(false));
         })
         .then(function (response) {})

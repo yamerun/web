@@ -1,25 +1,21 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Emoney.module.scss";
-
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
-import { useCallback } from "react";
+import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 export const EmoneyFillter = () => {
   const dispatch = useDispatch();
-  const { Emoney, items, Emoney2,currentTo,currentFrom } = useSelector((state) => ({
-    Emoney: state.itemsSlice.Emoney,
+  const { items, isFilltersClear } = useSelector((state) => ({
     items: state.itemsSlice.items,
-    Emoney2: state.itemsSlice.Emoney2,
-    currentTo: state.itemsSlice.currentTo,
-    currentFrom: state.itemsSlice.currentFrom,
+    isFilltersClear: state.itemsSlice.isFilltersClear,
   }));
- const [to,setTo] = useState('')
- const [from,setFrom] = useState('')
+  const [to, setTo] = useState("");
+  const [from, setFrom] = useState("");
 
   const getEmoney = (title, e) => {
-    setFrom(title)
+    setFrom(title);
     const btnElements = document.querySelectorAll(
       `.${style.ItemsPayment__item}`
     );
@@ -29,11 +25,11 @@ export const EmoneyFillter = () => {
         i.classList.remove(`${style.active}`);
       }
     }
-  }
+    dispatch(setIsFilltersClear(false));
+  };
 
   const getEmoney2 = (title, e) => {
-    setTo(title)
-
+    setTo(title);
     const btnElements = document.querySelectorAll(
       `.${style.ItemsPayment__item2}`
     );
@@ -43,15 +39,30 @@ export const EmoneyFillter = () => {
         i.classList.remove(`${style.active}`);
       }
     }
-  }
+    dispatch(setIsFilltersClear(false));
+  };
 
-useEffect(()=>{
-  dispatch(setCurrentItemFromReducer(from))
-  dispatch(setCurrentItemToReducer(to))
-  console.log(to)
-  console.log(from)
-},[from,to])
-  
+  useEffect(() => {
+    dispatch(setCurrentItemFromReducer(from));
+    dispatch(setCurrentItemToReducer(to));
+  }, [from, to]);
+
+  useEffect(() => {
+    if (isFilltersClear === true) {
+    const btnElements = document.querySelectorAll(
+      `.${style.ItemsPayment__item}`
+    );
+    for (let i of btnElements) {
+      i.classList.remove(`${style.active}`);
+    }
+    const btnElements2 = document.querySelectorAll(
+      `.${style.ItemsPayment__item2}`
+    );
+    for (let i of btnElements2) {
+      i.classList.remove(`${style.active}`);
+    }
+  }
+  }, [isFilltersClear]);
 
   return (
     <div className={style.ItemsPayment}>

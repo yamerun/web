@@ -3,12 +3,16 @@ import { useSelector } from "react-redux";
 import style from "./TwiceExchange.module.scss";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setTwiceExchanger, setisTwice, setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
+import {
+  setTwiceExchanger,
+  setisTwice,
+} from "../../store/itemsSlice/itemsSlice";
 export const TwiceExchange = () => {
-  const dispatch = useDispatch()
-  const { currentFrom, currentTo } = useSelector((state) => ({
+  const dispatch = useDispatch();
+  const { currentFrom, currentTo,isTwice } = useSelector((state) => ({
     currentFrom: state.itemsSlice.currentFrom,
     currentTo: state.itemsSlice.currentTo,
+    isTwice:state.itemsSlice.isTwice
   }));
 
   const [val, setVal] = useState("");
@@ -39,8 +43,8 @@ export const TwiceExchange = () => {
           `https://change.pro/api/twice_exchange?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
         )
         .then(function (response) {
-          dispatch(setTwiceExchanger(response.data.data))
-          dispatch(setisTwice(true))
+          dispatch(setTwiceExchanger(response.data.data));
+          dispatch(setisTwice(true));
         })
         .then(function (response) {})
         .catch(function (error) {});
@@ -52,13 +56,27 @@ export const TwiceExchange = () => {
           `https://change.pro/api/twice_exchange?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
         )
         .then(function (response) {
-         dispatch(setTwiceExchanger(response.data.data))
-         dispatch(setisTwice(true))
+          dispatch(setTwiceExchanger(response.data.data));
+          dispatch(setisTwice(true));
         })
         .then(function (response) {})
         .catch(function (error) {});
     }
   };
+
+  useEffect(() => {
+    if (isTwice == true) {
+      axios
+      .get(
+        `https://change.pro/api/twice_exchange?quantity=1&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
+      )
+      .then(function (response) {
+        dispatch(setTwiceExchanger(response.data.data));
+      })
+      .then(function (response) {})
+      .catch(function (error) {});
+    }
+  }, [currentFrom, currentTo,isTwice]);
 
   return (
     <div className={style.TwiceChange}>
@@ -86,15 +104,13 @@ export const TwiceExchange = () => {
           </h1>
         </div>
       </div>
-
       <button className={style.TwiceChange__btn} onClick={getCalculatedValue}>
         Рассчитать
       </button>
       <div className={style.TwiceChange__btnBox}>
-      <button className={style.TwiceChange__btn}>Без комиссий ПС</button>
-      <button className={style.TwiceChange__btn}>Очистить фильтры</button>
+        <button className={style.TwiceChange__btn}>Без комиссий ПС</button>
+        <button className={style.TwiceChange__btn}>Очистить фильтры</button>
       </div>
-
     </div>
   );
 };

@@ -7,11 +7,14 @@
     padding: 10px;
     margin: 10px;
     border:2px solid white;
+  
     width:150px;
     &__btn {
         color:white;
         background:none;
         border: 0;
         font-family: "BasisGrotesquePro";
+        font-size: 15px;
+        font-weight: 600;
     }
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
@@ -6,7 +6,7 @@ import style from "./ExchangerCourses.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTable } from "react-table";
-
+import axios from "axios";
 export const ExchangerCourses = () => {
   const navigate = useNavigate();
   const { isExchangerRole } = useSelector((state) => ({
@@ -14,104 +14,30 @@ export const ExchangerCourses = () => {
   }));
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
+  const [data, setData] = useState([]);
   useEffect(() => {
     if (isExchangerRole === false) {
       navigate("/");
     }
-  }, [isExchangerRole])
-  const data = [
-    {
-      name: "Binance USD (BUSD) → QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-    {
-      name: "Binance USD (BUSD) →QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-    {
-      name: "Binance USD (BUSD) →QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-    {
-      name: "Binance USD (BUSD) →QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-    {
-      name: "Binance USD (BUSD) →QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-    {
-      name: "Binance USD (BUSD) →QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-    {
-      name: "Binance USD (BUSD) →QIWI RUB ",
-      course: "1 → 75.7800",
-      comission: "0,67%",
-      reserve: "1 825 655",
-      mincom: "-",
-      dopcom: "-",
-      minsum: "65.28",
-      maxsum: "2985.56",
-      type: "Авто",
-      place: "6",
-      update: "6 сек",
-    },
-  ];
+  }, [isExchangerRole]);
+
+  useEffect(() => {
+    axios
+      .get('http://146.59.87.222/api/exchangers/currencies/get?id=1')
+      .then(function (response) {
+        setData(response.data.data.map((item) => ({
+          name: `${item.from} → ${item.to} `,
+          course: `${Math.floor(item.in)} → ${item.out}`,
+          reserve: `${item.reserve}`,
+          minsum: item.minamount,
+          maxsum: item.maxamount,
+        })));
+        console.log(response.data.data)
+      })
+  }, []);
+
+
+  /* ()) ,*/
   const columns = useMemo(
     () => [
       {
@@ -122,21 +48,10 @@ export const ExchangerCourses = () => {
         Header: "Курс",
         accessor: "course",
       },
-      {
-        Header: "Комиссия",
-        accessor: "comission",
-      },
+  
       {
         Header: "Резерв",
         accessor: "reserve",
-      },
-      {
-        Header: "Мин.ком.",
-        accessor: "mincom",
-      },
-      {
-        Header: "Доп.ком.",
-        accessor: "dopcom",
       },
       {
         Header: "Мин.сум.",
@@ -147,18 +62,7 @@ export const ExchangerCourses = () => {
         Header: "Макс.сум.",
         accessor: "maxsum",
       },
-      {
-        Header: "Тип",
-        accessor: "type",
-      },
-      {
-        Header: "Место",
-        accessor: "place",
-      },
-      {
-        Header: "Обновления",
-        accessor: "update",
-      },
+
     ],
     []
   );
