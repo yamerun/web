@@ -37,7 +37,7 @@ export const ExchangerCourses = () => {
   }, []);
 
 
-  /* ()) ,*/
+
   const columns = useMemo(
     () => [
       {

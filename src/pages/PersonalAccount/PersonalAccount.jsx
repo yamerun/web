@@ -62,6 +62,8 @@ export const PersonalAccount = () => {
     navigate("/login");
   };
 
+  const specificDate = new Date(2021, 11, 31);
+  console.log(specificDate)
 
   return (
     <div className={style.PersonalAccount}>

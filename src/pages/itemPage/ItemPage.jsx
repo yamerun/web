@@ -42,7 +42,6 @@ export const ItemPage = () => {
       )
       .then(function (response) {
         setReview(response.data.data);
-        console.log(response.data.data);
       })
 
       .catch(function (error) {
@@ -77,9 +76,9 @@ export const ItemPage = () => {
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.itemPage__container} ref={ref}>
         <div className={style.itemPage__container__exchangeInfo}>
-          {item.data.logo.length != 0 && (
+          {Object.keys(item.data.logo).length !== 0 ? (
             <ImageComponent imageInfo={item.data.logo} />
-          )}
+          ) : (<h1 className={style.empty__header}>{item.data.name}</h1>)}
           <h1 className={style.itemPage__container__header}>
             {item.data.name}
           </h1>
