@@ -8,6 +8,7 @@ import { TwiceExchange } from "../TwiceExchange/TwiceExchange";
 import { useDispatch } from "react-redux";
 import { setisTwice } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
+import { Notflications } from "../Notflications/Notflications";
 export const Fillters = () => {
   const NavProps = [
     "Курсы обмена",
@@ -18,6 +19,7 @@ export const Fillters = () => {
   ];
   const calc = useRef(null);
   const twiceChange = useRef(null);
+  const notflications = useRef(null)
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -88,6 +90,9 @@ export const Fillters = () => {
       </nav>
       <div ref={calc} className={style.Fillters__inActive}>
         <Calculator />
+      </div>
+      <div ref={notflications}>
+         <Notflications/>
       </div>
       <div ref={twiceChange} className={style.Fillters__inActive}>
         <TwiceExchange />
