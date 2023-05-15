@@ -70,13 +70,19 @@ export const ForPartners = () => {
     });
   };
 
+  function createMarkup(content) {
+    return { __html: `${content}` };
+  }
+
   return (
     <div className={style.forPartners}>
+      <div className={style.forPartners__headerbox}>
       <Header />
-      <div  className={style.forPartners__container}>
       {isExchangerRole === true && <ExchangerAccountNavigation />}
+      </div>
+      <div  className={style.forPartners__container}>
       <div className={style.forPartners__textbox}>
-        <p className={style.forPartners__textbox__text}>{data}</p>
+        <div className={style.forPartners__textbox__text}  dangerouslySetInnerHTML={createMarkup(data)}></div>
       </div>
       {form.length != 0 &&
         form.map((item) => (

@@ -31,7 +31,6 @@ export const LineChartStatistics = () => {
         `https://change.pro/api/rate_statistics/best_rate?from=${currentFrom}&to=${currentTo}&perHour=${currentHour}`
       )
       .then(function (response) {
-        // setStatPoints(response.data.data);
         dispatch(setStatistic(response.data.data));
       });
   };
@@ -46,7 +45,10 @@ export const LineChartStatistics = () => {
         active={active}
         currentHour={currentHour}
       />
-      {stat.length == 0 ? <div></div> : <LineChart prop={stat} />}
+      <div className={style.statistics__plugBox}>
+      {stat.length == 0 ? <p className={style.statistics__plugBox__plug}>Получить статистику по выбранному курсу валют </p> : <LineChart prop={stat} />}
+        
+      </div>
     </div>
   );
 };

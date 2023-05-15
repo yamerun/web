@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "BasisGrotesquePro";
+  src: url("../assets/fonts/BasisGrotesquePro-Regular.woff2") format("woff2"),
+    url("../assets/fonts/BasisGrotesquePro-Regular.woff") format("woff");
+}
+
+.countdown-timer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  color: white;
+  flex-direction: column;
+  position: relative;
+}
+
+.countdown-timer__item {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-family: "BasisGrotesquePro";
+}
+
+.countdown-timer__popup {
+  position: absolute;
+  top: 5%;
+  margin: 10px;
+}
+.countdown-timer__popup__form {
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.countdown-timer__popup__form__input {
+  background-color: inherit;
+  border: 1px solid white;
+  height: 23px;
+  border-radius: 8px;
+  color: white;
+  font-family: "BasisGrotesquePro";
+}
+
+.countdown-timer--stroke {
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.countdown-timer__value {
+  color: #e32c26;
+  font-size: 30px;
+}
+
+.countdown-timer--logo {
+  margin-bottom: 40px;
+}
+
+.countdown-timer--gif {
+  margin-top: 50px;
+}
+
+.countdown-timer--tittle {
+  font-size: 40px;
+  line-height: 100px;
+  letter-spacing: 2.1px;
+  font-weight: 500;
+  font-family: "BasisGrotesquePro";
+}

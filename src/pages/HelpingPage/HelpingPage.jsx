@@ -19,12 +19,16 @@ export const HelpingPage = () => {
       });
   }, []);
 
+  function createMarkup(content) {
+    return { __html: `${content}` };
+  }
+
   return (
     <div className={style.HelpingPage}>
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.HelpingPage__textbox}>
-        <p className={style.HelpingPage__textbox__text}>{data}</p>
+        <p className={style.HelpingPage__textbox__text} dangerouslySetInnerHTML={createMarkup(data)}></p>
       </div>
       
       <Footer />

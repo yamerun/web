@@ -1,12 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
-import img from "../../assets/imgs/change.svg";
-import img2 from "../../assets/imgs/payments.svg";
-import img3 from "../../assets/imgs/coursesFix.svg";
-import img4 from "../../assets/imgs/arrows.svg";
-import img5 from "../../assets/imgs/verification.svg";
-import img6 from "../../assets/imgs/noOffice.svg";
-import img7 from "../../assets/imgs/walletService.svg";
-import img8 from "../../assets/imgs/isComission.svg";
+import React, { useEffect, useState, } from "react";
 import style from "./Marks.module.scss";
 import { useDispatch } from "react-redux";
 import { setTooltip } from "../../store/itemsSlice/itemsSlice";
@@ -19,9 +11,6 @@ export const Marks = ({ prop }) => {
 
   const ShowTip = ({ id }) => {
     setCurrentIndex(id);
-    if (currentIndex && resultArr != undefined) {
-      setCurrentItem(resultArr.filter((item) => item.id == currentIndex));
-    }
   };
 
   const hideTips = () => {
@@ -47,7 +36,11 @@ export const Marks = ({ prop }) => {
     }
   }, [prop]);
 
-  console.log(currentItem);
+  useEffect(() => {
+    if (currentIndex != undefined && resultArr != undefined) {
+      setCurrentItem(resultArr.filter((item) => item.id == currentIndex));
+    }
+  }, [currentIndex, resultArr]);
 
   return (
     <div className={style.container} onMouseEnter={Open} onMouseLeave={Close}>

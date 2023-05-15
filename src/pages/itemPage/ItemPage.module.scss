@@ -1,6 +1,24 @@
 .itemPage {
   position: relative;
   width: 100%;
+
+  &__exchangermarks {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     margin-bottom: 40px;
+     margin-top: 10px;
+    font-family: "BasisGrotesquePro";
+    width: 250px;
+    gap: 10px;
+    height: 80px;
+    flex-direction: column;
+    border-radius: 17px;
+    margin: 10px;
+    border: 2px solid #2d2d31;
+    padding: 10px;
+  }
   &__reviews {
     align-items: center;
     justify-content: center;
@@ -54,7 +72,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 70px;
   }
   &__container {
     margin-top: 30px;
@@ -70,9 +88,8 @@
     }
 
     &__Iframe {
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
+    height:99%;
+    width:99%;
     }
 
     &__link {

@@ -23,7 +23,7 @@ export const ExchangerCourses = () => {
 
   useEffect(() => {
     axios
-      .get('http://146.59.87.222/api/exchangers/currencies/get?id=1')
+      .get('https://change.pro/api/exchangers/currencies/get?id=1')
       .then(function (response) {
         setData(response.data.data.map((item) => ({
           name: `${item.from} → ${item.to} `,
@@ -66,6 +66,7 @@ export const ExchangerCourses = () => {
     ],
     []
   );
+  console.log(data)
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({

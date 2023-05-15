@@ -42,7 +42,6 @@ export const Articles = () => {
     return { __html: `${preview}` };
   }
 
-
   return (
     <div className={style.Articles}>
       <div className={style.Articles__header}>
@@ -66,13 +65,35 @@ export const Articles = () => {
               </p>
             </div>
             <div
-             style={{color:'white'}}
+              style={{ color: "white" }}
               className={style.Articles__container__article__text}
               dangerouslySetInnerHTML={createMarkup(item)}
             ></div>
           </article>
         ))}
 
+        {articles.map((item) => (
+          <article
+            className={style.Articles__container__article}
+            onClick={(e) => goToArticle(item)}
+          >
+            <div className={style.Articles__container__article__header}>
+              <h1
+                className={style.Articles__container__article__header__tittle}
+              >
+                {item.title}
+              </h1>
+              <p className={style.Articles__container__article__header__date}>
+                {item.created_at.date} {item.created_at.time}
+              </p>
+            </div>
+            <div
+              style={{ color: "white" }}
+              className={style.Articles__container__article__text}
+              dangerouslySetInnerHTML={createMarkup(item)}
+            ></div>
+          </article>
+        ))}
       </div>
       <Footer />
     </div>

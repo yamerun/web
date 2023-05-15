@@ -111,7 +111,7 @@ export const PersonalAccount = () => {
                   style.PersonalAccount__container__leftBar__navigation__list__item
                 }
                 onClick={(e) => handleSelect(e)}
-                to='/ExchangerReviews'
+                to='/accountReviews'
               >
                 Мои отзывы
               </Link>

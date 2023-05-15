@@ -59,7 +59,7 @@ export const FillteredExchangeRates = () => {
         <div className={style.Fillters__categories__body__content}>
           <div className={style.Fillters__categories__body__content__excahange}>
             <Link
-              to={`/${item.exchanger.id}`}
+              to={`/ExchangerPage/${item.exchanger.id}`}
               className={
                 style.Fillters__categories__body__content__excahange__btn
               }

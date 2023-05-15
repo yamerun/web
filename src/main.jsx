@@ -26,7 +26,9 @@ import { HelpingPage } from "./pages/HelpingPage/HelpingPage";
 import { ArticleLoader } from "./pages/Articles/Article";
 import { infoloader } from "./pages/InfoPage/InfoPage";
 import { reviewloader } from "./pages/ExchangerReviews/ExchangerReviews";
-
+import { AccountReviews } from "./pages/AccountReviews/AccountReviews";
+import { AccountReviewloader } from "./pages/AccountReviews/AccountReviews";
+import { TimerPage } from "./pages/TimerPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -98,6 +100,16 @@ const router = createBrowserRouter([
     path: "/ExchangerNotifications",
     element: <ExchangerNotifications />,
   },
+  {
+    path: "/accountReviews",
+    element: <AccountReviews/>,
+    loader:AccountReviewloader
+  },
+  {
+    path: "/timerPage",
+    element: <TimerPage/>,
+    loader:AccountReviewloader
+  }
 
   
 ]);

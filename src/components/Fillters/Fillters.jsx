@@ -19,7 +19,7 @@ export const Fillters = () => {
   ];
   const calc = useRef(null);
   const twiceChange = useRef(null);
-  const notflications = useRef(null)
+  const notflications = useRef(null);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -47,13 +47,15 @@ export const Fillters = () => {
     if (e.target.textContent == "Двойной обмен") {
       twiceChange.current.classList.add(`${style.Fillters__open}`);
     } else twiceChange.current.classList.remove(`${style.Fillters__open}`);
+    if (e.target.textContent == "Оповещение") {
+      notflications.current.classList.add(`${style.Fillters__open}`);
+    } else notflications.current.classList.remove(`${style.Fillters__open}`);
     if (e.target.textContent == "Статистика") {
       setOpen(true);
     } else setOpen(false);
     if (e.target.textContent == "Двойной обмен") {
       dispatch(setisTwice(true));
     } else {
-      setOpen(false);
       dispatch(setisTwice(false));
     }
   };
@@ -91,8 +93,8 @@ export const Fillters = () => {
       <div ref={calc} className={style.Fillters__inActive}>
         <Calculator />
       </div>
-      <div ref={notflications}>
-         <Notflications/>
+      <div ref={notflications} className={style.Fillters__inActive}>
+        <Notflications />
       </div>
       <div ref={twiceChange} className={style.Fillters__inActive}>
         <TwiceExchange />

@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { ImageComponent } from "../../components/ImageComponent/Image";
 import { useDispatch } from "react-redux";
+import { Marks } from "../../components/Marks/Marks";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 
 export const exchangeLoader = async ({ params }) => {
@@ -66,34 +67,33 @@ export const ItemPage = () => {
     } else dispatch(setUserRole(false));
   }, [jwt, role]);
 
-
+  console.log(item);
   return (
     <div className={style.itemPage}>
-      {isOpen && (
-        <AddComment HideReviews={HideReviews} id={item.data.id}  />
-      )}
+      {isOpen && <AddComment HideReviews={HideReviews} id={item.data.id} />}
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.itemPage__container} ref={ref}>
         <div className={style.itemPage__container__exchangeInfo}>
           {Object.keys(item.data.logo).length !== 0 ? (
             <ImageComponent imageInfo={item.data.logo} />
-          ) : (<h1 className={style.empty__header}>{item.data.name}</h1>)}
+          ) : (
+            <h1 className={style.empty__header}>{item.data.name}</h1>
+          )}
           <h1 className={style.itemPage__container__header}>
             {item.data.name}
           </h1>
         </div>
         <div className={style.itemPage__container__items}>
           <div className={style.itemPage__container__items__item}>
-            {
-              item.data.iframe.src === '' ? (<h1 className={style.empty}>{item.data.name}</h1> ): ( <iframe
-                src={item.data.iframe.src}
-                className={
-                  style.itemPage__container__Iframe 
-                }
-              />)
-            }
-           
+            {/*item.data.iframe.src === "" ? (
+              <h1 className={style.empty}>{item.data.name}</h1>
+            ) : (
+            )*/}
+                          <iframe
+                src={'https://alfabit.org'}
+                className={style.itemPage__container__Iframe}
+              />
           </div>
           <div className={style.itemPage__container__items__item2}>
             <div className={style.itemPage__container__items__item2__container}>
@@ -270,7 +270,18 @@ export const ItemPage = () => {
             </div>
           </div>
         </div>
+        <div className={style.itemPage__exchangermarks}>
+        <h1>Метки обменника {item.data.name}:</h1>
+        <div>
+        {Object.keys(item.data.mark_types).length != 0 ? (
+          <Marks prop={item.data.mark_types} />
+        ) : (
+          <p>меток нет</p>
+        )}
+        </div>
       </div>
+      </div>
+
       <div className={style.itemPage__comments}>
         <h1 className={style.itemPage__reviews__header}>
           Отзывы {item.data.name}

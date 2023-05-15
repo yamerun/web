@@ -71,8 +71,18 @@ export const LineChart = ({}) => {
      
     },
   ];
-
-
+  
+  const labelsplug = [1,2,3,4,5,6,7,8,]
+  const datasetsplug = [
+    {
+      label: [1],
+      data: stat.values.map((item) => item.value),
+      fill: true,
+      borderColor: "#77D22D",
+     
+    },
+  ];
+   
 
   return (
     <div>
@@ -84,7 +94,8 @@ export const LineChart = ({}) => {
           width={"600px"}
           height={"400px"}
         />
-      )}
+      ) }
+     
     </div>
   );
 };
