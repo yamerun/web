@@ -33,7 +33,7 @@ export const AllExchangeRates = () => {
     window.open(`${url}`);
   };
 
-  return all.map((item) => (
+  return (all.map((item) => (
     <div className={style.Fillters__categories__body__content}>
       <div className={style.Fillters__categories__body__content__excahange}>
         <Link
@@ -96,5 +96,5 @@ export const AllExchangeRates = () => {
         </p>
       </div>
     </div>
-  ));
+  )))
 };

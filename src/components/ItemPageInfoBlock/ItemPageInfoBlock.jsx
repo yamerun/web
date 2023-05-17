@@ -1,12 +1,6 @@
 import React,{useState} from "react";
 import style from './ItemPage.module.scss'
-export const ItemPageInfoBlock = ({item}) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const ShowReviews = () => {
-        setIsOpen(true);
-      };
-
+export const ItemPageInfoBlock = ({item,ShowReviews}) => {
   return (
     <div className={style.itemPage__container__items__item2}>
     <div className={style.itemPage__container__items__item2__container}>

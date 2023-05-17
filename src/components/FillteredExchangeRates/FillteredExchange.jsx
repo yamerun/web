@@ -4,10 +4,15 @@ import style from "./FillteredExchange.module.scss";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
-import { TwiceChanhgeExchanger } from "../TwiceChangeExchanger/TwiceChange";
 import axios from "axios";
 import { Marks } from "../Marks/Marks";
-export const FillteredExchangeRates = () => {
+
+
+const TwiceChanhgeExchanger = React.lazy(() =>
+  import("../TwiceChangeExchanger/TwiceChange")
+);
+
+export default function FillteredExchangeRates() {
   const dispatch = useDispatch();
   const { itemExchangeRates, calculated, currentFrom, currentTo, isTwice } =
     useSelector((state) => ({
@@ -37,7 +42,6 @@ export const FillteredExchangeRates = () => {
           )
           .then(function (response) {
             dispatch(setitemExchangeRatesReducer(response.data.data));
-           
           })
           .then(function (response) {})
           .catch(function (error) {});
@@ -52,7 +56,21 @@ export const FillteredExchangeRates = () => {
   };
 
   return isTwice === true ? (
-    <TwiceChanhgeExchanger />
+    <React.Suspense
+      fallback={
+        <h1
+          style={{
+            color: "white",
+            textAlign: "center",
+            fontSize: "15px",
+          }}
+        >
+          ...Loading
+        </h1>
+      }
+    >
+      <TwiceChanhgeExchanger />
+    </React.Suspense>
   ) : (
     <div>
       {itemExchangeRates.map((item) => (
@@ -145,4 +163,4 @@ export const FillteredExchangeRates = () => {
       ))}
     </div>
   );
-};
+}

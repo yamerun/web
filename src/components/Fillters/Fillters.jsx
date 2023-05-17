@@ -1,14 +1,17 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, lazy, Suspense } from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
 import { ClearAll } from "../ClearAllFillters/ClearAllFillters";
 import { useSelector } from "react-redux";
-import { ExchangeRates } from "../ExchangeRates/ExchangeRates";
-import { TwiceExchange } from "../TwiceExchange/TwiceExchange";
+import { TwiceExchange } from "../TwiceExchangePanel/TwiceExchangePanel";
 import { useDispatch } from "react-redux";
 import { setisTwice } from "../../store/itemsSlice/itemsSlice";
-import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import { Notflications } from "../Notflications/Notflications";
+
+const ExchangeRates = React.lazy(() =>
+  import("../../components/ExchangeRates/ExchangeRates")
+);
+
 export const Fillters = () => {
   const NavProps = [
     "Курсы обмена",
@@ -35,21 +38,21 @@ export const Fillters = () => {
     const btnElements = document.querySelectorAll(
       `.${style.Fillters__navigation__item}`
     );
-    e.target.classList.add(`${style.active}`);
+    e.target.classList.add(style.active);
     for (let i of btnElements) {
       if (i != e.target) {
-        i.classList.remove(`${style.active}`);
+        i.classList.remove(style.active);
       }
     }
     if (e.target.textContent == "Калькулятор") {
-      calc.current.classList.add(`${style.Fillters__open}`);
-    } else calc.current.classList.remove(`${style.Fillters__open}`);
+      calc.current.classList.add(style.Fillters__open);
+    } else calc.current.classList.remove(style.Fillters__open);
     if (e.target.textContent == "Двойной обмен") {
-      twiceChange.current.classList.add(`${style.Fillters__open}`);
-    } else twiceChange.current.classList.remove(`${style.Fillters__open}`);
+      twiceChange.current.classList.add(style.Fillters__open);
+    } else twiceChange.current.classList.remove(style.Fillters__open);
     if (e.target.textContent == "Оповещение") {
-      notflications.current.classList.add(`${style.Fillters__open}`);
-    } else notflications.current.classList.remove(`${style.Fillters__open}`);
+      notflications.current.classList.add(style.Fillters__open);
+    } else notflications.current.classList.remove(style.Fillters__open);
     if (e.target.textContent == "Статистика") {
       setOpen(true);
     } else setOpen(false);
@@ -66,7 +69,7 @@ export const Fillters = () => {
         `.${style.Fillters__navigation__item}`
       );
       for (let i of btnElements) {
-        i.classList.remove(`${style.active}`);
+        i.classList.remove(style.active);
       }
     }
   }, [isFilltersClear]);
@@ -99,7 +102,16 @@ export const Fillters = () => {
       <div ref={twiceChange} className={style.Fillters__inActive}>
         <TwiceExchange />
       </div>
-      <ExchangeRates open={open} />
+      <React.Suspense
+        fallback={
+          <h1 style={{ color: "white", textAlign: "center", fontSize: "15px" }}>
+            ...Loading
+          </h1>
+        }
+      >
+        {" "}
+        <ExchangeRates open={open} />
+      </React.Suspense>
     </div>
   );
 };

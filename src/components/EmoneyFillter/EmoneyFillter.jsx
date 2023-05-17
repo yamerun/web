@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
-export const EmoneyFillter = () => {
+export default function EmoneyFillter ()  {
   const dispatch = useDispatch();
   const { items, isFilltersClear } = useSelector((state) => ({
     items: state.itemsSlice.items,

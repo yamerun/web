@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "./AddComment.module.scss";
 import axios from "axios";
-import StarRatings from "react-star-ratings";
-export const AddComment = ({ HideReviews, id, review,  }) => {
+
+export default function AddComment  ({ HideReviews, id, review,  }) {
   const Register = () => {
     axios
       .post(

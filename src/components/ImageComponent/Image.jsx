@@ -1,6 +1,6 @@
 import './style.css'
 
-export const ImageComponent = ({ imageInfo }) => {
+export default function Image ({ imageInfo }) {
     const { basename, extension, height, mimeType, path, width } = imageInfo;
     console.log(imageInfo)
   

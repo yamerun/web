@@ -6,15 +6,21 @@ import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
 import { Footer } from "../../components/Footer/Footer";
-import { AddComment } from "../../components/AddComment/AddComment";
+
 import { useSelector } from "react-redux";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
-import { ImageComponent } from "../../components/ImageComponent/Image";
 import { useDispatch } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
-import { ItemPageInfoBlock } from "../../components/ItemPageInfoBlock/ItemPageInfoBlock";
 import { ItemPageExchangerDescription } from "../../components/ItemPageExchangerDecsription/ExchangerDescription";
+import { ItemPageInfoBlock } from "../../components/ItemPageInfoBlock/ItemPageInfoBlock";
+
+const ImageComponent = React.lazy(() =>
+  import("../../components/ImageComponent/Image")
+);
+const AddComment = React.lazy(() =>
+  import("../../components/AddComment/AddComment")
+);
 
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
@@ -71,36 +77,74 @@ export const ItemPage = () => {
   useEffect(() => {
     if (hideBlocks === true) {
       IframeBlock.current.classList.add(`${style.open}`);
-      iframebtn.current.classList.add(`${style.btnActive}`)
+      iframebtn.current.classList.add(`${style.btnActive}`);
     }
     if (hideBlocks === false) {
       IframeBlock.current.classList.remove(`${style.open}`);
-      iframebtn.current.classList.remove(`${style.btnActive}`)
+      iframebtn.current.classList.remove(`${style.btnActive}`);
     }
   }, [hideBlocks]);
 
   const IframeBlock = useRef(null);
-  const iframebtn = useRef(null)
+  const iframebtn = useRef(null);
+
+ 
+  const ShowReviews = () => {
+      setIsOpen(true);
+    };
 
   return (
     <div className={style.itemPage}>
-      {isOpen && <AddComment HideReviews={HideReviews} id={item.data.id} />}
+      {isOpen && (
+        <React.Suspense
+          fallback={
+            <h1
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: "15px",
+              }}
+            >
+              ...Loading
+            </h1>
+          }
+        >
+          <AddComment HideReviews={HideReviews} id={item.data.id} />
+        </React.Suspense>
+      )}
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.itemPage__container} ref={ref}>
         <div className={style.itemPage__container__exchangeInfo}>
           {Object.keys(item.data.logo).length !== 0 ? (
-            <ImageComponent imageInfo={item.data.logo} />
+            <React.Suspense
+              fallback={
+                <h1
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontSize: "15px",
+                  }}
+                >
+                  ...Loading
+                </h1>
+              }
+            >
+              {" "}
+              <ImageComponent imageInfo={item.data.logo} />
+            </React.Suspense>
           ) : (
-            <h1 className={style.empty__header} >
-              {item.data.name}
-            </h1>
+            <h1 className={style.empty__header}>{item.data.name}</h1>
           )}
           <h1 className={style.itemPage__container__header}>
             {item.data.name}
           </h1>
         </div>
-         <button  className={style.itemPage__container__items__item__iframebtn} onClick={OpenIframe} ref={iframebtn}/>
+        <button
+          className={style.itemPage__container__items__item__iframebtn}
+          onClick={OpenIframe}
+          ref={iframebtn}
+        />
         <div className={style.itemPage__container__items}>
           <div
             className={style.itemPage__container__items__item}
@@ -111,7 +155,7 @@ export const ItemPage = () => {
               className={style.itemPage__container__Iframe}
             />
           </div>
-          {hideBlocks !== true && <ItemPageInfoBlock item={item} />}
+          {hideBlocks !== true && <ItemPageInfoBlock item={item} ShowReviews={ShowReviews} />}
           {hideBlocks !== true && <ItemPageExchangerDescription item={item} />}
         </div>
         <div className={style.itemPage__exchangermarks}>

@@ -1,13 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import style from "./TwiceChange.module.scss";
-import { Marks } from "../Marks/Marks";
 
-export const TwiceChanhgeExchanger = () => {
+export default function TwiceChanhgeExchanger() {
   const { twiceExchanger } = useSelector((state) => ({
     twiceExchanger: state.itemsSlice.twiceExchanger,
   }));
-  //     {item.marks.length != 0 && <Marks prop={item.marks} />}
   return (
     <div className={style.TwiceExchange}>
       {twiceExchanger.length === 0 ? (
@@ -50,4 +48,4 @@ export const TwiceChanhgeExchanger = () => {
       )}
     </div>
   );
-};
+}

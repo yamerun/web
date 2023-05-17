@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState, useMemo } from "react";
 import style from "./SearchMenu.module.scss";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import {
   setFillterItems2Reducer,
   setFillterItemsReducer,
@@ -9,26 +8,25 @@ import {
   setItemsReducer,
 } from "../../store/itemsSlice/itemsSlice";
 import { setitemIdReducer } from "../../store/itemsSlice/itemsSlice";
-import { setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
 import { setItemReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
-import { EmoneyFillter } from "../EmoneyFillter/EmoneyFillter";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
-
+const EmoneyFillter = React.lazy(() =>
+  import("../EmoneyFillter/EmoneyFillter")
+);
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items, Emoney, Emoney2, isFilltersClear } =
-    useSelector((state) => ({
-      items: state.itemsSlice.items,
-      Emoney: state.itemsSlice.Emoney,
-      Emoney2: state.itemsSlice.Emoney2,
-      calculated: state.itemsSlice.calculated,
-      isFilltersClear: state.itemsSlice.isFilltersClear
-    }));
+  const { items, Emoney, Emoney2, isFilltersClear } = useSelector((state) => ({
+    items: state.itemsSlice.items,
+    Emoney: state.itemsSlice.Emoney,
+    Emoney2: state.itemsSlice.Emoney2,
+    calculated: state.itemsSlice.calculated,
+    isFilltersClear: state.itemsSlice.isFilltersClear,
+  }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [inputValue2, setInput2Value] = useState("");
@@ -40,7 +38,7 @@ export const SearchMenu = () => {
         dispatch(setItemsReducer(response.data.data));
         dispatch(setItems2Reducer(response.data.data));
       })
-      .catch(function (error) { });
+      .catch(function (error) {});
   }, []);
 
   const ShowMore = () => {
@@ -60,7 +58,7 @@ export const SearchMenu = () => {
         i.classList.remove(`${style.active}`);
       }
     }
-    dispatch(setIsFilltersClear(false))
+    dispatch(setIsFilltersClear(false));
   };
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
@@ -73,12 +71,14 @@ export const SearchMenu = () => {
         i.classList.remove(`${style.active}`);
       }
     }
-    dispatch(setIsFilltersClear(false))
+    dispatch(setIsFilltersClear(false));
   };
 
   useEffect(() => {
     if (isFilltersClear === true) {
-      const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
+      const btnElements = document.querySelectorAll(
+        `.${style.SearchMenu__item}`
+      );
       for (let i of btnElements) {
         i.classList.remove(`${style.active}`);
       }
@@ -86,11 +86,10 @@ export const SearchMenu = () => {
         `.${style.SearchMenu__item2}`
       );
       for (let i of btnElements2) {
-          i.classList.remove(`${style.active}`);
+        i.classList.remove(`${style.active}`);
       }
     }
-  }, [isFilltersClear])
-
+  }, [isFilltersClear]);
 
   const setInputValueForSearch = (e) => {
     const translitMap = {
@@ -268,7 +267,18 @@ export const SearchMenu = () => {
         onClick={() => ShowMoreEmoney()}
       />
       <div className={style.SearchMenu__Emoney} ref={ref2}>
-        <EmoneyFillter />
+        <React.Suspense
+          fallback={
+            <h1
+              style={{ color: "white", textAlign: "center", fontSize: "15px" }}
+            >
+              ...loading
+            </h1>
+          }
+        >
+          {" "}
+          <EmoneyFillter />
+        </React.Suspense>
       </div>
       <div className={style.SearchMenu__ShowMore}>
         <button
