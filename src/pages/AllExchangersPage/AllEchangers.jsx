@@ -240,7 +240,7 @@ export const AllEchangers = () => {
                     className={
                       style.Exchangers__content__body__seacrh__input__field
                     }
-                    placeholder="from"
+                    placeholder="Отдаете"
                   />
                   <button
                     className={
@@ -248,7 +248,7 @@ export const AllEchangers = () => {
                     }
                   />
                 </div>
-                {inputVal.length  != 0  && searchResult.length != 0 && (
+                {inputVal.length != 0 && searchResult.length != 0 && (
                   <div
                     ref={ref}
                     className={
@@ -277,7 +277,7 @@ export const AllEchangers = () => {
                     className={
                       style.Exchangers__content__body__seacrh__input__field
                     }
-                    placeholder="to"
+                    placeholder="Получаете"
                   />
                   <button
                     className={
@@ -393,5 +393,3 @@ export const AllEchangers = () => {
     </div>
   );
 };
-
-

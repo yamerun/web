@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
 import { Footer } from "../../components/Footer/Footer";
 import { AddComment } from "../../components/AddComment/AddComment";
-import StarRatings from "react-star-ratings";
 import { useSelector } from "react-redux";
 import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { ImageComponent } from "../../components/ImageComponent/Image";
 import { useDispatch } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
+import { ItemPageInfoBlock } from "../../components/ItemPageInfoBlock/ItemPageInfoBlock";
+import { ItemPageExchangerDescription } from "../../components/ItemPageExchangerDecsription/ExchangerDescription";
 
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
@@ -29,9 +30,9 @@ export const ItemPage = () => {
   const { item } = useLoaderData();
   const navigate = useNavigate();
   const [review, setReview] = useState();
-  const [isOpen, setIsOpen] = useState(false);
   const [imgData, setImgData] = useState({});
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [hideBlocks, setHideBlocks] = useState(false);
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
   }));
@@ -51,10 +52,6 @@ export const ItemPage = () => {
   }, []);
 
   const ref = useRef(null);
-
-  const ShowReviews = () => {
-    setIsOpen(true);
-  };
   const HideReviews = () => {
     setIsOpen(false);
   };
@@ -67,7 +64,24 @@ export const ItemPage = () => {
     } else dispatch(setUserRole(false));
   }, [jwt, role]);
 
-  console.log(item);
+  const OpenIframe = () => {
+    setHideBlocks(!hideBlocks);
+  };
+
+  useEffect(() => {
+    if (hideBlocks === true) {
+      IframeBlock.current.classList.add(`${style.open}`);
+      iframebtn.current.classList.add(`${style.btnActive}`)
+    }
+    if (hideBlocks === false) {
+      IframeBlock.current.classList.remove(`${style.open}`);
+      iframebtn.current.classList.remove(`${style.btnActive}`)
+    }
+  }, [hideBlocks]);
+
+  const IframeBlock = useRef(null);
+  const iframebtn = useRef(null)
+
   return (
     <div className={style.itemPage}>
       {isOpen && <AddComment HideReviews={HideReviews} id={item.data.id} />}
@@ -78,210 +92,39 @@ export const ItemPage = () => {
           {Object.keys(item.data.logo).length !== 0 ? (
             <ImageComponent imageInfo={item.data.logo} />
           ) : (
-            <h1 className={style.empty__header}>{item.data.name}</h1>
+            <h1 className={style.empty__header} >
+              {item.data.name}
+            </h1>
           )}
           <h1 className={style.itemPage__container__header}>
             {item.data.name}
           </h1>
         </div>
+         <button  className={style.itemPage__container__items__item__iframebtn} onClick={OpenIframe} ref={iframebtn}/>
         <div className={style.itemPage__container__items}>
-          <div className={style.itemPage__container__items__item}>
-            {/*item.data.iframe.src === "" ? (
-              <h1 className={style.empty}>{item.data.name}</h1>
-            ) : (
-            )*/}
-                          <iframe
-                src={'https://alfabit.org'}
-                className={style.itemPage__container__Iframe}
-              />
+          <div
+            className={style.itemPage__container__items__item}
+            ref={IframeBlock}
+          >
+            <iframe
+              src={"https://alfabit.org"}
+              className={style.itemPage__container__Iframe}
+            />
           </div>
-          <div className={style.itemPage__container__items__item2}>
-            <div className={style.itemPage__container__items__item2__container}>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Статус:
-                </h1>
-                <h1
-                  style={{ borderColor: `${item.data.status.color}` }}
-                  className={
-                    style.itemPage__container__items__item2__container__status__header2
-                  }
-                >
-                  {item.data.status.title}
-                </h1>
-              </div>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Сумма резервов:
-                </h1>
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__headerInfo
-                  }
-                >
-                  {item.data.sum_reserves} &#8381;
-                </h1>
-              </div>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Доступность:
-                </h1>
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__headerInfo
-                  }
-                >
-                  {item.data.access}
-                </h1>
-              </div>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Курсов обменов:
-                </h1>
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__headerInfo
-                  }
-                >
-                  {item.data.count_reviews}
-                </h1>
-              </div>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Возраст:
-                </h1>
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__headerInfo
-                  }
-                >
-                  {item.data.age}
-                </h1>
-              </div>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Страна:
-                </h1>
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__headerInfo
-                  }
-                >
-                  {item.data.country}
-                </h1>
-              </div>
-              <div
-                className={
-                  style.itemPage__container__items__item2__container__status
-                }
-              >
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__header
-                  }
-                >
-                  Отзывы:
-                </h1>
-                <h1
-                  className={
-                    style.itemPage__container__items__item2__container__status__headerInfo
-                  }
-                >
-                  0/69
-                </h1>
-              </div>
-              <button
-                className={style.itemPage__container__Addreview}
-                onClick={() => ShowReviews()}
-              >
-                Оставить отзыв об обменнике →
-              </button>
-            </div>
-          </div>
-          <div className={style.itemPage__container__items__item3}>
-            <h1 className={style.itemPage__container__items__item3__review}>
-              Описание обменника от администратора Change.Pro{" "}
-            </h1>
-            <p className={style.itemPage__container__items__item3__text}>
-              {item.data.description}
-            </p>
-            <div
-              className={style.itemPage__container__items__item3__rating__box}
-            >
-              <StarRatings
-                rating={item.data.rating}
-                starRatedColor="yellow"
-                numberOfStars={10}
-                starDimension={15}
-                starSpacing={3}
-                name="rating"
-              />
-              <p className={style.itemPage__container__items__item3__rating}>
-                Рейтинг на Change.Pro {item.data.rating} /10
-              </p>
-            </div>
-          </div>
+          {hideBlocks !== true && <ItemPageInfoBlock item={item} />}
+          {hideBlocks !== true && <ItemPageExchangerDescription item={item} />}
         </div>
         <div className={style.itemPage__exchangermarks}>
-        <h1>Метки обменника {item.data.name}:</h1>
-        <div>
-        {Object.keys(item.data.mark_types).length != 0 ? (
-          <Marks prop={item.data.mark_types} />
-        ) : (
-          <p>меток нет</p>
-        )}
+          <h1>Метки обменника {item.data.name}:</h1>
+          <div>
+            {Object.keys(item.data.mark_types).length != 0 ? (
+              <Marks prop={item.data.mark_types} />
+            ) : (
+              <p>меток нет</p>
+            )}
+          </div>
         </div>
       </div>
-      </div>
-
       <div className={style.itemPage__comments}>
         <h1 className={style.itemPage__reviews__header}>
           Отзывы {item.data.name}
@@ -298,3 +141,8 @@ export const ItemPage = () => {
     </div>
   );
 };
+
+/*            {/*item.data.iframe.src === "" ? (
+              <h1 className={style.empty}>{item.data.name}</h1>
+            ) : (
+            )*/

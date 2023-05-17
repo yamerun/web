@@ -105,11 +105,11 @@ const router = createBrowserRouter([
     element: <AccountReviews/>,
     loader:AccountReviewloader
   },
-  {
-    path: "/timerPage",
-    element: <TimerPage/>,
-    loader:AccountReviewloader
-  }
+ // {
+   // path: "/timerPage",
+ //   element: <TimerPage/>,
+  //  loader:AccountReviewloader
+//  }
 
   
 ]);
