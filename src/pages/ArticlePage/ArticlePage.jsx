@@ -17,8 +17,6 @@ export const Articlepage = () => {
 
   return (
     <div className={style.Article}>
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.Article__container}>
         <div className={style.Article__container__box}>
         <h1 className={style.Article__container__header__views}>
@@ -41,7 +39,6 @@ export const Articlepage = () => {
         </div>
       </div>
       </div>
-      <Footer />
     </div>
   );
 };

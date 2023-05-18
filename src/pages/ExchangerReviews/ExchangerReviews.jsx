@@ -40,7 +40,7 @@ export const reviewloader = async () => {
     const item2 = await res2.json();
 
     return { item, id, item2 };
-  } else useNavigate("/login");
+  } else window.location.href = '/';
 };
 
 export const ExchangerReviews = () => {
@@ -66,8 +66,7 @@ export const ExchangerReviews = () => {
   return (
     <div className={style.ExchangerReviews}>
       <div className={style.ExchangerReviews__PageBox}>
-        <Header />
-        <ExchangerAccountNavigation />
+
         <div className={style.ExchangerReviews__container}>
           <div className={style.ExchangerReviews__container__header}>
             <h1 className={style.ExchangerReviews__container__header__text}>
@@ -109,7 +108,6 @@ export const ExchangerReviews = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

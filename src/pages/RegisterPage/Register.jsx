@@ -81,14 +81,12 @@ export const RegisterPage = () => {
             <Link to="/login" className={style.RegisterPage__goToLogin__link}>
               Я уже зарегистрирован
             </Link>
-            <p className={style.RegisterPage__goToLogin__text}>
-              Войдите, если у вас есть аккаунт
-            </p>
+            <Link to="/exchangerregister" className={style.RegisterPage__goToLogin__link}>
+             Создать аккаунт обменника
+            </Link>
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

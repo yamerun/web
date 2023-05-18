@@ -28,7 +28,7 @@ export const infoloader = async () => {
     const item = await res.json();
 
     return { item, id };
-  } else useNavigate("/login");
+  } else window.location.href = '/';
 };
 
 export const InfoPage = () => {
@@ -76,8 +76,7 @@ export const InfoPage = () => {
         },
         config
       )
-      .then(function (response) {
-      });
+      .then(function (response) {});
   }, [isListing]);
 
   const openChangeUrlValue = (e) => {
@@ -106,8 +105,6 @@ export const InfoPage = () => {
 
   return (
     <div className={style.infoPage}>
-      <Header />
-      <ExchangerAccountNavigation />
       <div className={style.infoPage__mainContainer}>
         <div className={style.infoPage__mainContainer__infoBox}>
           <h1 className={style.infoPage__mainContainer__infoBox__header}>
@@ -251,8 +248,14 @@ export const InfoPage = () => {
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  за {item.data.rates_update.time} /{" "}
-                  {item.data.rates_update.date}
+                  {" "}
+                  {item.data.rates_update !== null && (
+                    <>
+                      {" "}
+                      за {item.data.rates_update.time} /{" "}
+                      {item.data.rates_update.date}
+                    </>
+                  )}
                 </h1>
               </div>
               <div
@@ -360,7 +363,6 @@ export const InfoPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -31,21 +31,25 @@ export const InputRegistration = (e) => {
       <input
         onChange={(e) => changeNameValue(e)}
         className={style.inputsReg__fields}
+        required
       />
       <h1 className={style.inputsReg__header}>E-mail</h1>
       <input
         onChange={(e) => changeEmailValue(e)}
         className={style.inputsReg__fields}
+        required
       />
       <h1 className={style.inputsReg__header}>Пароль</h1>
       <input
         onChange={(e) => changePassValue(e)}
         className={style.inputsReg__fields}
+        required
       />
       <h1 className={style.inputsReg__header}>Подтвердите Пароль</h1>
       <input
         onChange={(e) => ChangeVerifyPassstValue(e)}
         className={style.inputsReg__fields}
+        required
       />
     </div>
   );

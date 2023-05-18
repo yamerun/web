@@ -92,8 +92,6 @@ export const ExchangerMarks = () => {
 
   return (
     <div className={style.ExchangerMarks}>
-      <Header />
-      <ExchangerAccountNavigation />
       {active && <MarkPop prop={opn} setSuccess={setSuccess} />}
       <div className={style.ExchangerMarks__tableBox}>
         <div className={style.ExchangerMarks__tableBox__table}>
@@ -153,7 +151,6 @@ export const ExchangerMarks = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

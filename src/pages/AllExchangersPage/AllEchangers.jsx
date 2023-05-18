@@ -222,9 +222,6 @@ export const AllEchangers = () => {
   }, [selected, selected2]);
   return (
     <div className={style.Exchangers}>
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
-
       <div className={style.Exchangers__content}>
         <div className={style.Exchangers__content__body}>
           <div className={style.Exchangers__content__body__seacrh}>
@@ -389,7 +386,7 @@ export const AllEchangers = () => {
           ))}
         </div>
       </div>
-      <Footer />
+
     </div>
   );
 };

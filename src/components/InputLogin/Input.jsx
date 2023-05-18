@@ -2,15 +2,18 @@ import style from "./Input.module.scss";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setLoginEmail, setLoginPassword } from "../../store/userAccountSlice/AccountSlice";
+import {
+  setLoginEmail,
+  setLoginPassword,
+} from "../../store/userAccountSlice/AccountSlice";
 
 export const Input = () => {
   const dispatch = useDispatch();
 
-  const {email,password} = useSelector((state)=>({
+  const { email, password } = useSelector((state) => ({
     email: state.AccountSlice.emailLogin,
     password: state.AccountSlice.passwordLogin,
-  }))
+  }));
   const InputLoginField = (e) => {
     dispatch(setLoginEmail(e.target.value));
   };
@@ -25,6 +28,7 @@ export const Input = () => {
         <input
           className={style.Inputs__fieldsBox__input}
           onChange={(e) => InputLoginField(e)}
+          required
         />
       </div>
       <div className={style.Inputs__fieldsBox}>
@@ -32,6 +36,7 @@ export const Input = () => {
         <input
           className={style.Inputs__fieldsBox__input}
           onChange={(e) => InputPassField(e)}
+          required
         />
       </div>
     </div>

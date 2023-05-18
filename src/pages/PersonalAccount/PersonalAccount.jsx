@@ -11,6 +11,7 @@ import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNav
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 import { setItemId } from "../../store/userAccountSlice/AccountSlice";
 import { Link } from "react-router-dom";
+
 export const AccountLoader = async () => {
   const key = localStorage.getItem("jwt");
   if (key) {
@@ -21,11 +22,10 @@ export const AccountLoader = async () => {
       },
     });
     const item = await res.json();
-    localStorage.setItem("userRole", item.data.role.code);
-    localStorage.setItem("userId", item.data.exchanger_id);
-
+        localStorage.setItem("userRole", item.data.role.code);
+        localStorage.setItem("userId", item.data.exchanger_id);
     return { item };
-  } else useNavigate("/login");
+  } else window.location.href = '/';
 };
 
 
@@ -59,16 +59,12 @@ export const PersonalAccount = () => {
   const LogOut = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("userRole");
-    navigate("/login");
+    navigate('/')
   };
 
-  const specificDate = new Date(2021, 11, 31);
-  console.log(specificDate)
 
   return (
     <div className={style.PersonalAccount}>
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.PersonalAccount__container}>
         <div className={style.PersonalAccount__container__leftBar}>
           <nav
@@ -187,10 +183,8 @@ export const PersonalAccount = () => {
             Смотреть все →
           </h1>
         </div>
-
         <Partners />
       </div>
-      <Footer />
     </div>
   );
 };

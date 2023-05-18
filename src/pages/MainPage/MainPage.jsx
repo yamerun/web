@@ -13,23 +13,8 @@ import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNav
 
 export const MainPage = () => {
   const NavProps = ["Список", "Популярное"];
-  const dispatch = useDispatch();
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
-  const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
-  
-  useEffect(() => {
-    if (jwt !== null && role !== null && role === "exchanger") {
-      dispatch(setUserRole(true));
-    } else dispatch(setUserRole(false));
-  }, [jwt, role]);
-
   return (
     <div className={style.MainPage}>
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.MainPage__containerMenu}>
         <div className={style.MainPage__leftMenu}>
           <SearchMenu />
@@ -40,7 +25,6 @@ export const MainPage = () => {
           <Article />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

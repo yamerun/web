@@ -21,8 +21,6 @@ export const ExchangerNotifications = () => {
   }, [isExchangerRole]);
   return (
     <div className={style.Notifications}>
-      <Header />
-      <ExchangerAccountNavigation />
       <div className={style.Notifications__container}>
         <h1 className={style.Notifications__container__header}>
           Настройка уведомлений
@@ -106,7 +104,6 @@ export const ExchangerNotifications = () => {
         </div>
         <button className={style.Notifications__container__btn}>Сохранить</button>
       </div>
-      <Footer />
     </div>
   );
 };

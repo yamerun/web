@@ -45,8 +45,6 @@ export const Articles = () => {
   return (
     <div className={style.Articles}>
       <div className={style.Articles__header}>
-        <Header />
-        {isExchangerRole === true && <ExchangerAccountNavigation />}
       </div>
       <div className={style.Articles__container__articles}>
         {articles.map((item) => (
@@ -95,7 +93,6 @@ export const Articles = () => {
           </article>
         ))}
       </div>
-      <Footer />
     </div>
   );
 };

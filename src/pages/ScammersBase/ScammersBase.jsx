@@ -125,9 +125,6 @@ export const ScammersBase = () => {
 
   return (
     <div className={style.ScammersBase}>
-      <Header />
-      <ExchangerAccountNavigation />
-      {popActive && <ScammersPop props={setPopActive} setUpdate={setUpdate} />}
       <div className={style.ScammersBase__mainContainer}>
         <div className={style.ScammersBase__mainContainer__leftMenu}>
           <h1
@@ -183,9 +180,7 @@ export const ScammersBase = () => {
             </button>
             <h1
               className={style.ScammersBase__mainContainer__textContents__count}
-            >
-             
-            </h1>
+            ></h1>
           </div>
           <ul className={style.ScammersBase__mainContainer__nav}>
             <div className={style.ScammersBase__mainContainer__nav__box}>
@@ -253,7 +248,6 @@ export const ScammersBase = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

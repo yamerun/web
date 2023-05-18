@@ -1,42 +1,50 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import style from "./ExchangerCourses.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTable } from "react-table";
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
+
+export const CoursesLoader = async () => {
+  const key = localStorage.getItem("jwt");
+  const id = localStorage.getItem("userId");
+
+  if (key) {
+    const res = await fetch(
+      `https://change.pro/api/exchangers/currencies/get?id=${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return { data, id };
+  } else {
+    window.location.href = "/";
+  }
+};
+
 export const ExchangerCourses = () => {
-  const navigate = useNavigate();
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
-  const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
   const [data, setData] = useState([]);
+  const items = useLoaderData();
+
   useEffect(() => {
-    if (isExchangerRole === false) {
-      navigate("/");
+    if (Array.isArray(items.data)) {
+      const formattedData = items.data.map((item) => ({
+        name: `${item.from} → ${item.to}`,
+        course: `${Math.floor(item.in)} → ${item.out}`,
+        reserve: item.reserve,
+        minsum: item.minamount,
+        maxsum: item.maxamount,
+      }));
+      setData(formattedData);
+    } else {
+      setData([]);
     }
-  }, [isExchangerRole]);
-
-  useEffect(() => {
-    axios
-      .get('https://change.pro/api/exchangers/currencies/get?id=1')
-      .then(function (response) {
-        setData(response.data.data.map((item) => ({
-          name: `${item.from} → ${item.to} `,
-          course: `${Math.floor(item.in)} → ${item.out}`,
-          reserve: `${item.reserve}`,
-          minsum: item.minamount,
-          maxsum: item.maxamount,
-        })));
-        console.log(response.data.data)
-      })
-  }, []);
-
-
+  }, [items]);
 
   const columns = useMemo(
     () => [
@@ -48,7 +56,6 @@ export const ExchangerCourses = () => {
         Header: "Курс",
         accessor: "course",
       },
-  
       {
         Header: "Резерв",
         accessor: "reserve",
@@ -62,11 +69,9 @@ export const ExchangerCourses = () => {
         Header: "Макс.сум.",
         accessor: "maxsum",
       },
-
     ],
     []
   );
-  console.log(data)
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -76,8 +81,6 @@ export const ExchangerCourses = () => {
 
   return (
     <div className={style.ExchangerCourses}>
-      <Header />
-      <ExchangerAccountNavigation />
       <div className={style.tableBox}>
         <h1 className={style.ExchangerCourses__header}>
           Загруженные курсы обмена
@@ -87,7 +90,11 @@ export const ExchangerCourses = () => {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} className={style.tableNav}>
+                  <th
+                    {...column.getHeaderProps()}
+                    className={style.tableNav}
+                    key={column.Header}
+                  >
                     {column.render("Header")}
                   </th>
                 ))}
@@ -98,10 +105,14 @@ export const ExchangerCourses = () => {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr {...row.getRowProps()} key={row.index}>
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()} className={style.tableCell}>
+                      <td
+                        {...cell.getCellProps()}
+                        className={style.tableCell}
+                        key={cell.value}
+                      >
                         {cell.render("Cell")}
                       </td>
                     );
@@ -112,7 +123,6 @@ export const ExchangerCourses = () => {
           </tbody>
         </table>
       </div>
-      <Footer />
     </div>
   );
 };

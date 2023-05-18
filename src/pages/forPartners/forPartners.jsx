@@ -77,8 +77,6 @@ export const ForPartners = () => {
   return (
     <div className={style.forPartners}>
       <div className={style.forPartners__headerbox}>
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
       </div>
       <div  className={style.forPartners__container}>
       <div className={style.forPartners__textbox}>
@@ -105,7 +103,6 @@ export const ForPartners = () => {
           </div>
         ))}
       </div>
-      <Footer />
     </div>
   );
 };

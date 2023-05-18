@@ -26,7 +26,7 @@ export const AccountReviewloader = async () => {
     );
     const item = await res.json();
     return { item };
-  } else useNavigate("/login");
+  } else window.location.href = '/';
 };
 
 export const AccountReviews = () => {
@@ -42,9 +42,7 @@ export const AccountReviews = () => {
 
   return (
     <div className={style.AccountReviews}>
-     <div className={style.AccountReviews__PageBox}>
-        <Header />
-        {isExchangerRole === true && <ExchangerAccountNavigation />}
+      <div className={style.AccountReviews__PageBox}>
         <div className={style.AccountReviews__container}>
           <div className={style.AccountReviews__container__header}>
             <h1 className={style.AccountReviews__container__header__text}>
@@ -52,8 +50,7 @@ export const AccountReviews = () => {
             </h1>
             <div
               className={style.AccountReviews__container__header__ratingBox}
-            >
-            </div>
+            ></div>
           </div>
           <div className={style.AccountReviews__commentsBox}>
             {item.data != null ? (
@@ -66,7 +63,6 @@ export const AccountReviews = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

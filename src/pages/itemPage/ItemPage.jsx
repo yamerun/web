@@ -112,8 +112,6 @@ export const ItemPage = () => {
           <AddComment HideReviews={HideReviews} id={item.data.id} />
         </React.Suspense>
       )}
-      <Header />
-      {isExchangerRole === true && <ExchangerAccountNavigation />}
       <div className={style.itemPage__container} ref={ref}>
         <div className={style.itemPage__container__exchangeInfo}>
           {Object.keys(item.data.logo).length !== 0 ? (
@@ -181,7 +179,6 @@ export const ItemPage = () => {
           <div></div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
