@@ -13,9 +13,11 @@ import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
-const EmoneyFillter = React.lazy(() =>
-  import("../EmoneyFillter/EmoneyFillter")
-);
+//const EmoneyFillter = React.lazy(() =>
+  //import("../EmoneyFillter/EmoneyFillter")
+//);
+
+import EmoneyFillter from '../EmoneyFillter/EmoneyFillter'
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -209,7 +211,7 @@ export const SearchMenu = () => {
             className={style.SearchMenu__inputField}
             placeholder="Отдаете"
             onChange={(e) => setInputValueForSearch(e)}
-            value={inputValue}
+            
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -219,7 +221,7 @@ export const SearchMenu = () => {
             className={style.SearchMenu__inputField}
             placeholder="Получаете"
             onChange={(e) => setInputValue2ForSearch(e)}
-            value={inputValue2}
+
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -267,18 +269,7 @@ export const SearchMenu = () => {
         onClick={() => ShowMoreEmoney()}
       />
       <div className={style.SearchMenu__Emoney} ref={ref2}>
-        <React.Suspense
-          fallback={
-            <h1
-              style={{ color: "white", textAlign: "center", fontSize: "15px" }}
-            >
-              ...loading
-            </h1>
-          }
-        >
-          {" "}
           <EmoneyFillter />
-        </React.Suspense>
       </div>
       <div className={style.SearchMenu__ShowMore}>
         <button

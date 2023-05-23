@@ -1,9 +1,6 @@
 import React from "react";
 import style from "./Article.module.scss";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
 import { useSelector } from "react-redux";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { useLoaderData } from "react-router-dom";
 export const Articlepage = () => {
   const { isExchangerRole } = useSelector((state) => ({

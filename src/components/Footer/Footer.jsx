@@ -6,7 +6,7 @@ import img2 from "../../assets/imgs/vk.svg";
 import img3 from "../../assets/imgs/tg.svg";
 import img4 from "../../assets/imgs/hz.svg";
 import { useNavigate } from "react-router-dom";
-export const Footer = () => {
+export default function Footer ()  {
 
     const scrollUp = () => {
         window.scrollTo({

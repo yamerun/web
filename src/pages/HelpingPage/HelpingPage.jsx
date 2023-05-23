@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Footer } from "../../components/Footer/Footer";
-import { Header } from "../../components/Header/Header";
 import style from "./HelpingPage.module.scss";
 import { useSelector } from "react-redux";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import axios from "axios";
 
 export const HelpingPage = () => {

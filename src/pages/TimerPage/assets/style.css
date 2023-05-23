@@ -71,3 +71,10 @@
   font-weight: 500;
   font-family: "BasisGrotesquePro";
 }
+.countdown-timer__popup__form__btn {
+  background: none;
+  border:0;
+  color:white;
+  font-family: "BasisGrotesquePro";
+  margin:4px;
+}

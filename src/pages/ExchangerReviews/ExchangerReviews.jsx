@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import style from "./ExchangerReviews.module.scss";
 import StarRatings from "react-star-ratings";
-import { Like } from "../../components/Like/Like";
-import { Dislike } from "../../components/Dislike/Dislike";
+
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";

@@ -1,11 +1,6 @@
 import React, { useMemo, useEffect, useState, useCallback } from "react";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import style from "./Marks.module.scss";
 import img from "../../assets/imgs/iconsRed.png";
-import img2 from "../../assets/imgs/icons8pencill.png";
-import img3 from "../../assets/imgs/icons8green.png";
 import { useNavigate } from "react-router-dom";
 import { setEchangerMarks } from "../../store/itemsSlice/itemsSlice";
 import { useDispatch } from "react-redux";

@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import style from "./ScammersBase.module.scss";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -126,6 +123,9 @@ export const ScammersBase = () => {
   return (
     <div className={style.ScammersBase}>
       <div className={style.ScammersBase__mainContainer}>
+        {
+          popActive && (<ScammersPop props={setPopActive} setUpdate={setUpdate}/>)
+        }
         <div className={style.ScammersBase__mainContainer__leftMenu}>
           <h1
             className={style.ScammersBase__mainContainer__leftMenu__pageHeader}

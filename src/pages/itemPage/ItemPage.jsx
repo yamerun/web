@@ -1,14 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import style from "./ItemPage.module.scss";
-import { Header } from "../../components/Header/Header";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
-import { Footer } from "../../components/Footer/Footer";
-
 import { useSelector } from "react-redux";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { useDispatch } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
@@ -64,11 +60,6 @@ export const ItemPage = () => {
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
 
-  useEffect(() => {
-    if (jwt !== null && role !== null && role === "exchanger") {
-      dispatch(setUserRole(true));
-    } else dispatch(setUserRole(false));
-  }, [jwt, role]);
 
   const OpenIframe = () => {
     setHideBlocks(!hideBlocks);
@@ -92,7 +83,7 @@ export const ItemPage = () => {
   const ShowReviews = () => {
       setIsOpen(true);
     };
-
+console.log(item.data.iframe)
   return (
     <div className={style.itemPage}>
       {isOpen && (
@@ -144,15 +135,21 @@ export const ItemPage = () => {
           ref={iframebtn}
         />
         <div className={style.itemPage__container__items}>
-          <div
-            className={style.itemPage__container__items__item}
-            ref={IframeBlock}
-          >
-            <iframe
-              src={"https://alfabit.org"}
-              className={style.itemPage__container__Iframe}
-            />
-          </div>
+        <div
+              className={style.itemPage__container__items__item}
+              ref={IframeBlock}
+            >
+          {Object.keys(item.data.iframe.src).length === 0 ? (
+              <h1 className={style.empty}>{item.data.name}</h1>
+            ) : (
+
+              <iframe
+                src={item.data.iframe.src}
+                className={style.itemPage__container__Iframe}
+              />
+            )
+            }
+            </div>
           {hideBlocks !== true && <ItemPageInfoBlock item={item} ShowReviews={ShowReviews} />}
           {hideBlocks !== true && <ItemPageExchangerDescription item={item} />}
         </div>
@@ -183,7 +180,4 @@ export const ItemPage = () => {
   );
 };
 
-/*            {/*item.data.iframe.src === "" ? (
-              <h1 className={style.empty}>{item.data.name}</h1>
-            ) : (
-            )*/
+

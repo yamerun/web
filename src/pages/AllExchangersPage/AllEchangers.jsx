@@ -1,11 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import style from "./allExchange.module.scss";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { useSelector } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
 export const exchangersLoader = async () => {

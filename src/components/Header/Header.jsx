@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-export const Header = () => {
+export default function Header ()  {
   const navigate = useNavigate();
   const goToMain = () => {
-    navigate("/");
+    navigate("/changePro");
   };
 
   const goToAccount = () => {
@@ -42,7 +42,7 @@ export const Header = () => {
           />
           <nav>
             <ul className={style.Header__container__buttons}>
-              <Link className={style.Header__container__btn} to="/">Мониторинг</Link>
+              <Link className={style.Header__container__btn} to="/changePro">Мониторинг</Link>
               <Link className={style.Header__container__btn} to="/exchangers">
                 Обменники
               </Link>

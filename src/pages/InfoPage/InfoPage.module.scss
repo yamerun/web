@@ -1,12 +1,11 @@
 .infoPage {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   &__mainContainer {
     width: 70%;
     height: 70%;
-    margin-top: 30px;
+     margin-top: 60px;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -77,6 +76,7 @@
             display: flex;
             gap: 10px;
             font-weight: 700;
+            user-select: none;
           }
         }
       }

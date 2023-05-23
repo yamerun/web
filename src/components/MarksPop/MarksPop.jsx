@@ -114,6 +114,7 @@ export const MarkPop = ({ prop, setSuccess }) => {
     prop();
   }, []);
 
+  console.log(marks)
   return (
     <div className={style.Marks}>
       <div className={style.Marks__content}>

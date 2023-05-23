@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./InfoPage.module.scss";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
+
 import StarRatings from "react-star-ratings";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -14,21 +12,32 @@ import img3 from "../../assets/imgs/icons8green.png";
 
 export const infoloader = async () => {
   const key = localStorage.getItem("jwt");
-  const id = localStorage.getItem("userId");
   if (key) {
-    const res = await fetch(
-      `https://change.pro/api/exchangers/get?exchanger_id=${id}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      }
-    );
-    const item = await res.json();
-
-    return { item, id };
-  } else window.location.href = '/';
+    const getInfo = await fetch("https://change.pro/api/user/get", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    });
+    const item = await getInfo.json();
+    let item2 = null;
+    if (Object.keys(item).length !== 0) {
+      const getExchanger = await fetch(
+        `https://change.pro/api/exchangers/get?exchanger_id=${item.data.exchanger_id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        }
+      );
+      item2 = await getExchanger.json();
+    }
+    return { item, item2 };
+  } else {
+    window.location.href = "/changePro";
+    return null;
+  }
 };
 
 export const InfoPage = () => {
@@ -39,8 +48,8 @@ export const InfoPage = () => {
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
   const { item } = useLoaderData();
-  const { id } = useLoaderData();
-  const [isListing, setIsListing] = useState(item.data.is_in_listing);
+  const { item2 } = useLoaderData();
+  const [isListing, setIsListing] = useState(item2.data.is_in_listing);
   const [changeUrl, setChangeUrl] = useState(false);
   const [urlVal, setUrlVal] = useState("");
   const [newUrl, setnewUrl] = useState("");
@@ -71,7 +80,7 @@ export const InfoPage = () => {
       .post(
         `https://change.pro/api/exchangers/edit`,
         {
-          exchanger_id: item.data.id,
+          exchanger_id: item.data.exchanger_id,
           is_in_listing: isListing,
         },
         config
@@ -89,13 +98,14 @@ export const InfoPage = () => {
       .post(
         `https://change.pro/api/exchangers/edit`,
         {
-          exchanger_id: item.data.id,
+          exchanger_id: item.data.exchanger_id,
           referal_url: urlVal,
         },
         config
       )
       .then(function (response) {
         setnewUrl(response.data.data.referal_url);
+        setChangeUrl(false)
       });
   };
 
@@ -144,12 +154,12 @@ export const InfoPage = () => {
                 </h1>
                 <h1
                   style={{ textDecoration: "underline" }}
-                  onClick={changeListing}
+                  onClick={() => changeListing()}
                   className={
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  {isListing === true ? "Выключить" : "Включить"}
+                  {isListing == true ? "Выключить" : "Включить"}
                 </h1>
               </div>
               <div
@@ -189,7 +199,7 @@ export const InfoPage = () => {
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  <h1 style={{ color: "#FE0000" }}>{item.data.error_rates}</h1>
+                  <h1 style={{ color: "#FE0000" }}>{item2.data.error_rates}</h1>
                   <h1 style={{ opacity: "0.5" }}>курс отклонен </h1>
                 </div>
               </div>
@@ -209,7 +219,7 @@ export const InfoPage = () => {
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  ${item.data.sum_reserves}
+                  ${item2.data.sum_reserves}
                 </h1>
               </div>
               <div
@@ -229,7 +239,7 @@ export const InfoPage = () => {
                     style.infoPage__mainContainer__infoBox__items__item__headers
                   }
                 >
-                  {item.data.age}
+                  {item2.data.age}
                 </h1>
               </div>
               <div
@@ -249,11 +259,11 @@ export const InfoPage = () => {
                   }
                 >
                   {" "}
-                  {item.data.rates_update !== null && (
+                  {item2.data.rates_update != null && (
                     <>
                       {" "}
-                      за {item.data.rates_update.time} /{" "}
-                      {item.data.rates_update.date}
+                      за {item2.data.rates_update.time} /{" "}
+                      {item2.data.rates_update.date}
                     </>
                   )}
                 </h1>
@@ -275,7 +285,7 @@ export const InfoPage = () => {
                   }
                   style={{ opacity: "0.5" }}
                 >
-                  {item.data.country}
+                  {item2.data.country}
                 </h1>
               </div>
             </div>
@@ -300,10 +310,10 @@ export const InfoPage = () => {
                 }
               >
                 <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
-                  {item.data.rating}
+                  {item2.data.rating}
                 </h1>
                 <StarRatings
-                  rating={item.data.rating}
+                  rating={item2.data.rating}
                   starRatedColor="yellow"
                   numberOfStars={5}
                   name="rating"
@@ -322,7 +332,7 @@ export const InfoPage = () => {
             >
               <h1>Ссылка (рус)</h1>
               <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
-                {item.data.site_url}
+                {item2.data.site_url}
               </h1>
             </div>
             <div
@@ -350,7 +360,7 @@ export const InfoPage = () => {
               ) : (
                 <div className={style.infoPage__mainContainer__changeUrl}>
                   <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
-                    {newUrl != "" ? newUrl : item.data.referal_url}
+                    {newUrl != "" ? newUrl : item2.data.referal_url}
                   </h1>
                   <img
                     onClick={openChangeUrlValue}

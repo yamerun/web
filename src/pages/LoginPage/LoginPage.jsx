@@ -4,7 +4,6 @@ import style from "./LoginPage.module.scss";
 import { useSelector } from "react-redux";
 import { Input } from "../../components/InputLogin/Input";
 import { Link } from "react-router-dom";
-import { Footer } from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/imgs/changePro.png";
 export const LoginPage = () => {

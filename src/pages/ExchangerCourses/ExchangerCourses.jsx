@@ -23,7 +23,7 @@ export const CoursesLoader = async () => {
     const data = await res.json();
     return { data, id };
   } else {
-    window.location.href = "/";
+    window.location.href = "/changePro";
   }
 };
 

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Footer } from "../../components/Footer/Footer";
-import { Header } from "../../components/Header/Header";
 import style from "./Articles.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
+
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -47,29 +45,6 @@ export const Articles = () => {
       <div className={style.Articles__header}>
       </div>
       <div className={style.Articles__container__articles}>
-        {articles.map((item) => (
-          <article
-            className={style.Articles__container__article}
-            onClick={(e) => goToArticle(item)}
-          >
-            <div className={style.Articles__container__article__header}>
-              <h1
-                className={style.Articles__container__article__header__tittle}
-              >
-                {item.title}
-              </h1>
-              <p className={style.Articles__container__article__header__date}>
-                {item.created_at.date} {item.created_at.time}
-              </p>
-            </div>
-            <div
-              style={{ color: "white" }}
-              className={style.Articles__container__article__text}
-              dangerouslySetInnerHTML={createMarkup(item)}
-            ></div>
-          </article>
-        ))}
-
         {articles.map((item) => (
           <article
             className={style.Articles__container__article}

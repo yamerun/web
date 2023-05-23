@@ -1,8 +1,5 @@
 import React,{useEffect} from "react";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
 import style from "./ExchangerNotifications.module.scss";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +13,7 @@ export const ExchangerNotifications = () => {
 
   useEffect(() => {
     if (isExchangerRole === false) {
-      navigate("/");
+      navigate("/changePro");
     }
   }, [isExchangerRole]);
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import style from "./Register.module.scss";
 import { InputRegistration } from "../../components/inputRegistration/inputRegistration";
 import { Link } from "react-router-dom";
@@ -6,8 +6,6 @@ import img from "../../assets/imgs/VKCircled.svg";
 import img2 from "../../assets/imgs/GmailLogo.svg";
 import img3 from "../../assets/imgs/Twitter.svg";
 import img4 from "../../assets/imgs/Odnoklassniki.svg";
-import img5 from "../../assets/imgs/Atsign.svg";
-import { Footer } from "../../components/Footer/Footer";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +39,7 @@ export const RegisterPage = () => {
   };
 
   const goMain = () => {
-    navigate("/");
+    navigate("/changePro");
   };
 
   return (

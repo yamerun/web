@@ -31,12 +31,18 @@ import { AccountReviewloader } from "./pages/AccountReviews/AccountReviews";
 import { CoursesLoader } from "./pages/ExchangerCourses/ExchangerCourses";
 import { ExchangerRegisterPage } from "./pages/ExchangerRegister/ExchangerRegister";
 import MainLayout from "./Layouts/MainLayout";
+import { TimerPage } from "./pages/TimerPage";
+import AccountSettings from "./pages/AccountSettings/AccountSettings";
 const router = createBrowserRouter([
+  {
+    element:<TimerPage/>,
+    path:'/'
+  },
   {
     element: <MainLayout />,
     children: [
       {
-        path: "/",
+        path: "/changePro",
         element: <MainPage />,
       },
       {
@@ -114,6 +120,11 @@ const router = createBrowserRouter([
       {
         path: "/exchangerregister",
         element: <ExchangerRegisterPage />,
+      },
+      {
+        path: "/account/accountSettings",
+        element: <AccountSettings/>,
+        loader: AccountLoader,
       },
     ],
   },

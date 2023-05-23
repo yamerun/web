@@ -1,13 +1,11 @@
 import style from "./PersonalAccount.module.scss";
-import { Footer } from "../../components/Footer/Footer";
-import { Header } from "../../components/Header/Header";
+
 import { Partners } from "../../components/Partners/Partners";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setLoginStatus } from "../../store/itemsSlice/itemsSlice";
 import { useEffect } from "react";
-import { ExchangerAccountNavigation } from "../../components/ExchangerAccountNavigation/ExchangerAccountNavigation";
 import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 import { setItemId } from "../../store/userAccountSlice/AccountSlice";
 import { Link } from "react-router-dom";
@@ -25,7 +23,7 @@ export const AccountLoader = async () => {
         localStorage.setItem("userRole", item.data.role.code);
         localStorage.setItem("userId", item.data.exchanger_id);
     return { item };
-  } else window.location.href = '/';
+  } else window.location.href = '/changePro';
 };
 
 
@@ -102,6 +100,15 @@ export const PersonalAccount = () => {
               >
                 История посещений обменников
               </li>
+              <Link
+                className={
+                  style.PersonalAccount__container__leftBar__navigation__list__item
+                }
+                onClick={(e) => handleSelect(e)}
+                to='/account/accountSettings'
+              >
+                настройки аккаунта
+              </Link>
               <Link
                 className={
                   style.PersonalAccount__container__leftBar__navigation__list__item
