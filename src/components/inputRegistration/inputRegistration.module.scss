@@ -7,6 +7,10 @@
     font-size: 18px;
     line-height: 23px;
     color: #f3f3f3;
+        
+    @media screen and (max-width:1700px) {
+      font-size: 13px;
+    }
   }
 
   &__fields {
@@ -22,5 +26,11 @@
     color: #f3f3f3;
     opacity: 0.5;
     padding-left: 10px;
+
+        
+    @media screen and (max-width:1700px) {
+      font-size: 15px;
+      width:200px;
+    }
   }
 }

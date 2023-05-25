@@ -125,7 +125,23 @@ export const PersonalAccount = () => {
           </nav>
         </div>
         <div className={style.PersonalAccount__container__rightBar}>
-          <div className={style.PersonalAccount__container__userStatistics}>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/*           <div className={style.PersonalAccount__container__bottom}>
+        <div className={style.PersonalAccount__container__bottom__controlls}>
+          <h1 className={style.PersonalAccount__container__bottom__header}>
+            Рекомендации Change.pro
+          </h1>
+          <h1 className={style.PersonalAccount__container__bottom__navigation}>
+            Смотреть все →
+          </h1>
+        </div>
+        <Partners />
+      </div>     <div className={style.PersonalAccount__container__userStatistics}>
             <div
               className={style.PersonalAccount__container__rightBar__userInfo}
             >
@@ -178,20 +194,4 @@ export const PersonalAccount = () => {
               <h1 style={{ color: "white" }}>Курс любимых валют</h1>
               <h1 style={{ color: "white" }}>Обменять →</h1>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className={style.PersonalAccount__container__bottom}>
-        <div className={style.PersonalAccount__container__bottom__controlls}>
-          <h1 className={style.PersonalAccount__container__bottom__header}>
-            Рекомендации Change.pro
-          </h1>
-          <h1 className={style.PersonalAccount__container__bottom__navigation}>
-            Смотреть все →
-          </h1>
-        </div>
-        <Partners />
-      </div>
-    </div>
-  );
-};
+          </div>*/

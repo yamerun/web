@@ -9,11 +9,16 @@ import { Comments } from "../../components/Comments/Comments";
 
 export const reviewloader = async () => {
   const key = localStorage.getItem("jwt");
-  const id = localStorage.getItem("userId");
-
   if (key) {
-    const res = await fetch(
-      `https://change.pro/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${id}`,
+    const getInfo = await fetch("https://change.pro/api/user/get", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    });
+    const info = await getInfo.json();
+    const getReviews = await fetch(
+      `https://change.pro/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${info.data.exchanger_id}`,
       {
         method: "GET",
         headers: {
@@ -21,9 +26,8 @@ export const reviewloader = async () => {
         },
       }
     );
-
-    const res2 = await fetch(
-      `https://change.pro/api/exchangers/get?exchanger_id=${id}`,
+    const getEchangerInfo = await fetch(
+      `https://change.pro/api/exchangers/get?exchanger_id=${info.data.exchanger_id}`,
       {
         method: "GET",
         headers: {
@@ -31,38 +35,19 @@ export const reviewloader = async () => {
         },
       }
     );
-    const item = await res.json();
-
-    const item2 = await res2.json();
-
-    return { item, id, item2 };
-  } else window.location.href = '/';
+    const exchangerInfo = await getEchangerInfo.json();
+    const echangerReviews = await getReviews.json();
+    return { echangerReviews, exchangerInfo };
+  } else window.location.href = "/";
 };
 
 export const ExchangerReviews = () => {
-  const { item } = useLoaderData();
-  const { item2 } = useLoaderData();
-  const { id } = useLoaderData();
-  const navigate = useNavigate();
-  const [review, setReview] = useState();
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
-  const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
+  const { echangerReviews, exchangerInfo } = useLoaderData();
 
-  useEffect(() => {
-    if (isExchangerRole === false) {
-      navigate("/");
-    }
-  }, [isExchangerRole]);
-
-  console.log(item2);
-
+  
   return (
     <div className={style.ExchangerReviews}>
-      <div className={style.ExchangerReviews__PageBox}>
-
+<div className={style.ExchangerReviews__PageBox}>
         <div className={style.ExchangerReviews__container}>
           <div className={style.ExchangerReviews__container__header}>
             <h1 className={style.ExchangerReviews__container__header__text}>
@@ -76,14 +61,14 @@ export const ExchangerReviews = () => {
                   style.ExchangerReviews__container__header__ratingBox__text
                 }
               >
-              {item2.data.rating}
+                {exchangerInfo.data.rating}
               </h1>
               <div
                 className={style.ExchangerReviews__container__header__ratings}
               >
                 <h1 style={{ opacity: "0.5" }}>Рейтинг</h1>
                 <StarRatings
-                  rating={item2.data.rating}
+                  rating={exchangerInfo.data.rating}
                   starRatedColor="yellow"
                   numberOfStars={5}
                   name="rating"
@@ -94,8 +79,8 @@ export const ExchangerReviews = () => {
             </div>
           </div>
           <div className={style.ExchangerReviews__commentsBox}>
-            {item.data != null ? (
-              item.data.map((item) => (
+            {echangerReviews.data != null ? (
+              echangerReviews.data.map((item) => (
                 <Comments props={item} review={setReview} w={"100%"} />
               ))
             ) : (

@@ -1,7 +1,6 @@
 .RegisterPage {
   display: flex;
   align-items: center;
-  height: 83%;
   flex-direction: column;
   justify-content: space-between;
 
@@ -14,6 +13,11 @@
   &__logo {
     margin-bottom: 20px;
     margin-top: 20px;
+
+    @media screen and (max-width: 1700px) {
+      width: 120px;
+      height: 30px;
+    }
   }
 
   &__form {
@@ -24,14 +28,17 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    gap: 20px;
-
+    gap: 10px;
   }
   &__header {
     font-family: "BasisGrotesquePro";
     font-style: normal;
     font-weight: 900;
     font-size: 30px;
+
+    @media screen and (max-width: 1700px) {
+      font-size: 17px;
+    }
     line-height: 120%;
     color: #f3f3f3;
   }
@@ -43,6 +50,10 @@
     font-size: 18px;
     line-height: 23px;
     color: #f3f3f3;
+
+    @media screen and (max-width: 1700px) {
+      font-size: 17px;
+    }
   }
 
   &__registerVariants {
@@ -64,6 +75,11 @@
     font-size: 18px;
     color: #f3f3f3;
     border: 1px solid #f3f3f3;
+
+    @media screen and (max-width: 1700px) {
+      font-size: 15px;
+      width: 200px;
+    }
   }
 
   &__text {
@@ -75,12 +91,16 @@
     text-align: center;
     color: #f3f3f3;
     opacity: 0.5;
+
+    @media screen and (max-width: 1700px) {
+      font-size: 12px;
+    }
   }
 
   &__goToLogin {
     border-top: 1px solid #5e5e65;
     padding-top: 20px;
-    gap:10px;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,6 +113,10 @@
       line-height: 23px;
       text-decoration-line: underline;
       color: #f3f3f3;
+
+      @media screen and (max-width: 1700px) {
+        font-size: 15px;
+      }
     }
 
     &__text {
@@ -103,6 +127,10 @@
       line-height: 21px;
       color: #f3f3f3;
       opacity: 0.5;
+
+      @media screen and (max-width: 1700px) {
+        font-size: 13px;
+      }
     }
   }
 }

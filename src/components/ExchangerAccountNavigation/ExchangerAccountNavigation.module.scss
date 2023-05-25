@@ -8,13 +8,17 @@
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    width: 40%;
+    width: 55%;
     justify-content: space-between;
     font-family: "BasisGrotesquePro";
     user-select: none;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
+
+    @media screen and (max-width:1300px) {
+      font-size: 12px;
+    }
     &__item {
       opacity: 0.5;
       color: white;

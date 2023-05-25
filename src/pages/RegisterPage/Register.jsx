@@ -59,7 +59,6 @@ export const RegisterPage = () => {
             <img src={img2} alt="gmail" />
             <img src={img3} alt="twitter" />
             <img src={img4} alt="ok" />
-
           </div>
           <div className={style.RegisterPage__reg}>
             <h1 className={style.RegisterPage__header2}>
@@ -79,8 +78,11 @@ export const RegisterPage = () => {
             <Link to="/login" className={style.RegisterPage__goToLogin__link}>
               Я уже зарегистрирован
             </Link>
-            <Link to="/exchangerregister" className={style.RegisterPage__goToLogin__link}>
-             Создать аккаунт обменника
+            <Link
+              to="/exchangerregister"
+              className={style.RegisterPage__goToLogin__link}
+            >
+              Создать аккаунт обменника
             </Link>
           </div>
         </div>

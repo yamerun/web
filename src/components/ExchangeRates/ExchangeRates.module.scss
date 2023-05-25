@@ -38,6 +38,9 @@ $hedaerw6: 50px;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
+    @media screen and (max-width: 1600px) {
+      font-size: 13px;
+    }
     &__categoryBox {
       width: 42%;
       display: flex;
@@ -54,13 +57,8 @@ $hedaerw6: 50px;
     justify-content: space-between;
     align-items: center;
     padding-left: 15px;
+    padding: 10px;
 
-    &__categoryBox {
-      width: 42%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
     &__exchange {
       font-family: "BasisGrotesquePro";
       font-style: normal;
@@ -70,7 +68,9 @@ $hedaerw6: 50px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
-
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
     &__from {
       font-family: "BasisGrotesquePro";
@@ -81,6 +81,9 @@ $hedaerw6: 50px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
     &__to {
       font-family: "BasisGrotesquePro";
@@ -92,6 +95,9 @@ $hedaerw6: 50px;
       user-select: none;
       cursor: pointer;
       width: $hedaerw3;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
     &__reserve {
       font-family: "BasisGrotesquePro";
@@ -103,6 +109,9 @@ $hedaerw6: 50px;
       user-select: none;
       cursor: pointer;
       width: $hedaerw4;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
     &__comment {
       font-family: "BasisGrotesquePro";
@@ -114,6 +123,9 @@ $hedaerw6: 50px;
       user-select: none;
       cursor: pointer;
       width: $hedaerw5;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
     &__status {
       font-family: "BasisGrotesquePro";
@@ -125,6 +137,9 @@ $hedaerw6: 50px;
       user-select: none;
       cursor: pointer;
       width: $hedaerw6;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
 
     &__body::-webkit-scrollbar {

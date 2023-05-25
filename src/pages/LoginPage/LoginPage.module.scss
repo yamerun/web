@@ -1,8 +1,15 @@
 .LoginPage {
   height: 83%;
-
+  @media screen and (max-height: 800px) {
+    height: 73%;
+  }
   &__logo {
     margin-bottom: 40px;
+    @media screen and (max-height: 800px) {
+      height: 20px;
+      width: 65px;
+      width: 95px;
+    }
   }
 
   &__formBox {
@@ -11,6 +18,13 @@
     align-items: center;
     justify-content: center;
     height: 800px;
+    @media screen and (max-height: 900px) {
+      height: 600px;
+    }
+    @media screen and (max-height: 800px) {
+      height: 450px;
+      margin-top: 20px;
+    }
   }
 
   &__goToRegister {
@@ -27,6 +41,10 @@
       font-size: 18px;
       text-decoration-line: underline;
       color: #f3f3f3;
+
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
 
     &__header {
@@ -37,6 +55,10 @@
       line-height: 21px;
       color: #f3f3f3;
       opacity: 0.5;
+
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
   }
 
@@ -50,6 +72,10 @@
     padding: 20px;
     gap: 20px;
     align-items: center;
+
+    @media screen and (max-width: 1600px) {
+      width: 12.5%;
+    }
   }
 
   &__header {
@@ -60,6 +86,10 @@
     color: #f3f3f3;
     text-align: left;
     height: 35px;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 19px;
+    }
   }
 
   &__btn {
@@ -73,5 +103,10 @@
     font-size: 18px;
     color: #f3f3f3;
     border: 1px solid #f3f3f3;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 14px;
+      width: 200px;
+    }
   }
 }

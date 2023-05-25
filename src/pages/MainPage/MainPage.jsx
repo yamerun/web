@@ -10,9 +10,9 @@ export const MainPage = () => {
   return (
     <div className={style.MainPage}>
       <div className={style.MainPage__containerMenu}>
-        <div className={style.MainPage__leftMenu}>
+
           <SearchMenu />
-        </div>
+
         <div className={style.MainPage__rightMenu}>
           <Carousel />
           <Fillters />

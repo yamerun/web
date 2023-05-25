@@ -25,6 +25,9 @@
       background-color: #2d2d31;
       outline: none;
       border: 0;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
 
     &__items {
@@ -40,6 +43,10 @@
         height: 660px;
         display: flex;
         position: relative;
+         
+      @media screen and (max-width:1200px) {
+        width: 100%;
+      }
         &__container {
           display: flex;
           flex-direction: column;
@@ -59,6 +66,9 @@
             padding-bottom: 25px;
             justify-content: space-between;
             align-items: center;
+            @media screen and (max-width: 1600px) {
+              font-size: 13px;
+            }
 
             &__header {
               font-family: "BasisGrotesquePro";
@@ -66,6 +76,9 @@
               font-weight: 700;
               font-size: 16px;
               color: #f3f3f3;
+              @media screen and (max-width: 1600px) {
+                font-size: 12px;
+              }
             }
             &__header2 {
               font-family: "BasisGrotesquePro";
@@ -76,6 +89,9 @@
               border: 2px solid #77d22d;
               padding: 10px 20px;
               border-radius: 20px;
+              @media screen and (max-width: 1600px) {
+                font-size: 13px;
+              }
             }
             &__headerInfo {
               font-family: "BasisGrotesquePro";

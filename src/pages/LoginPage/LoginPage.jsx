@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import style from "./LoginPage.module.scss";
 import { useSelector } from "react-redux";
-import { Input } from "../../components/InputLogin/Input";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/imgs/changePro.png";
+import { Input } from "../../components/InputLogin/Input";
 export const LoginPage = () => {
   const navigate = useNavigate();
   const [err, setErr] = useState("");

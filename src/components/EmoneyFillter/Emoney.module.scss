@@ -33,7 +33,13 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
-    width: 150px;
+    width: 100%;
+    @media screen and (max-width: 1600px) {
+      font-size: 13px;
+    }
+    @media screen and (max-width: 1600px) {
+      font-size: 11px;
+    }
   }
   &__item2 {
     list-style-type: none;
@@ -47,14 +53,16 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
-    width: 150px;
+    width: 100%;
+    @media screen and (max-width: 1600px) {
+      font-size: 13px;
+    }
+    @media screen and (max-width: 1600px) {
+      font-size: 11px;
+    }
   }
 
   .active {
     background-color: #46464b;
-  }
-
-  &__itemsList {
-    width: 50%;
   }
 }

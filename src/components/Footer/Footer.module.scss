@@ -4,16 +4,16 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 600px;
     justify-content: center;
 
     &__container {
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 600px;
+        width:70%;
+        justify-content: space-between;
         border-top: 1px solid #5E5E65;
         padding-top: 20px;
+
     }
 
     &__box {
@@ -22,7 +22,7 @@
         justify-content: center;
         padding-bottom: 10px;
         gap: 30px;
-     
+
 
         &__btn {
             font-family: "BasisGrotesquePro";
@@ -36,6 +36,9 @@
              font-size: 18px;
              padding: 11px 25px;
              border-radius: 20px;
+             @media screen and (max-width: 1600px) {
+                font-size: 13px;
+              }
         }
 
         &__icons {
@@ -55,6 +58,9 @@
             text-align: center;
             color: #f3f3f3;
             opacity: 0.5;
+            @media screen and (max-width: 1600px) {
+                font-size: 13px;
+              }
 
             &__infoBox {
                 display: flex;
@@ -72,6 +78,9 @@
                     color: #f3f3f3;
                     opacity: 0.5;
                     text-decoration: underline;
+                    @media screen and (max-width: 1600px) {
+                        font-size: 13px;
+                      }
                 }
                 &__link2 {
                     font-family: "BasisGrotesquePro";
@@ -82,6 +91,9 @@
                     text-align: center;
                     color: #f3f3f3;
                     opacity: 0.5;
+                    @media screen and (max-width: 1600px) {
+                        font-size: 13px;
+                      }
                 }
             }
         }
