@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
+import validateInputValueForSearch from "./js/searchValidatorhelper";
 export const exchangersLoader = async () => {
   const res = await fetch(
     `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
@@ -24,11 +25,23 @@ export const AllEchangers = () => {
   const [searchResult2, setSearchResult2] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selected2, setSelected2] = useState([]);
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
   const ref = useRef(null);
   const ref2 = useRef(null);
+
+  const { currentTo, currentFrom } = useSelector((state) => ({
+    currentTo: state.itemsSlice.currentTo,
+    currentFrom: state.itemsSlice.currentFrom,
+  }));
+
+  const changeValueForSearch = (e) => {
+    const newVal = validateInputValueForSearch(e.target.value);
+    setInputVal(newVal);
+  };
+  const changeValue2ForSearch = (e) => {
+    const newVal = validateInputValueForSearch(e.target.value);
+    setInputVal2(newVal);
+  };
+
   useEffect(() => {
     if (selected.length == 0) {
       setResultExchangers(item.data);
@@ -67,99 +80,6 @@ export const AllEchangers = () => {
     window.open(`${url}`);
   };
 
-  const setInputValue2ForSearch = (e) => {
-    const translitMap = {
-      й: "q",
-      ц: "w",
-      у: "e",
-      к: "r",
-      е: "t",
-      н: "y",
-      г: "u",
-      ш: "i",
-      щ: "o",
-      з: "p",
-      х: "[",
-      ъ: "]",
-      ф: "a",
-      ы: "s",
-      в: "d",
-      а: "f",
-      п: "g",
-      р: "h",
-      о: "j",
-      л: "k",
-      д: "l",
-      ж: ";",
-      э: "'",
-      я: "z",
-      ч: "x",
-      с: "c",
-      м: "v",
-      и: "b",
-      т: "n",
-      ь: "m",
-      б: ",",
-      ю: ".",
-    };
-    let result = "";
-    for (let i = 0; i < e.target.value.length; i++) {
-      const char = e.target.value.charAt(i);
-      const translitChar = translitMap[char.toLowerCase()] || char;
-      result +=
-        char === char.toLowerCase() ? translitChar : translitChar.toUpperCase();
-    }
-    setInputVal2(result);
-  };
-
-  console.log(selected);
-
-  const setInputValueForSearch = (e) => {
-    const translitMap = {
-      й: "q",
-      ц: "w",
-      у: "e",
-      к: "r",
-      е: "t",
-      н: "y",
-      г: "u",
-      ш: "i",
-      щ: "o",
-      з: "p",
-      х: "[",
-      ъ: "]",
-      ф: "a",
-      ы: "s",
-      в: "d",
-      а: "f",
-      п: "g",
-      р: "h",
-      о: "j",
-      л: "k",
-      д: "l",
-      ж: ";",
-      э: "'",
-      я: "z",
-      ч: "x",
-      с: "c",
-      м: "v",
-      и: "b",
-      т: "n",
-      ь: "m",
-      б: ",",
-      ю: ".",
-    };
-    let result = "";
-    for (let i = 0; i < e.target.value.length; i++) {
-      const char = e.target.value.charAt(i);
-      const translitChar = translitMap[char.toLowerCase()] || char;
-      result +=
-        char === char.toLowerCase() ? translitChar : translitChar.toUpperCase();
-    }
-    setInputVal(result);
-    console.log(inputVal);
-  };
-
   useEffect(() => {
     setSearchResult(
       variants.filter((item) =>
@@ -176,7 +96,21 @@ export const AllEchangers = () => {
     );
   }, [inputVal2, variants2]);
 
+  const currencyFromMainMenu = React.useMemo(() => currentFrom, [currentFrom]);
+  const currencyToMainMenu = React.useMemo(() => currentTo, [currentTo]);
+
   useEffect(() => {
+    if (currencyFromMainMenu != undefined && currencyToMainMenu != undefined) {
+      axios
+        .get(
+          `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currencyFromMainMenu}&to=${currencyToMainMenu}&limit=50`
+        )
+        .then(function (response) {
+          setResultExchangers(response.data.data);
+        })
+        .then(function (response) {})
+        .catch(function (error) {});
+    }
     axios
       .get(
         `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${selected}&to=${selected2}&limit=50`
@@ -199,7 +133,7 @@ export const AllEchangers = () => {
     }, 3000);
 
     return () => clearInterval(get);
-  }, [selected, selected2]);
+  }, [selected, selected2, currencyFromMainMenu, currencyToMainMenu]);
 
   const setFrom = (e) => {
     setSelected(e.target.textContent);
@@ -210,13 +144,15 @@ export const AllEchangers = () => {
   };
 
   useEffect(() => {
-    if (selected.length != 0) {
+    if (selected.length != 0 && ref.current != null) {
       ref.current.classList.add(`${style.hide}`);
     }
-    if (selected2.length != 0) {
+    if (selected2.length != 0 && ref2.current != null) {
       ref2.current.classList.add(`${style.hide}`);
     }
   }, [selected, selected2]);
+
+  
   return (
     <div className={style.Exchangers}>
       <div className={style.Exchangers__content}>
@@ -230,11 +166,12 @@ export const AllEchangers = () => {
                   }
                 >
                   <input
-                    onChange={(e) => setInputValueForSearch(e)}
+                    onChange={(e) => changeValueForSearch(e)}
                     className={
                       style.Exchangers__content__body__seacrh__input__field
                     }
                     placeholder="Отдаете"
+                    name="currencyFrom"
                   />
                   <button
                     className={
@@ -267,11 +204,12 @@ export const AllEchangers = () => {
                   }
                 >
                   <input
-                    onChange={(e) => setInputValue2ForSearch(e)}
+                    onChange={(e) => changeValue2ForSearch(e)}
                     className={
                       style.Exchangers__content__body__seacrh__input__field
                     }
                     placeholder="Получаете"
+                    name="currencyTo"
                   />
                   <button
                     className={
@@ -300,14 +238,19 @@ export const AllEchangers = () => {
                 style.Exchangers__content__body__seacrh__selected__name
               }
             >
-              {selected}
+              {currencyFromMainMenu != ''
+                ? `${currencyFromMainMenu}`
+                : `${selected}`}
             </span>
             <span
               className={
                 style.Exchangers__content__body__seacrh__selected__name
               }
             >
-              {selected2}
+              {
+              currencyToMainMenu != ''
+                ? `${currencyToMainMenu}`
+                : `${selected2}`}
             </span>
           </div>
           <nav className={style.Exchangers__content__body__nav}>
@@ -383,7 +326,6 @@ export const AllEchangers = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };

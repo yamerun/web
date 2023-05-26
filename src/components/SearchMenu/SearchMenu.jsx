@@ -64,6 +64,7 @@ export const SearchMenu = () => {
   };
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
+
     const btnElements = document.querySelectorAll(
       `.${style.SearchMenu__item2}`
     );

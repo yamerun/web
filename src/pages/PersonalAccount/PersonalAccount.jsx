@@ -20,12 +20,11 @@ export const AccountLoader = async () => {
       },
     });
     const item = await res.json();
-        localStorage.setItem("userRole", item.data.role.code);
-        localStorage.setItem("userId", item.data.exchanger_id);
+    localStorage.setItem("userRole", item.data.role.code);
+    localStorage.setItem("userId", item.data.exchanger_id);
     return { item };
-  } else window.location.href = '/changePro';
+  } else window.location.href = "/changePro";
 };
-
 
 export const PersonalAccount = () => {
   const navigate = useNavigate();
@@ -57,9 +56,8 @@ export const PersonalAccount = () => {
   const LogOut = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("userRole");
-    navigate('/')
+    navigate("/");
   };
-
 
   return (
     <div className={style.PersonalAccount}>
@@ -105,7 +103,7 @@ export const PersonalAccount = () => {
                   style.PersonalAccount__container__leftBar__navigation__list__item
                 }
                 onClick={(e) => handleSelect(e)}
-                to='/account/accountSettings'
+                to="/account/accountSettings"
               >
                 настройки аккаунта
               </Link>
@@ -114,7 +112,7 @@ export const PersonalAccount = () => {
                   style.PersonalAccount__container__leftBar__navigation__list__item
                 }
                 onClick={(e) => handleSelect(e)}
-                to='/accountReviews'
+                to="/accountReviews"
               >
                 Мои отзывы
               </Link>
@@ -124,8 +122,7 @@ export const PersonalAccount = () => {
             </ul>
           </nav>
         </div>
-        <div className={style.PersonalAccount__container__rightBar}>
-        </div>
+        <div className={style.PersonalAccount__container__rightBar}></div>
       </div>
     </div>
   );

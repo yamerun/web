@@ -13,7 +13,8 @@ export default function MainLayout({ children }) {
   const dispatch = useDispatch();
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
-  const [isAuthInPersonallAccount, setIsAuthInPersonallAccount] = React.useState("");
+  const [isAuthInPersonallAccount, setIsAuthInPersonallAccount] =
+    React.useState("");
   const [isAuthOnSite, setIsAuthOnSite] = React.useState("");
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
@@ -31,9 +32,8 @@ export default function MainLayout({ children }) {
     },
   };
 
-
   React.useEffect(() => {
-    if (isAuthInPersonallAccount === true &&  role === "exchanger") {
+    if (isAuthInPersonallAccount === true && role === "exchanger") {
       dispatch(setUserRole(true));
     } else dispatch(setUserRole(false));
   }, [isAuthInPersonallAccount, role]);
@@ -62,14 +62,12 @@ export default function MainLayout({ children }) {
 
   React.useEffect(() => {
     axios
-      .get("https://change.pro/api/user/get",{},configForSiteUser)
+      .get("https://change.pro/api/user/get", {}, configForSiteUser)
       .then(function (response) {
         localStorage.setItem("userRole", response.data.role.code);
         localStorage.setItem("userId", response.data.exchanger_id);
       });
   }, []);
-
-
 
   React.useEffect(() => {
     if (isAuthOnSite === false) {
@@ -82,11 +80,11 @@ export default function MainLayout({ children }) {
   }, [isAuthOnSite, isAuthInPersonallAccount]);
 
   return (
-    <div style={{height:'93%'}}>
-        <Header />
-        {isExchangerRole === true && <ExchangerAccountNavigation />}
-        <Outlet />
-        <Footer />
+    <div style={{ height: "93%" }}>
+      <Header />
+      {isExchangerRole === true && <ExchangerAccountNavigation />}
+      <Outlet />
+      <Footer />
     </div>
   );
 }

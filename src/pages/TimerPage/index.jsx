@@ -13,7 +13,7 @@ export const TimerPage = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const deadline = new Date("may 25, 2023 00:00:00").getTime();
+  const deadline = new Date("june 15, 2023 00:00:00").getTime();
 
   useEffect(() => {
       const interval = setInterval(() => {
