@@ -277,7 +277,7 @@ export const AllEchangers = () => {
             <div className={style.Exchangers__content__body__block}>
               <div className={style.Exchangers__content__body__block__name}>
                 <Link
-                  to={`/${item.exchanger.id}`}
+                  to={`/ExchangerPage/${item.exchanger.id}`}
                   className={style.Exchangers__content__body__block__goToPage}
                 />
                 <p onClick={() => openItemSite(item.exchanger.site_url)}>

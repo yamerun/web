@@ -13,21 +13,17 @@ import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
-//const EmoneyFillter = React.lazy(() =>
-  //import("../EmoneyFillter/EmoneyFillter")
-//);
-
 import EmoneyFillter from '../EmoneyFillter/EmoneyFillter'
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items, Emoney, Emoney2, isFilltersClear } = useSelector((state) => ({
+  const { items,isFilltersClear,currentFrom,currentTo } = useSelector((state) => ({
     items: state.itemsSlice.items,
-    Emoney: state.itemsSlice.Emoney,
-    Emoney2: state.itemsSlice.Emoney2,
     calculated: state.itemsSlice.calculated,
     isFilltersClear: state.itemsSlice.isFilltersClear,
+    currentFrom: state.itemsSlice.currentFrom,
+    currentTo: state.itemsSlice.currentTo,
   }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -49,17 +45,19 @@ export const SearchMenu = () => {
   const ShowMoreToBot = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
   };
-  const getItemFrom = (e, exchanger) => {
-    dispatch(setitemIdReducer(e.target.id));
-    dispatch(setCurrentItemFromReducer(e.target.textContent));
-    dispatch(setItemReducer(e.target.textContent));
-    const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
-    e.target.classList.add(`${style.active}`);
-    for (let i of btnElements) {
-      if (i != e.target) {
+  const getItemFrom = (e, item) => {
+       dispatch(setitemIdReducer(e.target.id));
+       dispatch(setCurrentItemFromReducer(e.target.textContent));
+       dispatch(setItemReducer(e.target.textContent));
+       e.target.classList.add(`${style.active}`)
+       const btnElements = document.querySelectorAll(`.${style.active}`);
+       for (let i of btnElements) {
+       if (i != e.target) {
         i.classList.remove(`${style.active}`);
-      }
+       } 
+
     }
+    console.log(item)
     dispatch(setIsFilltersClear(false));
   };
   const getItemTo = (e) => {
@@ -190,7 +188,7 @@ export const SearchMenu = () => {
         item.currency.toLowerCase().includes(inputValue.toLocaleLowerCase())
       );
     } else return items;
-  }, [inputValue, Emoney, items]);
+  }, [inputValue,  items]);
 
   const result2 = useMemo(() => {
     if (inputValue2.length !== 0) {
@@ -198,7 +196,7 @@ export const SearchMenu = () => {
         item.currency.toLowerCase().includes(inputValue2.toLocaleLowerCase())
       );
     } else return items;
-  }, [inputValue2, Emoney2, items]);
+  }, [inputValue2, items]);
 
   const ShowMoreEmoney = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
