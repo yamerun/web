@@ -9,7 +9,7 @@ import { setisTwice } from "../../store/itemsSlice/itemsSlice";
 import { Notflications } from "../Notflications/Notflications";
 
 const ExchangeRates = React.lazy(() =>
-  import("../../components/ExchangeRates/ExchangeRates")
+  import("../ExchangeRatesVariants/ExchangeRatesVariants")
 );
 
 export const Fillters = () => {

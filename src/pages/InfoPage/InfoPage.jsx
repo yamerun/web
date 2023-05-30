@@ -331,9 +331,9 @@ export const InfoPage = () => {
               className={style.infoPage__mainContainer__moreInfo__box__text2}
             >
               <h1>Ссылка (рус)</h1>
-              <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
+              <a style={{ opacity: "0.5", textDecoration: "underline",color:'#a2a2a3' }} href={item2.data.site_url}>
                 {item2.data.site_url}
-              </h1>
+              </a>
             </div>
             <div
               className={style.infoPage__mainContainer__moreInfo__box__text2}
@@ -359,9 +359,9 @@ export const InfoPage = () => {
                 </div>
               ) : (
                 <div className={style.infoPage__mainContainer__changeUrl}>
-                  <h1 style={{ opacity: "0.5", textDecoration: "underline" }}>
+                  <a style={{ opacity: "0.5", textDecoration: "underline",color:'#a2a2a3' }} href={newUrl != "" ? newUrl : item2.data.referal_url}>
                     {newUrl != "" ? newUrl : item2.data.referal_url}
-                  </h1>
+                  </a>
                   <img
                     onClick={openChangeUrlValue}
                     className={style.infoPage__mainContainer__changeUrl__btn}

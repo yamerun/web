@@ -1,75 +1,13 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import style from "./FillteredExchange.module.scss";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setitemExchangeRatesReducer } from "../../store/itemsSlice/itemsSlice";
-import axios from "axios";
-import { Marks } from "../Marks/Marks";
+import { Marks } from "../../Marks/Marks";
+import style from "./FillteredExchange.module.scss";
+const EmptyCourses = React.lazy(()=> import('../../EmptyCourses/EmptyCourses'))
+export default function FillteredBySelectedValues({ itemExchangeRates }) {
 
-
-const TwiceChanhgeExchanger = React.lazy(() =>
-  import("../TwiceChangeExchanger/TwiceChange")
-);
-
-export default function FillteredExchangeRates() {
-  const dispatch = useDispatch();
-  const { itemExchangeRates, calculated, currentFrom, currentTo, isTwice } =
-    useSelector((state) => ({
-      itemExchangeRates: state.itemsSlice.itemExchangeRates,
-      calculated: state.itemsSlice.calculated,
-      currentFrom: state.itemsSlice.currentFrom,
-      currentTo: state.itemsSlice.currentTo,
-      isTwice: state.itemsSlice.isTwice,
-    }));
-
-  useEffect(() => {
-    if (calculated !== true) {
-      axios
-        .get(
-          `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-        )
-        .then(function (response) {
-          dispatch(setitemExchangeRatesReducer(response.data.data));
-          console.log(response.data.data);
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
-      const get = setInterval(() => {
-        axios
-          .get(
-            `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${currentFrom}&to=${currentTo}&limit=50`
-          )
-          .then(function (response) {
-            dispatch(setitemExchangeRatesReducer(response.data.data));
-          })
-          .then(function (response) {})
-          .catch(function (error) {});
-      }, 3000);
-
-      return () => clearInterval(get);
-    }
-  }, [currentTo, currentFrom, calculated]);
-
-  const openItemSite = (url) => {
-    window.open(`${url}`);
-  };
-
-  return isTwice === true ? (
-    <React.Suspense
-      fallback={
-        <h1
-          style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: "15px",
-          }}
-        >
-          ...Loading
-        </h1>
-      }
-    >
-      <TwiceChanhgeExchanger />
+  return itemExchangeRates.length === 0 ? (
+    <React.Suspense fallback={<h1>loading</h1>}>
+        <EmptyCourses/>
     </React.Suspense>
   ) : (
     <div>
@@ -79,7 +17,7 @@ export default function FillteredExchangeRates() {
             <Link
               to={`/ExchangerPage/${item.exchanger.id}`}
               className={
-                style.Fillters__categories__body__content__excahange__btn
+                style.Fillters__excahangeBtn
               }
             />
             <p

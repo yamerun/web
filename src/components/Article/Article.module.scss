@@ -1,8 +1,6 @@
 .Article {
   max-width: 700px;
   min-width: 200px;
-  white-space: pre-wrap;
-  word-break: break-all;
 
   @media screen and (max-width:1600px) {
     max-width: 400px;
@@ -30,7 +28,6 @@
     font-size: 20px;
     color: #f3f3f3;
     max-height: 800px;
-    white-space: pre-wrap;
     text-align: left;
     word-break: break-all;
   }

@@ -8,9 +8,9 @@ import style from "./ExchangeRates.module.scss";
 import { AllExchangeRates } from "../AllExchangeRates/AllExchangeRates";
 
 const FillteredExchangeRates = React.lazy(() =>
-  import("../FillteredExchangeRates/FillteredExchange")
+  import("../FillteredExchangeRatesContainer/FillteredExchange")
 );
-export default function ExchangeRates({ open }) {
+export default function ExchangeRatesVariants({ open }) {
   const [all, setAll] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
