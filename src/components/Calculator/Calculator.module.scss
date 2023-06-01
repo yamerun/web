@@ -41,7 +41,14 @@
       gap: 25px;
       padding: 10px;
      }
+     @media screen and (max-width: 1179px) {
+      gap: 5px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     white-space: nowrap;
+    
     &__info {
       display: flex;
       flex-direction: column;
@@ -56,6 +63,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       gap: 10px;
+
       &__item {
         width: 100%;
         text-align: left;

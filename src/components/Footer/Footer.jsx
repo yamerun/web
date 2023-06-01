@@ -36,10 +36,10 @@ export default function Footer ()  {
         </div>
         <div className={style.Footer__box}>
           <div className={style.Footer__box__icons}>
-            <img src={img1} />
-            <img src={img2} />
-            <img src={img3} />
-            <img src={img4} />
+            <img src={img1} className={style.Footer__box__icons__icon}/>
+            <img src={img2} className={style.Footer__box__icons__icon}/>
+            <img src={img3} className={style.Footer__box__icons__icon}/>
+            <img src={img4} className={style.Footer__box__icons__icon}/>
           </div>
           <button onClick={scrollUp} className={style.Footer__box__btn}>Вверх ↑</button>
         </div>

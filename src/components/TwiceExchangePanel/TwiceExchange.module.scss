@@ -10,6 +10,9 @@
   @media screen and (max-width: 1700px) {
     padding: 10px;
   }
+  @media screen and (max-width: 1179px) {
+    flex-direction: column;
+  }
   margin-top: 5px;
 
   &__btnBox {
@@ -31,6 +34,10 @@
     @media screen and (max-width: 1700px) {
       font-size: 12px;
       padding: 7px;
+    }
+    @media screen and (max-width: 1179px) {
+      flex-direction: column;
+      margin: 3px;
     }
 
     &:hover {

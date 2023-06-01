@@ -10,8 +10,8 @@ export const ClearAll = () => {
   const dispatch = useDispatch();
 
   const clearAllFillters = () => {
-    dispatch(setCurrentItemFromReducer(undefined));
-    dispatch(setCurrentItemToReducer(undefined));
+    dispatch(setCurrentItemFromReducer(''));
+    dispatch(setCurrentItemToReducer(''));
     dispatch(setCalculated(false));
     dispatch(setisTwice(false))
     dispatch(setStatistic([]))

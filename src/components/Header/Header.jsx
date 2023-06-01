@@ -3,13 +3,19 @@ import style from "./Header.module.scss";
 import logo from "../../assets/imgs/logo.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-export default function Header ()  {
+const HeaderRoutes = React.lazy(() =>
+  import("./HeaderNavigationRoutes/HeaderNavigationRoutes")
+);
+export default function Header() {
   const navigate = useNavigate();
   const goToMain = () => {
     navigate("/changePro");
   };
+  const [active, setActive] = React.useState(false);
+  const [screenSize, getDimension] = React.useState({
+    dynamicWidth: window.innerWidth,
+    dynamicHeight: window.innerHeight,
+  });
 
   const goToAccount = () => {
     const config = {
@@ -29,60 +35,78 @@ export default function Header ()  {
       });
   };
   const jwt = localStorage.getItem("jwt");
+  const setDimension = () => {
+    getDimension({
+      dynamicWidth: window.innerWidth,
+      dynamicHeight: window.innerHeight,
+    });
+  };
 
+  React.useEffect(() => {
+    window.addEventListener("resize", setDimension);
+    return () => {
+      window.removeEventListener("resize", setDimension);
+    };
+  }, [screenSize]);
+
+  const ShowOrHideMenu = () => {
+    if (screenSize.dynamicWidth < 900) {
+      setActive(!active);
+    }
+  };
   return (
     <header className={style.Header}>
-      <div className={style.Header__container}>
-        <div className={style.Header__container__menu}>
-          <img
-            className={style.Header__container__logo}
-            src={logo}
-            alt="logo"
-            onClick={() => goToMain()}
-          />
-          <nav>
-            <ul className={style.Header__container__buttons}>
-              <Link className={style.Header__container__btn} to="/changePro">Мониторинг</Link>
-              <Link className={style.Header__container__btn} to="/exchangers">
-                Обменники
-              </Link>
-              <Link className={style.Header__container__btn} to="/forPartners">
-                Партнерам
-              </Link>
-              <Link className={style.Header__container__btn} to="/help">
-                Помощь
-              </Link>
-              <Link className={style.Header__container__btn} to="/articles">
-                Статьи
-              </Link>
-            </ul>
-          </nav>
-          <div className={style.Header__container__rightSide}>
-            {jwt === null ? (
+      <div className={style.Header__logoBox}>
+        {screenSize.dynamicWidth < 900 && (
+          <button onClick={ShowOrHideMenu} className={style.Btn} />
+        )}
+        <img
+          className={style.Header__menu__logo}
+          src={logo}
+          alt="logo"
+          onClick={() => goToMain()}
+        />
+      </div>
+      <div className={style.Header__menu}>
+        {active === true && screenSize.dynamicWidth < 900 && (
+          <>
+            <React.Suspense fallback={<h1>...loading</h1>}>
+              <HeaderRoutes />
+            </React.Suspense>
+            <div className={style.Header__menu__rightSide}>
               <button
-                className={style.Header__container__logInBtn}
+                className={
+                  jwt === null
+                    ? style.Header__menu__logInBtn
+                    : style.Header__menu__lc
+                }
                 onClick={goToAccount}
               >
-                Войти
+                {jwt === null ? "Войти" : "Личный кабинет"}
               </button>
-            ) : (
+            </div>
+          </>
+        )}
+        {screenSize.dynamicWidth > 900 && (
+          <>
+            <React.Suspense fallback={<h1>...loading</h1>}>
+              <HeaderRoutes />
+            </React.Suspense>
+            <div className={style.Header__menu__rightSide}>
               <button
-                className={style.Header__container__lc}
+                className={
+                  jwt === null
+                    ? style.Header__menu__logInBtn
+                    : style.Header__menu__lc
+                }
                 onClick={goToAccount}
               >
-                Личный кабинет
+                {jwt === null ? "Войти" : "Личный кабинет"}
               </button>
-            )}
-          </div>
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </header>
   );
-};
-
-/*  <button
-                className={style.Header__container__logInBtn}
-                onClick={goToAccount}
-              >
-                Войти
-              </button>*/
+}

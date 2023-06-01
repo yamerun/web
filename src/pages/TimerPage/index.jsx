@@ -60,6 +60,7 @@ export const TimerPage = () => {
       });
   };
 
+
   const configForSiteAuth = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("siteJwt")}`,
@@ -81,7 +82,8 @@ export const TimerPage = () => {
   return (
     <div className="countdown-timer">
       <div className="countdown-timer__popup">
-        <label for="email">Логин:</label>
+         <div className="countdown-timer__popup__inputBox">
+        <label for="email" className="countdown-timer__popup__inputBox__label">Логин:</label>
         <input
           type="text"
           id="login"
@@ -90,7 +92,9 @@ export const TimerPage = () => {
           required
           className="countdown-timer__popup__form__input"
         />
-        <label for="password">Пароль:</label>
+         </div>
+        <div className="countdown-timer__popup__inputBox">
+        <label for="password" className="countdown-timer__popup__inputBox__label">Пароль:</label>
         <input
           type="password"
           id="password"
@@ -99,10 +103,10 @@ export const TimerPage = () => {
           required
           className="countdown-timer__popup__form__input"
         />
+        </div>
         <button onClick={Register}  className="countdown-timer__popup__form__btn">Отправить</button>
       </div>
-
-      <img src={img1} className="countdown-timer--logo" />
+      <img src={img1} className="countdown-timer--logo" alt='img'/>
       <h1 className="countdown-timer--tittle">
         ОБМЕН КРИПТЫ УЖЕ НЕ БУДЕТ ПРЕЖНИМ.
       </h1>
@@ -132,7 +136,7 @@ export const TimerPage = () => {
           <div className="countdown-timer__label"> Секунд</div>
         </div>
       </div>
-      <img src={img2} className="countdown-timer--gif" />
+      <img src={img2} className="countdown-timer--gif" alt='gif' />
     </div>
   );
 };

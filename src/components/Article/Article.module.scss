@@ -6,6 +6,11 @@
     max-width: 400px;
   }
 
+  @media screen and (max-width:900px) {
+    max-width: 300px;
+    margin-bottom: 20px;
+   }
+
   &__header {
     font-family: "BasisGrotesquePro";
     font-style: normal;
@@ -13,12 +18,14 @@
     font-size: 30px;
     text-transform: uppercase;
     color: #f3f3f3;
-    line-height: 60px;
+
 
     @media screen and (max-width: 1679px) {
       font-size: 22px;
-      width: 500px;
     }
+    @media screen and (max-width:900px) {
+      font-size: 17px;
+     }
   }
 
   &__text {
@@ -30,5 +37,9 @@
     max-height: 800px;
     text-align: left;
     word-break: break-all;
+    padding-top: 10px;
+    @media screen and (max-width:900px) {
+      font-size: 15px;
+     }
   }
 }

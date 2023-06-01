@@ -1,0 +1,49 @@
+.Buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 30px;
+
+  &__box {
+    display: flex;
+    justify-content: center;
+    @media screen and (max-width: 900px) {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       margin: 10px;
+         
+      }
+  }
+
+  @media screen and (max-width: 1621px) {
+    gap: 60px;
+  }
+
+  @media screen and (max-width: 1479px) {
+    gap: 30px;
+  }
+
+  @media screen and (max-width: 1179px) {
+    gap: 10px;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+  }
+
+  &__btn {
+    color: #ffffff;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 20px;
+    font-family: "BasisGrotesquePro";
+
+    @media screen and (max-width: 1179px) {
+      font-size: 14px;
+    }
+  }
+}

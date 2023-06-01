@@ -1,102 +1,114 @@
 .Footer {
-    margin-top: 50px;
-    height: 60px;
+  margin-top: 50px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+
+  &__container {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 70%;
+    justify-content: space-between;
+    border-top: 1px solid #5e5e65;
+    padding-top: 20px;
+
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    padding-bottom: 10px;
+    gap: 30px;
+    @media screen and (max-width: 1600px) {
+     flex-direction: column;
+         }
 
-    &__container {
-        display: flex;
-        align-items: center;
-        width:70%;
-        justify-content: space-between;
-        border-top: 1px solid #5E5E65;
-        padding-top: 20px;
-
+    &__btn {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      line-height: 21px;
+      text-align: center;
+      color: #f3f3f3;
+      background: #151517;
+      border: 2px solid #f3f3f3;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 11px 25px;
+      border-radius: 20px;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
 
-    &__box {
+    &__icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      &__icon {
+        width: 30px;
+        height: 30px;
+        @media screen and (max-width: 900px) {
+          width: 17px;
+          height: 17px;
+        }
+      }
+      @media screen and (max-width: 900px) {
+       gap:5px
+      }
+    }
+
+    &__info {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+      color: #f3f3f3;
+      opacity: 0.5;
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
+
+      &__infoBox {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-bottom: 10px;
-        gap: 30px;
+        gap: 10px;
 
-
-        &__btn {
-            font-family: "BasisGrotesquePro";
-            font-style: normal;
-            line-height: 21px;
-            text-align: center;
-            color: #f3f3f3;
-            background: #151517;
-            border: 2px solid #f3f3f3;
-            font-weight: 700;
-             font-size: 18px;
-             padding: 11px 25px;
-             border-radius: 20px;
-             @media screen and (max-width: 1600px) {
-                font-size: 13px;
-              }
+        &__link {
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 21px;
+          text-align: center;
+          color: #f3f3f3;
+          opacity: 0.5;
+          text-decoration: underline;
+          @media screen and (max-width: 1600px) {
+            font-size: 13px;
+          }
         }
-
-        &__icons {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+        &__link2 {
+          font-family: "BasisGrotesquePro";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 21px;
+          text-align: center;
+          color: #f3f3f3;
+          opacity: 0.5;
+          @media screen and (max-width: 1600px) {
+            font-size: 13px;
+          }
         }
-
-        &__info {
-            font-family: "BasisGrotesquePro";
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 21px;
-            text-align: center;
-            color: #f3f3f3;
-            opacity: 0.5;
-            @media screen and (max-width: 1600px) {
-                font-size: 13px;
-              }
-
-            &__infoBox {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-
-                &__link {
-                    font-family: "BasisGrotesquePro";
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 21px;
-                    text-align: center;
-                    color: #f3f3f3;
-                    opacity: 0.5;
-                    text-decoration: underline;
-                    @media screen and (max-width: 1600px) {
-                        font-size: 13px;
-                      }
-                }
-                &__link2 {
-                    font-family: "BasisGrotesquePro";
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 21px;
-                    text-align: center;
-                    color: #f3f3f3;
-                    opacity: 0.5;
-                    @media screen and (max-width: 1600px) {
-                        font-size: 13px;
-                      }
-                }
-            }
-        }
+      }
     }
-
+  }
 }

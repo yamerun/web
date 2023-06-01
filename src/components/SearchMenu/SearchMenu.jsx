@@ -13,17 +13,15 @@ import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
-import EmoneyFillter from '../EmoneyFillter/EmoneyFillter'
+import { SearchHelper } from "./searchHelper";
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items,isFilltersClear,currentFrom,currentTo } = useSelector((state) => ({
+  const { items,isFilltersClear,} = useSelector((state) => ({
     items: state.itemsSlice.items,
     calculated: state.itemsSlice.calculated,
     isFilltersClear: state.itemsSlice.isFilltersClear,
-    currentFrom: state.itemsSlice.currentFrom,
-    currentTo: state.itemsSlice.currentTo,
   }));
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -45,24 +43,25 @@ export const SearchMenu = () => {
   const ShowMoreToBot = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
   };
-  const getItemFrom = (e, item) => {
-       dispatch(setitemIdReducer(e.target.id));
-       dispatch(setCurrentItemFromReducer(e.target.textContent));
-       dispatch(setItemReducer(e.target.textContent));
-       e.target.classList.add(`${style.active}`)
-       const btnElements = document.querySelectorAll(`.${style.active}`);
-       for (let i of btnElements) {
-       if (i != e.target) {
-        i.classList.remove(`${style.active}`);
-       } 
 
+  const getItemFrom = (e, item) => {
+      dispatch(setitemIdReducer(e.target.id));
+      dispatch(setCurrentItemFromReducer(e.target.textContent));
+      dispatch(setItemReducer(e.target.textContent));
+      e.target.classList.add(`${style.active}`)
+      const btnElements = document.querySelectorAll(
+        `.${style.SearchMenu__item}`
+      );
+      for (let i of btnElements) {
+      if (i != e.target) {
+       i.classList.remove(`${style.active}`);
+      } 
     }
-    console.log(item)
     dispatch(setIsFilltersClear(false));
   };
+
   const getItemTo = (e) => {
     dispatch(setCurrentItemToReducer(e.target.textContent));
-
     const btnElements = document.querySelectorAll(
       `.${style.SearchMenu__item2}`
     );
@@ -73,6 +72,7 @@ export const SearchMenu = () => {
       }
     }
     dispatch(setIsFilltersClear(false));
+  
   };
 
   useEffect(() => {
@@ -92,96 +92,6 @@ export const SearchMenu = () => {
     }
   }, [isFilltersClear]);
 
-  const setInputValueForSearch = (e) => {
-    const translitMap = {
-      й: "q",
-      ц: "w",
-      у: "e",
-      к: "r",
-      е: "t",
-      н: "y",
-      г: "u",
-      ш: "i",
-      щ: "o",
-      з: "p",
-      х: "[",
-      ъ: "]",
-      ф: "a",
-      ы: "s",
-      в: "d",
-      а: "f",
-      п: "g",
-      р: "h",
-      о: "j",
-      л: "k",
-      д: "l",
-      ж: ";",
-      э: "'",
-      я: "z",
-      ч: "x",
-      с: "c",
-      м: "v",
-      и: "b",
-      т: "n",
-      ь: "m",
-      б: ",",
-      ю: ".",
-    };
-    let result = "";
-    for (let i = 0; i < e.target.value.length; i++) {
-      const char = e.target.value.charAt(i);
-      const translitChar = translitMap[char.toLowerCase()] || char;
-      result +=
-        char === char.toLowerCase() ? translitChar : translitChar.toUpperCase();
-    }
-    setInputValue(result);
-    dispatch(setFillterItemsReducer(result));
-  };
-  const setInputValue2ForSearch = (e) => {
-    const translitMap = {
-      й: "q",
-      ц: "w",
-      у: "e",
-      к: "r",
-      е: "t",
-      н: "y",
-      г: "u",
-      ш: "i",
-      щ: "o",
-      з: "p",
-      х: "[",
-      ъ: "]",
-      ф: "a",
-      ы: "s",
-      в: "d",
-      а: "f",
-      п: "g",
-      р: "h",
-      о: "j",
-      л: "k",
-      д: "l",
-      ж: ";",
-      э: "'",
-      я: "z",
-      ч: "x",
-      с: "c",
-      м: "v",
-      и: "b",
-      т: "n",
-      ь: "m",
-      б: ",",
-      ю: ".",
-    };
-    let result = "";
-    for (let i = 0; i < e.target.value.length; i++) {
-      const char = e.target.value.charAt(i);
-      const translitChar = translitMap[char.toLowerCase()] || char;
-      result +=
-        char === char.toLowerCase() ? translitChar : translitChar.toUpperCase();
-    }
-    setInput2Value(result);
-    dispatch(setFillterItems2Reducer(result));
-  };
   const result = useMemo(() => {
     if (inputValue.length !== 0) {
       return items.filter((item) =>
@@ -201,6 +111,20 @@ export const SearchMenu = () => {
   const ShowMoreEmoney = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
   };
+  const ChangeInputVal = (e) => {
+    switch (e.target.name) {
+      case "from":
+        setInputValue(SearchHelper(e));
+        dispatch(setFillterItemsReducer(SearchHelper(e)));
+        break;
+
+      case "to":
+        setInput2Value(SearchHelper(e));
+        dispatch(setFillterItems2Reducer(SearchHelper(e)));
+        break;
+    }
+  };
+
 
   return (
     <div className={style.SearchMenu} ref={ref3}>
@@ -209,8 +133,8 @@ export const SearchMenu = () => {
           <input
             className={style.SearchMenu__inputField}
             placeholder="Отдаете"
-            onChange={(e) => setInputValueForSearch(e)}
-            
+            onChange={(e) => ChangeInputVal(e)}
+            name='from'
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -219,8 +143,8 @@ export const SearchMenu = () => {
           <input
             className={style.SearchMenu__inputField}
             placeholder="Получаете"
-            onChange={(e) => setInputValue2ForSearch(e)}
-
+            onChange={(e) => ChangeInputVal(e)}
+            name='to'
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -268,7 +192,28 @@ export const SearchMenu = () => {
         onClick={() => ShowMoreEmoney()}
       />
       <div className={style.SearchMenu__Emoney} ref={ref2}>
-          <EmoneyFillter />
+      <div className={style.ItemsPayment}>
+      <ul className={style.ItemsPayment__itemsList}>
+        {items.map((item) => (
+          <li
+            className={style.SearchMenu__item}
+            onClick={(e) => getItemFrom(e, item)}
+          >
+            {item.title}
+          </li>
+        ))}
+      </ul>
+      <ul className={style.ItemsPayment__itemsList}>
+        {items.map((item) => (
+          <li
+            className={style.SearchMenu__item2}
+            onClick={(e) => getItemTo(e)}
+          >
+            {item.title}
+          </li>
+        ))}
+      </ul>
+    </div>
       </div>
       <div className={style.SearchMenu__ShowMore}>
         <button

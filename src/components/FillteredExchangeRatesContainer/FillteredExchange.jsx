@@ -48,6 +48,7 @@ export default function FillteredExchangeRates() {
       return () => clearInterval(get);
     }
   }, [currentTo, currentFrom, calculated]);
+  
 
   return isTwice === true ? (
     <React.Suspense

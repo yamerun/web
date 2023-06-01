@@ -8,16 +8,19 @@
   min-width: 340px;
   overflow: hidden; 
   height:fit-content;
-
-
   @media screen and (max-width: 1600px) {
     width: 18%;
     min-width: 200px;
   }
+  
+  @media screen and (max-width:900px) {
+    width: 100.5%;
+   }
 
   &__Emoney {
     max-height: 250px;
     overflow: hidden;
+    width:100%;
   }
 
   &__exchanger {
@@ -145,6 +148,7 @@
     @media screen and (max-width: 1352px) {
       font-size: 11px;
     }
+    
   }
 
   &__item2 {
@@ -200,4 +204,79 @@
 
 .fullsize {
   height: 100%;
+}
+
+
+.ItemsPayment {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  justify-content: center;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2d2d31;
+    /* цвет дорожки */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #1b1b1b;
+    /* цвет плашки */
+    border-radius: 20px;
+    /* закругления плашки */
+  }
+  &__itemsList {
+    width:100%;
+  }
+
+  &__item {
+    list-style-type: none;
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+    border-bottom: 1px solid #5e5e65;
+    border-width: 96%;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+
+    @media screen and (max-width: 1600px) {
+      font-size: 13px;
+    }
+    @media screen and (max-width: 1600px) {
+      font-size: 11px;
+    }
+  }
+  &__item2 {
+    list-style-type: none;
+    font-family: "BasisGrotesquePro";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+    border-bottom: 1px solid #5e5e65;
+    border-width: 96%;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    @media screen and (max-width: 1600px) {
+      font-size: 13px;
+    }
+    @media screen and (max-width: 1600px) {
+      font-size: 11px;
+    }
+  }
+}
+
+.activeFrom {
+  background-color: #46464b;
+}
+.activeTo {
+  background-color: #46464b;
 }

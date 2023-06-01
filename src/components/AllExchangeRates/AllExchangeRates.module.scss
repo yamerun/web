@@ -31,7 +31,9 @@ $hedaerw6: 50px;
         width:93%;
         overflow: hidden;
         margin: 5px;
-
+        @media screen and (max-width: 1179px) {
+          width:88%;
+        }
         &:hover {
           background: #343436;
           transition: linear 0.3s;
@@ -43,6 +45,9 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw2;
+          @media screen and (max-width: 1179px) {
+            font-size: 9px;
+          }
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -53,6 +58,9 @@ $hedaerw6: 50px;
             height: 10px;
             color: #f3f3f3;
             text-align: center;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
 
           &__header2 {
@@ -65,17 +73,11 @@ $hedaerw6: 50px;
             opacity: 0.5;
             text-align: center;
             margin: 0;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
 
-          &__btn {
-            background-color: #2d2d31;
-            border: 0;
-            outline: 0;
-            width: 20px;
-            height: 20px;
-            background: url("../../assets/imgs/openInfo.svg");
-            background-repeat: no-repeat;
-          }
         }
 
         &__to {
@@ -84,7 +86,9 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw3;
-
+          @media screen and (max-width: 1179px) {
+            font-size: 9px;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -94,6 +98,9 @@ $hedaerw6: 50px;
             height: 10px;
             color: #f3f3f3;
             text-align: center;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
 
           &__header2 {
@@ -106,6 +113,9 @@ $hedaerw6: 50px;
             opacity: 0.5;
             text-align: center;
             margin: 0;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
 
         }
@@ -116,6 +126,9 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw4;
+          @media screen and (max-width: 1179px) {
+            font-size: 9px;
+          }
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -126,6 +139,10 @@ $hedaerw6: 50px;
             height: 10px;
             color: #f3f3f3;
             text-align: center;
+            @media screen and (max-width: 1179px) {
+              font-size: 11px;
+              margin:3px;
+            }
           }
         }
 
@@ -137,7 +154,12 @@ $hedaerw6: 50px;
           text-align: center;
           width: $hedaerw1;
           position: relative;
-
+          @media screen and (max-width: 1179px) {
+            font-size: 9px;
+            width:80px;
+            overflow: hidden;
+            margin: 3px;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -151,6 +173,9 @@ $hedaerw6: 50px;
             padding-bottom: 10px;
             padding-left: 25px;
             overflow: hidden;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
 
           &__btn {
@@ -172,7 +197,10 @@ $hedaerw6: 50px;
           gap: 5px;
           text-align: center;
           width: $hedaerw5;
-
+          @media screen and (max-width: 1179px) {
+            font-size: 9px;
+            padding-left: 25px;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -182,6 +210,9 @@ $hedaerw6: 50px;
             height: 10px;
             color: #f3f3f3;
             text-align: center;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
         }
 
@@ -192,7 +223,9 @@ $hedaerw6: 50px;
           gap: 5px;
           text-align: center;
           width: $hedaerw6;
-
+          @media screen and (max-width: 1179px) {
+            font-size: 9px;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -202,6 +235,9 @@ $hedaerw6: 50px;
             height: 10px;
             color: #f3f3f3;
             text-align: center;
+            @media screen and (max-width: 1179px) {
+              font-size: 9px;
+            }
           }
         }
       }
