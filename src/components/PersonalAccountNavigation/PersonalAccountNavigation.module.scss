@@ -1,0 +1,56 @@
+.Navigation {
+  font-family: "BasisGrotesquePro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  color: #f3f3f3;
+  padding-top: 40px;
+  @media screen and (max-width: 1200px) {
+    padding-top: 60px;
+  }
+  &__userName {
+    font-size: 40px;
+    margin: 10px;
+    @media screen and (max-width: 1200px) {
+      font-size: 20px;
+    }
+  }
+  &__logOut {
+    width: 150px;
+    list-style-type: none;
+    opacity: 0.5;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 12px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    &__item {
+      font-family: "BasisGrotesquePro";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 21px;
+      color: #f3f3f3;
+      opacity: 0.5;
+      user-select: none;
+      cursor: pointer;
+      border-top: 1px solid #5e5e65;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      list-style-type: none;
+      text-decoration: none;
+      @media screen and (max-width: 1200px) {
+        font-size: 12px;
+      }
+    }
+  }
+}

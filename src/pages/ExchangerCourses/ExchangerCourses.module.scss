@@ -2,7 +2,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  
 
   &__header {
     margin-bottom: 20px;
@@ -11,7 +10,14 @@
     font-weight: 900;
     font-size: 45px;
     color: #f3f3f3;
+    @media screen and (max-width: 1100px) {
+      font-size: 32px;
+    }
+    @media screen and (max-width: 540px) {
+      font-size: 13px;
+    }
   }
+
 
   &__container {
     margin-top: 40px;
@@ -29,7 +35,7 @@
       border-radius: 30px;
       padding: 20px;
       flex-direction: column;
-
+      align-items: center;
       &__content {
         width: 100%;
         font-family: "BasisGrotesquePro";
@@ -82,6 +88,11 @@
   font-size: 16px;
   padding: 10px;
   text-align: center;
+  @media screen and (max-width:540px){
+     
+    font-size: 9px;
+   }
+
 }
 
 .table {
@@ -89,9 +100,22 @@
   background: #2d2d31;
   border-radius: 20px;
   padding: 20px;
-  width:100%;
+  width: 100%;
   max-height: 700px;
 }
+
+@media screen and (max-width: 1100px) {
+  .table {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 540px) {
+  .table {
+    width: 50%;
+    padding: 5px;
+  }
+}
+
 .tableCell {
   border: solid 1px #2d2d31;
   color: white;
@@ -103,12 +127,15 @@
   font-weight: 700;
   font-size: 13px;
   text-align: center;
+  @media screen and (max-width: 540px) {
+    font-size: 9px;
+  }
 }
 
 .tableBox {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   margin-top: 40px;
   height: 70%;
 }

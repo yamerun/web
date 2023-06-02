@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Partners.module.scss";
 import axios from "axios";
-export const Partners = () => {
+export default function Partners() {
   const [partners, setPartners] = useState("");
 
   useEffect(() => {
@@ -13,16 +13,19 @@ export const Partners = () => {
       .catch(function (error) {});
   }, []);
 
+
   return (
     <div className={style.Partners}>
       <div className={style.Partners__column}>
         {partners.length !== 0 &&
           partners.map((item) => (
-            <div>
-              <h1 className={style.Partners__column__box} style={{color:'white',fontSize:'16px'}}>name:{item.name},id:{item.id}</h1>         
+            <div className={style.Partners__column__box}>
+            <h1 className={style.Partners__column__header}>{item.name}</h1>   
+             <img src={`https://change.pro/${item.logo.path}`} alt='' className={style.Partners__column__img}/>   
             </div>
           ))}
       </div>
     </div>
   );
 };
+

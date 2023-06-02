@@ -69,6 +69,9 @@
             @media screen and (max-width: 1600px) {
               font-size: 13px;
             }
+            @media screen and (max-width:550px) {
+              font-size:9px;
+            }
 
             &__header {
               font-family: "BasisGrotesquePro";
@@ -78,6 +81,9 @@
               color: #f3f3f3;
               @media screen and (max-width: 1600px) {
                 font-size: 12px;
+              }
+              @media screen and (max-width:550px) {
+                font-size:9px;
               }
             }
             &__header2 {
@@ -92,6 +98,9 @@
               @media screen and (max-width: 1600px) {
                 font-size: 13px;
               }
+              @media screen and (max-width:550px) {
+                font-size:9px;
+              }
             }
             &__headerInfo {
               font-family: "BasisGrotesquePro";
@@ -102,6 +111,9 @@
               position: absolute;
               left: 70%;
               opacity: 0.5;
+              @media screen and (max-width:550px) {
+                font-size:9px;
+              }
             }
           }
         }

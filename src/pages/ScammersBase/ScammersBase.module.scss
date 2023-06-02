@@ -33,6 +33,9 @@
       &__box {
         width: 30%;
         text-align: left;
+        @media screen and (max-width:700px) {
+          font-size: 12px;
+        }
       }
     }
     &__infoContainer {
@@ -44,6 +47,9 @@
       margin-top: 15px;
       padding: 25px;
       border-radius: 7px;
+      @media screen and (max-width:700px) {
+        padding: 0;
+      }
       &:hover {
         background-color: #46464b;
       }
@@ -53,6 +59,7 @@
         flex-direction: column;
         justify-content: left;
         width: 30%;
+        
         &__header {
           color: white;
           font-family: "BasisGrotesquePro";
@@ -71,12 +78,20 @@
           font-family: "BasisGrotesquePro";
           height: 70px;
           font-size: 22px;
+          @media screen and (max-width:700px) {
+            font-size: 12px;
+            height: fit-content;
+            padding: 5px;
+          }
         }
       }
       &__contacts {
         border-left: 1px solid gray;
         padding-left: 40px;
         width: 30%;
+        @media screen and (max-width:700px) {
+          padding-left: 0;
+        }
         &__header {
           color: white;
           font-family: "BasisGrotesquePro";
@@ -95,6 +110,11 @@
           font-family: "BasisGrotesquePro";
           height: 70px;
           font-size: 22px;
+          @media screen and (max-width:700px) {
+            font-size: 12px;
+            height: fit-content;
+            padding: 5px;
+          }
         }
       }
       &__description {
@@ -104,6 +124,9 @@
         border-left: 1px solid gray;
         padding-left: 40px;
         width: 30%;
+        @media screen and (max-width:700px) {
+          padding-left: 0;
+        }
         &__header {
           color: white;
           font-family: "BasisGrotesquePro";
@@ -125,6 +148,9 @@
           max-width: 300px;
           white-space: pre-wrap;
           word-break: break-all;
+          @media screen and (max-width:700px) {
+            font-size: 12px;
+          }
         }
       }
     }
@@ -186,6 +212,9 @@
         padding-top: 15px;
         padding-left: 15px;
         padding-bottom: 15px;
+        @media screen and (max-width:930px) {
+          flex-direction: column;
+        }
         &__inputBox {
           background-color: #151517;
           border: 2px solid #5e5e65;
@@ -212,6 +241,9 @@
             color: white;
             font-family: "BasisGrotesquePro";
             width: 230px;
+            @media screen and (max-width:930px) {
+              min-width: 150px;
+            }
             &::placeholder {
               font-family: "BasisGrotesquePro";
               font-style: normal;
@@ -230,6 +262,9 @@
         font-style: normal;
         font-weight: 900;
         font-size: 45px;
+        @media screen and (max-width:930px) {
+          font-size:25px;
+        }
       }
       &__navigation {
         display: flex;

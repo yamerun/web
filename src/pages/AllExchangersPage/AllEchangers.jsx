@@ -280,7 +280,7 @@ export const AllEchangers = () => {
                   to={`/ExchangerPage/${item.exchanger.id}`}
                   className={style.Exchangers__content__body__block__goToPage}
                 />
-                <p onClick={() => openItemSite(item.exchanger.site_url)}>
+                <p onClick={() => openItemSite(item.exchanger.site_url)} className={style.Exchangers__content__body__block__name__text}>
                   {item.exchanger.name}
                 </p>
               </div>
@@ -300,7 +300,7 @@ export const AllEchangers = () => {
                 <p>{item.exchanger.user_reviews}</p>
                 <p
                   className={
-                    style.Fillters__categories__body__content__comment__header
+                    style.Fillters__categories__body__block__comment__header
                   }
                   style={
                     item.exchanger.count_reviews == 0
@@ -312,11 +312,11 @@ export const AllEchangers = () => {
                 </p>
               </div>
               <div
-                className={style.Fillters__categories__body__content__status}
+                className={style.Exchangers__content__body__block__status}
               >
                 <p
                   className={
-                    style.Fillters__categories__body__content__status__header
+                    style.Fillters__categories__body__block__status__header
                   }
                 >
                   {item.exchanger.status.title}

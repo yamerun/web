@@ -1,5 +1,4 @@
 .Exchangers {
-
   &__content {
     border-radius: 20px;
     display: flex;
@@ -19,6 +18,9 @@
       background: #46464b;
       padding: 30px;
       border-radius: 20px;
+      @media screen and (max-width: 524px) {
+        width: 300px;
+      }
       &__seacrh {
         display: flex;
         background: #2d2d31;
@@ -27,19 +29,19 @@
         flex-direction: row;
         border-radius: 20px;
         padding: 20px;
+
         &__selected {
-          display:flex;
+          display: flex;
           flex-direction: row;
-          gap:10px;
+          gap: 10px;
           &__name {
-            color:white;
+            color: white;
             font-family: "BasisGrotesquePro";
           }
         }
 
         &__fields {
           background-color: black;
-
           border-radius: 20px;
           display: flex;
           border: 1px solid white;
@@ -52,12 +54,17 @@
         }
         &__input {
           position: relative;
-          display:flex;
+          display: flex;
           flex-direction: column;
+          @media screen and (max-width: 750px) {
+            width: 150px;
+            font-size: 12px;
+            padding: 0;
+          }
           &__selected {
-            display:flex;
+            display: flex;
             flex-direction: row;
-            gap:10px;
+            gap: 10px;
           }
 
           &__results {
@@ -67,18 +74,18 @@
             position: absolute;
             background-color: black;
             padding: 10px;
-            color:white;
-            left:10px;
-            width:80%;
+            color: white;
+            left: 10px;
+            width: 80%;
             border-radius: 20px;
-            top:50px;
+            top: 50px;
             font-family: "BasisGrotesquePro";
             font-style: normal;
-            border:1px solid white;
+            border: 1px solid white;
             user-select: none;
             z-index: 99;
             &::-webkit-scrollbar {
-                display:none;
+              display: none;
             }
           }
 
@@ -89,10 +96,7 @@
             justify-content: center;
             padding-left: 10px;
             padding-right: 10px;
-           
           }
-        
-
 
           &__field {
             background: none;
@@ -114,6 +118,9 @@
             width: 30px;
             background-repeat: no-repeat;
             background-color: black;
+            @media screen and (max-width: 750px) {
+              display: none;
+            }
           }
         }
       }
@@ -132,12 +139,24 @@
         font-weight: 700;
         justify-content: space-between;
         padding: 20px;
+        @media screen and (max-width: 948px) {
+          width: 100%;
+        }
+        @media screen and (max-width: 750px) {
+          width: 93%;
+          font-size: 8px;
+          padding: 0;
+        }
+        @media screen and (max-width: 350px) {
+          width: 100%;
+        }
 
         &__name {
           width: 23%;
           display: flex;
-          flex-direction: row;
-          gap: 10px;
+          @media screen and (max-width: 948px) {
+            width: 10%;
+          }
         }
         &__from {
           width: 20%;
@@ -145,6 +164,12 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          @media screen and (max-width: 948px) {
+            width: 10%;
+          }
+          @media screen and (max-width: 350px) {
+            width: max-content;
+          }
         }
         &__to {
           width: 20%;
@@ -170,7 +195,7 @@
         white-space: nowrap;
         align-items: center;
         width: 100%;
-        height:30px;
+        height: 30px;
         color: white;
         font-size: 13px;
         font-family: "BasisGrotesquePro";
@@ -179,6 +204,9 @@
         justify-content: space-between;
         padding: 8px 15px 8px 15px;
         position: relative;
+        @media screen and (max-width: 750px) {
+          font-size: 11px;
+        }
 
         &:hover {
           background-color: #6e6e6e;
@@ -186,8 +214,24 @@
         &__name {
           width: 15%;
           display: flex;
-          flex-direction: row;
-          gap: 10px;
+          position: relative;
+          @media screen and (max-width: 988px) {
+            font-size: 11px;
+            flex-direction: row;
+            gap: 10px;
+          }
+          &__text {
+            padding-left: 40px;
+            @media screen and (max-width: 1200px) {
+              font-size: 10px;
+            }
+            @media screen and (max-width: 770px) {
+              max-width: 70px;
+              overflow: hidden;
+              padding-left: 20px;
+              font-size: 7px;
+            }
+          }
         }
         &__from {
           width: 20%;
@@ -195,6 +239,21 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          @media screen and (max-width: 988px) {
+            font-size: 11px;
+            flex-direction: row;
+            gap: 10px;
+            width: 67px;
+          }
+          @media screen and (max-width: 750px) {
+            font-size: 7px;
+            gap: 4px;
+          }
+        }
+        &__status {
+          @media screen and (max-width: 750px) {
+            font-size: 7px;
+          }
         }
         &__to {
           width: 20%;
@@ -202,21 +261,50 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          @media screen and (max-width: 988px) {
+            font-size: 11px;
+            flex-direction: row;
+            gap: 10px;
+            width: 67px;
+          }
+          @media screen and (max-width: 750px) {
+            font-size: 7px;
+            gap: 4px;
+          }
         }
         &__reserve {
           width: 10%;
+          @media screen and (max-width: 988px) {
+            font-size: 11px;
+            flex-direction: row;
+            gap: 10px;
+            width: 67px;
+          }
+          @media screen and (max-width: 750px) {
+            font-size: 7px;
+          }
         }
         &__comments {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          @media screen and (max-width: 988px) {
+            font-size: 11px;
+            flex-direction: row;
+            gap: 10px;
+            width: 67px;
+          }
+          @media screen and (max-width: 750px) {
+            font-size: 7px;
+          }
         }
         &__goToPage {
           background-image: url("../../assets/imgs/openInfo.svg");
           background-repeat: no-repeat;
           width: 30px;
           height: 30px;
+          position: absolute;
         }
       }
     }
@@ -224,6 +312,6 @@
 }
 
 .hide {
-  visibility:hidden;
-  opacity:0;
+  visibility: hidden;
+  opacity: 0;
 }

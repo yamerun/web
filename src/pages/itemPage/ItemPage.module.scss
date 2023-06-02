@@ -1,3 +1,9 @@
+.pupActive {
+  height: 80%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 .itemPage {
   position: relative;
   width: 100%;
@@ -54,6 +60,9 @@
       text-transform: uppercase;
       color: #f3f3f3;
       user-select: none;
+      @media screen and (max-width:600px) {
+        font-size: 18px;
+      }
     }
 
     &__button {
@@ -80,6 +89,14 @@
   }
   &__container {
     width: 70%;
+    @media screen and (max-width:1200px) {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+    
 
     &__exchangeInfo {
       display: flex;
@@ -117,6 +134,9 @@
       font-weight: 900;
       font-size: 45px;
       color: #f3f3f3;
+      @media screen and (max-width: 600px) {
+        font-size: 18px;
+      }
     }
     &__items {
       display: flex;
@@ -126,7 +146,7 @@
       width: 100%;
       @media screen and (max-width: 1200px) {
         flex-direction: column;
-        gap:10px;
+        gap: 10px;
       }
 
       &__item {

@@ -16,6 +16,9 @@
   @media screen and (max-width:900px) {
     width: 100.5%;
    }
+   @media screen and (max-width:600px) {
+    min-width:350px;
+ }
 
   &__Emoney {
     max-height: 250px;

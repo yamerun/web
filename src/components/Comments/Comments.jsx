@@ -109,6 +109,7 @@ export const Comments = ({ props, review ,w}) => {
   return (
     <div className={style.Review} style={{width:w}}>
       <div className={style.Review__user}>
+        <div>
         <h1 className={style.Review__user__name}>{props.author.name}</h1>
         <StarRatings
           rating={props.rating}
@@ -118,6 +119,7 @@ export const Comments = ({ props, review ,w}) => {
           starDimension="20px"
           starSpacing="3px"
         />
+        </div>
         <h1 className={style.Review__user__createdAt}>{props.created_at}</h1>
       </div>
       <div className={style.Review__textBox}>

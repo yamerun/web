@@ -1,33 +1,39 @@
 .AccountSettings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height:80%;
-    &__box {
-        width:50%;
-        color:white;
-        margin-top: 10px; 
-        &__settings {
-            display: flex;
-            flex-direction: column;
-            gap:20px;
-        }
-        &__name {
-            font-size: 50px;
-            font-family: "BasisGrotesquePro";
-            padding: 14px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-      
-        }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  @media screen and (max-width: 1200px) {
+    min-height: 700px;
+    height: fit-content;
+  }
+  &__box {
+    width: 50%;
+    color: white;
+    margin-top: 10px;
+    &__settings {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
     }
-
-
+    &__name {
+      font-size: 50px;
+      font-family: "BasisGrotesquePro";
+      padding: 14px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      @media screen and (max-width: 1200px) {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
+}
 
 .active {
-    opacity:1;
-    background-color: rgba(70, 70, 70, 0.356);
-    border-radius: 20px;
+  opacity: 1;
+  background-color: rgba(70, 70, 70, 0.356);
+  border-radius: 20px;
 }

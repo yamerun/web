@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { setUserRole } from "../store/userAccountSlice/AccountSlice";
 import { useNavigate } from "react-router-dom";
+import './layout.css'
 export default function MainLayout({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -79,8 +80,9 @@ export default function MainLayout({ children }) {
     }
   }, [isAuthOnSite, isAuthInPersonallAccount]);
 
+
   return (
-    <div style={{ height: "93%" }}>
+    <div className='Layout'>
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}
       <Outlet />

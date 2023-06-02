@@ -32,7 +32,10 @@ export const ItemPage = () => {
   const { item } = useLoaderData();
   const navigate = useNavigate();
   const [review, setReview] = useState();
-  const [imgData, setImgData] = useState({});
+  const [screenSize, getDimension] = React.useState({
+    dynamicWidth: window.innerWidth,
+    dynamicHeight: window.innerHeight,
+  });
   const [isOpen, setIsOpen] = useState(false);
   const [hideBlocks, setHideBlocks] = useState(false);
   const { isExchangerRole } = useSelector((state) => ({
@@ -60,7 +63,6 @@ export const ItemPage = () => {
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
 
-
   const OpenIframe = () => {
     setHideBlocks(!hideBlocks);
   };
@@ -78,14 +80,35 @@ export const ItemPage = () => {
 
   const IframeBlock = useRef(null);
   const iframebtn = useRef(null);
+  const main = useRef(null);
 
- 
   const ShowReviews = () => {
-      setIsOpen(true);
+    setIsOpen(true);
+    main.current.classList.add(`${style.pupActive}`);
+  };
+
+  useEffect(()=>{
+  if(isOpen != true) {
+    main.current.classList.remove(`${style.pupActive}`);
+  }
+  },[isOpen])
+
+  const setDimension = () => {
+    getDimension({
+      dynamicWidth: window.innerWidth,
+      dynamicHeight: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", setDimension);
+    return () => {
+      window.removeEventListener("resize", setDimension);
     };
-console.log(item.data.iframe)
+  }, [screenSize]);
+
   return (
-    <div className={style.itemPage}>
+    <div className={style.itemPage} ref={main}>
       {isOpen && (
         <React.Suspense
           fallback={
@@ -135,22 +158,22 @@ console.log(item.data.iframe)
           ref={iframebtn}
         />
         <div className={style.itemPage__container__items}>
-        <div
-              className={style.itemPage__container__items__item}
-              ref={IframeBlock}
-            >
-          {Object.keys(item.data.iframe.src).length === 0 ? (
+          <div
+            className={style.itemPage__container__items__item}
+            ref={IframeBlock}
+          >
+            {Object.keys(item.data.iframe.src).length === 0 ? (
               <h1 className={style.empty}>{item.data.name}</h1>
             ) : (
-
               <iframe
                 src={item.data.iframe.src}
                 className={style.itemPage__container__Iframe}
               />
-            )
-            }
-            </div>
-          {hideBlocks !== true && <ItemPageInfoBlock item={item} ShowReviews={ShowReviews} />}
+            )}
+          </div>
+          {hideBlocks !== true && (
+            <ItemPageInfoBlock item={item} ShowReviews={ShowReviews} />
+          )}
           {hideBlocks !== true && <ItemPageExchangerDescription item={item} />}
         </div>
         <div className={style.itemPage__exchangermarks}>
@@ -170,7 +193,7 @@ console.log(item.data.iframe)
         </h1>
         {review != null ? (
           review.map((item) => (
-            <Comments props={item} review={setReview} w={"30%"} />
+            <Comments props={item} review={setReview} w={screenSize.dynamicWidth < 1090 ? "70%" : "30%"} />
           ))
         ) : (
           <div></div>
@@ -179,5 +202,3 @@ console.log(item.data.iframe)
     </div>
   );
 };
-
-

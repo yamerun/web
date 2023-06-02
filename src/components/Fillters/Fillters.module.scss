@@ -8,6 +8,9 @@
   width:100%;
   position: relative;
   min-height: 780px;
+  @media screen and (max-width:600px) {
+   min-width:350px;
+}
   &__inActive {
     visibility: hidden;
     position: absolute;

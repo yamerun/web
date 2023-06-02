@@ -56,10 +56,12 @@ export const Articles = () => {
               >
                 {item.title}
               </h1>
+          
               <p className={style.Articles__container__article__header__date}>
                 {item.created_at.date} {item.created_at.time}
               </p>
             </div>
+            <img alt='' src={`https://change.pro/${item.preview_picture.path}`}  className={style.Articles__container__article__img}/>
             <div
               style={{ color: "white" }}
               className={style.Articles__container__article__text}
@@ -67,6 +69,8 @@ export const Articles = () => {
             ></div>
           </article>
         ))}
+   
+               
       </div>
     </div>
   );

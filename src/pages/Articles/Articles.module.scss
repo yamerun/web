@@ -1,10 +1,12 @@
 .Articles {
-   height:80%;
+  height: 80%;
   display: flex;
+  width:100%;
   flex-direction: column;
   align-items: center;
-
-
+  @media screen and (max-width:900px) {
+    height:fit-content;
+  }
   &__container {
     margin-top: 20px;
     display: flex;
@@ -15,13 +17,13 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      justify-content: left;
-      width: 70%;
+      justify-content: center;
+      width:70%;
     }
     &__article {
       margin: 20px;
       width: 23%;
-      max-height:350px;
+      max-height: 350px;
       overflow-x: hidden;
       overflow-y: hidden;
       color: white;
@@ -33,6 +35,29 @@
       justify-content: space-between;
       background: #2b2b30;
       border-radius: 20px;
+      @media screen and (max-width: 1300px) {
+        width: 50%;
+       
+      }
+
+      &__img {
+        width: 300px;
+        height: 180px;
+        border-radius: 12px;
+        margin: 5px;
+        @media screen and (max-width: 1600px) {
+          width: 250px;
+          height: 120px;
+        }
+        @media screen and (max-width: 1300px) {
+          width: 200px;
+          height: 120px;
+        }
+        @media screen and (max-width: 900px) {
+          width: 150px;
+          height: 80px;
+        }
+      }
 
       &__text {
         padding: 6px;
@@ -61,12 +86,18 @@
           font-weight: 600;
           letter-spacing: 1px;
           text-transform: uppercase;
+          @media screen and (max-width: 1600px) {
+            font-size: 12px;
+          }
         }
         &__date {
           font-family: "BasisGrotesquePro";
           color: white;
           opacity: 0.5;
           font-size: 13px;
+          @media screen and (max-width: 1600px) {
+            font-size: 12px;
+          }
         }
       }
     }

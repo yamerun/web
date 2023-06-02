@@ -19,12 +19,12 @@ export const AccountReviewloader = async () => {
       }
     );
     const item = await res.json();
-    return { item };
+    return { item,id };
   } else window.location.href = '/';
 };
 
 export const AccountReviews = () => {
-  const { item } = useLoaderData();
+  const { item,id } = useLoaderData();
   const navigate = useNavigate();
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
@@ -32,7 +32,7 @@ export const AccountReviews = () => {
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
 
-  console.log(item);
+  console.log(id);
 
   return (
     <div className={style.AccountReviews}>
