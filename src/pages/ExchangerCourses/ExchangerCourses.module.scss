@@ -96,12 +96,14 @@
 }
 
 .table {
+  overflow-y: auto;
+  max-height:300px;
   border: 0;
   background: #2d2d31;
   border-radius: 20px;
   padding: 20px;
   width: 100%;
-  max-height: 700px;
+
 }
 
 @media screen and (max-width: 1100px) {
@@ -138,6 +140,17 @@
   align-items: center;
   margin-top: 40px;
   height: 70%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    background: none;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 12px;
+    width: 10px;
+  }
 }
 
 .ExchangerCourses {

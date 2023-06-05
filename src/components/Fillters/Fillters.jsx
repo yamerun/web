@@ -25,7 +25,10 @@ export const Fillters = () => {
   const notflications = useRef(null);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-
+  const [screenSize, getDimension] = React.useState({
+    dynamicWidth: window.innerWidth,
+    dynamicHeight: window.innerHeight,
+  });
   const { currentFrom, currentTo, isFilltersClear } = useSelector((state) => ({
     itemExchangeRates: state.itemsSlice.itemExchangeRates,
     currentFrom: state.itemsSlice.currentFrom,
@@ -73,6 +76,7 @@ export const Fillters = () => {
       }
     }
   }, [isFilltersClear]);
+
 
   return (
     <div className={style.Fillters}>

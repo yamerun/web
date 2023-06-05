@@ -1,4 +1,4 @@
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Marks.module.scss";
 import { useDispatch } from "react-redux";
 import { setTooltip } from "../../store/itemsSlice/itemsSlice";
@@ -15,6 +15,7 @@ export const Marks = ({ prop }) => {
 
   const hideTips = () => {
     setCurrentItem(undefined);
+    setCurrentIndex(undefined);
   };
 
   const Open = () => {
@@ -47,13 +48,17 @@ export const Marks = ({ prop }) => {
       {active && (
         <div className={style.variants}>
           {prop.map((item) => (
-            <img
-              src={`https://change.pro${item.icon.path}`}
-              className={style.img}
-              id={item.id}
-              onMouseEnter={(e) => ShowTip(item)}
-              onMouseLeave={hideTips}
-            />
+            <div
+              onMouseEnter={() => ShowTip(item)}
+              onMouseLeave={() => hideTips(item)}
+              key={item.id}
+            >
+              <img
+                src={`https://change.pro${item.icon.path}`}
+                className={style.img}
+                id={item.id}
+              />
+            </div>
           ))}
         </div>
       )}

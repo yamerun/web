@@ -12,7 +12,7 @@ export const CoursesLoader = async () => {
 
   if (key) {
     const res = await fetch(
-      `https://change.pro/api/exchangers/currencies/get?id=${id}`,
+      `https://change.pro/api/exchangers/currencies/get?exchanger_id=${id}`,
       {
         method: "GET",
         headers: {
@@ -20,8 +20,8 @@ export const CoursesLoader = async () => {
         },
       }
     );
-    const data = await res.json();
-    return { data, id };
+    const itemsdata =  await res.json();
+    return { itemsdata, id };
   } else {
     window.location.href = "/changePro";
   }
@@ -29,11 +29,11 @@ export const CoursesLoader = async () => {
 
 export const ExchangerCourses = () => {
   const [data, setData] = useState([]);
-  const items = useLoaderData();
+  const itemsdata = useLoaderData();
 
   useEffect(() => {
-    if (Array.isArray(items.data)) {
-      const formattedData = items.data.map((item) => ({
+    if (Array.isArray(itemsdata.itemsdata.data)) {
+      const formattedData = itemsdata.itemsdata.data.map((item) => ({
         name: `${item.from} → ${item.to}`,
         course: `${Math.floor(item.in)} → ${item.out}`,
         reserve: item.reserve,
@@ -44,7 +44,7 @@ export const ExchangerCourses = () => {
     } else {
       setData([]);
     }
-  }, [items]);
+  }, [itemsdata]);
 
   const columns = useMemo(
     () => [
@@ -79,12 +79,13 @@ export const ExchangerCourses = () => {
       data,
     });
 
+
   return (
     <div className={style.ExchangerCourses}>
-      <div className={style.tableBox}>
-        <h1 className={style.ExchangerCourses__header}>
+              <h1 className={style.ExchangerCourses__header}>
           Загруженные курсы обмена
         </h1>
+      <div className={style.tableBox}>
         <table {...getTableProps()} className={style.table}>
           <thead>
             {headerGroups.map((headerGroup) => (

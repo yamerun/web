@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./PersonalAccountNavigation.module.scss";
+import { useNavigate } from "react-router-dom";
 export default function AccountNavigation({ item }) {
+  const navigate = useNavigate()
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
       `.${style.PersonalAccount__container__leftBar__navigation__list__item}`

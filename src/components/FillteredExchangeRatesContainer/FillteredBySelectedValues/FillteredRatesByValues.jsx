@@ -4,6 +4,25 @@ import { Marks } from "../../Marks/Marks";
 import style from "./FillteredExchange.module.scss";
 const EmptyCourses = React.lazy(()=> import('../../EmptyCourses/EmptyCourses'))
 export default function FillteredBySelectedValues({ itemExchangeRates }) {
+  const [screenSize, getDimension] = React.useState({
+    dynamicWidth: window.innerWidth,
+    dynamicHeight: window.innerHeight,
+  });
+
+  const setDimension = () => {
+    getDimension({
+      dynamicWidth: window.innerWidth,
+      dynamicHeight: window.innerHeight,
+    });
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", setDimension);
+    return () => {
+      window.removeEventListener("resize", setDimension);
+    };
+  }, [screenSize]);
+
 
   return itemExchangeRates.length === 0 ? (
     <React.Suspense fallback={<h1>loading</h1>}>
@@ -31,6 +50,13 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
           </div>
           {item.marks.length !== 0 && <Marks prop={item.marks} />}
           <div className={style.Fillters__categories__body__content__from}>
+          {screenSize.dynamicWidth < 630 && (
+          <p
+            className={style.Fillters__categories__body__content__from__header}
+          >
+            Отдаете:
+          </p>
+        )}
             <p
               className={
                 style.Fillters__categories__body__content__from__header
@@ -47,6 +73,11 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
             </p>
           </div>
           <div className={style.Fillters__categories__body__content__to}>
+          {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Получаете:
+          </p>
+        )}
             <p
               className={style.Fillters__categories__body__content__to__header}
             >
@@ -59,6 +90,11 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
             </p>
           </div>
           <div className={style.Fillters__categories__body__content__reserve}>
+          {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Резерв:
+          </p>
+        )}
             <p
               className={
                 style.Fillters__categories__body__content__reserve__header
@@ -68,6 +104,11 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
             </p>
           </div>
           <div className={style.Fillters__categories__body__content__comment}>
+          {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Комментарии:
+          </p>
+        )}
             <p
               className={
                 style.Fillters__categories__body__content__comment__header
@@ -89,6 +130,11 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
             </p>
           </div>
           <div className={style.Fillters__categories__body__content__status}>
+          {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Статус:
+          </p>
+        )}
             <p
               className={
                 style.Fillters__categories__body__content__status__header

@@ -6,6 +6,11 @@ import { Marks } from "../Marks/Marks";
 import { useSelector } from "react-redux";
 export const AllExchangeRates = () => {
   const [all, setAll] = useState([]);
+  const [screenSize, getDimension] = React.useState({
+    dynamicWidth: window.innerWidth,
+    dynamicHeight: window.innerHeight,
+  });
+
   const { tooltip } = useSelector((state) => ({
     tooltip: state.itemsSlice.tooltip,
   }));
@@ -32,8 +37,21 @@ export const AllExchangeRates = () => {
   const openItemSite = (url) => {
     window.open(`${url}`);
   };
+  const setDimension = () => {
+    getDimension({
+      dynamicWidth: window.innerWidth,
+      dynamicHeight: window.innerHeight,
+    });
+  };
 
-  return (all.map((item) => (
+  React.useEffect(() => {
+    window.addEventListener("resize", setDimension);
+    return () => {
+      window.removeEventListener("resize", setDimension);
+    };
+  }, [screenSize]);
+
+  return all.map((item) => (
     <div className={style.Fillters__categories__body__content}>
       <div className={style.Fillters__categories__body__content__excahange}>
         <Link
@@ -51,6 +69,13 @@ export const AllExchangeRates = () => {
       </div>
       {item.marks.length != 0 && <Marks prop={item.marks} />}
       <div className={style.Fillters__categories__body__content__from}>
+        {screenSize.dynamicWidth < 630 && (
+          <p
+            className={style.Fillters__categories__body__content__from__header}
+          >
+            Отдаете:
+          </p>
+        )}
         <p className={style.Fillters__categories__body__content__from__header}>
           1
         </p>
@@ -59,6 +84,11 @@ export const AllExchangeRates = () => {
         </p>
       </div>
       <div className={style.Fillters__categories__body__content__to}>
+        {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Получаете:
+          </p>
+        )}
         <p className={style.Fillters__categories__body__content__to__header}>
           {(Math.round(item.out * 100) / 100).toFixed(2)}
         </p>
@@ -67,6 +97,11 @@ export const AllExchangeRates = () => {
         </p>
       </div>
       <div className={style.Fillters__categories__body__content__reserve}>
+        {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Резерв:
+          </p>
+        )}
         <p
           className={style.Fillters__categories__body__content__reserve__header}
         >
@@ -74,6 +109,11 @@ export const AllExchangeRates = () => {
         </p>
       </div>
       <div className={style.Fillters__categories__body__content__comment}>
+        {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Комментарии:
+          </p>
+        )}
         <p
           className={style.Fillters__categories__body__content__comment__header}
         >
@@ -89,6 +129,11 @@ export const AllExchangeRates = () => {
         </p>
       </div>
       <div className={style.Fillters__categories__body__content__status}>
+        {screenSize.dynamicWidth < 630 && (
+          <p className={style.Fillters__categories__body__content__to__header}>
+            Статус:
+          </p>
+        )}
         <p
           className={style.Fillters__categories__body__content__status__header}
         >
@@ -96,5 +141,5 @@ export const AllExchangeRates = () => {
         </p>
       </div>
     </div>
-  )))
+  ));
 };

@@ -47,6 +47,12 @@ $hedaerw6: 50px;
         @media screen and (max-width: 1179px) {
           width:88%;
         }
+        @media screen and (max-width: 630px) {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height:30%;
+         }
         &:hover {
           background: #343436;
           transition: linear 0.3s;
@@ -58,7 +64,9 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw2;
-
+          @media screen and (max-width: 630px) {
+            width: 100%;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -96,7 +104,9 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw3;
-
+          @media screen and (max-width: 630px) {
+            width: 100%;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;
@@ -133,6 +143,12 @@ $hedaerw6: 50px;
           align-items: center;
           text-align: center;
           width: $hedaerw4;
+          @media screen and (max-width: 630px) {
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+          }
 
           &__header {
             font-family: "BasisGrotesquePro";
@@ -160,6 +176,10 @@ $hedaerw6: 50px;
           @media screen and (max-width: 1179px) {
             font-size: 9px;
             max-width: 80px;
+          }
+          @media screen and (max-width: 630px) {
+            width: 100%!important;
+            max-width: none;
           }
           &__header {
             font-family: "BasisGrotesquePro";
@@ -189,7 +209,9 @@ $hedaerw6: 50px;
           gap: 5px;
           text-align: center;
           width: $hedaerw5;
-
+          @media screen and (max-width: 630px) {
+            width: fit-content;
+          }
           &__header {
             font-family: "BasisGrotesquePro";
             font-style: normal;

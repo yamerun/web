@@ -14,9 +14,15 @@
     overflow-x: auto;
     padding: 25px;
   }
-  @media screen and (max-width:600px) {
-    max-width:350px;
-
+  @media screen and (max-width: 600px) {
+    max-width: 350px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  @media screen and (max-width: 500px) {
+    max-width: 290px;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   &__header {
@@ -33,7 +39,6 @@
     @media screen and (max-width: 900px) {
       font-size: 17px;
     }
-    
   }
 
   &__text {
