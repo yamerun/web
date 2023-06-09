@@ -29,9 +29,7 @@ ChartJS.register(
 export const options = {
   responsive: true,
   elements: {
-    point:{
-        radius: 0
-    }
+
 },
   plugins: {
     legend: {
@@ -59,6 +57,10 @@ export const LineChart = ({}) => {
     currentFrom: state.itemsSlice.currentFrom,
     stat: state.itemsSlice.stat,
   }));
+  const [screenSize, getDimension] = React.useState({
+    dynamicWidth: window.innerWidth,
+    dynamicHeight: window.innerHeight,
+  });
 
   const labels = stat.values.map((item) => item.datetime.time);
  
@@ -73,6 +75,7 @@ export const LineChart = ({}) => {
   ];
   
   const labelsplug = [1,2,3,4,5,6,7,8,]
+
   const datasetsplug = [
     {
       label: [1],
@@ -82,20 +85,20 @@ export const LineChart = ({}) => {
      
     },
   ];
-   
+
 
   return (
-    <div>
+    <>
       {stat.length !== 0 && (
         <Line
           data={{ labels: labels, datasets: datasets }}
           options={options}
           className={style.Chart}
-          width={"600px"}
-          height={"400px"}
+          width={ "600px"}
+          height={ "400px"}
         />
       ) }
      
-    </div>
+    </>
   );
 };

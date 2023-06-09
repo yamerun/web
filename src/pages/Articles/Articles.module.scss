@@ -4,9 +4,8 @@
   width:100%;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width:900px) {
-    height:fit-content;
-  }
+  max-height: 80%;
+  overflow-y: auto;
   &__container {
     margin-top: 20px;
     display: flex;
@@ -60,16 +59,12 @@
       }
 
       &__text {
-        padding: 6px;
-        letter-spacing: 0.6px;
-        word-break: break-word;
-        white-space: pre-wrap;
-        font-size: 10px;
-        color: white;
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        height: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+               
       }
       &::-webkit-scrollbar {
         display: none;

@@ -3,17 +3,12 @@ import axios from "axios";
 import style from "./AllExchangeRates.module.scss";
 import { Link } from "react-router-dom";
 import { Marks } from "../Marks/Marks";
-import { useSelector } from "react-redux";
 export const AllExchangeRates = () => {
   const [all, setAll] = useState([]);
   const [screenSize, getDimension] = React.useState({
     dynamicWidth: window.innerWidth,
     dynamicHeight: window.innerHeight,
   });
-
-  const { tooltip } = useSelector((state) => ({
-    tooltip: state.itemsSlice.tooltip,
-  }));
   useEffect(() => {
     axios
       .get(
@@ -114,19 +109,27 @@ export const AllExchangeRates = () => {
             Комментарии:
           </p>
         )}
-        <p
-          className={style.Fillters__categories__body__content__comment__header}
-        >
-          {item.exchanger.user_reviews}
-        </p>
-        <p
-          className={style.Fillters__categories__body__content__comment__header}
-          style={{
-            color: item.exchanger.count_reviews == 0 && "red",
-          }}
-        >
-          ({item.exchanger.count_reviews})
-        </p>
+        <div             className={
+              style.Fillters__categories__body__content__comment__headers
+            }>
+          <p
+            className={
+              style.Fillters__categories__body__content__comment__header
+            }
+          >
+            {item.exchanger.user_reviews}
+          </p> 
+          <p
+            className={
+              style.Fillters__categories__body__content__comment__header
+            }
+            style={{
+              color: item.exchanger.count_reviews == 0 && "red",
+            }}
+          >
+            ({item.exchanger.count_reviews})
+          </p>
+        </div>
       </div>
       <div className={style.Fillters__categories__body__content__status}>
         {screenSize.dynamicWidth < 630 && (
@@ -136,6 +139,9 @@ export const AllExchangeRates = () => {
         )}
         <p
           className={style.Fillters__categories__body__content__status__header}
+          style={{
+            color: item.exchanger.status.title === "Работает" ? "green" : "red",
+          }}
         >
           {item.exchanger.status.title}
         </p>

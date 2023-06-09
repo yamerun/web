@@ -1,10 +1,13 @@
 .statistics {
-  background: #46464b;
-  border-radius: 30px;
+  border:1px solid  #46464b;
+  border-radius: 17px;
   display: flex;
   align-items: center;
   padding: 28px 28px;
-  width: 90%;
+  width: 94%;
+  @media screen and (max-width:750px) {
+   width:fit-content;
+  }
 
   &__container {
     display: flex;
@@ -16,6 +19,11 @@
       gap: 20px;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width:750px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
       &__header {
         font-family: "BasisGrotesquePro";
@@ -113,6 +121,9 @@
           font-weight: 700;
           font-size: 14px;
           color: #ffffff;
+          @media screen and (max-width:750px) {
+            font-size: 12px;
+          }
         }
       }
 

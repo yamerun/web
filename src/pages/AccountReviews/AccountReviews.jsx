@@ -32,8 +32,6 @@ export const AccountReviews = () => {
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
 
-  console.log(id);
-
   return (
     <div className={style.AccountReviews}>
       <div className={style.AccountReviews__PageBox}>

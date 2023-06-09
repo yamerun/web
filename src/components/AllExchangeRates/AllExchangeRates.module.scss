@@ -37,11 +37,12 @@ $hedaerw6: 50px;
         @media screen and (max-width: 630px) {
          flex-direction: column;
          align-items: center;
-         justify-content: center;
+         border: 1px solid rgba(255, 255, 255, 0.151) ;
          height:30%;
+         padding: 10px;
         }
         &:hover {
-          background: #343436;
+          background: #ffffff0e;
           transition: linear 0.3s;
         }
 
@@ -56,6 +57,8 @@ $hedaerw6: 50px;
           }
           @media screen and (max-width: 630px) {
              width: 100%;
+             flex-direction: row;
+             justify-content: space-between;
            }
 
           &__header {
@@ -69,6 +72,9 @@ $hedaerw6: 50px;
             text-align: center;
             @media screen and (max-width: 1179px) {
               font-size: 7px;
+            }
+            @media screen and (max-width: 630px) {
+            font-size: 12px;
             }
           }
 
@@ -85,6 +91,9 @@ $hedaerw6: 50px;
             @media screen and (max-width: 1179px) {
               font-size: 7px;
             }
+            @media screen and (max-width: 630px) {
+              font-size: 12px;
+              }
           }
 
         }
@@ -100,6 +109,8 @@ $hedaerw6: 50px;
           }
           @media screen and (max-width: 630px) {
             width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
           }
 
           &__header {
@@ -114,6 +125,9 @@ $hedaerw6: 50px;
             @media screen and (max-width: 1179px) {
               font-size: 7px;
             }
+            @media screen and (max-width: 630px) {
+              font-size: 12px;
+              }
           }
 
           &__header2 {
@@ -129,6 +143,9 @@ $hedaerw6: 50px;
             @media screen and (max-width: 1179px) {
               font-size: 7px;
             }
+            @media screen and (max-width: 630px) {
+              font-size: 12px;
+              }
           }
 
         }
@@ -143,10 +160,10 @@ $hedaerw6: 50px;
             font-size: 9px;
           }
           @media screen and (max-width: 630px) {
-            flex-direction: column;
+            flex-direction:row;
             width: 100%;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
           }
 
 
@@ -163,6 +180,9 @@ $hedaerw6: 50px;
               font-size: 7px;
               margin:3px;
             }
+            @media screen and (max-width: 630px) {
+              font-size: 12px;
+              }
           }
         }
 
@@ -182,6 +202,12 @@ $hedaerw6: 50px;
           }
           @media screen and (max-width: 630px) {
             width: 100%;
+            height:30%;
+            background-color: #2d2d31;
+            padding-left: 10px;
+            text-align: center;
+            border-radius: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.384);
           }
 
           &__header {
@@ -199,6 +225,11 @@ $hedaerw6: 50px;
             overflow: hidden;
             @media screen and (max-width: 1179px) {
               font-size: 7px;
+            }
+            @media screen and (max-width: 630px) {
+                  font-size: 14px;
+                  text-transform: uppercase;
+                  letter-spacing: 1px;
             }
           }
 
@@ -226,9 +257,10 @@ $hedaerw6: 50px;
             padding-left: 25px;
           }
           @media screen and (max-width: 630px) {
-            flex-direction: column;
+            flex-direction: row;
             width: 100%;
             padding: 0;
+            justify-content: space-between;
           }
           &__header {
             font-family: "BasisGrotesquePro";
@@ -242,6 +274,19 @@ $hedaerw6: 50px;
             @media screen and (max-width: 1179px) {
               font-size: 9px;
             }
+            @media screen and (max-width: 630px) {
+              font-size: 12px;
+              }
+          }
+
+          &__headers {
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            padding-left: 10px;
+            @media screen and (max-width: 630px) {
+              padding: 0;
+              }
           }
         }
 
@@ -256,8 +301,9 @@ $hedaerw6: 50px;
             font-size: 7px;
           }
           @media screen and (max-width: 630px) {
-            flex-direction: column;
+            flex-direction:row;
             width: 100%;
+            justify-content: space-between;
           }
           &__header {
             font-family: "BasisGrotesquePro";
@@ -271,6 +317,9 @@ $hedaerw6: 50px;
             @media screen and (max-width: 1179px) {
               font-size: 7px;
             }
+            @media screen and (max-width: 630px) {
+              font-size: 14px;
+              }
           }
         }
       }

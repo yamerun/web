@@ -80,7 +80,7 @@ export const Notflications = () => {
 
   const CreateNotflication = () => {
     axios
-      .post(`https://change.pro/api/notifications/create`, {
+      .post(`https://change.pro/api/rate/notifications/create`, {
         from: currentFrom,
         to: currentTo,
         min_value: outValue === "" ? Math.floor(course[0].out) : outValue,

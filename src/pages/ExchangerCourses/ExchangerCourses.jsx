@@ -56,10 +56,10 @@ export const ExchangerCourses = () => {
         Header: "Курс",
         accessor: "course",
       },
-      {
-        Header: "Резерв",
-        accessor: "reserve",
-      },
+   //   {
+      //  Header: "Резерв",
+     //   accessor: "reserve",
+   //  },
       {
         Header: "Мин.сум.",
         accessor: "minsum",

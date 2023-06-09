@@ -54,6 +54,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;   
       &__views {
         color: white;
         font-family: "BasisGrotesquePro";
@@ -65,15 +66,22 @@
         opacity: 0.5;
       }
       &__tittle {
-        margin-top: 20px;
+
         color: white;
         font-family: "BasisGrotesquePro";
         font-size: 18px;
         font-weight: 600;
         letter-spacing: 0.5;
       }
+
+      &__close {
+        text-decoration: none;
+        color: white;
+        font-family: "BasisGrotesquePro";
+      }
     }
     &__content {
+      margin-top: 20px;
       width: 100%;
       justify-content: center;
       align-items: center;

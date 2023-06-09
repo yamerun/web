@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Article.module.scss";
 import { useSelector } from "react-redux";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 export const Articlepage = () => {
   const { isExchangerRole } = useSelector((state) => ({
     isExchangerRole: state.AccountSlice.isExchangerRole,
@@ -23,6 +23,7 @@ export const Articlepage = () => {
           <h1 className={style.Article__container__header__tittle}>
             {article.data.title}
           </h1>
+          <Link to='/articles' className={style.Article__container__header__close} >✕</Link>
         </div>
         <article
           style={{color:'white'}}
