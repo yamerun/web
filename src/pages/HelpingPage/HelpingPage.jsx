@@ -19,13 +19,13 @@ export const HelpingPage = () => {
   function createMarkup(content) {
     return { __html: `${content}` };
   }
+  console.log(data)
 
   return (
     <div className={style.HelpingPage}>
       <div className={style.HelpingPage__textbox}>
         <p className={style.HelpingPage__textbox__text} dangerouslySetInnerHTML={createMarkup(data)}></p>
       </div>
-      
 
     </div>
   );

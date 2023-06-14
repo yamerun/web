@@ -1,33 +1,41 @@
-.HelpingPage  {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height:80%;
-    &__textbox {
-        margin-top: 50px;
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        height:76%;
-        width:70%;
-        text-align: left;
-        color:white; 
-        overflow-x: hidden;
-        overflow-y: auto;
-        &::-webkit-scrollbar {
-            background: none;
-            width: 10px;
-          }
-          &::-webkit-scrollbar-thumb {
-            background-color: white;
-            opacity: 0.5;
-            border-radius: 12px;
-            width: 10px;
-          }
-        &__text {
-            word-break: break-all;
-            white-space: pre-wrap ;
-        }
+.HelpingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85%;
+  &__textbox {
+    margin-top: 50px;
+
+    height: 100%;
+    width: 60%;
+    text-align: left;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    @media screen and (max-width:1185px){
+      margin:20px;
+      padding: 10px;
     }
+
+    &::-webkit-scrollbar {
+      background: none;
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: white;
+      opacity: 0.5;
+      border-radius: 12px;
+      width: 10px;
+    }
+    &__text {
+      img {
+        width: 300px !important;
+        height: 330px;
+        border-radius: 12px;
+        margin: 10px;
+      }
+    }
+  }
 }

@@ -52,7 +52,7 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
                 Отдаете:
               </p>
             )}
-            <p className={style.FillteredVallues__content__from__header}>1</p>
+            <p className={style.FillteredVallues__content__from__header}>{ (Math.round(item.in * 100) / 100).toFixed(2)}</p>
             <p className={style.FillteredVallues__content__from__header2}>
               {item.from}
             </p>
