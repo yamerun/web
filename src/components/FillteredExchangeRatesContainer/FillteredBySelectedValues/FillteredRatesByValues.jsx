@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Marks } from "../../Marks/Marks";
 import style from "./FillteredExchange.module.scss";
 const EmptyCourses = React.lazy(() =>
   import("../../EmptyCourses/EmptyCourses")
 );
 export default function FillteredBySelectedValues({ itemExchangeRates }) {
+  const navigate = useNavigate()
   const [screenSize, getDimension] = React.useState({
     dynamicWidth: window.innerWidth,
     dynamicHeight: window.innerHeight,
@@ -24,6 +26,12 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
       window.removeEventListener("resize", setDimension);
     };
   }, [screenSize]);
+
+  const goToItemPage = ({ id }) => {
+    navigate(`/ExchangerPage/${id}`);
+  };
+
+
 
   return itemExchangeRates.length === 0 ? (
     <React.Suspense fallback={<h1>loading</h1>}>
@@ -44,7 +52,7 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
               </p>
             </div>
           </td>
-          {item.marks.length != 0 && <Marks prop={item.marks} />}
+  
           <td className={style.table__row__box}>
             <p>{(Math.round(item.in * 100) / 100).toFixed(2)}</p>
             <p className={style.table__row__box__smalltext}>{item.from}</p>
@@ -89,3 +97,7 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
     </tbody>
   );
 }
+
+/*          <td className={style.table__row__box}>
+          {item.marks.length != 0 ? <Marks prop={item.marks} /> : 'меток нет'}
+          </td>*/

@@ -25,6 +25,7 @@
     overflow-y: hidden;
   }
 
+
   &__header {
     font-family: "BasisGrotesquePro";
     font-style: normal;
@@ -47,13 +48,13 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    color: white;
     font-family: "BasisGrotesquePro";
     word-break: break-all;
     text-align: left;
     @media screen and (max-width: 900px) {
       font-size: 9px !important;
     }
+
     img {
       @media screen and (max-width: 1600px) {
         width: 250px !important;

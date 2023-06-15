@@ -16,7 +16,7 @@ export default function EmptyCourse() {
   return (
     <div className={style.EmptyRates}>
       <h1 className={style.EmptyRates__text}>{alert}</h1>
-      <img src={img} />
+      <img src={img}  className={style.EmptyRates__img}/>
     </div>
   );
 }

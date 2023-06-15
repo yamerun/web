@@ -12,6 +12,7 @@
     }
 
     &__box {  
+      position: relative;
       @media screen and (max-width: 600px) {
         text-transform: uppercase;
       }

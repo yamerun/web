@@ -6,24 +6,26 @@
   flex-direction: column;
   align-items: center;
   min-width: 340px;
-  overflow: hidden; 
-  height:fit-content;
+  overflow: hidden;
+  height: fit-content;
+
   @media screen and (max-width: 1600px) {
     width: 18%;
     min-width: 200px;
   }
-  
+
   @media screen and (max-width:900px) {
     width: 100.5%;
-   }
-   @media screen and (max-width:600px) {
-    min-width:350px;
- }
+  }
+
+  @media screen and (max-width:600px) {
+    min-width: 350px;
+  }
 
   &__Emoney {
     max-height: 250px;
     overflow: hidden;
-    width:100%;
+    width: 100%;
   }
 
   &__exchanger {
@@ -50,6 +52,10 @@
 
     &::placeholder {
       padding-left: 10%;
+      
+      @media screen and (max-width: 1600px) {
+        font-size: 13px;
+      }
     }
   }
 
@@ -72,6 +78,12 @@
     width: 20px;
     border: 0;
     margin-right: 7px;
+
+    
+    @media screen and (max-width: 1600px) {
+      height: 25px;
+    width: 20px;
+    }
   }
 
   &__separation {
@@ -82,7 +94,7 @@
   }
 
   &__itemsList {
-    width:100%;
+    width: 100%;
   }
 
   &__contolls {
@@ -126,6 +138,7 @@
         font-size: 20px;
         color: #ffffff;
         user-select: none;
+
         @media screen and (max-width: 1600px) {
           font-size: 13px;
         }
@@ -145,13 +158,11 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
+
     @media screen and (max-width: 1600px) {
-      font-size: 13px;
-    }
-    @media screen and (max-width: 1352px) {
       font-size: 11px;
     }
-    
+
   }
 
   &__item2 {
@@ -166,10 +177,8 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
+
     @media screen and (max-width: 1600px) {
-      font-size: 13px;
-    }
-    @media screen and (max-width: 1352px) {
       font-size: 11px;
     }
   }
@@ -199,6 +208,7 @@
     overflow-y: auto;
   }
 }
+
 .showEmoney {
   max-height: none;
   overflow: auto;
@@ -232,8 +242,9 @@
     border-radius: 20px;
     /* закругления плашки */
   }
+
   &__itemsList {
-    width:100%;
+    width: 100%;
   }
 
   &__item {
@@ -252,10 +263,12 @@
     @media screen and (max-width: 1600px) {
       font-size: 13px;
     }
+
     @media screen and (max-width: 1600px) {
       font-size: 11px;
     }
   }
+
   &__item2 {
     list-style-type: none;
     font-family: "BasisGrotesquePro";
@@ -268,9 +281,11 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
+
     @media screen and (max-width: 1600px) {
       font-size: 13px;
     }
+
     @media screen and (max-width: 1600px) {
       font-size: 11px;
     }
@@ -280,6 +295,7 @@
 .activeFrom {
   background-color: #46464b;
 }
+
 .activeTo {
   background-color: #46464b;
 }

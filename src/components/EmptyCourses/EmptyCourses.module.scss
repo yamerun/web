@@ -10,5 +10,18 @@
     font-size: 32px;
     font-family: "BasisGrotesquePro";
     font-weight: 600;
+
+    @media screen and (max-width:1600px) {
+      font-size:20px;
+    }
+  }
+
+  &__img {
+
+
+    @media screen and (max-width:709px) {
+     width:250px;
+     height:250px;
+    }
   }
 }
