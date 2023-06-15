@@ -9,10 +9,10 @@ import {
 } from "../../store/itemsSlice/itemsSlice";
 export const TwiceExchange = () => {
   const dispatch = useDispatch();
-  const { currentFrom, currentTo,isTwice } = useSelector((state) => ({
+  const { currentFrom, currentTo, isTwice } = useSelector((state) => ({
     currentFrom: state.itemsSlice.currentFrom,
     currentTo: state.itemsSlice.currentTo,
-    isTwice:state.itemsSlice.isTwice
+    isTwice: state.itemsSlice.isTwice,
   }));
 
   const [val, setVal] = useState("");
@@ -45,9 +45,7 @@ export const TwiceExchange = () => {
         .then(function (response) {
           dispatch(setTwiceExchanger(response.data.data));
           dispatch(setisTwice(true));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
+        });
     }
 
     if (inputGive.current.value.length !== 0) {
@@ -58,25 +56,21 @@ export const TwiceExchange = () => {
         .then(function (response) {
           dispatch(setTwiceExchanger(response.data.data));
           dispatch(setisTwice(true));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
+        });
     }
   };
 
   useEffect(() => {
     if (isTwice == true) {
       axios
-      .get(
-        `https://change.pro/api/twice_exchange?quantity=1&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
-      )
-      .then(function (response) {
-        dispatch(setTwiceExchanger(response.data.data));
-      })
-      .then(function (response) {})
-      .catch(function (error) {});
+        .get(
+          `https://change.pro/api/twice_exchange?quantity=1&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
+        )
+        .then(function (response) {
+          dispatch(setTwiceExchanger(response.data.data));
+        });
     }
-  }, [currentFrom, currentTo,isTwice]);
+  }, [currentFrom, currentTo, isTwice]);
 
   return (
     <div className={style.TwiceChange}>

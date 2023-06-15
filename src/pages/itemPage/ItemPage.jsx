@@ -2,12 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import style from "./ItemPage.module.scss";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { Marks } from "../../components/Marks/Marks";
-import { setUserRole } from "../../store/userAccountSlice/AccountSlice";
 import { ItemPageExchangerDescription } from "../../components/ItemPageExchangerDecsription/ExchangerDescription";
 import { ItemPageInfoBlock } from "../../components/ItemPageInfoBlock/ItemPageInfoBlock";
 
@@ -28,9 +24,7 @@ export const exchangeLoader = async ({ params }) => {
 };
 
 export const ItemPage = () => {
-  const dispatch = useDispatch();
   const { item } = useLoaderData();
-  const navigate = useNavigate();
   const [review, setReview] = useState();
   const [screenSize, getDimension] = React.useState({
     dynamicWidth: window.innerWidth,
@@ -38,9 +32,6 @@ export const ItemPage = () => {
   });
   const [isOpen, setIsOpen] = useState(false);
   const [hideBlocks, setHideBlocks] = useState(false);
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
 
   useEffect(() => {
     axios
@@ -60,9 +51,6 @@ export const ItemPage = () => {
   const HideReviews = () => {
     setIsOpen(false);
   };
-  const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
-
   const OpenIframe = () => {
     setHideBlocks(!hideBlocks);
   };
@@ -193,7 +181,8 @@ export const ItemPage = () => {
         </h1>
         {review != null ? (
           review.map((item) => (
-            <Comments props={item} review={setReview} w={screenSize.dynamicWidth < 1090 ? "70%" : "30%"} />
+            
+            <Comments props={item} key={item.id} review={setReview} w={screenSize.dynamicWidth < 1090 ? "70%" : "30%"} />
           ))
         ) : (
           <div></div>

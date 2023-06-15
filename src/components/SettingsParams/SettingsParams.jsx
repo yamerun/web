@@ -1,19 +1,24 @@
 import React from "react";
 import style from "./SettingParams.module.scss";
 import img from "../../assets/imgs/settings.svg";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import PropTypes from "prop-types";
+
+SettingsParams.propTypes = {
+  item: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  num: PropTypes.string.isRequired,
+  telegram: PropTypes.string.isRequired,
+};
+
 export default function SettingsParams({ item }) {
-  const navigate = useNavigate();
   const [active, setActive] = React.useState({
     name: false,
     email: false,
     num: false,
     telegram: false,
   });
-
   const [message, setMessage] = React.useState("");
-
   const [newValues, setNewValues] = React.useState({
     name: item.data.name,
     email: item.data.email,

@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import React, { useRef, useEffect } from "react";
 import style from "./SearchMenu.module.scss";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
-  setFillterItems2Reducer,
-  setFillterItemsReducer,
   setItems2Reducer,
   setItemsReducer,
 } from "../../store/itemsSlice/itemsSlice";
@@ -13,20 +11,18 @@ import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
-import { SearchHelper } from "./searchHelper";
+
 export const SearchMenu = () => {
   const ref = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-  const { items,isFilltersClear,} = useSelector((state) => ({
+  const { items, items2, isFilltersClear } = useSelector((state) => ({
     items: state.itemsSlice.items,
+    items2: state.itemsSlice.items2,
     calculated: state.itemsSlice.calculated,
     isFilltersClear: state.itemsSlice.isFilltersClear,
   }));
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState("");
-  const [inputValue2, setInput2Value] = useState("");
-
   useEffect(() => {
     axios
       .get(`https://change.pro/api/exchangers/currencies/list`)
@@ -34,7 +30,9 @@ export const SearchMenu = () => {
         dispatch(setItemsReducer(response.data.data));
         dispatch(setItems2Reducer(response.data.data));
       })
-      .catch(function (error) {});
+      .catch(function (error) {
+        console.log(error)
+      });
   }, []);
 
   const ShowMore = () => {
@@ -44,18 +42,16 @@ export const SearchMenu = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
   };
 
-  const getItemFrom = (e, item) => {
-      dispatch(setitemIdReducer(e.target.id));
-      dispatch(setCurrentItemFromReducer(e.target.textContent));
-      dispatch(setItemReducer(e.target.textContent));
-      e.target.classList.add(`${style.active}`)
-      const btnElements = document.querySelectorAll(
-        `.${style.SearchMenu__item}`
-      );
-      for (let i of btnElements) {
+  const getItemFrom = (e) => {
+    dispatch(setitemIdReducer(e.target.id));
+    dispatch(setCurrentItemFromReducer(e.target.textContent));
+    dispatch(setItemReducer(e.target.textContent));
+    e.target.classList.add(`${style.active}`);
+    const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
+    for (let i of btnElements) {
       if (i != e.target) {
-       i.classList.remove(`${style.active}`);
-      } 
+        i.classList.remove(`${style.active}`);
+      }
     }
     dispatch(setIsFilltersClear(false));
   };
@@ -72,7 +68,6 @@ export const SearchMenu = () => {
       }
     }
     dispatch(setIsFilltersClear(false));
-  
   };
 
   useEffect(() => {
@@ -91,40 +86,37 @@ export const SearchMenu = () => {
       }
     }
   }, [isFilltersClear]);
-
-  const result = useMemo(() => {
-    if (inputValue.length !== 0) {
-      return items.filter((item) =>
-        item.currency.toLowerCase().includes(inputValue.toLocaleLowerCase())
-      );
-    } else return items;
-  }, [inputValue,  items]);
-
-  const result2 = useMemo(() => {
-    if (inputValue2.length !== 0) {
-      return items.filter((item) =>
-        item.currency.toLowerCase().includes(inputValue2.toLocaleLowerCase())
-      );
-    } else return items;
-  }, [inputValue2, items]);
-
   const ShowMoreEmoney = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
   };
   const ChangeInputVal = (e) => {
     switch (e.target.name) {
       case "from":
-        setInputValue(SearchHelper(e));
-        dispatch(setFillterItemsReducer(SearchHelper(e)));
+        axios
+          .get(
+            `https://change.pro/api/exchangers/currencies/search?query=${e.target.value}`
+          )
+          .then(function (response) {
+            dispatch(setItemsReducer(response.data.data));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         break;
-
       case "to":
-        setInput2Value(SearchHelper(e));
-        dispatch(setFillterItems2Reducer(SearchHelper(e)));
+        axios
+          .get(
+            `https://change.pro/api/exchangers/currencies/search?query=${e.target.value}`
+          )
+          .then(function (response) {
+            dispatch(setItems2Reducer(response.data.data));
+          })
+          .catch(function (error) {
+            console.log(error)
+          });
         break;
     }
   };
-
 
   return (
     <div className={style.SearchMenu} ref={ref3}>
@@ -134,7 +126,7 @@ export const SearchMenu = () => {
             className={style.SearchMenu__inputField}
             placeholder="Отдаете"
             onChange={(e) => ChangeInputVal(e)}
-            name='from'
+            name="from"
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -144,7 +136,7 @@ export const SearchMenu = () => {
             className={style.SearchMenu__inputField}
             placeholder="Получаете"
             onChange={(e) => ChangeInputVal(e)}
-            name='to'
+            name="to"
           />
           <button className={style.SearchMenu__btn} />
         </div>
@@ -160,8 +152,9 @@ export const SearchMenu = () => {
       />
       <div className={style.SearchMenu__items} ref={ref}>
         <ul className={style.SearchMenu__itemsList}>
-          {result.map((item) => (
+          {items.map((item) => (
             <li
+              key={item.id}
               className={style.SearchMenu__item}
               id={item.id}
               onClick={(e) => getItemFrom(e, item)}
@@ -171,8 +164,9 @@ export const SearchMenu = () => {
           ))}
         </ul>
         <ul className={style.SearchMenu__itemsList}>
-          {result2.map((item) => (
+          {items2.map((item) => (
             <li
+            key={item.id}
               className={style.SearchMenu__item2}
               id={item.id}
               onClick={(e) => getItemTo(e)}
@@ -192,28 +186,30 @@ export const SearchMenu = () => {
         onClick={() => ShowMoreEmoney()}
       />
       <div className={style.SearchMenu__Emoney} ref={ref2}>
-      <div className={style.ItemsPayment}>
-      <ul className={style.ItemsPayment__itemsList}>
-        {items.map((item) => (
-          <li
-            className={style.SearchMenu__item}
-            onClick={(e) => getItemFrom(e, item)}
-          >
-            {item.title}
-          </li>
-        ))}
-      </ul>
-      <ul className={style.ItemsPayment__itemsList}>
-        {items.map((item) => (
-          <li
-            className={style.SearchMenu__item2}
-            onClick={(e) => getItemTo(e)}
-          >
-            {item.title}
-          </li>
-        ))}
-      </ul>
-    </div>
+        <div className={style.ItemsPayment}>
+          <ul className={style.ItemsPayment__itemsList}>
+            {items.map((item) => (
+              <li
+              key={item.id}
+                className={style.SearchMenu__item}
+                onClick={(e) => getItemFrom(e, item)}
+              >
+                {item.title}
+              </li>
+            ))}
+          </ul>
+          <ul className={style.ItemsPayment__itemsList}>
+            {items.map((item) => (
+              <li
+              key={item.id}
+                className={style.SearchMenu__item2}
+                onClick={(e) => getItemTo(e)}
+              >
+                {item.title}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className={style.SearchMenu__ShowMore}>
         <button

@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./ExchangerReviews.module.scss";
 import StarRatings from "react-star-ratings";
-
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
 
@@ -43,11 +40,11 @@ export const reviewloader = async () => {
 
 export const ExchangerReviews = () => {
   const { echangerReviews, exchangerInfo } = useLoaderData();
+  const [review, setReview] = useState();
 
-  
   return (
     <div className={style.ExchangerReviews}>
-<div className={style.ExchangerReviews__PageBox}>
+      <div className={style.ExchangerReviews__PageBox}>
         <div className={style.ExchangerReviews__container}>
           <div className={style.ExchangerReviews__container__header}>
             <h1 className={style.ExchangerReviews__container__header__text}>
@@ -81,7 +78,12 @@ export const ExchangerReviews = () => {
           <div className={style.ExchangerReviews__commentsBox}>
             {echangerReviews.data != null ? (
               echangerReviews.data.map((item) => (
-                <Comments props={item} review={setReview} w={"100%"} />
+                <Comments
+                  props={item}
+                  review={setReview}
+                  w={"100%"}
+                  key={item.id}
+                />
               ))
             ) : (
               <div></div>
