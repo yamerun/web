@@ -25,10 +25,6 @@ export const Fillters = () => {
   const notflications = useRef(null);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const [screenSize, getDimension] = React.useState({
-    dynamicWidth: window.innerWidth,
-    dynamicHeight: window.innerHeight,
-  });
   const { currentFrom, currentTo, isFilltersClear } = useSelector((state) => ({
     itemExchangeRates: state.itemsSlice.itemExchangeRates,
     currentFrom: state.itemsSlice.currentFrom,
@@ -77,14 +73,8 @@ export const Fillters = () => {
     }
   }, [isFilltersClear]);
 
-
   return (
-    <div className={style.Fillters}>
-      <div
-        className={currentFrom && currentTo !== "" ? style.show : style.hide}
-      >
-        <ClearAll />
-      </div>
+    <>
       <nav className={style.Fillters__navigation}>
         <ul className={style.Fillters__navigation__items}>
           {NavProps.map((item) => (
@@ -97,25 +87,34 @@ export const Fillters = () => {
           ))}
         </ul>
       </nav>
-      <div ref={calc} className={style.Fillters__inActive}>
-        <Calculator />
+      <div className={style.Fillters}>
+        <div
+          className={currentFrom && currentTo !== "" ? style.show : style.hide}
+        >
+          <ClearAll />
+        </div>
+        <div ref={calc} className={style.Fillters__inActive}>
+          <Calculator />
+        </div>
+        <div ref={notflications} className={style.Fillters__inActive}>
+          <Notflications />
+        </div>
+        <div ref={twiceChange} className={style.Fillters__inActive}>
+          <TwiceExchange />
+        </div>
+        <React.Suspense
+          fallback={
+            <h1
+              style={{ color: "white", textAlign: "center", fontSize: "15px" }}
+            >
+              ...Loading
+            </h1>
+          }
+        >
+          {" "}
+          <ExchangeRates open={open} />
+        </React.Suspense>
       </div>
-      <div ref={notflications} className={style.Fillters__inActive}>
-        <Notflications />
-      </div>
-      <div ref={twiceChange} className={style.Fillters__inActive}>
-        <TwiceExchange />
-      </div>
-      <React.Suspense
-        fallback={
-          <h1 style={{ color: "white", textAlign: "center", fontSize: "15px" }}>
-            ...Loading
-          </h1>
-        }
-      >
-        {" "}
-        <ExchangeRates open={open} />
-      </React.Suspense>
-    </div>
+    </>
   );
 };

@@ -1,318 +1,68 @@
-$hedaerw1: 95px;
-$hedaerw2: 40px;
-$hedaerw3: 90px;
-$hedaerw4: 53px;
-$hedaerw5: 57px;
-$hedaerw6: 50px;
+.table {
+  border-radius: 12px;
 
-.FillteredVallues {
-  background: #2d2d31;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5px;
-  position: relative;
-
-  &__content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  &__row {
     background: #46464b;
-    border-radius: 7px;
-    padding-left: 10px;
-    padding-right: 20px;
     height: 20px;
-    padding-top: 7px;
-    padding-bottom: 10px;
-    width: 93%;
-    overflow: hidden;
-    margin: 5px;
-    @media screen and (max-width: 1179px) {
-      width: 88%;
-    }
-    @media screen and (max-width: 630px) {
-      flex-direction: column;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.151);
-      height: 30%;
-      padding: 10px;
+    @media screen and (max-width: 600px) {
+      background: #46464b70;
     }
     &:hover {
-      background: #ffffff0e;
-      transition: linear 0.3s;
+      background: #46464b6b;
     }
 
-    &__comment {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 5px;
+    &__box {
+      
+      @media screen and (max-width: 600px) {
+        text-transform: uppercase;
+      }
       text-align: center;
-      width: $hedaerw5;
-      @media screen and (max-width: 1179px) {
-        font-size: 7px;
-        padding-left: 25px;
+      border: none;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border-bottom: 4px solid #2d2d31;
+      font-family: "BasisGrotesquePro";
+      cursor: pointer;
+      padding-top: 10px;
+      @media screen and (max-width: 1240px) {
+        font-size: 12px;
       }
-      @media screen and (max-width: 630px) {
+      @media screen and (max-width: 640px) {
+        font-size: 10px;
+      }
+      @media screen and (max-width: 540px) {
+        font-size: 8px;
+      }
+      &__comments {
+        display: flex;
         flex-direction: row;
-        width: 100%;
-        padding: 0;
-        justify-content: space-between;
-      }
-      &__header {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 17px;
-        height: 10px;
-        color: #f3f3f3;
-        text-align: center;
-        @media screen and (max-width: 1179px) {
-          font-size: 9px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 12px;
-        }
       }
 
-      &__headers {
+      &__exchanger {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-left: 10px;
-        @media screen and (max-width: 630px) {
-          padding: 0;
-        }
-      }
-    }
-
-    &__from {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: $hedaerw2;
-      @media screen and (max-width: 1179px) {
-        font-size: 7px;
-      }
-      @media screen and (max-width: 630px) {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      &__header {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 17px;
-        height: 10px;
-        color: #f3f3f3;
         text-align: center;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 12px;
-        }
+        gap: 10px;
       }
 
-      &__header2 {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 9px;
-        line-height: 17px;
-        color: #f3f3f3;
-        opacity: 0.5;
-        text-align: center;
-        margin: 0;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 12px;
-        }
-      }
-    }
-
-    &__to {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: $hedaerw3;
-      @media screen and (max-width: 1179px) {
-        font-size: 7px;
-      }
-      @media screen and (max-width: 630px) {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      &__header {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 17px;
-        height: 10px;
-        color: #f3f3f3;
-        text-align: center;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 12px;
-        }
-      }
-
-      &__header2 {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 9px;
-        line-height: 17px;
-        color: #f3f3f3;
-        opacity: 0.5;
-        text-align: center;
-        margin: 0;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 12px;
-        }
-      }
-    }
-
-    &__reserve {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: $hedaerw4;
-      @media screen and (max-width: 1179px) {
-        font-size: 9px;
-      }
-      @media screen and (max-width: 630px) {
-        flex-direction: row;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      &__header {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 17px;
-        height: 10px;
-        color: #f3f3f3;
-        text-align: center;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
-          margin: 3px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 12px;
-        }
-      }
-    }
-
-    &__excahange {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      white-space: nowrap;
-      text-align: center;
-      width: $hedaerw1;
-      position: relative;
-      @media screen and (max-width: 1179px) {
-        font-size: 7px;
-        width: 80px;
-        overflow: hidden;
-        margin: 3px;
-      }
-      @media screen and (max-width: 630px) {
-        width: 100%;
-        height: 30%;
-        background-color: #2d2d31;
-        padding-left: 10px;
-        text-align: center;
-        border-radius: 7px;
-        border: 1px solid rgba(255, 255, 255, 0.384);
-      }
-
-      &__header {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 17px;
-        height: 10px;
-        color: #f3f3f3;
-        text-align: center;
-        cursor: pointer;
-        padding-bottom: 10px;
-        padding-left: 25px;
-        overflow: hidden;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
-        }
-        @media screen and (max-width: 630px) {
-          font-size: 14px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
-      }
-
-      &__btn {
-        border: 0;
-        outline: 0;
-        width: 20px;
-        height: 20px;
+      &__exchangerinfo {
+        height: 15px;
+        width: 15px;
         background: url("../../../assets/imgs/openInfo.svg");
         background-repeat: no-repeat;
-        position: absolute;
-      }
-    }
-
-    &__status {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 5px;
-      text-align: center;
-      width: $hedaerw6;
-      @media screen and (max-width: 1179px) {
-        font-size: 7px;
-      }
-      @media screen and (max-width: 630px) {
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-      }
-      &__header {
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 17px;
-        height: 10px;
-        color: #f3f3f3;
-        text-align: center;
-        @media screen and (max-width: 1179px) {
-          font-size: 7px;
+        background-size: 100%;
+        border: 0;
+        &:hover {
+          opacity: 0.5;
         }
-        @media screen and (max-width: 630px) {
-          font-size: 14px;
+      }
+      &__smalltext {
+        opacity: 0.5;
+        font-size: 12px;
+        @media screen and (max-width: 540px) {
+          font-size: 6px;
         }
       }
     }

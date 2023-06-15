@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import style from "./AllExchangeRates.module.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Marks } from "../Marks/Marks";
 export const AllExchangeRates = () => {
   const [all, setAll] = useState([]);
+  const navigate = useNavigate();
   const [screenSize, getDimension] = React.useState({
     dynamicWidth: window.innerWidth,
     dynamicHeight: window.innerHeight,
@@ -15,7 +16,7 @@ export const AllExchangeRates = () => {
         `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
       )
       .then(function (response) {
-        setAll(response.data.data.slice(0, 20));
+        setAll(response.data.data.slice(0, 16));
       });
     const getCurrenciesAll = setInterval(() => {
       axios
@@ -23,7 +24,7 @@ export const AllExchangeRates = () => {
           `https://change.pro/api/exchangers/currencies/get?orderBy=amount&sort=asc`
         )
         .then(function (response) {
-          setAll(response.data.data.slice(0, 20));
+          setAll(response.data.data.slice(0, 16));
         });
     }, 5000);
     return () => clearInterval(getCurrenciesAll);
@@ -46,106 +47,65 @@ export const AllExchangeRates = () => {
     };
   }, [screenSize]);
 
-  return all.map((item) => (
-    <div className={style.Fillters__categories__body__content}>
-      <div className={style.Fillters__categories__body__content__excahange}>
-        <Link
-          to={`/ExchangerPage/${item.exchanger.id}`}
-          className={style.Fillters__categories__body__content__excahange__btn}
-        />
-        <p
-          className={
-            style.Fillters__categories__body__content__excahange__header
-          }
-          onClick={() => openItemSite(item.exchanger.site_url)}
-        >
-          {item.exchanger.name}
-        </p>
-      </div>
-      {item.marks.length != 0 && <Marks prop={item.marks} />}
-      <div className={style.Fillters__categories__body__content__from}>
-        {screenSize.dynamicWidth < 630 && (
-          <p
-            className={style.Fillters__categories__body__content__from__header}
-          >
-            Отдаете:
-          </p>
-        )}
-        <p className={style.Fillters__categories__body__content__from__header}>
-          1
-        </p>
-        <p className={style.Fillters__categories__body__content__from__header2}>
-          {item.from}
-        </p>
-      </div>
-      <div className={style.Fillters__categories__body__content__to}>
-        {screenSize.dynamicWidth < 630 && (
-          <p className={style.Fillters__categories__body__content__to__header}>
-            Получаете:
-          </p>
-        )}
-        <p className={style.Fillters__categories__body__content__to__header}>
-          {(Math.round(item.out * 100) / 100).toFixed(2)}
-        </p>
-        <p className={style.Fillters__categories__body__content__to__header2}>
-          {item.to}
-        </p>
-      </div>
-      <div className={style.Fillters__categories__body__content__reserve}>
-        {screenSize.dynamicWidth < 630 && (
-          <p className={style.Fillters__categories__body__content__to__header}>
-            Резерв:
-          </p>
-        )}
-        <p
-          className={style.Fillters__categories__body__content__reserve__header}
-        >
-          {(Math.round(item.amount * 100) / 100).toFixed(2)}
-        </p>
-      </div>
-      <div className={style.Fillters__categories__body__content__comment}>
-        {screenSize.dynamicWidth < 630 && (
-          <p className={style.Fillters__categories__body__content__to__header}>
-            Комментарии:
-          </p>
-        )}
-        <div             className={
-              style.Fillters__categories__body__content__comment__headers
-            }>
-          <p
-            className={
-              style.Fillters__categories__body__content__comment__header
-            }
-          >
-            {item.exchanger.user_reviews}
-          </p> 
-          <p
-            className={
-              style.Fillters__categories__body__content__comment__header
-            }
-            style={{
-              color: item.exchanger.count_reviews == 0 && "red",
-            }}
-          >
-            ({item.exchanger.count_reviews})
-          </p>
-        </div>
-      </div>
-      <div className={style.Fillters__categories__body__content__status}>
-        {screenSize.dynamicWidth < 630 && (
-          <p className={style.Fillters__categories__body__content__to__header}>
-            Статус:
-          </p>
-        )}
-        <p
-          className={style.Fillters__categories__body__content__status__header}
-          style={{
-            color: item.exchanger.status.title === "Работает" ? "green" : "red",
-          }}
-        >
-          {item.exchanger.status.title}
-        </p>
-      </div>
-    </div>
-  ));
+  const goToItemPage = ({ id }) => {
+    navigate(`/ExchangerPage/${id}`);
+  };
+
+  return (
+    <tbody className={style.table}>
+      {all.map((item) => (
+        <tr className={style.table__row}>
+          <td className={style.table__row__box}>
+            <div className={style.table__row__box__exchanger} >
+              <button
+                onClick={() => goToItemPage(item.exchanger)}
+                className={style.table__row__box__exchangerinfo}
+              />
+              <p onClick={() => openItemSite(item.exchanger.site_url)}>
+                {item.exchanger.name}
+              </p>
+            </div>
+          </td>
+          {item.marks.length != 0 && <Marks prop={item.marks} />}
+          <td className={style.table__row__box}>
+            <p>{(Math.round(item.in * 100) / 100).toFixed(2)}</p>
+            <p className={style.table__row__box__smalltext}>{item.from}</p>
+          </td>
+          <td className={style.table__row__box}>
+            <p
+              className={style.Fillters__categories__body__content__to__header}
+            >
+              {(Math.round(item.out * 100) / 100).toFixed(2)}
+            </p>
+            <p className={style.table__row__box__smalltext}>{item.to}</p>
+          </td>
+          <td className={style.table__row__box}>
+            <p>{(Math.round(item.amount * 100) / 100).toFixed(2)}</p>
+          </td>
+          <td className={style.table__row__box}>
+            <p>{item.exchanger.user_reviews}</p>
+            <p
+              style={{
+                color: item.exchanger.count_reviews == 0 && "red",
+              }}
+            >
+              ({item.exchanger.count_reviews})
+            </p>
+          </td>
+          <td className={style.table__row__box}>
+            <p
+              style={{
+                color:
+                  item.exchanger.status.title === "Работает"
+                    ? "#00FF7F"
+                    : "red",
+              }}
+            >
+              {item.exchanger.status.title}
+            </p>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
 };

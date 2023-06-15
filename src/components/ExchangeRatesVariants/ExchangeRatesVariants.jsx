@@ -25,7 +25,6 @@ export default function ExchangeRatesVariants({ open }) {
     dynamicHeight: window.innerHeight,
   });
 
-
   const setDimension = () => {
     getDimension({
       dynamicWidth: window.innerWidth,
@@ -40,40 +39,36 @@ export default function ExchangeRatesVariants({ open }) {
     };
   }, [screenSize]);
 
-
   return (
-    <div>
+
+
+ <div className={style.courseBorder__wrapper}>
+    <table className={style.courseBorder}>
       {open != false ? (
         <LineChartStatistics />
       ) : (
-        <div>
+        <>
           {isTwice != false ? (
-            <div className={style.Fillters__categoriesTwice}>
-              <h1 className={style.Fillters__categoriesTwice__schema}>
-                Схема обмена
-              </h1>
-              <div className={style.Fillters__categoriesTwice__categoryBox}>
-                <h1 className={style.Fillters__categoriesTwice__reserve}>
-                  Резерв
-                </h1>
-                <h1 className={style.Fillters__categoriesTwice__course}>
-                  Курс ↑
-                </h1>
-              </div>
-            </div>
+            <thead>
+              <tr className={style.courseBorder__headeritems} >
+                <th>Схема обмена</th>
+                <th>Резерв</th>
+                <th>Курс ↑</th>
+              </tr>
+            </thead>
           ) : (
-            <div className={style.Fillters__categories}>
-              <h1 className={style.Fillters__categories__exchange}>
-                Обменник ↑↓
-              </h1>
-              <h1 className={style.Fillters__categories__from}>Отдаете ↑</h1>
-              <h1 className={style.Fillters__categories__to}>Получаете ↓</h1>
-              <h1 className={style.Fillters__categories__reserve}>Резерв</h1>
-              <h1 className={style.Fillters__categories__comment}>Отзывы</h1>
-              <h1 className={style.Fillters__categories__status}>Статус</h1>
-            </div>
+            <thead>
+              <tr className={style.courseBorder__headeritems}>
+                <th>Обменник</th>
+                <th>Отдаете ↑</th>
+                <th>Получаете ↓</th>
+                <th>Резерв</th>
+                <th>Отзывы</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
           )}
-          <div className={style.Fillters__categories__body}>
+          <>
             {currentFrom && currentTo != "" ? (
               <React.Suspense
                 fallback={
@@ -93,9 +88,12 @@ export default function ExchangeRatesVariants({ open }) {
             ) : (
               <AllExchangeRates />
             )}
-          </div>
-        </div>
+          </>
+        </>
       )}
-    </div>
+    </table>
+ </div>
+
+
   );
 }
