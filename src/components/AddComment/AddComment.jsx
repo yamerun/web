@@ -73,9 +73,7 @@ export default function AddComment  ({ HideReviews, id, review,  }) {
           </button>
         </div>
       </div>
-      <button className={style.AddComment__close} onClick={HideReviews}>
-        ✕
-      </button>
+
     </div>
   );
 };

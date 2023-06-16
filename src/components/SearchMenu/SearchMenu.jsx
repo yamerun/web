@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import style from "./SearchMenu.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -19,19 +19,34 @@ export const SearchMenu = () => {
   const { items, items2, isFilltersClear } = useSelector((state) => ({
     items: state.itemsSlice.items,
     items2: state.itemsSlice.items2,
-    calculated: state.itemsSlice.calculated,
     isFilltersClear: state.itemsSlice.isFilltersClear,
   }));
+  const [inputvalue, setInputValue] = useState("");
+  const [input2value, setInput2Value] = useState("");
+  const [emoney, setEmoney] = useState([]);
+  const [emoney2, setEmoney2] = useState([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
     axios
-      .get(`https://change.pro/api/exchangers/currencies/list`)
+      .get(`https://change.pro/api/exchangers/currencies/list?currency_type_id=1`)
       .then(function (response) {
         dispatch(setItemsReducer(response.data.data));
         dispatch(setItems2Reducer(response.data.data));
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
+      });
+    axios
+      .get(
+        `https://change.pro/api/exchangers/currencies/list?currency_type_id=2`
+      )
+      .then(function (response) {
+        setEmoney(response.data.data);
+        setEmoney2(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   }, []);
 
@@ -92,31 +107,36 @@ export const SearchMenu = () => {
   const ChangeInputVal = (e) => {
     switch (e.target.name) {
       case "from":
-        axios
-          .get(
-            `https://change.pro/api/exchangers/currencies/search?query=${e.target.value}`
-          )
-          .then(function (response) {
-            dispatch(setItemsReducer(response.data.data));
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        setInputValue(e.target.value);
         break;
       case "to":
-        axios
-          .get(
-            `https://change.pro/api/exchangers/currencies/search?query=${e.target.value}`
-          )
-          .then(function (response) {
-            dispatch(setItems2Reducer(response.data.data));
-          })
-          .catch(function (error) {
-            console.log(error)
-          });
+        setInput2Value(e.target.value);
         break;
     }
   };
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://change.pro/api/exchangers/currencies/search?query=${inputvalue}`
+      )
+      .then(function (response) {
+        dispatch(setItemsReducer(response.data.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    axios
+      .get(
+        `https://change.pro/api/exchangers/currencies/search?query=${input2value}`
+      )
+      .then(function (response) {
+        dispatch(setItems2Reducer(response.data.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [inputvalue, input2value]);
 
   return (
     <div className={style.SearchMenu} ref={ref3}>
@@ -166,7 +186,7 @@ export const SearchMenu = () => {
         <ul className={style.SearchMenu__itemsList}>
           {items2.map((item) => (
             <li
-            key={item.id}
+              key={item.id}
               className={style.SearchMenu__item2}
               id={item.id}
               onClick={(e) => getItemTo(e)}
@@ -188,24 +208,24 @@ export const SearchMenu = () => {
       <div className={style.SearchMenu__Emoney} ref={ref2}>
         <div className={style.ItemsPayment}>
           <ul className={style.ItemsPayment__itemsList}>
-            {items.map((item) => (
+            {emoney.map((item) => (
               <li
-              key={item.id}
+                key={item.id}
                 className={style.SearchMenu__item}
                 onClick={(e) => getItemFrom(e, item)}
               >
-                {item.title}
+                {item.currency}
               </li>
             ))}
           </ul>
           <ul className={style.ItemsPayment__itemsList}>
-            {items.map((item) => (
+            {emoney2.map((item) => (
               <li
-              key={item.id}
+                key={item.id}
                 className={style.SearchMenu__item2}
                 onClick={(e) => getItemTo(e)}
               >
-                {item.title}
+                {item.currency}
               </li>
             ))}
           </ul>

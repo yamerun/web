@@ -121,7 +121,8 @@ export const AllEchangers = () => {
       .then(function (response) {})
       .catch(function (error) {});
     const get = setInterval(() => {
-      axios
+      if (selected != '' && selected2 != 'undefined') {
+        axios
         .get(
           `https://change.pro/api/exchangers/currencies/get?orderBy=out&sort=desc&from=${selected}&to=${selected2}&limit=50`
         )
@@ -130,7 +131,9 @@ export const AllEchangers = () => {
         })
         .then(function (response) {})
         .catch(function (error) {});
-    }, 3000);
+      }
+    }
+    , 3000);
 
     return () => clearInterval(get);
   }, [selected, selected2, currencyFromMainMenu, currencyToMainMenu]);
@@ -152,180 +155,153 @@ export const AllEchangers = () => {
     }
   }, [selected, selected2]);
 
-  
   return (
     <div className={style.Exchangers}>
-      <div className={style.Exchangers__content}>
-        <div className={style.Exchangers__content__body}>
-          <div className={style.Exchangers__content__body__seacrh}>
-            <div className={style.Exchangers__content__body__seacrh__fields}>
-              <div className={style.Exchangers__content__body__seacrh__input}>
-                <div
-                  className={
-                    style.Exchangers__content__body__seacrh__input__controlls
-                  }
-                >
-                  <input
-                    onChange={(e) => changeValueForSearch(e)}
-                    className={
-                      style.Exchangers__content__body__seacrh__input__field
-                    }
-                    placeholder="Отдаете"
-                    name="currencyFrom"
-                  />
-                  <button
-                    className={
-                      style.Exchangers__content__body__seacrh__input__btn
-                    }
-                  />
-                </div>
-                {inputVal.length != 0 && searchResult.length != 0 && (
-                  <div
-                    ref={ref}
-                    className={
-                      style.Exchangers__content__body__seacrh__input__results
-                    }
-                  >
-                    {searchResult.map((item) => (
-                      <h1 onClick={(e) => setFrom(e)}>{item.currency}</h1>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div
+ <div className={style.Exchangers__content__body}>
+      <div className={style.Exchangers__content__body__seacrh}>
+        <div className={style.Exchangers__content__body__seacrh__fields}>
+          <div className={style.Exchangers__content__body__seacrh__input}>
+            <div
+              className={
+                style.Exchangers__content__body__seacrh__input__controlls
+              }
+            >
+              <input
+                onChange={(e) => changeValueForSearch(e)}
                 className={
-                  style.Exchangers__content__body__seacrh__fields__separate
+                  style.Exchangers__content__body__seacrh__input__field
                 }
-              ></div>
-              <div className={style.Exchangers__content__body__seacrh__input}>
-                <div
-                  className={
-                    style.Exchangers__content__body__seacrh__input__controlls
-                  }
-                >
-                  <input
-                    onChange={(e) => changeValue2ForSearch(e)}
-                    className={
-                      style.Exchangers__content__body__seacrh__input__field
-                    }
-                    placeholder="Получаете"
-                    name="currencyTo"
-                  />
-                  <button
-                    className={
-                      style.Exchangers__content__body__seacrh__input__btn
-                    }
-                  />
-                </div>
-                {inputVal2.length != 0 && searchResult2.length != 0 && (
-                  <div
-                    ref={ref2}
-                    className={
-                      style.Exchangers__content__body__seacrh__input__results
-                    }
-                  >
-                    {searchResult2.map((item) => (
-                      <h1 onClick={(e) => setTo(e)}>{item.currency}</h1>
-                    ))}
-                  </div>
-                )}
-              </div>
+                placeholder="Отдаете"
+                name="currencyFrom"
+              />
+              <button
+                className={style.Exchangers__content__body__seacrh__input__btn}
+              />
             </div>
-          </div>
-          <div className={style.Exchangers__content__body__seacrh__selected}>
-            <span
-              className={
-                style.Exchangers__content__body__seacrh__selected__name
-              }
-            >
-              {currencyFromMainMenu != ''
-                ? `${currencyFromMainMenu}`
-                : `${selected}`}
-            </span>
-            <span
-              className={
-                style.Exchangers__content__body__seacrh__selected__name
-              }
-            >
-              {
-              currencyToMainMenu != ''
-                ? `${currencyToMainMenu}`
-                : `${selected2}`}
-            </span>
-          </div>
-          <nav className={style.Exchangers__content__body__nav}>
-            <h1 className={style.Exchangers__content__body__nav__name}>
-              Обменники
-            </h1>
-            <h1 className={style.Exchangers__content__body__nav__from}>
-              Отдаете ↑
-            </h1>
-            <h1 className={style.Exchangers__content__body__nav__to}>
-              Получаете ↓
-            </h1>
-            <h1 className={style.Exchangers__content__body__nav__reserve}>
-              Резерв
-            </h1>
-            <h1 className={style.Exchangers__content__body__nav__comments}>
-              Отзывы
-            </h1>
-            <h1 className={style.Exchangers__content__body__nav__status}>
-              Статус
-            </h1>
-          </nav>
-          {result.map((item) => (
-            <div className={style.Exchangers__content__body__block}>
-              <div className={style.Exchangers__content__body__block__name}>
-                <Link
-                  to={`/ExchangerPage/${item.exchanger.id}`}
-                  className={style.Exchangers__content__body__block__goToPage}
-                />
-                <p onClick={() => openItemSite(item.exchanger.site_url)} className={style.Exchangers__content__body__block__name__text}>
-                  {item.exchanger.name}
-                </p>
-              </div>
-              {item.marks.length != 0 && <Marks prop={item.marks} />}
-              <div className={style.Exchangers__content__body__block__from}>
-                <p>1</p>
-                <p>{item.from}</p>
-              </div>
-              <div className={style.Exchangers__content__body__block__to}>
-                <p>{(Math.round(item.out * 100) / 100).toFixed(2)}</p>
-                <p>{item.to}</p>
-              </div>
-              <div className={style.Exchangers__content__body__block__reserve}>
-                <p>{(Math.round(item.amount * 100) / 100).toFixed(2)}</p>
-              </div>
-              <div className={style.Exchangers__content__body__block__comments}>
-                <p>{item.exchanger.user_reviews}</p>
-                <p
-                  className={
-                    style.Fillters__categories__body__block__comment__header
-                  }
-                  style={
-                    item.exchanger.count_reviews == 0
-                      ? { color: "red" }
-                      : { color: "white" }
-                  }
-                >
-                  ({item.exchanger.count_reviews})
-                </p>
-              </div>
+            {inputVal.length != 0 && searchResult.length != 0 && (
               <div
-                className={style.Exchangers__content__body__block__status}
+                ref={ref}
+                className={
+                  style.Exchangers__content__body__seacrh__input__results
+                }
               >
-                <p
-                  className={
-                    style.Fillters__categories__body__block__status__header
-                  }
-                >
-                  {item.exchanger.status.title}
-                </p>
+                {searchResult.map((item) => (
+                  <h1 onClick={(e) => setFrom(e)}>{item.currency}</h1>
+                ))}
               </div>
+            )}
+          </div>
+          <div
+            className={
+              style.Exchangers__content__body__seacrh__fields__separate
+            }
+          ></div>
+          <div className={style.Exchangers__content__body__seacrh__input}>
+            <div
+              className={
+                style.Exchangers__content__body__seacrh__input__controlls
+              }
+            >
+              <input
+                onChange={(e) => changeValue2ForSearch(e)}
+                className={
+                  style.Exchangers__content__body__seacrh__input__field
+                }
+                placeholder="Получаете"
+                name="currencyTo"
+              />
+              <button
+                className={style.Exchangers__content__body__seacrh__input__btn}
+              />
             </div>
-          ))}
+            {inputVal2.length != 0 && searchResult2.length != 0 && (
+              <div
+                ref={ref2}
+                className={
+                  style.Exchangers__content__body__seacrh__input__results
+                }
+              >
+                {searchResult2.map((item) => (
+                  <h1 onClick={(e) => setTo(e)}>{item.currency}</h1>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
+      <div className={style.Exchangers__content__body__seacrh__selected}>
+        <span
+          className={style.Exchangers__content__body__seacrh__selected__name}
+        >
+          {currencyFromMainMenu != ""
+            ? `${currencyFromMainMenu}`
+            : `${selected}`}
+        </span>
+        <span
+          className={style.Exchangers__content__body__seacrh__selected__name}
+        >
+          {currencyToMainMenu != "" ? `${currencyToMainMenu}` : `${selected2}`}
+        </span>
+      </div>
+      <table className={style.Exchangers__content__table}>
+        <thead>
+          <tr className={style.Exchangers__content__table__navrow}>
+            <th>
+              <p>Обменники</p>
+            </th>
+            <th>
+              <p>Отдаете ↑</p>
+            </th>
+            <th>
+              <p>Получаете ↓</p>
+            </th>
+            <th>
+              <p>Резерв</p>
+            </th>
+            <th>
+              <p>Отзывы</p>
+            </th>
+            <th>
+              <p>Статус</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody className={style.table}>
+          {result.map((item) => (
+            <tr className={style.table__row}>
+              <td className={style.table__row__box}>
+                <p>{item.exchanger.name}</p>
+              </td>
+              <td className={style.table__row__box}>
+                <p>
+                  {item.from}
+                  {(Math.round(item.in * 100) / 100).toFixed(2)}
+                </p>
+              </td>
+              <td className={style.table__row__box}>
+                <p>
+                  {item.to}
+                  {(Math.round(item.out * 100) / 100).toFixed(2)}
+                </p>
+              </td>
+              <td className={style.table__row__box}>
+                <p>{(Math.round(item.amount * 100) / 100).toFixed(2)}</p>
+              </td>
+              <td className={style.table__row__box}>
+                <p>
+                  {item.exchanger.user_reviews}
+                  {item.exchanger.count_reviews}
+                </p>
+              </td>
+              <td className={style.table__row__box}>
+                <p>{item.exchanger.status.title}</p>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+    </div>
+   
   );
 };
