@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import style from "./PersonalAccountNavigation.module.scss";
 import { useNavigate } from "react-router-dom";
 export default function AccountNavigation({ item }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSelect = (e) => {
     const btnElements = document.querySelectorAll(
       `.${style.PersonalAccount__container__leftBar__navigation__list__item}`
@@ -56,6 +56,13 @@ export default function AccountNavigation({ item }) {
           to="/accountReviews"
         >
           Мои отзывы
+        </Link>
+        <Link
+          className={style.Navigation__list__item}
+          onClick={(e) => handleSelect(e)}
+          to="/account/favoriteexchangers"
+        >
+          Избранные обменники
         </Link>
         <li className={style.Navigation__list__item} onClick={LogOut}>
           Выйти из Аккаунта

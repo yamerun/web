@@ -4,6 +4,17 @@
   &__row {
     background: #46464b;
 
+    &__flexbox {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      @media screen and (max-width: 600px) {
+
+        gap:3px;
+      }
+    }
+
     @media screen and (max-width: 600px) {
       background: #46464b70;
     }
@@ -13,6 +24,7 @@
     }
 
     &__box {
+      padding: 5px;
       @media screen and (max-width: 600px) {
         text-transform: uppercase;
       }
@@ -41,9 +53,13 @@
 
       &__exchanger {
         display: flex;
-        align-items: center;
-        justify-content: center;
         gap: 10px;
+        overflow: hidden;
+        @media screen and (max-width:600px) {
+
+          font-size: 8px;
+          gap:3px;
+        }
       }
 
       &__exchangerinfo {

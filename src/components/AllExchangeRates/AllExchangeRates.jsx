@@ -56,7 +56,7 @@ export const AllExchangeRates = () => {
       {all.map((item) => (
         <tr className={style.table__row}>
           <td className={style.table__row__box}>
-            <div className={style.table__row__box__exchanger} >
+            <div className={style.table__row__box__exchanger}>
               <button
                 onClick={() => goToItemPage(item.exchanger)}
                 className={style.table__row__box__exchangerinfo}
@@ -68,28 +68,23 @@ export const AllExchangeRates = () => {
           </td>
           {item.marks.length != 0 && <Marks prop={item.marks} />}
           <td className={style.table__row__box}>
-            <p>{(Math.round(item.in * 100) / 100).toFixed(2)}</p>
-            <p className={style.table__row__box__smalltext}>{item.from}</p>
+            <div className={style.table__row__flexbox}>
+              <p>{(Math.round(item.in * 100) / 100).toFixed(2)} </p>
+              <p className={style.table__row__box__smalltext}>{item.from}</p>
+            </div>
           </td>
           <td className={style.table__row__box}>
-            <p
-              className={style.Fillters__categories__body__content__to__header}
-            >
-              {(Math.round(item.out * 100) / 100).toFixed(2)}
-            </p>
-            <p className={style.table__row__box__smalltext}>{item.to}</p>
+            <div className={style.table__row__flexbox}>
+              <p>{(Math.round(item.out * 100) / 100).toFixed(2)}</p>
+              <p className={style.table__row__box__smalltext}>{item.to}</p>
+            </div>
           </td>
           <td className={style.table__row__box}>
             <p>{(Math.round(item.amount * 100) / 100).toFixed(2)}</p>
           </td>
           <td className={style.table__row__box}>
-            <p>{item.exchanger.user_reviews}</p>
-            <p
-              style={{
-                color: item.exchanger.count_reviews == 0 && "red",
-              }}
-            >
-              ({item.exchanger.count_reviews})
+            <p>
+              {item.exchanger.user_reviews} ({item.exchanger.count_reviews})
             </p>
           </td>
           <td className={style.table__row__box}>

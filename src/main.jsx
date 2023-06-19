@@ -33,10 +33,12 @@ import { ExchangerRegisterPage } from "./pages/ExchangerRegister/ExchangerRegist
 import MainLayout from "./Layouts/MainLayout";
 import { TimerPage } from "./pages/TimerPage";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
+import { FavoriteExchangers } from "./pages/FavoriteExchangers/FavoriteExchangers";
+import { FavoriteExchangersLoader } from "./pages/FavoriteExchangers/FavoriteExchangers";
 const router = createBrowserRouter([
   {
-    element:<TimerPage/>,
-    path:'/'
+    element: <TimerPage />,
+    path: "/",
   },
   {
     element: <MainLayout />,
@@ -102,7 +104,7 @@ const router = createBrowserRouter([
       {
         path: "/ExchangerCourses",
         element: <ExchangerCourses />,
-        loader:CoursesLoader
+        loader: CoursesLoader,
       },
       {
         path: "/ExchangerMarks",
@@ -123,8 +125,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/account/accountSettings",
-        element: <AccountSettings/>,
+        element: <AccountSettings />,
         loader: AccountLoader,
+      },
+      {
+        path: "/account/favoriteexchangers",
+        element: <FavoriteExchangers />,
+        loader: FavoriteExchangersLoader,
       },
     ],
   },

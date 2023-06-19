@@ -1,0 +1,59 @@
+.Favorite {
+  min-height: 83%;
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  &__container {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+  }
+  &__table {
+    margin-top: 30px;
+    background-color: rgba(73, 73, 73, 0.082);
+    border-radius: 12px;
+    width: 100%;
+    min-height: 30%;
+    max-height: 80%;
+    border-collapse: collapse;
+
+    &__head {
+        vertical-align: 0%;
+    }
+
+    &__headerRow {
+
+      th {
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+      }
+    }
+    &__body {
+      &__row {
+        td {
+          color: white;
+          text-align: center;
+          font-family: "BasisGrotesquePro";
+          text-transform: uppercase;
+          font-weight: 600;
+          letter-spacing: 0.8px;
+          opacity: 0.5;
+          user-select: none;
+
+          p {
+            padding: 10px;
+          }
+          &:hover {
+            opacity: 1;
+            transition: 0.4s linear;
+          }
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

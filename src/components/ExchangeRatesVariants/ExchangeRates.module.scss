@@ -42,9 +42,12 @@
     @media screen and (max-width:640px) {
       font-size: 10px;
     }
-    @media screen and (max-width:540px) {
+
+    @media screen and (max-width: 709px) {
       font-size: 8px;
     }
+
+
     th {
      padding-top: 3px;
      padding-bottom: 5px;

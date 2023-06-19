@@ -42,35 +42,36 @@ export const Articles = () => {
 
   return (
     <div className={style.Articles}>
-      <div className={style.Articles__header}>
-      </div>
+      <div className={style.Articles__header}></div>
       <div className={style.Articles__container__articles}>
         {articles.map((item) => (
           <article
             className={style.Articles__container__article}
             onClick={(e) => goToArticle(item)}
           >
+            <img
+              alt=""
+              src={`https://change.pro/${item.preview_picture.path}`}
+              className={style.Articles__container__article__img}
+            />
             <div className={style.Articles__container__article__header}>
               <h1
                 className={style.Articles__container__article__header__tittle}
               >
                 {item.title}
               </h1>
-          
-              <p className={style.Articles__container__article__header__date}>
-                {item.created_at.date} {item.created_at.time}
-              </p>
             </div>
-            <img alt='' src={`https://change.pro/${item.preview_picture.path}`}  className={style.Articles__container__article__img}/>
             <div
               style={{ color: "white" }}
               className={style.Articles__container__article__text}
               dangerouslySetInnerHTML={createMarkup(item)}
             ></div>
+
+            <p className={style.Articles__container__article__header__date}>
+              {item.created_at.date} {item.created_at.time}
+            </p>
           </article>
         ))}
-   
-               
       </div>
     </div>
   );

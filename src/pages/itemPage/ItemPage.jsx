@@ -13,6 +13,9 @@ const ImageComponent = React.lazy(() =>
 const AddComment = React.lazy(() =>
   import("../../components/AddComment/AddComment")
 );
+const ToggleToFavorite = React.lazy(() =>
+  import("../../components/AddToFavorite/AddToFavorite")
+);
 
 export const exchangeLoader = async ({ params }) => {
   const id = params.id;
@@ -139,6 +142,20 @@ export const ItemPage = () => {
           <h1 className={style.itemPage__container__header}>
             {item.data.name}
           </h1>
+          <React.Suspense
+          fallback={
+            <h1
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: "15px",
+              }}
+            >
+              ...Loading
+            </h1>}>
+            <ToggleToFavorite itemid={item.data.id}/>
+
+            </React.Suspense>
         </div>
         <button
           className={style.itemPage__container__items__item__iframebtn}
