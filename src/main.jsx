@@ -35,6 +35,7 @@ import { TimerPage } from "./pages/TimerPage";
 import AccountSettings from "./pages/AccountSettings/AccountSettings";
 import { FavoriteExchangers } from "./pages/FavoriteExchangers/FavoriteExchangers";
 import { FavoriteExchangersLoader } from "./pages/FavoriteExchangers/FavoriteExchangers";
+import SubscribeDetail from "./pages/SubscribeDetail/SubscribeDetail";
 const router = createBrowserRouter([
   {
     element: <TimerPage />,
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
         element: <FavoriteExchangers />,
         loader: FavoriteExchangersLoader,
       },
+      {
+        path:'/account/subscribe/detail',
+        element:<SubscribeDetail/>
+      }
     ],
   },
 ]);

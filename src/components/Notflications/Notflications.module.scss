@@ -19,6 +19,9 @@
     @media screen and (max-width: 630px) {
       font-size: 9px;
     }
+    @media screen and (max-width: 430px) {
+      font-size: 7px;
+    }
   }
 
   &__success {
@@ -46,6 +49,9 @@
     }
     @media screen and (max-width: 630px) {
       font-size: 9px;
+    }
+    @media screen and (max-width: 430px) {
+      font-size: 7px;
     }
     input {
       border: 1px solid gray;
@@ -92,6 +98,9 @@
 
     @media screen and (max-width: 630px) {
       font-size: 9px;
+    }
+    @media screen and (max-width: 430px) {
+      font-size: 7px;
     }
     &:hover {
       opacity: 1;

@@ -2,6 +2,9 @@
   max-height: 500px;;
   border-collapse: collapse;
   width:100%;
+  @media screen and (max-width: 430px) {
+    width:93%
+  }
 
   &__wrapper {
     width:100%;

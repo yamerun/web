@@ -1,12 +1,23 @@
 .Favorite {
   min-height: 83%;
   display: flex;
-  // align-items: center;
+  margin: 5px;
+  @media screen and (max-width:900px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width:680px) {
+    font-size: 10px;
+  }
   justify-content: center;
   &__container {
     width: 60%;
     display: flex;
     justify-content: center;
+    min-width: 400px;
+
+    @media screen and (max-width:680px) {
+      min-width: 300px;
+    }
   }
   &__table {
     margin-top: 30px;
@@ -18,7 +29,7 @@
     border-collapse: collapse;
 
     &__head {
-        vertical-align: 0%;
+       margin: 10px;
     }
 
     &__headerRow {
@@ -31,7 +42,9 @@
       }
     }
     &__body {
+      margin: 10px;
       &__row {
+        
         td {
           color: white;
           text-align: center;
@@ -44,6 +57,14 @@
 
           p {
             padding: 10px;
+            word-break: break-all;
+            @media screen and (max-width:680px) {
+              padding: 5px;
+              font-size: 11px;
+            }
+            @media screen and (max-width:450px) {
+              font-size: 8px;
+            }
           }
           &:hover {
             opacity: 1;

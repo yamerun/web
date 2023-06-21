@@ -37,12 +37,13 @@ export default function AccountNavigation({ item }) {
         >
           Список операций
         </li>
-        <li
+        <Link
           className={style.Navigation__list__item}
           onClick={(e) => handleSelect(e)}
+          to='/account/subscribe/detail'
         >
-          История посещений обменников
-        </li>
+           Подписка
+        </Link>
         <Link
           className={style.Navigation__list__item}
           onClick={(e) => handleSelect(e)}

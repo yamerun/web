@@ -11,6 +11,11 @@
   @media screen and (max-width: 540px) {
     width: 120px;
   }
+  @media screen and (max-width: 430px) {
+    width: 80px;
+    padding: 5px;
+    margin: 5px;
+  }
   &__btn {
     color: white;
     background: none;
@@ -23,6 +28,9 @@
     }
     @media screen and (max-width: 540px) {
       font-size: 12px;
+    }
+    @media screen and (max-width: 430px) {
+      font-size: 9px;
     }
   }
 }

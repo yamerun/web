@@ -11,6 +11,10 @@
     background: #2d2d3183;
     border:1px solid rgba(255, 255, 255, 0.473);
   }
+  @media screen and (max-width: 430px) {
+    padding: 4px;
+    min-width: 330px;
+  }
   &__inActive {
     visibility: hidden;
     position: absolute;
