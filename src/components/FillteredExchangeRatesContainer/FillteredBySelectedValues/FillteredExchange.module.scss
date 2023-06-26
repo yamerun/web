@@ -4,7 +4,7 @@
   &__row {
     background: #46464b;
     height: 20px;
-
+    white-space:nowrap ;
     @media screen and (max-width: 600px) {
       background: #46464b70;
     }
@@ -13,9 +13,11 @@
     }
 
     &__box { 
-
       position: relative;
       overflow: hidden;
+      max-width: 30px;
+      padding-left: 5px;
+      padding-right: 5px;
       &__flexbox {
         display: flex;
         gap: 10px;
@@ -37,11 +39,18 @@
       font-family: "BasisGrotesquePro";
       cursor: pointer;
       padding-top: 10px;
-      @media screen and (max-width: 1240px) {
-        font-size: 12px;
-      }
-      @media screen and (max-width: 709px) {
-        font-size: 8px;
+      font-size: 12px;
+
+
+    @media screen and (max-width: 640px) {
+      font-size: 10px;
+    }
+
+    @media screen and (max-width: 540px) {
+      font-size: 7px;
+    }
+      @media screen and (max-width: 430px) {
+        font-size: 6px;
       }
  
       &__comments {
@@ -55,7 +64,7 @@
         overflow: hidden;
         @media screen and (max-width:420px) {
           gap:3px;
-          font-size: 8px;
+          font-size: 7px;
         }
       }
 
@@ -67,6 +76,8 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         border: 0;
+        min-width: 7px;
+        min-height: 7px;
         &:hover {
           opacity: 0.5;
         }

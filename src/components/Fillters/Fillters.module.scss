@@ -12,7 +12,10 @@
     border:1px solid rgba(255, 255, 255, 0.473);
   }
   @media screen and (max-width: 430px) {
-    padding: 4px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
     min-width: 330px;
   }
   &__inActive {
