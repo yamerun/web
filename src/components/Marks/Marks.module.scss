@@ -9,38 +9,50 @@
   display: flex;
   flex-direction: row;
   gap: 5px;
-  height: 30px;
-  width: 30px;
-  background-image: url("../../assets/imgs/tooltip.svg");
-  background-repeat: no-repeat;
-  background-size: 100% 100% ;
-  position: absolute;
-  left:18%;
+  justify-content: center;
+  //height: 100px;
 }
 
 .tooltip {
   color: white;
-  font-size: 12px;
+  font-size: 10px;
   font-family: "BasisGrotesquePro";
   letter-spacing: 0.6px;
-  background-color: #2d2d31;
-  padding: 13px;
+  background-color: #1f1f20;
+  padding: 10px;
   text-align: left;
-  position: absolute;
   z-index: 120;
-  margin-top: 40px;
   border-radius: 12px;
-  border: 1px solid white;
+  position: absolute;
+  bottom: 5px;
+  font-weight: 300;
+  text-transform: uppercase;
+  white-space: wrap;
+  display: flex;
+
+
+
+  button {
+    background: none;
+    border: 0;
+    color: white;
+  }
 }
 
 .variants {
-    background-color: #2d2d31;
-    display: flex;
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+  border-radius: 12px;
+}
 
-    gap:10px;
-    padding: 15px;
-    align-items: center;
-    z-index: 120;
-    border-radius: 12px;
-    border:1px solid white;
+.openTool {
+  transition: 0.5s linear;
+  height:70px;
+  @media screen and (max-width:1260px) {
+    height:100px;
+  }
 }

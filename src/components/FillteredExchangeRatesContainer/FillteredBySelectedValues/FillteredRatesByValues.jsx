@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Marks } from "../../Marks/Marks";
 import style from "./FillteredExchange.module.scss";
+import img from "../../../assets/imgs/green-circle.svg";
+import img1 from "../../../assets/imgs/red-circle.svg";
+
 const EmptyCourses = React.lazy(() =>
   import("../../EmptyCourses/EmptyCourses")
 );
@@ -50,16 +53,21 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
               </p>
             </div>
           </td>
-
           <td className={style.table__row__box}>
-            <div className={style.table__row__box__flexbox}>
+            <div className={style.table__row__flexbox}>
               <p>{(Math.round(item.in * 100) / 100).toFixed(2)}</p>
               <p className={style.table__row__box__smalltext}>{item.from}</p>
             </div>
           </td>
           <td className={style.table__row__box}>
-            <div className={style.table__row__box__flexbox}>
-              <p>{(Math.round(item.out * 100) / 100).toFixed(2)}</p>
+            <div className={style.table__row__flexbox}>
+              <p
+                className={
+                  style.Fillters__categories__body__content__to__header
+                }
+              >
+                {(Math.round(item.out * 100) / 100).toFixed(2)}
+              </p>
               <p className={style.table__row__box__smalltext}>{item.to}</p>
             </div>
           </td>
@@ -67,36 +75,23 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
             <p>{(Math.round(item.amount * 100) / 100).toFixed(2)}</p>
           </td>
           <td className={style.table__row__box}>
-            <div className={style.table__row__box__comments}>
-              <p>{item.exchanger.user_reviews}</p>
-              /
-              <p
-              >
-                ({item.exchanger.count_reviews})
-              </p>
-            </div>
-          </td>
-          <td className={style.table__row__box}>
-            <p
-              style={{
-                color:
-                  item.exchanger.status.title === "Работает"
-                    ? "#00FF7F"
-                    : "red",
-              }}
-            >
-              {item.exchanger.status.title}
+            <p>
+              {item.exchanger.user_reviews} ({item.exchanger.count_reviews})
             </p>
           </td>
+          <td className={style.table__row__box}>
+            <img
+              className={style.table__row__img}
+              src={item.exchanger.status.title === "Работает" ? img : img1}
+            ></img>
+          </td>
+          {screenSize.dynamicWidth >= 1050 && (
+            <td className={style.table__row__box}>
+              {item.marks.length != 0 ? <Marks prop={item.marks} /> : "✖"}
+            </td>
+          )}
         </tr>
       ))}
     </tbody>
   );
 }
-
-/*          <td className={style.table__row__box}>
-          {item.marks.length != 0 ? <Marks prop={item.marks} /> : 'меток нет'}
-          </td>
-                          style={{
-                  color: item.exchanger.count_reviews == 0 && "red",
-                }}*/

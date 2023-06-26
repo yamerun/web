@@ -4,6 +4,10 @@
   &__row {
     background: #46464b;
     white-space:nowrap ;
+    &__img {
+      width: 20px;
+      height: 20px;
+    }
     &__flexbox {
       display: flex;
       gap: 10px;

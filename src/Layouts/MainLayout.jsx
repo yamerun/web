@@ -81,7 +81,8 @@ export default function MainLayout({ children }) {
   }, [isAuthOnSite, isAuthInPersonallAccount]);
 
 
-  return (
+  return  (
+
     <div className='Layout'>
       <Header />
       {isExchangerRole === true && <ExchangerAccountNavigation />}

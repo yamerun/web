@@ -1,17 +1,20 @@
 .Footer {
   margin-top: 50px;
-  height: 60px;
+  height: max-content;
+  border-top: 1px solid #5e5e65;
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: center;
-
+  bottom:0;
+  background-color: #151517;
+  position: sticky;
+  z-index: 999;
   &__container {
     display: flex;
     align-items: center;
-    width: 70%;
+    width: 90%;
     justify-content: space-between;
-    border-top: 1px solid #5e5e65;
     padding-top: 20px;
 @media screen and (max-width:416px) {
   width: 100%;

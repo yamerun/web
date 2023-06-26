@@ -80,6 +80,7 @@ export default function ExchangeRatesVariants({ open }) {
                   <th>Резерв</th>
                   <th>Отзывы</th>
                   <th>Статус</th>
+                  {screenSize.dynamicWidth >= 1050 && <th>Метки</th>}
                 </tr>
               </thead>
             )}

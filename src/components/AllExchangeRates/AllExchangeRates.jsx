@@ -3,6 +3,9 @@ import axios from "axios";
 import style from "./AllExchangeRates.module.scss";
 import { useNavigate } from "react-router-dom";
 import { Marks } from "../Marks/Marks";
+import img from "../../assets/imgs/green-circle.svg";
+import img1 from "../../assets/imgs/red-circle.svg";
+
 export const AllExchangeRates = () => {
   const [all, setAll] = useState([]);
   const navigate = useNavigate();
@@ -88,17 +91,16 @@ export const AllExchangeRates = () => {
             </p>
           </td>
           <td className={style.table__row__box}>
-            <p
-              style={{
-                color:
-                  item.exchanger.status.title === "Работает"
-                    ? "#00FF7F"
-                    : "red",
-              }}
-            >
-              {item.exchanger.status.title}
-            </p>
+            <img
+              className={style.table__row__img}
+              src={item.exchanger.status.title === "Работает" ? img : img1}
+            ></img>
           </td>
+          {screenSize.dynamicWidth >= 1050 && (
+            <td className={style.table__row__box}>
+              {item.marks.length != 0 ? <Marks prop={item.marks} /> : "✖"}
+            </td>
+          )}
         </tr>
       ))}
     </tbody>

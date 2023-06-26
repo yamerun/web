@@ -8,22 +8,17 @@ export const Marks = ({ prop }) => {
   const [currentIndex, setCurrentIndex] = useState();
   const [currentItem, setCurrentItem] = useState();
   const [active, setActive] = useState(false);
-
+  const item = document.querySelector(`.${style.container}`);
   const ShowTip = ({ id }) => {
     setCurrentIndex(id);
+
+    item.classList.add(`${style.openTool}`);
   };
 
   const hideTips = () => {
     setCurrentItem(undefined);
     setCurrentIndex(undefined);
-  };
-
-  const Open = () => {
-    setActive(true);
-  };
-
-  const Close = () => {
-    setActive(false);
+    item.classList.remove(`${style.openTool}`);
   };
 
   useEffect(() => {
@@ -44,28 +39,23 @@ export const Marks = ({ prop }) => {
   }, [currentIndex, resultArr]);
 
   return (
-    <div className={style.container} onMouseEnter={Open} onMouseLeave={Close}>
-      {active && (
-        <div className={style.variants}>
-          {prop.map((item) => (
-            <div
-              onMouseEnter={() => ShowTip(item)}
-              onMouseLeave={() => hideTips(item)}
-              key={item.id}
-            >
-              <img
-                src={`https://change.pro${item.icon.path}`}
-                className={style.img}
-                id={item.id}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+    <div className={style.container}>
+      <div className={style.variants}>
+        {prop.map((item) => (
+          <div onClick={() => ShowTip(item)} key={item.id}>
+            <img
+              src={`https://change.pro${item.icon.path}`}
+              className={style.img}
+              id={item.id}
+            />
+          </div>
+        ))}
+      </div>
       {currentItem !== undefined &&
         currentItem.map((item) => (
           <div className={style.tooltip}>
             <h1>{item.description}</h1>
+            <button onClick={hideTips}>✖</button>
           </div>
         ))}
     </div>
