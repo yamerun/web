@@ -57,7 +57,7 @@ export const AllExchangeRates = () => {
   return (
     <tbody className={style.table}>
       {all.map((item) => (
-        <tr className={style.table__row}>
+        <tr className={style.table__row} key={item.id}>
           <td className={style.table__row__box}>
             <div className={style.table__row__box__exchanger}>
               <button

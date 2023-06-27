@@ -15,7 +15,7 @@
   }
 
   @media screen and (max-width:900px) {
-    width: 100.5%;
+    width: 78%;
   }
 
   @media screen and (max-width:600px) {
@@ -23,6 +23,8 @@
   }
   @media screen and (max-width:430px) {
     min-width: 330px;
+    background: rgba(45, 45, 49, 0.5137254902);
+    border: 1px solid rgba(255, 255, 255, 0.473);
   }
 
   &__Emoney {
@@ -132,6 +134,14 @@
       width: 100%;
       display: flex;
       align-items: center;
+      @media screen and (max-width:430px) {
+        text-transform: uppercase;
+        background: rgb(32, 32, 34);
+        border: 1px solid rgba(255, 255, 255, 0.473);
+        border-radius: 12px;
+      }
+    
+      
 
       &__content {
         padding-left: 30px;

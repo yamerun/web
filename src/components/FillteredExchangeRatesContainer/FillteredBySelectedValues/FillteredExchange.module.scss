@@ -26,6 +26,10 @@
     &__img {
       width: 20px;
       height: 20px;
+      @media screen and (max-width:500px) {
+        width:10px;
+        height:10px;
+      }
     }
 
     &__box {

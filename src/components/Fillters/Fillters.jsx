@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, lazy, Suspense } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import style from "./Fillters.module.scss";
 import { Calculator } from "../Calculator/Calculator";
 import { ClearAll } from "../ClearAllFillters/ClearAllFillters";
@@ -81,6 +81,7 @@ export const Fillters = () => {
             <li
               className={style.Fillters__navigation__item}
               onClick={(e) => handleSelect(e)}
+              key={item.id}
             >
               {item}
             </li>
