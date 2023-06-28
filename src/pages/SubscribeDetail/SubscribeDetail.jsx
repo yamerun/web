@@ -3,41 +3,57 @@ import axios from "axios";
 import style from "./SubscribeDetail.module.scss";
 
 export default function SubscribeDetail() {
-  
+  const [subs, setSubs] = React.useState([]);
   const configForSiteUser = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }
+  };
 
   React.useEffect(() => {
     axios
       .get("https://change.pro/api/exchangers/get_subscribe", configForSiteUser)
       .then(function (response) {
-  console.log(response)
+        setSubs(response.data.data);
       });
   }, []);
+
+  function createMarkup(content) {
+    return { __html: `${content}` };
+  }
+
+  const goToPay = (item) => {
+    window.location.open = `${item}`;
+  };
 
   return (
     <div className={style.subscribe}>
       <h1 className={style.subscribe__heading}>ПОДПИСКА</h1>
       <div className={style.subscribe__container}>
         <article className={style.subscribe__container__block}>
-          <h1 className={style.subscribe__container__block__heading}>
-            до конца подписки осталось
-          </h1>
-          30 дней 18 часов 42 минуты
-          <h1 className={style.subscribe__container__block__heading}>
-            Инструкция по оплате:
-          </h1>
-          <p className={style.subscribe__container__text}>
-            взять деньги положить на карту сбер альфа тинькофф нажать оплатить и
-            оплатить после этого оплата будет считаться успешной и вы оплатите
-            подписку
-          </p>
-          <button className={style.subscribe__container__block__btn}>
-            Оплатить
-          </button>
+          {subs !== undefined && subs.content !== undefined ? (
+            <>
+              <div
+                className={style.subscribe__container__block__heading}
+                dangerouslySetInnerHTML={createMarkup(subs.content.warning)}
+              ></div>
+              <h1>{subs.subscribe_date_expiration.time}</h1>
+              <h1>{subs.subscribe_date_expiration.date}</h1>
+
+              <div
+                className={style.subscribe__container__text}
+                dangerouslySetInnerHTML={createMarkup(subs.content.instruction)}
+              ></div>
+              <button
+                className={style.subscribe__container__block__btn}
+                onClick={goToPay(subs.content.url_to_pay)}
+              >
+                Оплатить
+              </button>
+            </>
+          ) : (
+            <div></div>
+          )}
         </article>
       </div>
     </div>
