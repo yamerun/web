@@ -1,10 +1,14 @@
 .Article {
-  max-width: 700px;
+  max-width: 100%;
   min-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
   @media screen and (max-width: 1600px) {
     max-width: 400px;
   }
@@ -45,11 +49,11 @@
   &__text {
     width: 100%;
     justify-content: center;
-    align-items: center;
+    //align-items: flex-start;
     display: flex;
     flex-direction: column;
     font-family: "BasisGrotesquePro";
-    word-break: break-all;
+    word-break:keep-all;
     text-align: left;
     @media screen and (max-width: 900px) {
       font-size: 9px !important;

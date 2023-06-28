@@ -8,7 +8,7 @@
   justify-content: center;
   bottom:0;
   background-color: #151517;
-  position: sticky;
+  //position: sticky;
   z-index: 999;
   &__container {
     display: flex;
@@ -47,6 +47,10 @@
       font-size: 18px;
       padding: 11px 25px;
       border-radius: 20px;
+      position: sticky;
+      bottom:0;
+      float: right;
+      margin: 15px;;
       @media screen and (max-width: 1600px) {
         font-size: 13px;
       }

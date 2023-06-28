@@ -1,11 +1,8 @@
 import React from "react";
 import style from "./Article.module.scss";
-import { useSelector } from "react-redux";
+
 import { Link, useLoaderData } from "react-router-dom";
 export const Articlepage = () => {
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
   const { article } = useLoaderData();
   console.log(article.data);
   function createMarkup(content) {
