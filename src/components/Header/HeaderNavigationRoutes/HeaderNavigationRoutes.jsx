@@ -28,7 +28,7 @@ export default function HeaderNavigationRoutes() {
       </Link>
       <Link
         className={style.Buttons__btn}
-        to="/forPartners"
+        to="/partners"
         onClick={(e) => setActiveRoute(e)}
       >
         Партнерам

@@ -24,12 +24,8 @@ export const AccountLoader = async () => {
 };
 
 export const PersonalAccount = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { item } = useLoaderData();
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
   const role = localStorage.getItem("userRole");
   const jwt = localStorage.getItem("jwt");
 

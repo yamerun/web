@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: "/ExchangerPage/:id",
+        path: "/exchanger/:id",
         element: <ItemPage />,
         loader: exchangeLoader,
       },
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
         element: <HelpingPage />,
       },
       {
-        path: "/forPartners",
+        path: "/partners",
         element: <ForPartners />,
       },
       {
@@ -89,39 +89,39 @@ const router = createBrowserRouter([
         loader: ArticleLoader,
       },
       {
-        path: "/scammersBase",
+        path: "/exchanger/scammers",
         element: <ScammersBase />,
       },
       {
-        path: "/InfoPage",
+        path: "/exchanger/info",
         element: <InfoPage />,
         loader: infoloader,
       },
       {
-        path: "/ExchangerReviews",
+        path: "/exchanger/reviews",
         element: <ExchangerReviews />,
         loader: reviewloader,
       },
       {
-        path: "/ExchangerCourses",
+        path: "/exchanger/courses",
         element: <ExchangerCourses />,
         loader: CoursesLoader,
       },
       {
-        path: "/ExchangerMarks",
+        path: "/exchanger/marks",
         element: <ExchangerMarks />,
       },
       {
-        path: "/ExchangerNotifications",
+        path: "/exchanger/notifications",
         element: <ExchangerNotifications />,
       },
       {
-        path: "/accountReviews",
+        path: "/account/reviews",
         element: <AccountReviews />,
         loader: AccountReviewloader,
       },
       {
-        path: "/exchangerregister",
+        path: "/exchanger/register",
         element: <ExchangerRegisterPage />,
       },
       {

@@ -1,5 +1,6 @@
 .SearchMenu {
-  background: #2d2d31;
+  background: #2d2d3183;
+  border: 1px solid rgba(255, 255, 255, 0.473);
   border-radius: 30px;
   width: 18%;
   display: flex;
@@ -23,8 +24,7 @@
   }
   @media screen and (max-width:430px) {
     min-width: 330px;
-    background: #2d2d3183;
-    border: 1px solid rgba(255, 255, 255, 0.473);
+  
   }
 
   &__Emoney {
@@ -134,10 +134,10 @@
       width: 100%;
       display: flex;
       align-items: center;
+      background: rgb(32, 32, 34);
+      border: 1px solid #ffffff79;
       @media screen and (max-width:430px) {
         text-transform: uppercase;
-        background: rgb(32, 32, 34);
-        border: 1px solid #ffffff79;
         border-radius: 12px;
       }
     
@@ -171,7 +171,7 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
-
+    text-align: center;
     @media screen and (max-width: 1600px) {
       font-size: 11px;
     }
@@ -179,6 +179,7 @@
   }
 
   &__item2 {
+    text-align: center;
     list-style-type: none;
     font-family: "BasisGrotesquePro";
     font-style: normal;
@@ -196,17 +197,15 @@
     }
   }
 
-  &__itemsList1 {
-    text-align: left;
-  }
+
 
   &__ShowMorebtn {
     background-color: #2d2d31;
     border: 0;
-    background-image: url("../../assets/imgs/buttonOpen.svg");
-    width: 10px;
-    height: 10px;
+    color:red;
     background-repeat: no-repeat;
+    font-family: "BasisGrotesquePro";
+    text-transform: lowercase;
   }
 
   &__ShowMore {
@@ -258,10 +257,12 @@
 
   &__itemsList {
     width: 100%;
+    text-align: center;
   }
 
   &__item {
     list-style-type: none;
+    text-align: center;
     font-family: "BasisGrotesquePro";
     font-style: normal;
     font-weight: 700;
@@ -272,6 +273,7 @@
     cursor: pointer;
     user-select: none;
     padding: 10px;
+
 
     @media screen and (max-width: 1600px) {
       font-size: 13px;

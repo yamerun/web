@@ -51,7 +51,7 @@ export const AllExchangeRates = () => {
   }, [screenSize]);
 
   const goToItemPage = ({ id }) => {
-    navigate(`/ExchangerPage/${id}`);
+    navigate(`/exchanger/${id}`);
   };
 
   return (

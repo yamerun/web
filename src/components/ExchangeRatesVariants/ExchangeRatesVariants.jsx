@@ -40,6 +40,11 @@ export default function ExchangeRatesVariants({ open }) {
     };
   }, [screenSize]);
 
+  const tableHeader = document.querySelectorAll(
+    `.${style.courseBorder__headeritems}`
+  );
+
+
   React.useEffect(() => {
     const tableHeader = document.querySelectorAll(
       `.${style.courseBorder__headeritems}`
@@ -47,14 +52,18 @@ export default function ExchangeRatesVariants({ open }) {
     if (
       itemExchangeRates.length === 0 &&
       currentFrom != undefined &&
-      currentTo != undefined
+      currentTo != undefined &&
+       open !== true
     ) {
       tableHeader[0].classList.add(`${style.hide}`);
     }
-    if (itemExchangeRates.length !== 0 || isFilltersClear === true) {
+    if (itemExchangeRates.length !== 0 || isFilltersClear === true && open !== true) {
       tableHeader[0].classList.remove(`${style.hide}`);
     }
   }, [itemExchangeRates, isFilltersClear, currentFrom, currentTo]);
+
+
+  console.log(tableHeader[0])
 
   return (
     <div className={style.courseBorder__wrapper}>

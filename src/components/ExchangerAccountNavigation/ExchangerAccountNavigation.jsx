@@ -7,37 +7,37 @@ export const ExchangerAccountNavigation = () => {
       <ul className={style.exchangerNavigation__itemsList}>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to={`/infoPage`}
+          to={`/exchanger/info`}
         >
           Информация
         </Link>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to="/ExchangerReviews"
+          to="/exchanger/reviews"
         >
           Отзывы
         </Link>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to="/ExchangerCourses"
+          to="/exchanger/courses"
         >
           Курсы
         </Link>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to="/ExchangerMarks"
+          to="/exchanger/marks"
         >
           Метки
         </Link>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to="/ExchangerNotifications"
+          to="/Exchanger/notifications"
         >
           Уведомления
         </Link>
         <Link
           className={style.exchangerNavigation__itemsList__item}
-          to="/scammersBase"
+          to="/exchanger/scammers"
         >
           Мошенники
         </Link>

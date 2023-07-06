@@ -31,7 +31,7 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
   }, [screenSize]);
 
   const goToItemPage = ({ id }) => {
-    navigate(`/ExchangerPage/${id}`);
+    navigate(`/exchanger/${id}`);
   };
 
   return itemExchangeRates.length === 0 ? (

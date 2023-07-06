@@ -42,7 +42,7 @@ export const Marks = ({ prop }) => {
     <div className={style.container}>
       <div className={style.variants}>
         {prop.map((item) => (
-          <div onClick={() => ShowTip(item)} key={item.id}>
+          <div onMouseEnter={() => ShowTip(item)} key={item.id}>
             <img
               src={`https://change.pro${item.icon.path}`}
               className={style.img}
@@ -53,9 +53,8 @@ export const Marks = ({ prop }) => {
       </div>
       {currentItem !== undefined &&
         currentItem.map((item) => (
-          <div className={style.tooltip}>
+          <div className={style.tooltip} onMouseLeave={hideTips}>
             <h1>{item.description}</h1>
-            <button onClick={hideTips}>✖</button>
           </div>
         ))}
     </div>

@@ -50,11 +50,9 @@ export const SearchMenu = () => {
       });
   }, []);
 
-  const ShowMore = () => {
-    ref.current.classList.toggle(`${style.show}`);
-  };
   const ShowMoreToBot = () => {
     ref2.current.classList.toggle(`${style.showEmoney}`);
+    ref.current.classList.toggle(`${style.show}`);
   };
 
   const getItemFrom = (e) => {
@@ -166,10 +164,6 @@ export const SearchMenu = () => {
           Криптовалюта
         </p>
       </div>
-      <button
-        className={style.SearchMenu__ShowMorebtn}
-        onClick={() => ShowMore()}
-      />
       <div className={style.SearchMenu__items} ref={ref}>
         <ul className={style.SearchMenu__itemsList}>
           {items.map((item) => (
@@ -201,10 +195,7 @@ export const SearchMenu = () => {
           Электронные деньги
         </p>
       </div>
-      <button
-        className={style.SearchMenu__ShowMorebtn}
-        onClick={() => ShowMoreEmoney()}
-      />
+
       <div className={style.SearchMenu__Emoney} ref={ref2}>
         <div className={style.ItemsPayment}>
           <ul className={style.ItemsPayment__itemsList}>
@@ -235,7 +226,7 @@ export const SearchMenu = () => {
         <button
           className={style.SearchMenu__ShowMorebtn}
           onClick={() => ShowMoreToBot()}
-        />
+        >Раскрыть список</button>
       </div>
     </div>
   );

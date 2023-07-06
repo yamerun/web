@@ -54,7 +54,7 @@ export default function AccountNavigation({ item }) {
         <Link
           className={style.Navigation__list__item}
           onClick={(e) => handleSelect(e)}
-          to="/accountReviews"
+          to="/account/reviews"
         >
           Мои отзывы
         </Link>

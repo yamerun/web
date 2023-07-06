@@ -79,7 +79,7 @@ export const RegisterPage = () => {
               Я уже зарегистрирован
             </Link>
             <Link
-              to="/exchangerregister"
+              to="/exchanger/register"
               className={style.RegisterPage__goToLogin__link}
             >
               Создать аккаунт обменника

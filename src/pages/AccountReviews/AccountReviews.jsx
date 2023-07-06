@@ -25,12 +25,6 @@ export const AccountReviewloader = async () => {
 
 export const AccountReviews = () => {
   const { item,id } = useLoaderData();
-  const navigate = useNavigate();
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
-  const role = localStorage.getItem("userRole");
-  const jwt = localStorage.getItem("jwt");
 
   return (
     <div className={style.AccountReviews}>
