@@ -56,34 +56,35 @@ export default function Header() {
   };
   return (
     <header className={style.Header}>
+      <div className={style.Header__menu}>
+        <div>
+        {screenSize.dynamicWidth < 900 && (
+            <button onClick={ShowOrHideMenu} className={style.Btn} />
+          )}
+          <img
+            className={style.Header__menu__logo}
+            src={logo}
+            alt="logo"
+            onClick={() => goToMain()}
+          />
+        </div>
 
-      <div className={style.Header__menu}>     
-      {screenSize.dynamicWidth < 900 && (
-          <button onClick={ShowOrHideMenu} className={style.Btn} />
-        )}
-        <img
-          className={style.Header__menu__logo}
-          src={logo}
-          alt="logo"
-          onClick={() => goToMain()}
-        />
         {active === true && screenSize.dynamicWidth < 900 && (
           <>
             <React.Suspense fallback={<h1>...loading</h1>}>
               <HeaderRoutes />
             </React.Suspense>
-          
-              <button
-                className={
-                  jwt === null
-                    ? style.Header__menu__logInBtn
-                    : style.Header__menu__lc
-                }
-                onClick={goToAccount}
-              >
-                {jwt === null ? "Войти" : "Личный кабинет"}
-              </button>
 
+            <button
+              className={
+                jwt === null
+                  ? style.Header__menu__logInBtn
+                  : style.Header__menu__lc
+              }
+              onClick={goToAccount}
+            >
+              {jwt === null ? "Войти" : "Личный кабинет"}
+            </button>
           </>
         )}
         {screenSize.dynamicWidth > 900 && (
@@ -106,7 +107,6 @@ export default function Header() {
           </>
         )}
       </div>
-
     </header>
   );
 }

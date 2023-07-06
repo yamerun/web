@@ -1,6 +1,5 @@
 .SearchMenu {
-  background: #2d2d3183;
-  border: 1px solid rgba(255, 255, 255, 0.473);
+  background: #2d2d31;
   border-radius: 30px;
   width: 18%;
   display: flex;
@@ -21,9 +20,12 @@
 
   @media screen and (max-width:600px) {
     min-width: 350px;
+    background: #2d2d3183;
+    border: 1px solid rgba(255, 255, 255, 0.473);
   }
   @media screen and (max-width:430px) {
     min-width: 330px;
+    
   
   }
 
@@ -134,8 +136,12 @@
       width: 100%;
       display: flex;
       align-items: center;
-      background: rgb(32, 32, 34);
-      border: 1px solid #ffffff79;
+
+      @media screen and (max-width:600px) {
+        background: rgb(32, 32, 34);
+        border: 1px solid #ffffff79;
+      }
+
       @media screen and (max-width:430px) {
         text-transform: uppercase;
         border-radius: 12px;

@@ -41,7 +41,7 @@ export const AccountReviews = () => {
           <div className={style.AccountReviews__commentsBox}>
             {item.data != null ? (
               item.data.map((item) => (
-                <Comments props={item} review={setReview} w={"100%"} />
+                <Comments props={item}  w={"100%"} />
               ))
             ) : (
               <div></div>
