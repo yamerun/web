@@ -34,7 +34,6 @@ export const StatisticsControll = ({
   }, [currentFrom, currentTo, perHour]);
 
 
-
   return (
     <div className={style.statistics}>
       <div className={style.statistics__container}>

@@ -69,7 +69,7 @@ export const AllExchangeRates = () => {
               </p>
             </div>
           </td>
-          {item.marks.length != 0 && <Marks prop={item.marks} />}
+
           <td className={style.table__row__box}>
             <div className={style.table__row__flexbox}>
               <p>{(Math.round(item.in * 100) / 100).toFixed(2)} </p>
@@ -98,7 +98,11 @@ export const AllExchangeRates = () => {
           </td>
           {screenSize.dynamicWidth >= 1050 && (
             <td className={style.table__row__box}>
-              {item.marks.length != 0 ? <Marks prop={item.marks} /> : "✖"}
+              <div className={style.marksBox}>
+                {item.marks.length != 0
+                  ? item.marks.map((item) => <Marks prop={item} />)
+                  : "✖"}
+              </div>
             </td>
           )}
         </tr>

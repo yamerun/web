@@ -7,7 +7,7 @@ import axios from "axios";
 import { setStatistic } from "../../store/itemsSlice/itemsSlice";
 import { useDispatch } from "react-redux";
 export const LineChartStatistics = () => {
-  const [currentHour, setCurrentHour] = useState("");
+  const [currentHour, setCurrentHour] = useState(1);
   const [active, setActive] = useState(false);
   const [statPoints, setStatPoints] = useState([]);
   const { currentFrom, currentTo, stat } = useSelector((state) => ({

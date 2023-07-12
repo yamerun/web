@@ -1,0 +1,21 @@
+#tooltipTarget {
+  background: none;
+  border: none;
+  width: 13px;
+  height: 13px;
+
+  img {
+    //object-fit: cover;
+    width:13px;
+    height:13px;
+  }
+}
+
+.text {
+  color: white;
+  font-family: "BasisGrotesquePro";
+  background-color: black;
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 12px;
+}

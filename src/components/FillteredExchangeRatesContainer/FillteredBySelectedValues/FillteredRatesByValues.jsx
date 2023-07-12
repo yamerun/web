@@ -87,7 +87,11 @@ export default function FillteredBySelectedValues({ itemExchangeRates }) {
           </td>
           {screenSize.dynamicWidth >= 1050 && (
             <td className={style.table__row__box}>
-              {item.marks.length != 0 ? <Marks prop={item.marks} /> : "✖"}
+              <div className={style.marksBox}>
+                {item.marks.length != 0
+                  ? item.marks.map((item) => <Marks prop={item} />)
+                  : "✖"}
+              </div>
             </td>
           )}
         </tr>

@@ -78,11 +78,11 @@ export const ItemPage = () => {
     main.current.classList.add(`${style.pupActive}`);
   };
 
-  useEffect(()=>{
-  if(isOpen != true) {
-    main.current.classList.remove(`${style.pupActive}`);
-  }
-  },[isOpen])
+  useEffect(() => {
+    if (isOpen != true) {
+      main.current.classList.remove(`${style.pupActive}`);
+    }
+  }, [isOpen]);
 
   const setDimension = () => {
     getDimension({
@@ -143,19 +143,20 @@ export const ItemPage = () => {
             {item.data.name}
           </h1>
           <React.Suspense
-          fallback={
-            <h1
-              style={{
-                color: "white",
-                textAlign: "center",
-                fontSize: "15px",
-              }}
-            >
-              ...Loading
-            </h1>}>
-            <ToggleToFavorite itemid={item.data.id}/>
-
-            </React.Suspense>
+            fallback={
+              <h1
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: "15px",
+                }}
+              >
+                ...Loading
+              </h1>
+            }
+          >
+            <ToggleToFavorite itemid={item.data.id} />
+          </React.Suspense>
         </div>
         <button
           className={style.itemPage__container__items__item__iframebtn}
@@ -183,12 +184,10 @@ export const ItemPage = () => {
         </div>
         <div className={style.itemPage__exchangermarks}>
           <h1>Метки обменника {item.data.name}:</h1>
-          <div>
-            {Object.keys(item.data.mark_types).length != 0 ? (
-              <Marks prop={item.data.mark_types} />
-            ) : (
-              <p>меток нет</p>
-            )}
+          <div style={{display:'flex',width:'100%',justifyContent:'space-between'}}>
+            {item.data.mark_types.length !== 0
+              ? item.data.mark_types.map((item) => <Marks prop={item} />)
+              : "✖"}
           </div>
         </div>
       </div>
@@ -198,8 +197,12 @@ export const ItemPage = () => {
         </h1>
         {review != null ? (
           review.map((item) => (
-            
-            <Comments props={item} key={item.id} review={setReview} w={screenSize.dynamicWidth < 1090 ? "70%" : "30%"} />
+            <Comments
+              props={item}
+              key={item.id}
+              review={setReview}
+              w={screenSize.dynamicWidth < 1090 ? "70%" : "30%"}
+            />
           ))
         ) : (
           <div></div>

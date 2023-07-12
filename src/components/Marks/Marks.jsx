@@ -1,62 +1,54 @@
 import React, { useEffect, useState } from "react";
-import style from "./Marks.module.scss";
+import "./Marks.scss";
 import { useDispatch } from "react-redux";
-import { setTooltip } from "../../store/itemsSlice/itemsSlice";
-export const Marks = ({ prop }) => {
+import { Overlay } from "react-overlays";
+
+export const Marks = (prop) => {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const [resultArr, setresultArr] = useState();
   const [currentIndex, setCurrentIndex] = useState();
   const [currentItem, setCurrentItem] = useState();
-  const [active, setActive] = useState(false);
-  const item = document.querySelector(`.${style.container}`);
-  const ShowTip = ({ id }) => {
-    setCurrentIndex(id);
 
-    item.classList.add(`${style.openTool}`);
+  const toggleTooltipOn = () => {
+    setIsOpen(true);
+  };
+  const toggleTooltipOf = () => {
+    setIsOpen(false);
   };
 
-  const hideTips = () => {
-    setCurrentItem(undefined);
-    setCurrentIndex(undefined);
-    item.classList.remove(`${style.openTool}`);
-  };
-
-  useEffect(() => {
-    if (prop != undefined) {
-      setresultArr(
-        prop.map((item) => ({
-          id: item.id,
-          description: item.description,
-        }))
-      );
-    }
-  }, [prop]);
-
-  useEffect(() => {
-    if (currentIndex != undefined && resultArr != undefined) {
-      setCurrentItem(resultArr.filter((item) => item.id == currentIndex));
-    }
-  }, [currentIndex, resultArr]);
+  console.log(prop.prop.icon.path);
 
   return (
-    <div className={style.container}>
-      <div className={style.variants}>
-        {prop.map((item) => (
-          <div onMouseEnter={() => ShowTip(item)} key={item.id}>
-            <img
-              src={`https://change.pro${item.icon.path}`}
-              className={style.img}
-              id={item.id}
-            />
+    <div>
+      <button
+        type="button"
+        id="tooltipTarget"
+        onMouseEnter={toggleTooltipOn}
+        onMouseLeave={toggleTooltipOf}
+      >
+        <img src={`https://change.pro${prop.prop.icon.path}`} />{" "}
+      </button>
+      <Overlay
+        placement="top"
+        show={isOpen}
+        target={() => document.getElementById("tooltipTarget")}
+      >
+        {({ placement, arrowProps, props }) => (
+          <div
+            {...props}
+            style={{ ...props.style, zIndex: 1000 }}
+            placement={placement}
+          >
+            <TooltipBody>{prop.prop.description}</TooltipBody>
+            <TooltipArrow {...arrowProps} />
           </div>
-        ))}
-      </div>
-      {currentItem !== undefined &&
-        currentItem.map((item) => (
-          <div className={style.tooltip} onMouseLeave={hideTips}>
-            <h1>{item.description}</h1>
-          </div>
-        ))}
+        )}
+      </Overlay>
     </div>
   );
 };
+
+const TooltipBody = ({ children }) => <div className="text">{children}</div>;
+
+const TooltipArrow = ({ ref }) => <div ref={ref} className="arrow" />;
