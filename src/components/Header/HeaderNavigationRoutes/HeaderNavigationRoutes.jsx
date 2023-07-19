@@ -1,52 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import style from "./HeaderRoutes.module.scss";
 export default function HeaderNavigationRoutes() {
-  const setActiveRoute = (e) => {
-    e.target.classList.add(`${style.active}`);
-    const buttons = document.querySelectorAll(`.${style.Buttons__btn}`);
-    for (i of buttons) {
-      if (i != e.target) {
-        i.classList.remove(`${style.active}`);
-      }
-    }
-  };
-  return (
-    <ul className={style.Buttons}>
-      <Link
-        className={style.Buttons__btn}
-        to="/changePro"
-        onClick={(e) => setActiveRoute(e)}
-      >
-        Мониторинг
-      </Link>
-      <Link
-        className={style.Buttons__btn}
-        to="/exchangers"
-        onClick={(e) => setActiveRoute(e)}
-      >
-        Обменники
-      </Link>
-      <Link
-        className={style.Buttons__btn}
-        to="/partners"
-        onClick={(e) => setActiveRoute(e)}
-      >
-        Партнерам
-      </Link>
-      <Link
-        className={style.Buttons__btn}
-        to="/help"
-        onClick={(e) => setActiveRoute(e)}
-      >
-        Помощь
-      </Link>
-      <Link
-        className={style.Buttons__btn}
-        to="/articles"
-        onClick={(e) => setActiveRoute(e)}
-      >
-        Статьи
-      </Link>
-    </ul>
-  );
+	const setActiveRoute = (e) => {
+		e.target.classList.add(`${style.active}`);
+		const buttons = document.querySelectorAll(`.${style.Buttons__btn}`);
+		for (i of buttons) {
+			if (i != e.target) {
+				i.classList.remove(`${style.active}`);
+			}
+		}
+	};
+
+	{/* Выбор активного элемента меню */ }
+	const setCurrentMenu = ({ isActive }) => (isActive ? (`${style.Buttons__btn}` + ' ' + `${style.active}`) : `${style.Buttons__btn}`);
+	return (
+		<ul className={style.Buttons}>
+			<NavLink
+				className={setCurrentMenu}
+				to="/changePro"
+				onClick={(e) => setActiveRoute(e)}
+			>
+				Главная
+			</NavLink>
+			<NavLink
+				className={setCurrentMenu}
+				to="/exchangers"
+				onClick={(e) => setActiveRoute(e)}
+			>
+				Обменники
+			</NavLink>
+			<NavLink
+				className={setCurrentMenu}
+				to="/partners"
+				onClick={(e) => setActiveRoute(e)}
+			>
+				Партнерам
+			</NavLink>
+			<NavLink
+				className={setCurrentMenu}
+				to="/help"
+				onClick={(e) => setActiveRoute(e)}
+			>
+				Помощь
+			</NavLink>
+			<NavLink
+				className={setCurrentMenu}
+				to="/articles"
+				onClick={(e) => setActiveRoute(e)}
+			>
+				Статьи
+			</NavLink>
+		</ul>
+	);
 }
