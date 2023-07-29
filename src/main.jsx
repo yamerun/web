@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainPage } from "./pages/MainPage/MainPage";
+import { MainPageAttrs } from "./pages/MainPage/MainPageAttrs";
+import { MainPageLoader } from "./pages/MainPage/MainPageAttrs";
 import "./assets/styles/Common.css";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
@@ -37,113 +39,118 @@ import { FavoriteExchangers } from "./pages/FavoriteExchangers/FavoriteExchanger
 import { FavoriteExchangersLoader } from "./pages/FavoriteExchangers/FavoriteExchangers";
 import SubscribeDetail from "./pages/SubscribeDetail/SubscribeDetail";
 const router = createBrowserRouter([
-  {
-    element: <TimerPage />,
-    path: "/",
-  },
-  {
-    element: <MainLayout />,
-    children: [
-      {
-        path: "/changePro",
-        element: <MainPage />,
-      },
-      {
-        path: "/exchanger/:id",
-        element: <ItemPage />,
-        loader: exchangeLoader,
-      },
-      {
-        path: "/login",
-        element: <LoginPage />,
-      },
-      {
-        path: "/register",
-        element: <RegisterPage />,
-      },
-      {
-        path: "/account",
-        element: <PersonalAccount />,
-        loader: AccountLoader,
-      },
-      {
-        path: "/exchangers",
-        element: <AllEchangers />,
-        loader: exchangersLoader,
-      },
-      {
-        path: "/articles",
-        element: <Articles />,
-      },
-      {
-        path: "/help",
-        element: <HelpingPage />,
-      },
-      {
-        path: "/partners",
-        element: <ForPartners />,
-      },
-      {
-        path: "/article/:id",
-        element: <Articlepage />,
-        loader: ArticleLoader,
-      },
-      {
-        path: "/exchanger/scammers",
-        element: <ScammersBase />,
-      },
-      {
-        path: "/exchanger/info",
-        element: <InfoPage />,
-        loader: infoloader,
-      },
-      {
-        path: "/exchanger/reviews",
-        element: <ExchangerReviews />,
-        loader: reviewloader,
-      },
-      {
-        path: "/exchanger/courses",
-        element: <ExchangerCourses />,
-        loader: CoursesLoader,
-      },
-      {
-        path: "/exchanger/marks",
-        element: <ExchangerMarks />,
-      },
-      {
-        path: "/exchanger/notifications",
-        element: <ExchangerNotifications />,
-      },
-      {
-        path: "/account/reviews",
-        element: <AccountReviews />,
-        loader: AccountReviewloader,
-      },
-      {
-        path: "/exchanger/register",
-        element: <ExchangerRegisterPage />,
-      },
-      {
-        path: "/account/accountSettings",
-        element: <AccountSettings />,
-        loader: AccountLoader,
-      },
-      {
-        path: "/account/favoriteexchangers",
-        element: <FavoriteExchangers />,
-        loader: FavoriteExchangersLoader,
-      },
-      {
-        path:'/account/subscribe/detail',
-        element:<SubscribeDetail/>
-      }
-    ],
-  },
+	{
+		element: <TimerPage />,
+		path: "/",
+	},
+	{
+		element: <MainLayout />,
+		children: [
+			{
+				path: "/changePro",
+				element: <MainPage />,
+			},
+			{
+				path: "/changePro/:exchange",
+				element: <MainPageAttrs />,
+				loader: MainPageLoader,
+			},
+			{
+				path: "/exchanger/:id",
+				element: <ItemPage />,
+				loader: exchangeLoader,
+			},
+			{
+				path: "/login",
+				element: <LoginPage />,
+			},
+			{
+				path: "/register",
+				element: <RegisterPage />,
+			},
+			{
+				path: "/account",
+				element: <PersonalAccount />,
+				loader: AccountLoader,
+			},
+			{
+				path: "/exchangers",
+				element: <AllEchangers />,
+				loader: exchangersLoader,
+			},
+			{
+				path: "/articles",
+				element: <Articles />,
+			},
+			{
+				path: "/help",
+				element: <HelpingPage />,
+			},
+			{
+				path: "/partners",
+				element: <ForPartners />,
+			},
+			{
+				path: "/article/:id",
+				element: <Articlepage />,
+				loader: ArticleLoader,
+			},
+			{
+				path: "/exchanger/scammers",
+				element: <ScammersBase />,
+			},
+			{
+				path: "/exchanger/info",
+				element: <InfoPage />,
+				loader: infoloader,
+			},
+			{
+				path: "/exchanger/reviews",
+				element: <ExchangerReviews />,
+				loader: reviewloader,
+			},
+			{
+				path: "/exchanger/courses",
+				element: <ExchangerCourses />,
+				loader: CoursesLoader,
+			},
+			{
+				path: "/exchanger/marks",
+				element: <ExchangerMarks />,
+			},
+			{
+				path: "/exchanger/notifications",
+				element: <ExchangerNotifications />,
+			},
+			{
+				path: "/account/reviews",
+				element: <AccountReviews />,
+				loader: AccountReviewloader,
+			},
+			{
+				path: "/exchanger/register",
+				element: <ExchangerRegisterPage />,
+			},
+			{
+				path: "/account/accountSettings",
+				element: <AccountSettings />,
+				loader: AccountLoader,
+			},
+			{
+				path: "/account/favoriteexchangers",
+				element: <FavoriteExchangers />,
+				loader: FavoriteExchangersLoader,
+			},
+			{
+				path: '/account/subscribe/detail',
+				element: <SubscribeDetail />
+			}
+		],
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+	<Provider store={store}>
+		<RouterProvider router={router} />
+	</Provider>
 );

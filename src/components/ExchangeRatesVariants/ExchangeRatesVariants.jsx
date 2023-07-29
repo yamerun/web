@@ -21,6 +21,7 @@ export default function ExchangeRatesVariants({ open }) {
 		itemExchangeRates: state.itemsSlice.itemExchangeRates,
 		isFilltersClear: state.itemsSlice.isFilltersClear,
 	}));
+
 	const [screenSize, getDimension] = React.useState({
 		dynamicWidth: window.innerWidth,
 		dynamicHeight: window.innerHeight,
@@ -66,7 +67,7 @@ export default function ExchangeRatesVariants({ open }) {
 	console.log(tableHeader[0])
 
 	return (
-		<div className={style.courseBorder__wrapper}>
+		<div id="courseBorder" className={style.courseBorder__wrapper}>
 			<table className={style.courseBorder}>
 				{open != false ? (
 					<LineChartStatistics />

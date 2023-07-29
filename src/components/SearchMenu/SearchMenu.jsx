@@ -55,10 +55,53 @@ export const SearchMenu = () => {
 		ref.current.classList.toggle(`${style.show}`);
 	};
 
+	/**
+	 * Функция определния кода выбранных валяют для адресной строки
+	 */
+	const setUrlItems = () => {
+
+		let btnElementActive = document.querySelector(`.${style.SearchMenu__item}.${style.active}`);
+		let btnElement2Active = document.querySelector(`.${style.SearchMenu__item2}.${style.active}`);
+
+		// Если есть две вабранные валюты
+		if (btnElementActive && btnElement2Active) {
+
+			// Получаем коды выбранных валют
+			btnElementActive = btnElementActive.querySelector(`.${style.SearchMenu__item__currency}`).textContent.toLocaleLowerCase();
+			btnElement2Active = btnElement2Active.querySelector(`.${style.SearchMenu__item__currency}`).textContent.toLocaleLowerCase();
+
+			// Задаём базовый URL
+			// let url = new URL(location);
+			let url = window.location.protocol + '//' + window.location.host;
+			// Задаём новые URL с кодами выбранных валют
+			let newUrl = new URL('changePro/' + btnElementActive + '-to-' + btnElement2Active + '/', url);
+
+			// Если есть таблица обменников для вывода результатов поиска по выбранными валютам
+			if (document.getElementById('courseBorder')) {
+				// Добавляем в историю браузера новый URL
+				history.pushState({}, '', newUrl);
+			} else {
+				// Если был поиск по валютам в поле "Отдаёте"
+				if (document.getElementById('SearchMenuFrom').value) {
+					// Добавялем запрос поиска в параметры нового URL
+					newUrl.searchParams.set('from', document.getElementById('SearchMenuFrom').value);
+				}
+				// Если был поиск по валютам в поле "Получаете"
+				if (document.getElementById('SearchMenuTo').value) {
+					// Добавялем запрос поиска в параметры нового URL
+					newUrl.searchParams.set('to', document.getElementById('SearchMenuTo').value);
+				}
+				// Если нет таблица обменников, то редирект на страницу выбора валют с параметрами
+				window.location.href = newUrl.href;
+			}
+		}
+	}
+
 	const getItemFrom = (e) => {
 		dispatch(setitemIdReducer(e.target.id));
 		dispatch(setCurrentItemFromReducer(e.target.querySelector(`.${style.SearchMenu__item__currency}`).textContent));
 		dispatch(setItemReducer(e.target.querySelector(`.${style.SearchMenu__item__currency}`).textContent));
+
 		e.target.classList.add(`${style.active}`);
 		const btnElements = document.querySelectorAll(`.${style.SearchMenu__item}`);
 		for (let i of btnElements) {
@@ -67,10 +110,12 @@ export const SearchMenu = () => {
 			}
 		}
 		dispatch(setIsFilltersClear(false));
+		setUrlItems();
 	};
 
 	const getItemTo = (e) => {
 		dispatch(setCurrentItemToReducer(e.target.querySelector(`.${style.SearchMenu__item__currency}`).textContent));
+
 		const btnElements = document.querySelectorAll(
 			`.${style.SearchMenu__item2}`
 		);
@@ -81,6 +126,7 @@ export const SearchMenu = () => {
 			}
 		}
 		dispatch(setIsFilltersClear(false));
+		setUrlItems();
 	};
 
 	useEffect(() => {
@@ -99,9 +145,11 @@ export const SearchMenu = () => {
 			}
 		}
 	}, [isFilltersClear]);
+
 	const ShowMoreEmoney = () => {
 		ref2.current.classList.toggle(`${style.showEmoney}`);
 	};
+
 	const ChangeInputVal = (e) => {
 		switch (e.target.name) {
 			case "from":
@@ -142,6 +190,7 @@ export const SearchMenu = () => {
 			<div className={style.SearchMenu__inputs}>
 				<div className={style.SearchMenu__contolls}>
 					<input
+						id="SearchMenuFrom"
 						className={style.SearchMenu__inputField}
 						placeholder="Отдаете"
 						onChange={(e) => ChangeInputVal(e)}
@@ -152,6 +201,7 @@ export const SearchMenu = () => {
 				<div className={style.SearchMenu__separation}></div>
 				<div className={style.SearchMenu__contolls}>
 					<input
+						id="SearchMenuTo"
 						className={style.SearchMenu__inputField}
 						placeholder="Получаете"
 						onChange={(e) => ChangeInputVal(e)}
