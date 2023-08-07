@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainPage } from "./pages/MainPage/MainPage";
 import { MainPageAttrs } from "./pages/MainPage/MainPageAttrs";
 import { MainPageLoader } from "./pages/MainPage/MainPageAttrs";
-import "./assets/styles/Common.css";
+import "./assets/styles/Common.scss";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { ItemPage } from "./pages/itemPage/itemPage";

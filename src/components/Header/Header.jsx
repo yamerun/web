@@ -54,45 +54,31 @@ export default function Header() {
 			setActive(!active);
 		}
 	};
+
 	return (
 		<header className={style.Header}>
-			<div className={style.Header__menu}>
-				<div className={style.Header__menu__logo__wrapper}>
-					{screenSize.dynamicWidth < 900 && (
-						<button onClick={ShowOrHideMenu} className={style.Btn} />
-					)}
-					<img
-						className={style.Header__menu__logo}
-						src={logo}
-						alt="logo"
-						onClick={() => goToMain()}
-					/>
-				</div>
+			<div className="container-full">
+				<div className={style.Header__menu + ' row'}>
+					<div className={style.Header__menu__logo__wrapper + ' col-xl-3'}>
+						<div className="block">
+							{screenSize.dynamicWidth < 900 && (
+								<button onClick={ShowOrHideMenu} className={style.Btn} />
+							)}
+							<img
+								className={style.Header__menu__logo}
+								src={logo}
+								alt="logo"
+								onClick={() => goToMain()}
+							/>
+						</div>
+					</div>
 
-				{active === true && screenSize.dynamicWidth < 900 && (
-					<>
-						<React.Suspense fallback={<h1>...loading</h1>}>
-							<HeaderRoutes />
-						</React.Suspense>
+					{active === true && screenSize.dynamicWidth < 900 && (
+						<>
+							<React.Suspense fallback={<h1>...loading</h1>}>
+								<HeaderRoutes />
+							</React.Suspense>
 
-						<button
-							className={
-								jwt === null
-									? style.Header__menu__logInBtn
-									: style.Header__menu__lc
-							}
-							onClick={goToAccount}
-						>
-							{jwt === null ? "Войти" : "Личный кабинет"}
-						</button>
-					</>
-				)}
-				{screenSize.dynamicWidth > 900 && (
-					<>
-						<React.Suspense fallback={<h1>...loading</h1>}>
-							<HeaderRoutes />
-						</React.Suspense>
-						<div className={style.Header__menu__rightSide}>
 							<button
 								className={
 									jwt === null
@@ -103,9 +89,28 @@ export default function Header() {
 							>
 								{jwt === null ? "Войти" : "Личный кабинет"}
 							</button>
-						</div>
-					</>
-				)}
+						</>
+					)}
+					{screenSize.dynamicWidth > 900 && (
+						<>
+							<React.Suspense fallback={<h1>...loading</h1>}>
+								<HeaderRoutes />
+							</React.Suspense>
+							<div className={style.Header__menu__rightSide}>
+								<button
+									className={
+										jwt === null
+											? style.Header__menu__logInBtn
+											: style.Header__menu__lc
+									}
+									onClick={goToAccount}
+								>
+									{jwt === null ? "Войти" : "Личный кабинет"}
+								</button>
+							</div>
+						</>
+					)}
+				</div>
 			</div>
 		</header>
 	);
