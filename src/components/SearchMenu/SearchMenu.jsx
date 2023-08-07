@@ -186,103 +186,107 @@ export const SearchMenu = () => {
 	}, [inputvalue, input2value]);
 
 	return (
-		<div className={style.SearchMenu} ref={ref3}>
-			<div className={style.SearchMenu__inputs}>
-				<div className={style.SearchMenu__contolls}>
-					<input
-						id="SearchMenuFrom"
-						className={style.SearchMenu__inputField}
-						placeholder="Отдаете"
-						onChange={(e) => ChangeInputVal(e)}
-						name="from"
-					/>
-					<button className={style.SearchMenu__btn} />
-				</div>
-				<div className={style.SearchMenu__separation}></div>
-				<div className={style.SearchMenu__contolls}>
-					<input
-						id="SearchMenuTo"
-						className={style.SearchMenu__inputField}
-						placeholder="Получаете"
-						onChange={(e) => ChangeInputVal(e)}
-						name="to"
-					/>
-					<button className={style.SearchMenu__btn} />
-				</div>
-			</div>
-			<div className={style.SearchMenu__itemsPayment__header}>
-				<p className={style.SearchMenu__itemsPayment__header__content}>
-					Криптовалюта
-				</p>
-			</div>
-			<div className={style.SearchMenu__items} ref={ref}>
-				<ul className={style.SearchMenu__itemsList}>
-					{items.map((item) => (
-						<li
-							key={item.id}
-							className={style.SearchMenu__item}
-							id={item.id}
-							onClick={(e) => getItemFrom(e, item)}
-						>
-							<span className={style.SearchMenu__item__title}>{item.title}</span>
-							<span className={style.SearchMenu__item__currency}>{item.currency}</span>
-						</li>
-					))}
-				</ul>
-				<ul className={style.SearchMenu__itemsList}>
-					{items2.map((item) => (
-						<li
-							key={item.id}
-							className={style.SearchMenu__item2}
-							id={item.id}
-							onClick={(e) => getItemTo(e)}
-						>
-							<span className={style.SearchMenu__item__title}>{item.title}</span>
-							<span className={style.SearchMenu__item__currency}>{item.currency}</span>
-						</li>
-					))}
-				</ul>
-			</div>
-			<div className={style.SearchMenu__itemsPayment__header}>
-				<p className={style.SearchMenu__itemsPayment__header__content}>
-					Электронные деньги
-				</p>
-			</div>
+		<sidebar className={'col-md-4 col-lg-3'}>
+			<div className="block">
+				<div className={style.SearchMenu} ref={ref3}>
+					<div className={style.SearchMenu__inputs}>
+						<div className={style.SearchMenu__contolls}>
+							<input
+								id="SearchMenuFrom"
+								className={style.SearchMenu__inputField}
+								placeholder="Отдаете"
+								onChange={(e) => ChangeInputVal(e)}
+								name="from"
+							/>
+							<button className={style.SearchMenu__btn} />
+						</div>
+						<div className={style.SearchMenu__separation}></div>
+						<div className={style.SearchMenu__contolls}>
+							<input
+								id="SearchMenuTo"
+								className={style.SearchMenu__inputField}
+								placeholder="Получаете"
+								onChange={(e) => ChangeInputVal(e)}
+								name="to"
+							/>
+							<button className={style.SearchMenu__btn} />
+						</div>
+					</div>
+					<div className={style.SearchMenu__itemsPayment__header}>
+						<p className={style.SearchMenu__itemsPayment__header__content}>
+							Криптовалюта
+						</p>
+					</div>
+					<div className={style.SearchMenu__items} ref={ref}>
+						<ul className={style.SearchMenu__itemsList}>
+							{items.map((item) => (
+								<li
+									key={item.id}
+									className={style.SearchMenu__item}
+									id={item.id}
+									onClick={(e) => getItemFrom(e, item)}
+								>
+									<span className={style.SearchMenu__item__title}>{item.title}</span>
+									<span className={style.SearchMenu__item__currency}>{item.currency}</span>
+								</li>
+							))}
+						</ul>
+						<ul className={style.SearchMenu__itemsList}>
+							{items2.map((item) => (
+								<li
+									key={item.id}
+									className={style.SearchMenu__item2}
+									id={item.id}
+									onClick={(e) => getItemTo(e)}
+								>
+									<span className={style.SearchMenu__item__title}>{item.title}</span>
+									<span className={style.SearchMenu__item__currency}>{item.currency}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+					<div className={style.SearchMenu__itemsPayment__header}>
+						<p className={style.SearchMenu__itemsPayment__header__content}>
+							Электронные деньги
+						</p>
+					</div>
 
-			<div className={style.SearchMenu__Emoney} ref={ref2}>
-				<div className={style.ItemsPayment}>
-					<ul className={style.ItemsPayment__itemsList}>
-						{emoney.map((item) => (
-							<li
-								key={item.id}
-								className={style.SearchMenu__item}
-								onClick={(e) => getItemFrom(e, item)}
-							>
-								<span className={style.SearchMenu__item__title}>{item.title}</span>
-								<span className={style.SearchMenu__item__currency}>{item.currency}</span>
-							</li>
-						))}
-					</ul>
-					<ul className={style.ItemsPayment__itemsList}>
-						{emoney2.map((item) => (
-							<li
-								key={item.id}
-								className={style.SearchMenu__item2}
-								onClick={(e) => getItemTo(e)}
-							>
-								<span className={style.SearchMenu__item2__title}>{item.title}</span>
-								<span className={style.SearchMenu__item2__currency}>{item.currency}</span>
-							</li>
-						))}
-					</ul>
+					<div className={style.SearchMenu__Emoney} ref={ref2}>
+						<div className={style.ItemsPayment}>
+							<ul className={style.ItemsPayment__itemsList}>
+								{emoney.map((item) => (
+									<li
+										key={item.id}
+										className={style.SearchMenu__item}
+										onClick={(e) => getItemFrom(e, item)}
+									>
+										<span className={style.SearchMenu__item__title}>{item.title}</span>
+										<span className={style.SearchMenu__item__currency}>{item.currency}</span>
+									</li>
+								))}
+							</ul>
+							<ul className={style.ItemsPayment__itemsList}>
+								{emoney2.map((item) => (
+									<li
+										key={item.id}
+										className={style.SearchMenu__item2}
+										onClick={(e) => getItemTo(e)}
+									>
+										<span className={style.SearchMenu__item2__title}>{item.title}</span>
+										<span className={style.SearchMenu__item2__currency}>{item.currency}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+					<div className={style.SearchMenu__ShowMore}>
+						<button
+							className={style.SearchMenu__ShowMorebtn}
+							onClick={() => ShowMoreToBot()}
+						>Раскрыть список</button>
+					</div>
 				</div>
 			</div>
-			<div className={style.SearchMenu__ShowMore}>
-				<button
-					className={style.SearchMenu__ShowMorebtn}
-					onClick={() => ShowMoreToBot()}
-				>Раскрыть список</button>
-			</div>
-		</div>
+		</sidebar>
 	);
 };

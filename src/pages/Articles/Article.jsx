@@ -6,73 +6,92 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export const ArticleLoader = async ({ params }) => {
-  const articleid = params.id;
-  const response = await fetch(
-    `https://change.pro/api/articles/get_detail?id=${articleid}`
-  );
-  const article = await response.json();
+import { SearchMenu } from "../../components/SearchMenu/SearchMenu";
+import { Article } from "../../components/Article/Article";
 
-  return { article, articleid };
+export const ArticleLoader = async ({ params }) => {
+	const articleid = params.id;
+	const response = await fetch(
+		`https://change.pro/api/articles/get_detail?id=${articleid}`
+	);
+	const article = await response.json();
+
+	return { article, articleid };
 };
 
 export const Articles = () => {
-  const navigate = useNavigate();
-  const [articles, setArcicles] = useState([]);
+	const navigate = useNavigate();
+	const [articles, setArcicles] = useState([]);
 
-  const goToArticle = ({ id }) => {
-    navigate(`/article/${id}`);
-  };
+	const goToArticle = ({ id }) => {
+		navigate(`/article/${id}`);
+	};
 
-  const { isExchangerRole } = useSelector((state) => ({
-    isExchangerRole: state.AccountSlice.isExchangerRole,
-  }));
+	const { isExchangerRole } = useSelector((state) => ({
+		isExchangerRole: state.AccountSlice.isExchangerRole,
+	}));
 
-  useEffect(() => {
-    axios
-      .get(`https://change.pro/api/articles/get?limit=2&offset=0`)
-      .then(function (response) {
-        setArcicles(response.data.data);
-      });
-  }, []);
+	useEffect(() => {
+		axios
+			.get(`https://change.pro/api/articles/get?limit=2&offset=0`)
+			.then(function (response) {
+				setArcicles(response.data.data);
+			});
+	}, []);
 
-  function createMarkup({ preview }) {
-    return { __html: `${preview}` };
-  }
+	function createMarkup({ preview }) {
+		preview = preview.replace(/(<([^>]+)>)/gi, '');
+		return { __html: `${preview}` };
+	}
 
-  return (
-    <div className={style.Articles}>
-      <div className={style.Articles__header}></div>
-      <div className={style.Articles__container__articles}>
-        {articles.map((item) => (
-          <article
-            className={style.Articles__container__article}
-            onClick={(e) => goToArticle(item)}
-          >
-            <img
-              alt=""
-              src={`https://change.pro/${item.preview_picture.path}`}
-              className={style.Articles__container__article__img}
-            />
-            <div className={style.Articles__container__article__header}>
-              <h1
-                className={style.Articles__container__article__header__tittle}
-              >
-                {item.title}
-              </h1>
-            </div>
-            <div
-              style={{ color: "white" }}
-              className={style.Articles__container__article__text}
-              dangerouslySetInnerHTML={createMarkup(item)}
-            ></div>
+	function getDatePublic({ created_at }) {
+		const foramatteDate = new Date(created_at.date + 'T' + created_at.time);
+		return foramatteDate.toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric' }).replace(' г.', '');
+	}
 
-            <p className={style.Articles__container__article__header__date}>
-              {item.created_at.date} {item.created_at.time}
-            </p>
-          </article>
-        ))}
-      </div>
-    </div>
-  );
+	return (
+		<div className={'section-wrapper'}>
+			<div className={'container-full'}>
+				<div className="row">
+					<SearchMenu />
+					<main className='col-md-4 col-lg-9'>
+						<div className={style.Articles}>
+							<section className={style.Articles__header + ' col-12'}></section>
+							<div className={style.Articles__container__articles + ' row'}>
+								{articles.map((item) => (
+									<div className="col-lg-4">
+										<Link to={`/article/${item.id}`} className="block">
+											<article
+												className={style.Articles__container__article}
+												onClick={(e) => goToArticle(item)}
+											>
+												<div className={style.Articles__container__article__img}>
+													<div className="media-ratio">
+														<img
+															alt={item.title}
+															src={`https://change.pro/${item.preview_picture.path}`}
+														/>
+													</div>
+												</div>
+
+												<div className={style.Articles__container__article__info}>
+													<time className={style.Articles__container__article__date} datetime={item.created_at.date}>{getDatePublic(item)}</time>
+													<h2 className={style.Articles__container__article__tittle}>{item.title}</h2>
+													<div
+														className={style.Articles__container__article__text}
+														dangerouslySetInnerHTML={createMarkup(item)}
+													></div>
+												</div>
+											</article>
+										</Link>
+									</div>
+								))}
+							</div>
+							<Article />
+						</div>
+					</main>
+				</div>
+			</div>
+		</div>
+	);
 };
