@@ -4,121 +4,131 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
-  setCalculated,
-  setisTwice,
-  setitemExchangeRatesReducer,
+	setCalculated,
+	setisTwice,
+	setitemExchangeRatesReducer,
 } from "../../store/itemsSlice/itemsSlice";
 
 export const Calculator = () => {
-  const dispatch = useDispatch();
-  const { calculated, currentTo, currentFrom } = useSelector((state) => ({
-    calculated: state.itemsSlice.calculated,
-    currentTo: state.itemsSlice.currentTo,
-    currentFrom: state.itemsSlice.currentFrom,
-  }));
-  const [val, setVal] = useState("");
-  const [val2, setVal2] = useState("");
-  const inputGive = useRef(null);
-  const inputGet = useRef(null);
+	const dispatch = useDispatch();
+	const { calculated, currentTo, currentFrom } = useSelector((state) => ({
+		calculated: state.itemsSlice.calculated,
+		currentTo: state.itemsSlice.currentTo,
+		currentFrom: state.itemsSlice.currentFrom,
+	}));
+	const [val, setVal] = useState("");
+	const [val2, setVal2] = useState("");
+	const inputGive = useRef(null);
+	const inputGet = useRef(null);
 
-  const setCalculetedAmountGive = (e) => {
-    setVal(e.target.value);
+	const setCalculetedAmountGive = (e) => {
+		setVal(e.target.value);
 
-    if (inputGive.current.value.length !== 0) {
-      setVal(e.target.value);
-      inputGet.current.disabled = true;
-    } else inputGet.current.disabled = false;
-  };
+		if (inputGive.current.value.length !== 0) {
+			setVal(e.target.value);
+			inputGet.current.disabled = true;
+		} else inputGet.current.disabled = false;
+	};
 
-  const setCalculetedAmountGet = (e) => {
-    if (inputGet.current.value.length !== 0) {
-      setVal2(e.target.value);
-      inputGive.current.disabled = true;
-    } else inputGive.current.disabled = false;
-  };
+	const setCalculetedAmountGet = (e) => {
+		if (inputGet.current.value.length !== 0) {
+			setVal2(e.target.value);
+			inputGive.current.disabled = true;
+		} else inputGive.current.disabled = false;
+	};
 
-  const getCalculatedValue = () => {
-    if (inputGet.current.value.length !== 0) {
-      axios
-        .get(
-          `https://change.pro/api/calc?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
-        )
-        .then(function (response) {
-          dispatch(setitemExchangeRatesReducer(response.data.data));
-          dispatch(setCalculated(true));
-          dispatch(setisTwice(false));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
-    }
+	const getCalculatedValue = () => {
+		if (inputGet.current.value.length !== 0) {
+			axios
+				.get(
+					`https://change.pro/api/calc?quantity=${val2}&from=${currentFrom}&to=${currentTo}&is_give=false&is_commission=false`
+				)
+				.then(function (response) {
+					dispatch(setitemExchangeRatesReducer(response.data.data));
+					dispatch(setCalculated(true));
+					dispatch(setisTwice(false));
+				})
+				.then(function (response) { })
+				.catch(function (error) { });
+		}
 
-    if (inputGive.current.value.length !== 0) {
-      axios
-        .get(
-          `https://change.pro/api/calc?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
-        )
-        .then(function (response) {
-          dispatch(setitemExchangeRatesReducer(response.data.data));
-          dispatch(setCalculated(true));
-          console.log(response.data.data)
-          dispatch(setisTwice(false));
-        })
-        .then(function (response) {})
-        .catch(function (error) {});
-    }
-  };
-  const clearCalculate = () => {
-    dispatch(setCalculated(false));
-  };
+		if (inputGive.current.value.length !== 0) {
+			axios
+				.get(
+					`https://change.pro/api/calc?quantity=${val}&from=${currentFrom}&to=${currentTo}&is_give=true&is_commission=false`
+				)
+				.then(function (response) {
+					dispatch(setitemExchangeRatesReducer(response.data.data));
+					dispatch(setCalculated(true));
+					console.log(response.data.data)
+					dispatch(setisTwice(false));
+				})
+				.then(function (response) { })
+				.catch(function (error) { });
+		}
+	};
+	const clearCalculate = () => {
+		dispatch(setCalculated(false));
+	};
 
-  return (
-    <div className={style.Calculator}>
-      <div className={style.Calculator__container}>
-        <div className={style.Calculator__container__info}>
-          <div className={style.Calculator__container__info__item}>
-            <span>Oтдаете : </span>
-            <input
-              className={style.Calculator__container__info__item__input}
-              onChange={(e) => setCalculetedAmountGive(e)}
-              type="number"
-              min="0"
-              ref={inputGive}
-            />
-            <span className={style.Calculator__container__info__item__name}>
-
-              {currentFrom}
-            </span>
-          </div>
-          <div className={style.Calculator__container__info__item}>
-            <span>Получаете : </span>
-            <input
-              className={style.Calculator__container__info__item__input}
-              onChange={(e) => setCalculetedAmountGet(e)}
-              ref={inputGet}
-            />
-            <span className={style.Calculator__container__info__item__name}>
-              {currentTo}
-            </span>
-          </div>
-        </div>
-        <button
-          className={style.Calculator__inputControlls__btn}
-          onClick={getCalculatedValue}
-        >
-          Рассчитать
-        </button>
-        <div className={style.Calculator__inputControlls}>
-          <button className={style.Calculator__inputControlls__btn}>
-            Без комиссий ПС
-          </button>
-          <button
-            onClick={clearCalculate}
-            className={style.Calculator__inputControlls__btn}
-          >
-            Очистить фильтры
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div className={style.Calculator + ' ' + style.FormFilter + ' row'}>
+			<div className="col-lg-2"></div>
+			<div className="col-lg-3 col-6">
+				<label className={style.FormFilter__item + ' ' + style.left} htmlFor="">
+					<span className={style.FormFilter__label__text}>Oтдаете
+						<span className={style.FormFilter__label__current}>{currentFrom}</span>
+					</span>
+					<input
+						className={style.FormFilter__item__input}
+						onChange={(e) => setCalculetedAmountGive(e)}
+						type="numeric"
+						min="0"
+						ref={inputGive}
+					/>
+				</label>
+			</div>
+			<div className="col-lg-3 col-6">
+				<label className={style.FormFilter__item + ' ' + style.right} htmlFor="">
+					<span className={style.FormFilter__label__text}>Получаете
+						<span className={style.FormFilter__label__current}>{currentTo}</span>
+					</span>
+					<input
+						className={style.FormFilter__item__input}
+						onChange={(e) => setCalculetedAmountGet(e)}
+						ref={inputGet}
+					/>
+				</label>
+			</div>
+			<div className={style.FormFilter__wrapper + ' col-lg-2'}>
+				<label className={style.FormFilter__item + ' d-flex p-unbottom'} htmlFor="nocommission">
+					<input
+						id="nocommission"
+						className={style.FormFilter__item__checkbox}
+						type="checkbox"
+					/>
+					<span></span>
+					<span className={style.FormFilter__label__text}>Без комиссий ПС</span>
+				</label>
+				<div className={style.FormFilter__item}>
+					<button
+						className={style.FormFilter__item__btn}
+						onClick={getCalculatedValue}
+					>
+						Рассчитать
+					</button>
+				</div>
+			</div>
+			<div className="col-lg-2">
+				<div className={style.FormFilter__item + ' d-flex f-center'}>
+					<button
+						onClick={clearCalculate}
+						className={style.FormFilter__item__btn + ' ' + style.FormFilter__item__btn__alt}
+					>
+						Очистить фильтры
+					</button>
+				</div>
+			</div>
+		</div>
+	);
 };

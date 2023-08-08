@@ -1,94 +1,101 @@
 .Calculator {
-  background: none;
-  border-radius: 10px;
-  border: 1px solid #46464b;
-  width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
+	background: none;
+	border-radius: 10px;
+	border: 1px solid #46464b;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 10px;
 
-  &__inputControlls {
-    display: flex;
-    gap: 15px;
+	&__inputControlls {
+		display: flex;
+		gap: 15px;
 
-    &__btn {
-      border-radius: 7px;
-      border: 0;
-      background: none;
-      border: 1px solid white;
-      border-radius: 20px;
-      opacity: 1;
-      color: white;
-      font-family: "BasisGrotesquePro";
-      font-weight: 700;
-      padding: 10px;
-      @media screen and (max-width:1700px) {
-       font-size: 12px;
-       padding: 7px;
-      }
-      @media screen and (max-width: 430px) {
-        font-size: 7px;
-      }
-      &:hover {
-        opacity: 0.6;
-      }
-    }
-  }
+		&__btn {
+			border-radius: 7px;
+			border: 0;
+			background: none;
+			border: 1px solid white;
+			border-radius: 20px;
+			opacity: 1;
+			color: white;
+			font-family: "BasisGrotesquePro";
+			font-weight: 700;
+			padding: 10px;
 
-  &__container {
-    display: flex;
-    padding: 15px ;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    gap: 60px;
-    @media screen and (max-width:1700px) {
-      gap: 25px;
-      padding: 10px;
-     }
-     @media screen and (max-width: 1179px) {
-      gap: 5px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+			@media screen and (max-width:1700px) {
+				font-size: 12px;
+				padding: 7px;
+			}
 
-    white-space: nowrap;
-    
-    &__info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 12px;
-      white-space: nowrap;
-      text-align: left;
-      color: #ffffff;
-      font-weight: 600;
-      font-family: "BasisGrotesquePro";
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      gap: 10px;
+			@media screen and (max-width: 430px) {
+				font-size: 7px;
+			}
 
-      &__item {
-        width: 100%;
-        text-align: left;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+			&:hover {
+				opacity: 0.6;
+			}
+		}
+	}
 
-        &__input {
-          width: 50px;
-          margin-left: 3px;
-          margin-right: 6px;
-          border: 0;
-          border-radius: 3px;
-          background-color: #151517;
-          color: white;
-        }
+	&__container {
+		display: flex;
+		padding: 15px;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: row;
+		gap: 60px;
 
-        &__name {
-          font-weight: 400;
-        }
-      }
-    }
-  }
+		@media screen and (max-width:1700px) {
+			gap: 25px;
+			padding: 10px;
+		}
+
+		@media screen and (max-width: 1179px) {
+			gap: 5px;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		white-space: nowrap;
+
+		&__info {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 12px;
+			white-space: nowrap;
+			text-align: left;
+			color: #ffffff;
+			font-weight: 600;
+			font-family: "BasisGrotesquePro";
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			gap: 10px;
+
+			&__item {
+				width: 100%;
+				text-align: left;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+
+				&__input {
+					width: 50px;
+					margin-left: 3px;
+					margin-right: 6px;
+					border: 0;
+					border-radius: 3px;
+					background-color: #151517;
+					color: white;
+				}
+
+				&__name {
+					font-weight: 400;
+				}
+			}
+		}
+	}
 }
+
+@import '../../assets/styles/formFilter.scss';

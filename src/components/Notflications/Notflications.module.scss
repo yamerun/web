@@ -1,109 +1,113 @@
 .Notflication {
-  border: 1px solid gray;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+	&__error {
+		color: #d13934;
+		font-family: "BasisGrotesquePro";
+		font-size: 17px;
+		margin: 5px;
+		font-weight: 600;
 
-  &__error {
-    color: #d13934;
-    font-family: "BasisGrotesquePro";
-    font-size: 17px;
-    margin: 5px;
-    font-weight: 600;
+		@media screen and (max-width: 630px) {
+			font-size: 9px;
+		}
 
-    @media screen and (max-width: 630px) {
-      font-size: 9px;
-    }
-    @media screen and (max-width: 430px) {
-      font-size: 7px;
-    }
-  }
+		@media screen and (max-width: 430px) {
+			font-size: 7px;
+		}
+	}
 
-  &__success {
-    color: #77d22d;
-    font-family: "BasisGrotesquePro";
-    font-size: 17px;
-    margin: 5px;
-    font-weight: 600;
+	&__success {
+		color: #77d22d;
+		font-family: "BasisGrotesquePro";
+		font-size: 17px;
+		margin: 5px;
+		font-weight: 600;
 
-    @media screen and (max-width: 630px) {
-      font-size: 9px;
-    }
-  }
-  &__row {
-    display: flex;
-    white-space: nowrap;
-    gap: 10px;
-    color: white;
-    font-family: "BasisGrotesquePro";
-    font-weight: 600;
-    margin: 3px;
-    position: relative;
-    @media screen and (max-width: 1179px) {
-      font-size: 11px;
-    }
-    @media screen and (max-width: 630px) {
-      font-size: 9px;
-    }
-    @media screen and (max-width: 430px) {
-      font-size: 7px;
-    }
-    input {
-      border: 1px solid gray;
-      background: none;
-      border-radius: 12px;
-      color: white;
-      font-family: "BasisGrotesquePro";
-      padding-left: 4px;
-    }
-  }
-  &__timevariants {
-    background-color: black;
-    position: absolute;
-    z-index: 99;
-    user-select: none;
-    border-radius: 7px;
-    ul {
-      list-style-type: none;
-      padding: 10px;
-      li {
-        padding: 5px;
+		@media screen and (max-width: 630px) {
+			font-size: 9px;
+		}
+	}
 
-        @media screen and (max-width: 630px) {
-          font-size: 9px;
-        }
-      }
-    }
-  }
+	&__row {
+		display: flex;
+		white-space: nowrap;
+		gap: 10px;
+		color: white;
+		font-family: "BasisGrotesquePro";
+		font-weight: 600;
+		margin: 3px;
+		position: relative;
 
-  &__btn {
-    background: none;
-    color: white;
-    opacity: 0.5;
-    font-family: "BasisGrotesquePro";
-    border: 1px solid white;
-    border: 1px solid white;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 5px;
-    border-radius: 10px;
-    @media screen and (max-width: 1179px) {
-      font-size: 11px;
-    }
+		@media screen and (max-width: 1179px) {
+			font-size: 11px;
+		}
 
-    @media screen and (max-width: 630px) {
-      font-size: 9px;
-    }
-    @media screen and (max-width: 430px) {
-      font-size: 7px;
-    }
-    &:hover {
-      opacity: 1;
-    }
-  }
+		@media screen and (max-width: 630px) {
+			font-size: 9px;
+		}
+
+		@media screen and (max-width: 430px) {
+			font-size: 7px;
+		}
+
+		input {
+			border: 1px solid gray;
+			background: none;
+			border-radius: 12px;
+			color: white;
+			font-family: "BasisGrotesquePro";
+			padding-left: 4px;
+		}
+	}
+
+	&__timevariants {
+		background-color: black;
+		position: absolute;
+		z-index: 99;
+		user-select: none;
+		border-radius: 7px;
+
+		ul {
+			list-style-type: none;
+			padding: 10px;
+
+			li {
+				padding: 5px;
+
+				@media screen and (max-width: 630px) {
+					font-size: 9px;
+				}
+			}
+		}
+	}
+
+	&__btn {
+		background: none;
+		color: white;
+		opacity: 0.5;
+		font-family: "BasisGrotesquePro";
+		border: 1px solid white;
+		border: 1px solid white;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 5px;
+		border-radius: 10px;
+
+		@media screen and (max-width: 1179px) {
+			font-size: 11px;
+		}
+
+		@media screen and (max-width: 630px) {
+			font-size: 9px;
+		}
+
+		@media screen and (max-width: 430px) {
+			font-size: 7px;
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+	}
 }
+
+@import '../../assets/styles/formFilter.scss';
