@@ -112,13 +112,19 @@ export const MainPageAttrs = () => {
 	}
 
 	return (
-		<div className={style.MainPage}>
-			<div className={style.MainPage__containerMenu}>
-				<SearchMenu />
-				<div className={style.MainPage__rightMenu}>
-					<ArticleTop />
-					<Fillters />
-					<Article />
+		<div className={'section-wrapper ' + style.MainPage}>
+			<div className={'container-full ' + style.MainPage__containerMenu}>
+				<div className="row">
+					<SearchMenu />
+					<main className={'col-md-8 col-lg-9'}>
+						<div className="block">
+							<div className={style.MainPage__rightMenu}>
+								<ArticleTop />
+								<Fillters />
+								<Article />
+							</div>
+						</div>
+					</main>
 				</div>
 			</div>
 		</div>

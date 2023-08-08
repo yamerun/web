@@ -603,6 +603,10 @@
 	.d-sm-block {
 		display: none !important;
 	}
+
+	.txt-sm-center {
+		text-align: center;
+	}
 }
 
 @media screen and (max-width: ($break_xs - 1)) {
