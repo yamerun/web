@@ -1,195 +1,124 @@
 .Review {
-  background: #2d2d31;
-  border-radius: 20px;
-  margin: 15px;
-  max-width: 50%;
-  position: relative;
-  margin-top: 30px;
-  @media screen and (max-width:650px) {
-    max-width: 70%;
-  }
-  @media screen and (max-width:470px) {
-    max-width: 100%;
-  }
+	padding: calc(var(--gap) * 2);
+	font-family: "BasisGrotesquePro";
+	background: #2d2d31;
+	border-radius: var(--border-radius);
+	box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.3);
 
-  &__childs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+	&__content {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 auto;
+	}
 
+	@import 'Comments.review.scss';
 
-    &__AddComments {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+	&__childs {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		width: 100%;
+		position: absolute;
+		top: calc(100% - var(--gap)*3);
+		z-index: 1;
 
-      &__SetReview {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        justify-content: center;
-        &__rate {
-          color: white;
-          font-family: "BasisGrotesquePro";
-        }
-        &__input {
-          background-color: #19191a;
-          border: 1px solid white;
-          border-radius: 7px;
-          height: 25px;
-          color: white;
-          font-family: "BasisGrotesquePro";
-          width: 490px;
-          margin-top:10px;
-          padding-left: 5px;
+		&__AddComments {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 
-          @media screen and (max-width:1800px) {
-            width: 430px;
-          }
-          @media screen and (max-width:1580px) {
-            width: 380px;
-          }
-          @media screen and (max-width:1400px) {
-            width: 280px;
-          }
-          @media screen and (max-width:1100px) {
-            width: 200px;
-          }
+			@import '../Comments/Comments.item.scss';
 
+			&__SetReview {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 
+				&__rate {
+					margin-bottom: var(--gap);
+					color: #9b9a9a;
+					font-size: 12px;
+				}
 
-          &::placeholder {
-            color: white;
-            font-family: "BasisGrotesquePro";
-            opacity: 0.5;
-          }
-        }
+				&__input {
+					width: 100%;
+					padding: 12px;
+					color: white;
+					font-family: "BasisGrotesquePro";
+					font-size: 14px;
+					border-radius: var(--border-radius);
+					background-color: #46464b;
+					border: 1px solid #46464b;
 
-        &__btn {
-          background: none;
-          background: url('../../assets/imgs/sendMessage.png');
-          width:30px;
-          height:30px;
-          background-size: 100% 100%;
-          border:0;
-          transform: rotate(180deg);
-          margin-top:30px;
-          margin-right: 5px;
-          padding-top: 5px;
-          background-repeat: no-repeat;
-        }
-      }
-    }
-  }
+					&::placeholder {
+						color: white;
+						font-family: "BasisGrotesquePro";
+						opacity: 0.5;
+					}
+				}
 
-  &__footer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    &__btn {
-      color: white;
-      font-family: "BasisGrotesquePro";
-      border: 0;
-      background: none;
-    }
+				&__footer {
+					display: flex;
+					margin-top: calc(var(--gap) * 2);
+					align-items: center;
+					justify-content: flex-end;
+				}
 
-    &__btnAddcom {
-      color: white;
-      font-family: "BasisGrotesquePro";
-      background: none;
-      border: 0;
-      &:hover {
-        text-decoration: underline;
-        opacity: 0.6;
-      }
-    }
-  }
+				&__cancel {
+					margin-right: var(--gap);
+					color: #9b9a9a;
+					font-size: 12px;
 
-  &__likeOrDislike {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    flex-direction: row;
-    margin: 10px;
-    padding: 0;
+					&:hover {
+						cursor: pointer;
+						color: white;
+					}
+				}
 
-    &__btn {
-      border: 0;
-      background: none;
-      padding: 0;
-    }
-  }
+				&__btn {
+					padding: 8px 36px;
+					color: #fff;
+					font-family: "BasisGrotesquePro";
+					font-size: 12px;
+					background-color: #df3c3c;
+					border: 0;
+					border-radius: 20px;
 
-  &__user {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin: 10px;
-    width:95%;
-    justify-content: space-between;
-    &__name {
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      color: #f3f3f3;
-      opacity: 0.5;
-    }
+					&:hover {
+						cursor: pointer;
+						background-color: #ff1b1b;
+					}
+				}
+			}
+		}
+	}
 
-    &__createdAt {
+}
 
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      text-align: right;
-      color: #f3f3f3;
-      opacity: 0.5;
-      right: 10px;
-      @media screen and (max-width:420px){
-        font-size: 13px;
-      }
-    }
-  }
-
-  &__textBox {
-    width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 10px;
-    &__text {
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      color: #f3f3f3;
-    }
-  }
+.my_opinion {
+	color: #df3c3c;
 }
 
 .star {
-  height: 30px;
-  width: 30px;
-  &__button {
-    background: none;
-    border: none;
-  }
+	font-size: 16px;
 
-  &__on {
-    color: #cebc18;
-    background: none;
-    border: none;
-  }
-  &__off {
-    color: #ccc;
-    background: none;
-    border: none;
-  }
+	&__button {
+		background: none;
+		border: none;
+	}
+
+	&__on {
+		color: #df3c3c;
+		background: none;
+		border: none;
+	}
+
+	&__off {
+		color: #ccc;
+		background: none;
+		border: none;
+	}
 }

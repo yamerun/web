@@ -1,0 +1,85 @@
+&__header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+&__footer {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	flex: 0 1 auto;
+
+	&__btn,
+	&__btnAddcom {
+		color: #9b9a9a;
+		font-family: "BasisGrotesquePro";
+		font-size: 12px;
+		font-weight: 600;
+		border: 0;
+		background: none;
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	&__btnAddcom {
+		margin-left: var(--gap);
+	}
+}
+
+&__likeOrDislike {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 0;
+
+	&__btn {
+		padding: 0;
+		color: #9b9a9a;
+		font-family: "BasisGrotesquePro";
+		font-size: 12px;
+		border: 0;
+		background: none;
+
+		&:hover {
+			color: white;
+			cursor: pointer;
+		}
+	}
+}
+
+&__user {
+	margin-right: 10px;
+
+	&__name {
+		margin-bottom: 0.25em;
+		color: white;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 18px;
+	}
+
+	&__createdAt {
+		color: #69696a;
+		font-size: 12px;
+	}
+}
+
+&__textBox {
+	width: 100%;
+	padding: 10px 0 20px;
+
+	&__text {
+		color: #f5f6f7;
+		font-size: 14px;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 1.6;
+	}
+}

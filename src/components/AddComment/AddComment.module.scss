@@ -1,133 +1,64 @@
 .AddComment {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    333deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 0, 0, 0.2861519607843137) 0%,
-    rgba(0, 0, 0, 0.3533788515406162) 0%
-  );
-  z-index: 99;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0;
+	align-items: center;
+	justify-content: center;
 
-  &__controlls {
-    display:flex;
-    flex-direction: row;
-    gap:12px;
-  }
+	&__close {
+		color: #f3f3f3;
+		background: none;
+		border: none;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		height: 50px;
+		width: 50px;
+	}
 
-  &__add {
-    font-size: 18px;
-    font-family: "BasisGrotesquePro";
-    color: white;
-    background: none;
-    outline: none;
-    border: 1px solid white;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 20px;
-  }
+	&__setRating {
+		color: white;
+		font-family: "BasisGrotesquePro";
+		text-align: center;
+		user-select: none;
+		text-transform: uppercase;
+	}
 
-
-  &__cancell {
-    font-size: 18px;
-    font-family: "BasisGrotesquePro";
-    color: rgba(255, 39, 39, 0.918);
-    background: none;
-    outline: none;
-    border: 1px solid rgba(255, 39, 39, 0.918);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 20px;
-  }
-
-  &__close {
-    color: #f3f3f3;
-    background: none;
-    border: none;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    height: 50px;
-    width: 50p;
-  }
-
-  &__setRating {
-    color: white;
-    font-family: "BasisGrotesquePro";
-    text-align: center;
-    user-select: none;
-    text-transform: uppercase;
-  }
-
-  &__form {
-    height: 330px;
-    width: 400px;
-    background: #2d2d31;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  &__inputBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    &__fields {
-      background: #7a75757a;
-      max-width: 300px;
-      min-width: 300px;
-      max-height: 130px;
-      min-height: 130px;
-      border: 1px solid white;
-      color: white;
-      padding: 15px;
-      border: 0;
-      outline: none;
-      border-radius: 20px;
-
-      &__text {
-        color: white;
-        font-family: "BasisGrotesquePro";
-      }
-    }
-  }
+	&__form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 30px 20px;
+		background: #2d2d31;
+		border-radius: var(--border-radius);
+	}
 }
 
 .star {
-  height: 30px;
-  width: 30px;
-  &__button {
-    background: none;
-    border: none;
-  }
+	display: inline-block;
+	margin-right: 0.25em;
+	font-size: 18px;
+	line-height: 1;
 
-  &__on {
-    color: #cebc18;
-    background: none;
-    border: none;
-  }
-  &__off {
-    color: #ccc;
-    background: none;
-    border: none;
-  }
+	&:hover {
+		cursor: pointer;
+	}
+
+	&__button {
+		background: none;
+		border: none;
+	}
+
+	&__on {
+		color: #df3c3c;
+		background: none;
+		border: none;
+	}
+
+	&__off {
+		color: #ccc;
+		background: none;
+		border: none;
+	}
 }
+
+@import "../../pages/itemPage/ItemPage.form.module.scss";

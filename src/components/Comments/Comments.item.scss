@@ -1,0 +1,21 @@
+&__item {
+	width: calc(100% - var(--gap) * 2);
+	padding: calc(var(--gap) * 2);
+	padding-top: calc(var(--gap) * 4);
+	margin: var(--gap);
+	position: relative;
+	background: #2d2d31;
+	border-radius: var(--border-radius);
+	font-family: "BasisGrotesquePro";
+	box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.3);
+
+	&:before {
+		content: "";
+		display: block;
+		border-top: 1px solid #5d5d5f;
+		position: absolute;
+		top: var(--gap);
+		z-index: 2;
+		width: calc(100% - var(--gap) * 4);
+	}
+}

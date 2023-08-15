@@ -1,0 +1,112 @@
+.formReviews {
+	margin-top: 2rem;
+	font-family: "BasisGrotesquePro";
+
+	h3 {
+		color: white;
+		font-size: 30px;
+	}
+
+	&__inputBox {
+		width: 100%;
+		text-align: left;
+
+		&__label {
+			display: block;
+			margin-bottom: 0.25em;
+			color: #f5f6f7;
+			font-size: 14px;
+
+			abbr {
+				margin-left: 2px;
+				color: #a00;
+				text-decoration: none;
+			}
+		}
+
+		&__list {
+			display: inline-flex;
+			gap: 20px;
+		}
+
+		input:not([type="radio"]),
+		textarea {
+			width: 100%;
+			padding: 12px;
+			color: white;
+			font-family: "BasisGrotesquePro";
+			font-size: 14px;
+			border-radius: var(--border-radius);
+			background-color: #46464b;
+			border: 1px solid #46464b;
+		}
+
+		input[type="text"],
+		input[type="email"] {
+			height: 36px;
+		}
+
+		&__radio {
+			width: auto;
+			padding: 0;
+			margin: 0;
+			opacity: 0;
+
+			&+span {
+				display: inline-block;
+				width: 14px;
+				height: 14px;
+				margin: 1px 8px 0 -15px;
+				background-color: transparent;
+				border: 1px solid #df3c3c;
+				outline: none;
+				box-sizing: border-box;
+				border-radius: 14px;
+			}
+
+			&:checked+span {
+				border-color: #ff1b1b;
+				background: radial-gradient(#ff1b1b 49%, transparent 51%);
+			}
+
+			&__text {
+				display: block;
+				color: #f5f6f7;
+				font-size: 14px;
+			}
+		}
+	}
+
+	&__btn {
+		width: 100%;
+		max-width: 200px;
+		padding: 8px 10px;
+		margin: auto;
+		color: #fff;
+		font-family: "BasisGrotesquePro";
+		font-size: 16px;
+		background-color: #df3c3c;
+		border: 0;
+		border-radius: 20px;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #ff1b1b;
+		}
+	}
+
+	&__subtext {
+		margin: 1.25rem auto;
+		color: #848486;
+		font-size: 12px;
+
+		p+p {
+			margin-top: 0.5em;
+		}
+
+		a {
+			color: #848486;
+			text-decoration: underline;
+		}
+	}
+}
