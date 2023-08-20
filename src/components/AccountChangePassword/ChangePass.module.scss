@@ -1,53 +1,68 @@
 .NewPass {
-  display: flex;
-  flex-direction: column;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.479);
-  padding: 25px;
-  width: 100%;
-  color: white;
-  &__button {
-    background: none;
-    border: 0;
-    text-decoration: underline;
-    font-family: "BasisGrotesquePro";
-    font-size: 15px;
-    font-weight: 600;
-    color: white;
-    width: max-content;
-  }
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.479);
+	padding: 25px;
+	width: 100%;
+	color: white;
 
-  &__input {
-    background: none;
-    color: White;
-    border: 1px solid rgba(255, 255, 255, 0.37);
-    height: 20px;
-    padding: 6px;
-    width:180px;
-    border-radius: 10px;
-    margin: 3px;
-    &::placeholder {
-      color: white;
-      font-family: "BasisGrotesquePro";
-      font-size: 15px;
-      font-weight: 600;
-      opacity:0.5;
-    }
-  }
-  &__box {
-       display: flex; 
-      
-       flex-direction: column;
-       gap:5px;
+	@import "../SettingsParams/SettingForm";
 
-  } 
-  &__btn {
-    background: url("../../assets/imgs/saveSettings.svg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width: 35px;
-    height: 35px;
-    border: 0;
-    opacity: 0.5;
-  }
+	&__button {
+		background: none;
+		border: 0;
+		text-decoration: underline;
+		font-family: "BasisGrotesquePro";
+		font-size: 15px;
+		font-weight: 600;
+		color: white;
+		width: max-content;
+	}
+
+	&__input {
+		background: none;
+		color: White;
+		border: 1px solid rgba(255, 255, 255, 0.37);
+		height: 20px;
+		padding: 6px;
+		width: 180px;
+		border-radius: 10px;
+		margin: 3px;
+
+		&::placeholder {
+			color: white;
+			font-family: "BasisGrotesquePro";
+			font-size: 15px;
+			font-weight: 600;
+			opacity: 0.5;
+		}
+	}
+
+	&__box {
+		display: flex;
+
+		flex-direction: column;
+		gap: 5px;
+
+	}
+
+	&__btn {
+		background: url("../../assets/imgs/saveSettings.svg");
+		background-repeat: no-repeat;
+		background-size: 100%;
+		width: 35px;
+		height: 35px;
+		border: 0;
+		opacity: 0.5;
+	}
+}
+
+.password {
+	background-image: url("../../assets/imgs/icon-form-visibility-off.svg");
+	background-size: 18px;
+
+	&__on {
+		background-image: url("../../assets/imgs/icon-form-visibility-on.svg");
+	}
 }

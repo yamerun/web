@@ -1,74 +1,9 @@
 .AccountReviews {
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    &__PageBox {
-      height: 85%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-  
-    &__commentsBox {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-    }
-  
-    &__container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 95%;
-  
-      &__header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-  
-        &__ratings {
-          display: flex;
-          flex-direction: column;
-          font-family: "BasisGrotesquePro";
-          justify-content: left;
-          color: white;
-        }
-  
-        &__ratingBox {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          color: white;
-          gap: 10px;
-  
-          &__text {
-            color: white;
-            font-family: "BasisGrotesquePro";
-            font-style: normal;
-            font-weight: 900;
-            font-size: 45px;
-          }
-        }
-  
-        &__text {
-          color: white;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 900;
-          font-size: 45px;
-          user-select: none;
-        }
-      }
-    }
-  }
-  
+	min-height: 80vh;
+
+	&__container {
+		justify-content: flex-start;
+	}
+
+	&__pagination {}
+}

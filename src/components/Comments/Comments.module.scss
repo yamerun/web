@@ -1,7 +1,7 @@
 .Review {
 	padding: calc(var(--gap) * 2);
 	font-family: "BasisGrotesquePro";
-	background: #2d2d31;
+	background-color: #2d2d31;
 	border-radius: var(--border-radius);
 	box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.3);
 
@@ -95,7 +95,6 @@
 			}
 		}
 	}
-
 }
 
 .my_opinion {

@@ -1,73 +1,27 @@
 .Partners {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  align-items: center;
-  max-height: 200px;
-  overflow-y: auto;
-  padding-top: 40px;
-  @media screen and (max-width:1200px) {
-   padding: 0;
-   margin: 20px;
-  }
-  &::-webkit-scrollbar {
-    background: none;
-    width: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: white;
-    opacity: 0.5;
-    border-radius: 12px;
-    width: 10px;
-  }
+	&__item {
+		padding: 2rem 1rem 3rem;
+		font-family: "BasisGrotesquePro";
+		background-color: #2d2d31;
+		border-radius: var(--border-radius-s);
 
-  &__column {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
+		&__heading {
+			padding: 0 1rem;
+			margin-bottom: 1em;
+			color: white;
+			font-size: 18px;
+			font-weight: 600;
+			text-align: center;
 
-    &__box {
-      @media screen and (max-width:1200px) {
-        width:150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
+		}
 
-    }
+		&__img {
+			position: relative;
+			width: 100%;
+			height: 150px;
+			border-radius: var(--border-radius-s);
+			overflow: hidden;
+		}
 
-
-    @media screen and (max-width:1200px) {
-      justify-content: center;
-    }
-
-    &__header {
-      font-family: "BasisGrotesquePro";
-      color: White;
-      padding-left: 6px;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 1px;
-      max-width: 100%;
-      overflow: hidden;
-      word-break: keep-all;
-      white-space: nowrap;
-      @media screen and (max-width:1200px) {
-       font-size: 12px;
-      }
-    }
-
-    &__img {
-      width: 200px;
-      height: 120px;
-      border-radius: 12px;
-      @media screen and (max-width:1200px) {
-        width: 150px;
-        height: 90px;
-      }
-    }
-
-  }
+	}
 }

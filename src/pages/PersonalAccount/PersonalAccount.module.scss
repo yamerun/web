@@ -1,27 +1,5 @@
 .PersonalAccount {
-  height: 80%;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  min-height: 700px;
-  &__container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-    height:100%;
-    @media screen and (max-width:1200px) {
-      align-items: center;
-    }
-    width:66%;
-    &__leftBar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-  }
+	&__main {
+		background-color: #2d2d31;
+	}
 }

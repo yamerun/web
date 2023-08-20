@@ -1,309 +1,345 @@
 .ScammersBase {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  &__mainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 80%;
-    margin-top: 20px;
-    &__body {
-      width: 98%;
-      max-height: 650px;
-      overflow-x: hidden;
-      overflow-y: auto;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-    &__nav {
-      display: flex;
-      width: 95%;
-      align-items: center;
-      justify-content: space-between;
-      font-family: "BasisGrotesquePro";
-      font-size: 30px;
-      font-weight: 700;
-      text-align: left;
-      list-style-type: none;
-      color: white;
-      &__box {
-        width: 30%;
-        text-align: left;
-        @media screen and (max-width:700px) {
-          font-size: 12px;
-        }
-      }
-    }
-    &__infoContainer {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: row;
-      width: 95%;
-      justify-content: space-between;
-      margin-top: 15px;
-      padding: 25px;
-      border-radius: 7px;
-      @media screen and (max-width:700px) {
-        padding: 0;
-      }
-      &:hover {
-        background-color: #46464b;
-      }
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
 
-      &__info {
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        width: 30%;
-        
-        &__header {
-          color: white;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 30px;
-          user-select: none;
-          padding-bottom: 15px;
-        }
-        &__text {
-          display: flex;
-          text-align: left;
-          flex-direction: column;
-          column-gap: 5px;
-          color: white;
-          font-family: "BasisGrotesquePro";
-          height: 70px;
-          font-size: 22px;
-          @media screen and (max-width:700px) {
-            font-size: 12px;
-            height: fit-content;
-            padding: 5px;
-          }
-        }
-      }
-      &__contacts {
-        border-left: 1px solid gray;
-        padding-left: 40px;
-        width: 30%;
-        @media screen and (max-width:700px) {
-          padding-left: 0;
-        }
-        &__header {
-          color: white;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 30px;
-          user-select: none;
-          padding-bottom: 15px;
-        }
-        &__text {
-          display: flex;
-          text-align: left;
-          flex-direction: column;
-          column-gap: 5px;
-          color: white;
-          font-family: "BasisGrotesquePro";
-          height: 70px;
-          font-size: 22px;
-          @media screen and (max-width:700px) {
-            font-size: 12px;
-            height: fit-content;
-            padding: 5px;
-          }
-        }
-      }
-      &__description {
-        width: 400px;
-        display: flex;
-        flex-direction: column;
-        border-left: 1px solid gray;
-        padding-left: 40px;
-        width: 30%;
-        @media screen and (max-width:700px) {
-          padding-left: 0;
-        }
-        &__header {
-          color: white;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 30px;
-          user-select: none;
-          padding-bottom: 15px;
-        }
-        &__text {
-          display: flex;
-          text-align: left;
-          flex-direction: column;
-          column-gap: 5px;
-          color: white;
-          font-family: "BasisGrotesquePro";
-          max-height: 340px;
-          font-size: 23px;
-          max-width: 300px;
-          white-space: pre-wrap;
-          word-break: break-all;
-          @media screen and (max-width:700px) {
-            font-size: 12px;
-          }
-        }
-      }
-    }
-    &__textContents {
-      width: 100%;
-      background: #2d2d31;
-      border-radius: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 900px;
-      padding: 15px;
-      margin-top: 20px;
-      font-family: "BasisGrotesquePro";
-      &__count {
-        color: white;
-        font-family: "BasisGrotesquePro";
-        font-size: 16px;
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-      &__headers {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 98%;
-        height: 50px;
-        border-bottom: 1px solid #2d2d31;
-        padding-bottom: 15px;
-        padding-top: 15px;
-      }
-      &__btn {
-        color: white;
-        background-color: #2d2d31;
-        border: 2px solid #fe0000;
-        border-radius: 60px;
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-weight: 700;
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        letter-spacing: 0.6px;
-        font-size: 16px;
-        text-transform: uppercase;
-      }
-    }
-    &__searchMenu {
-      width: 100%;
-      background: #2d2d31;
-      border-radius: 50px;
-      &__container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: left;
-        gap: 20px;
-        padding-top: 15px;
-        padding-left: 15px;
-        padding-bottom: 15px;
-        @media screen and (max-width:930px) {
-          flex-direction: column;
-        }
-        &__inputBox {
-          background-color: #151517;
-          border: 2px solid #5e5e65;
-          border-radius: 30px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          width: 250px;
-          &__btn {
-            background: url("../../assets/imgs/search.svg");
-            width: 20px;
-            height: 20px;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            border: 0;
-            margin: 10px;
-          }
-          &__input {
-            background-color: #151517;
-            border: 0;
-            height: 35px;
-            padding-left: 10px;
-            color: white;
-            font-family: "BasisGrotesquePro";
-            width: 230px;
-            @media screen and (max-width:930px) {
-              min-width: 150px;
-            }
-            &::placeholder {
-              font-family: "BasisGrotesquePro";
-              font-style: normal;
-              font-weight: 500;
-              font-size: 16px;
-            }
-          }
-        }
-      }
-    }
-    &__leftMenu {
-      width: 100%;
-      &__pageHeader {
-        color: white;
-        font-family: "BasisGrotesquePro";
-        font-style: normal;
-        font-weight: 900;
-        font-size: 45px;
-        @media screen and (max-width:930px) {
-          font-size:25px;
-        }
-      }
-      &__navigation {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        color: white;
-        font-family: "BasisGrotesquePro";
+	&__mainContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
 
-        &__item {
-          list-style-type: none;
-          font-weight: 700;
-          font-size: 16px;
-          border-top: 1px solid #5e5e65;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-      }
-    }
-  }
+		&__body {
+			width: 98%;
+			max-height: 650px;
+			overflow-x: hidden;
+			overflow-y: auto;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
+		&__nav {
+			display: flex;
+			width: 95%;
+			align-items: center;
+			justify-content: space-between;
+			font-family: "BasisGrotesquePro";
+			font-size: 30px;
+			font-weight: 700;
+			text-align: left;
+			list-style-type: none;
+			color: white;
+
+			&__box {
+				width: 30%;
+				text-align: left;
+
+				@media screen and (max-width:700px) {
+					font-size: 12px;
+				}
+			}
+		}
+
+		&__infoContainer {
+			margin-top: 20px;
+			display: flex;
+			flex-direction: row;
+			width: 95%;
+			justify-content: space-between;
+			margin-top: 15px;
+			padding: 25px;
+			border-radius: 7px;
+
+			@media screen and (max-width:700px) {
+				padding: 0;
+			}
+
+			&:hover {
+				background-color: #46464b;
+			}
+
+			&__info {
+				display: flex;
+				flex-direction: column;
+				justify-content: left;
+				width: 30%;
+
+				&__header {
+					color: white;
+					font-family: "BasisGrotesquePro";
+					font-style: normal;
+					font-weight: 700;
+					font-size: 30px;
+					user-select: none;
+					padding-bottom: 15px;
+				}
+
+				&__text {
+					display: flex;
+					text-align: left;
+					flex-direction: column;
+					column-gap: 5px;
+					color: white;
+					font-family: "BasisGrotesquePro";
+					height: 70px;
+					font-size: 22px;
+
+					@media screen and (max-width:700px) {
+						font-size: 12px;
+						height: fit-content;
+						padding: 5px;
+					}
+				}
+			}
+
+			&__contacts {
+				border-left: 1px solid gray;
+				padding-left: 40px;
+				width: 30%;
+
+				@media screen and (max-width:700px) {
+					padding-left: 0;
+				}
+
+				&__header {
+					color: white;
+					font-family: "BasisGrotesquePro";
+					font-style: normal;
+					font-weight: 700;
+					font-size: 30px;
+					user-select: none;
+					padding-bottom: 15px;
+				}
+
+				&__text {
+					display: flex;
+					text-align: left;
+					flex-direction: column;
+					column-gap: 5px;
+					color: white;
+					font-family: "BasisGrotesquePro";
+					height: 70px;
+					font-size: 22px;
+
+					@media screen and (max-width:700px) {
+						font-size: 12px;
+						height: fit-content;
+						padding: 5px;
+					}
+				}
+			}
+
+			&__description {
+				width: 400px;
+				display: flex;
+				flex-direction: column;
+				border-left: 1px solid gray;
+				padding-left: 40px;
+				width: 30%;
+
+				@media screen and (max-width:700px) {
+					padding-left: 0;
+				}
+
+				&__header {
+					color: white;
+					font-family: "BasisGrotesquePro";
+					font-style: normal;
+					font-weight: 700;
+					font-size: 30px;
+					user-select: none;
+					padding-bottom: 15px;
+				}
+
+				&__text {
+					display: flex;
+					text-align: left;
+					flex-direction: column;
+					column-gap: 5px;
+					color: white;
+					font-family: "BasisGrotesquePro";
+					max-height: 340px;
+					font-size: 23px;
+					max-width: 300px;
+					white-space: pre-wrap;
+					word-break: break-all;
+
+					@media screen and (max-width:700px) {
+						font-size: 12px;
+					}
+				}
+			}
+		}
+
+		&__textContents {
+			width: 100%;
+			background: #2d2d31;
+			border-radius: 30px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: 900px;
+			padding: 15px;
+			margin-top: 20px;
+			font-family: "BasisGrotesquePro";
+
+			&__count {
+				color: white;
+				font-family: "BasisGrotesquePro";
+				font-size: 16px;
+				font-weight: 700;
+				text-transform: uppercase;
+			}
+
+			&__headers {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 98%;
+				height: 50px;
+				border-bottom: 1px solid #2d2d31;
+				padding-bottom: 15px;
+				padding-top: 15px;
+			}
+
+			&__btn {
+				color: white;
+				background-color: #2d2d31;
+				border: 2px solid #fe0000;
+				border-radius: 60px;
+				padding-left: 30px;
+				padding-right: 30px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				font-weight: 700;
+				font-family: "BasisGrotesquePro";
+				font-style: normal;
+				letter-spacing: 0.6px;
+				font-size: 16px;
+				text-transform: uppercase;
+			}
+		}
+
+		&__searchMenu {
+			width: 100%;
+			background: #2d2d31;
+			border-radius: 50px;
+
+			&__container {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: left;
+				gap: 20px;
+				padding-top: 15px;
+				padding-left: 15px;
+				padding-bottom: 15px;
+
+				@media screen and (max-width:930px) {
+					flex-direction: column;
+				}
+
+				&__inputBox {
+					background-color: #151517;
+					border: 2px solid #5e5e65;
+					border-radius: 30px;
+					overflow: hidden;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					width: 250px;
+
+					&__btn {
+						background: url("../../assets/imgs/search.svg");
+						width: 20px;
+						height: 20px;
+						background-repeat: no-repeat;
+						background-size: 100% 100%;
+						border: 0;
+						margin: 10px;
+					}
+
+					&__input {
+						background-color: #151517;
+						border: 0;
+						height: 35px;
+						padding-left: 10px;
+						color: white;
+						font-family: "BasisGrotesquePro";
+						width: 230px;
+
+						@media screen and (max-width:930px) {
+							min-width: 150px;
+						}
+
+						&::placeholder {
+							font-family: "BasisGrotesquePro";
+							font-style: normal;
+							font-weight: 500;
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+
+		&__leftMenu {
+			width: 100%;
+
+			&__pageHeader {
+				color: white;
+				font-family: "BasisGrotesquePro";
+				font-style: normal;
+				font-weight: 900;
+				font-size: 45px;
+
+				@media screen and (max-width:930px) {
+					font-size: 25px;
+				}
+			}
+
+			&__navigation {
+				display: flex;
+				flex-direction: column;
+				text-align: left;
+				color: white;
+				font-family: "BasisGrotesquePro";
+
+				&__item {
+					list-style-type: none;
+					font-weight: 700;
+					font-size: 16px;
+					border-top: 1px solid #5e5e65;
+					padding-top: 10px;
+					padding-bottom: 10px;
+				}
+			}
+		}
+	}
 }
+
 .separate {
-  height: 1px;
-  background-color: gray;
-  width: 98%;
+	height: 1px;
+	background-color: gray;
+	width: 98%;
 }
 
 .ClearFillters {
-  background: none;
-  color: white;
-  font-family: "BasisGrotesquePro";
-  padding: 10px;
-  border: 2px solid white;
-  margin: 20px;
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 20px;
+	background: none;
+	color: white;
+	font-family: "BasisGrotesquePro";
+	padding: 10px;
+	border: 2px solid white;
+	margin: 20px;
+	font-size: 15px;
+	font-weight: 700;
+	border-radius: 20px;
 }
 
 
 .lock {
-  overflow-y: hidden;
+	overflow-y: hidden;
 }

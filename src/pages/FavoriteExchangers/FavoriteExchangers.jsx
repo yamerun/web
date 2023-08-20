@@ -1,57 +1,96 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useRef, useEffect, useState } from "react";
+import { useLoaderData, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./FavoriteExchangers.module.scss";
+import axios from "axios";
 
 export const FavoriteExchangersLoader = async () => {
-  const key = localStorage.getItem("jwt");
-  if (key) {
-    const res = await fetch(`https://change.pro/api/user/favorite/exchangers`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${key}`,
-      },
-    });
-    const items = await res.json();
-    return { items };
-  } else window.location.href = "/changePro";
+	const key = localStorage.getItem("jwt");
+	if (key) {
+		const res = await fetch(`https://change.pro/api/user/favorite/exchangers`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${key}`,
+			},
+		});
+		const items = await res.json();
+		return { items };
+	} else window.location.href = "/changePro";
 };
 
-export const FavoriteExchangers = () => {
-  const { items } = useLoaderData();
-  return (
-    <div className={style.Favorite}>
-      <div className={style.Favorite__container}>
-        <table className={style.Favorite__table}>
-          <thead className={style.Favorite__table__head}>
-            <tr className={style.Favorite__table__headerRow}>
-              <th>Имя</th>
-              <th>ID</th>
-              <th>Ссылка на сайт:</th>
-              <th>Кабинет на change pro</th>
-            </tr>
-          </thead>
-          <tbody className={style.Favorite__table__body}>
-            {items.data.map((item) => (
-              <tr className={style.Favorite__table__body__row}>
-                <td>
-                  <p>{item.name}</p>
-                </td>
-                <td>
-                  <p>{item.id}</p>
-                </td>
-                <td>
-                  <p>{item.site_url}</p>
-                </td>
-                <td>
-                  <a
-                    href={`/ExchangerPage/${item.id}`}
-                  >{`/ExchangerPage/${item.id}`}</a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+const ToggleToFavorite = React.lazy(() =>
+	import("../../components/AddToFavorite/AddToFavorite")
+);
+
+const ImageComponent = React.lazy(() =>
+	import("../../components/ImageComponent/Image")
+);
+
+export default function FavoriteExchangers() {
+	const { items } = useLoaderData();
+	const [favorites, setFavorites] = useState([]);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const config = {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+			},
+		};
+		axios
+			.get(`https://change.pro/api/user/favorite/exchangers`, config)
+			.then(function (response) {
+				if (response.data?.data) {
+					console.log(response.data.data);
+					dispatch(setFavorites(response.data.data));
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}, []);
+
+	return (
+		<div className={style.Favorite + ' row'}>
+			{favorites.map((item) => (
+				<div className="col-lg-4 col-sm-6">
+					<div className="block">
+						<div className={style.Favorite__item}>
+							<div className={style.Favorite__item__header}>
+								<div className={style.Favorite__item__title}>{item.name}</div>
+								<ToggleToFavorite itemid={item.id} />
+							</div>
+							<Link to={`/exchanger/${item.id}`} className={style.Favorite__item__cover}>
+								<div className="media-ration">
+									{Object.keys(item?.logo).length !== 0 ? (
+										<React.Suspense
+											fallback={
+												<h6
+													style={{
+														color: "white",
+														textAlign: "center",
+														fontSize: "15px",
+													}}
+												>
+													...Loading
+												</h6>
+											}
+										>
+											{" "}
+											<ImageComponent imageInfo={item?.logo} />
+										</React.Suspense>
+									) : (
+										<div></div>
+									)}
+								</div>
+							</Link>
+							<div className={style.Favorite__item__footer}>
+								<Link to={item.site_url} className={style.Favorite__item__siteurl}>{item.site_url}</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	);
 };

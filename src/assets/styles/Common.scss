@@ -178,10 +178,18 @@ input::-webkit-outer-spin-button {
 /* DEFAULTS */
 :root {
 	--border-radius: 12px;
+	--border-radius-s: 6px;
 }
 
 a.block {
 	text-decoration: none;
+}
+
+h2 {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	user-select: none;
 }
 
 .media-ratio {
@@ -198,4 +206,31 @@ a.block {
 
 .section-wrapper {
 	flex: 1 0 auto;
+}
+
+.section-wrapper[class*="exchangerNavigation__section"]+.section-wrapper {
+	margin-top: 0;
+}
+
+.spacer,
+.spacer-double {
+	&:after {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 0;
+		padding-bottom: 1.5rem;
+		clear: both;
+		visibility: hidden;
+	}
+}
+
+.spacer-double {
+	&:after {
+		padding-bottom: 3rem;
+	}
+}
+
+.blackbg {
+	background-color: #151517 !important;
 }

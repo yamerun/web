@@ -31,7 +31,7 @@ export const Articlepage = () => {
 
 							<section className={style.Article__cover}>
 								<div className="media-ratio">
-									<img alt={article.title} src={`https://change.pro/storage/V6yLGakcMm.jpg`} />
+									<img alt={article.title} src={article.preview} />
 								</div>
 							</section>
 

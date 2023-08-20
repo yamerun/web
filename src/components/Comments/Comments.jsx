@@ -6,7 +6,7 @@ import { Dislike } from "../Dislike/Dislike";
 import axios from "axios";
 import { ChildComments } from "../ChildComments/ChildComments";
 
-export const Comments = ({ props, review, w }) => {
+export const Comments = ({ props, review, w = '100%', st = '' }) => {
 	const [like, setLike] = useState(false);
 	const [dislike, setDislike] = useState(false);
 	const [active, setActive] = useState(false);
@@ -117,7 +117,7 @@ export const Comments = ({ props, review, w }) => {
 
 	return (
 		<div className="col-lg-4">
-			<div className={style.Review + ' block'}>
+			<div className={style.Review + ' ' + st + ' block'}>
 				<div className={style.Review__content}>
 					<div className={style.Review__header}>
 						<div className={style.Review__user}>

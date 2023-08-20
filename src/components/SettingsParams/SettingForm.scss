@@ -1,0 +1,87 @@
+&__panel {
+	padding: 2rem;
+	font-family: "BasisGrotesquePro";
+	background-color: #151517;
+	border-radius: var(--border-radius);
+	box-shadow: 4px 8px 10px #0000004d;
+
+	h4 {
+		margin-bottom: 1em;
+		color: white;
+		font-size: 18px;
+		font-weight: 600;
+	}
+}
+
+&__inputBox {
+	position: relative;
+	margin-bottom: 1em;
+	width: 100%;
+	text-align: left;
+
+	&__label {
+		display: block;
+		margin-bottom: 0.25em;
+		color: #b7b8bb;
+		font-size: 14px;
+
+		abbr {
+			margin-left: 2px;
+			color: #a00;
+			text-decoration: none;
+		}
+	}
+
+	input:not([type="radio"]),
+	textarea {
+		width: 100%;
+		padding: 12px;
+		color: white;
+		font-family: "BasisGrotesquePro";
+		font-size: 14px;
+		border-radius: var(--border-radius-s);
+		background-color: #46464b;
+		border: 1px solid #46464b;
+	}
+
+	input:read-only,
+	textarea:read-only {
+		background-color: #151517;
+	}
+
+	&__change {
+		display: block;
+		width: 28px;
+		height: 28px;
+		position: absolute;
+		bottom: 8px;
+		right: 8px;
+		font-size: 0;
+		background: url("../../assets/imgs/icon-account-edit.svg") center center no-repeat;
+		background-size: 24px;
+		opacity: 0.8;
+
+		&:hover {
+			cursor: pointer;
+			opacity: 1;
+		}
+	}
+
+	&__submit {
+		width: 100%;
+		max-width: 200px;
+		padding: 8px 10px;
+		margin: auto;
+		color: #fff;
+		font-family: "BasisGrotesquePro";
+		font-size: 16px;
+		background-color: #df3c3c;
+		border: 1px solid #df3c3c;
+		border-radius: 20px;
+
+		&:disabled {
+			background-color: transparent;
+			cursor: not-allowed;
+		}
+	}
+}

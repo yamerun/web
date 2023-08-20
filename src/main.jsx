@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { ItemPage } from "./pages/itemPage/itemPage";
 import { exchangeLoader } from "./pages/itemPage/itemPage";
 import { PersonalAccount } from "./pages/PersonalAccount/PersonalAccount";
+import { PersonalAccountLoader, AccountPageLoader } from "./pages/PersonalAccount/PersonalAccountLoader";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/Register";
 import { AccountLoader } from "./pages/PersonalAccount/PersonalAccount";
@@ -20,24 +21,24 @@ import { ForPartners } from "./pages/forPartners/forPartners";
 import { Articlepage } from "./pages/ArticlePage/ArticlePage";
 import { ScammersBase } from "./pages/ScammersBase/ScammersBase";
 import { InfoPage } from "./pages/InfoPage/InfoPage";
+import { infoloader } from "./pages/InfoPage/InfoPage";
 import { ExchangerReviews } from "./pages/ExchangerReviews/ExchangerReviews";
 import { ExchangerCourses } from "./pages/ExchangerCourses/ExchangerCourses";
 import { ExchangerMarks } from "./pages/Marks/Marks";
 import { ExchangerNotifications } from "./pages/ExchangerNotifications/ExchangerNotifications";
 import { HelpingPage } from "./pages/HelpingPage/HelpingPage";
 import { ArticleLoader } from "./pages/Articles/Article";
-import { infoloader } from "./pages/InfoPage/InfoPage";
 import { reviewloader } from "./pages/ExchangerReviews/ExchangerReviews";
-import { AccountReviews } from "./pages/AccountReviews/AccountReviews";
-import { AccountReviewloader } from "./pages/AccountReviews/AccountReviews";
+// import { AccountReviews } from "./pages/AccountReviews/AccountReviews";
+// import { AccountReviewloader } from "./pages/AccountReviews/AccountReviews";
 import { CoursesLoader } from "./pages/ExchangerCourses/ExchangerCourses";
 import { ExchangerRegisterPage } from "./pages/ExchangerRegister/ExchangerRegister";
 import MainLayout from "./Layouts/MainLayout";
 import { TimerPage } from "./pages/TimerPage";
-import AccountSettings from "./pages/AccountSettings/AccountSettings";
-import { FavoriteExchangers } from "./pages/FavoriteExchangers/FavoriteExchangers";
-import { FavoriteExchangersLoader } from "./pages/FavoriteExchangers/FavoriteExchangers";
-import SubscribeDetail from "./pages/SubscribeDetail/SubscribeDetail";
+// import AccountSettings from "./pages/AccountSettings/AccountSettings";
+// import { FavoriteExchangers } from "./pages/FavoriteExchangers/FavoriteExchangers";
+// import { FavoriteExchangersLoader } from "./pages/FavoriteExchangers/FavoriteExchangers";
+// import SubscribeDetail from "./pages/SubscribeDetail/SubscribeDetail";
 const router = createBrowserRouter([
 	{
 		element: <TimerPage />,
@@ -73,6 +74,32 @@ const router = createBrowserRouter([
 				element: <PersonalAccount />,
 				loader: AccountLoader,
 			},
+			{
+				path: "/account/:navset",
+				element: <PersonalAccountLoader />,
+				loader: AccountPageLoader,
+			},
+			/*
+			{
+				path: "/account/reviews",
+				element: <AccountReviews />,
+				loader: AccountReviewloader,
+			},
+			{
+				path: "/account/favoriteexchangers",
+				element: <FavoriteExchangers />,
+				loader: FavoriteExchangersLoader,
+			},
+			{
+				path: "/account/accountSettings",
+				element: <AccountSettings />,
+				loader: AccountLoader,
+			},
+			{
+				path: '/account/subscribe/detail',
+				element: <SubscribeDetail />
+			}
+			*/
 			{
 				path: "/exchangers",
 				element: <AllEchangers />,
@@ -123,27 +150,8 @@ const router = createBrowserRouter([
 				element: <ExchangerNotifications />,
 			},
 			{
-				path: "/account/reviews",
-				element: <AccountReviews />,
-				loader: AccountReviewloader,
-			},
-			{
 				path: "/exchanger/register",
 				element: <ExchangerRegisterPage />,
-			},
-			{
-				path: "/account/accountSettings",
-				element: <AccountSettings />,
-				loader: AccountLoader,
-			},
-			{
-				path: "/account/favoriteexchangers",
-				element: <FavoriteExchangers />,
-				loader: FavoriteExchangersLoader,
-			},
-			{
-				path: '/account/subscribe/detail',
-				element: <SubscribeDetail />
 			}
 		],
 	},

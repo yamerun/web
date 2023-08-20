@@ -1,90 +1,42 @@
 .Favorite {
-  min-height: 83%;
-  display: flex;
-  margin: 5px;
-  @media screen and (max-width:900px) {
-    font-size: 12px;
-  }
-  @media screen and (max-width:680px) {
-    font-size: 10px;
-  }
-  justify-content: center;
-  &__container {
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    min-width: 400px;
+	min-height: 83%;
+	display: flex;
+	margin: 5px;
 
-    @media screen and (max-width:680px) {
-      min-width: 300px;
-    }
-  }
-  &__table {
-    margin-top: 30px;
-    background-color: rgba(73, 73, 73, 0.082);
-    border-radius: 12px;
-    width: 100%;
-    min-height: 30%;
-    max-height: 80%;
-    border-collapse: collapse;
-    border: 1px solid rgba(255, 255, 255, 0.438);
+	&__item {
+		padding: 2rem 1.25rem;
+		position: relative;
+		font-family: "BasisGrotesquePro";
+		background-color: #151517;
+		border-radius: var(--border-radius-s);
+		box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.3);
 
-    &__head {
-       margin: 10px;
-       position: sticky;
+		&__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
 
-    }
+		&__footer {
+			margin-top: 1em;
+			color: #9b9a9a;
+			font-size: 12px;
 
-    &__headerRow {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.438);
-      th {
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 600;
-        font-size: 20px;
-        padding-bottom: 10px;
-        padding-top: 10px;
+			a {
+				color: #9b9a9a;
+			}
+		}
 
-        @media screen and (max-width:1000px) {
-          font-size: 14px;
-        }
-      }
-    }
-    &__body {
-      margin: 10px;
-      &__row {
-        
-        td {
-          color: white;
-          text-align: center;
-          font-family: "BasisGrotesquePro";
-          text-transform: uppercase;
-          font-weight: 600;
-          letter-spacing: 0.8px;
-          opacity: 0.5;
-          user-select: none;
+		&__title {
+			color: white;
+			font-size: 18px;
+			font-weight: 600;
+		}
 
-          p {
-            padding: 10px;
-            word-break: break-all;
-            @media screen and (max-width:680px) {
-              padding: 5px;
-              font-size: 11px;
-            }
-            @media screen and (max-width:450px) {
-              font-size: 8px;
-            }
-          }
-          &:hover {
-            opacity: 1;
-            transition: 0.4s linear;
-          }
-          a {
-            color: white;
-          }
-        }
-      }
-    }
-  }
+		&__cover {
+			display: block;
+			position: relative;
+			min-height: 120px;
+		}
+	}
 }

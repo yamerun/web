@@ -63,10 +63,16 @@ export default function MainLayout({ children }) {
 
 	React.useEffect(() => {
 		axios
-			.get("https://change.pro/api/user/get", {}, configForSiteUser)
+			.get("https://change.pro/api/user/get", configForSiteUser)
 			.then(function (response) {
-				localStorage.setItem("userRole", response.data.role.code);
-				localStorage.setItem("userId", response.data.exchanger_id);
+				const userData = response.data.data;
+				localStorage.setItem("userRole", userData.role.code);
+				if (userData.role.code !== null && userData.role.code === "exchanger") {
+					// localStorage.setItem("userId", userData.exchanger_id);
+					localStorage.setItem("userId", userData.role.id);
+				} else {
+					localStorage.setItem("userId", userData.id);
+				}
 			});
 	}, []);
 

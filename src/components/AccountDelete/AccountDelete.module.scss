@@ -1,0 +1,14 @@
+.AccountDelete {
+	@import "../SettingsParams/SettingForm";
+
+	&__delete {
+		margin-top: 1rem;
+		text-align: center;
+
+		&__link {
+			color: #df3c3c;
+			text-decoration: none;
+		}
+	}
+
+}

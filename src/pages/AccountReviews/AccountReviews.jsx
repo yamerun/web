@@ -1,54 +1,52 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import style from "./AccountReviews.module.scss";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLoaderData } from "react-router-dom";
+import axios from "axios";
 import { Comments } from "../../components/Comments/Comments";
 
-export const AccountReviewloader = async () => {
-  const key = localStorage.getItem("jwt");
-  const id = localStorage.getItem("userId");
-  if (key) {
-    const res = await fetch(
-      `https://change.pro/api/reviews/get_by_author?author_id=${id}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      }
-    );
-    const item = await res.json();
-    return { item,id };
-  } else window.location.href = '/';
-};
+export default function AccountReviews() {
+	const { item } = useLoaderData();
+	const key = localStorage.getItem("jwt");
+	let id = localStorage.getItem("userId");
+	const [reviews, setReviews] = useState([]);
+	const dispatch = useDispatch();
 
-export const AccountReviews = () => {
-  const { item,id } = useLoaderData();
+	useEffect(() => {
+		const config = {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+			},
+		};
+		if ((id == 'null' || !id) && item?.data?.id) {
+			id = item.data.id;
+		}
+		if (id && key) {
+			axios
+				.get(`https://change.pro/api/reviews/get_by_author?author_id=${id}`, config)
+				.then(function (response) {
+					if (response.data?.data) {
+						dispatch(setReviews(response.data.data));
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
+	}, []);
 
-  return (
-    <div className={style.AccountReviews}>
-      <div className={style.AccountReviews__PageBox}>
-        <div className={style.AccountReviews__container}>
-          <div className={style.AccountReviews__container__header}>
-            <h1 className={style.AccountReviews__container__header__text}>
-              Отзывы
-            </h1>
-            <div
-              className={style.AccountReviews__container__header__ratingBox}
-            ></div>
-          </div>
-          <div className={style.AccountReviews__commentsBox}>
-            {item.data != null ? (
-              item.data.map((item) => (
-                <Comments props={item}  w={"100%"} />
-              ))
-            ) : (
-              <div></div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<div className={style.AccountReviews}>
+			<div className={style.AccountReviews__container + ' row'}>
+				{reviews != null ? (
+					reviews.map((item) => (
+						<Comments props={item} st={'blackbg'} />
+					))
+				) : (
+					<div></div>
+				)}
+			</div>
+			<div className={style.AccountReviews__pagination}></div>
+		</div>
+	);
 };
