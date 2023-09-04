@@ -28,8 +28,6 @@ export default function AccountNavigation({ item = {}, type = '', exchanger_id =
 						},
 					})
 					.then(function (response) {
-						console.log('account.exchanger_id');
-						console.log(response);
 						setAccount(response.data.data);
 					})
 					.catch(function (error) {

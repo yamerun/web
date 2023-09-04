@@ -19,8 +19,7 @@ export const AccountLoader = async () => {
 		const item = await res.json();
 		localStorage.setItem("userRole", item.data.role.code);
 		if (item.data.role.code !== null && item.data.role.code === "exchanger") {
-			// localStorage.setItem("userId", item.data.exchanger_id);
-			localStorage.setItem("userId", item.data.role.id);
+			localStorage.setItem("userId", item.data.exchanger_id);
 		} else {
 			localStorage.setItem("userId", item.data.id);
 		}

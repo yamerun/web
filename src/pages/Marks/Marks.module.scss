@@ -16,18 +16,13 @@
 			background: #2d2d31;
 			border-radius: 20px;
 			padding: 20px;
-			width: 60%;
+			min-width: 500px;
 			height: 600px;
 			max-height: 600px;
 			overflow-x: hidden;
 			overflow-y: auto;
-			margin-top: 50px;
 			display: flex;
 			align-items: center;
-
-			@media screen and (max-width:920px) {
-				width: 80%;
-			}
 
 			@media screen and (max-width:550px) {
 				width: 100%;

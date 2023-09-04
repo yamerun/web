@@ -82,51 +82,63 @@ export const ExchangerCourses = () => {
 
 
 	return (
-		<div className={style.ExchangerCourses}>
-			<React.Suspense fallback={<h6>...loading</h6>}>
-				<AccountNavigation type={'exchanger'} />
-			</React.Suspense>
-			<h1 className={style.ExchangerCourses__header}>
-				Загруженные курсы обмена
-			</h1>
-			<div className={style.tableBox}>
-				<table {...getTableProps()} className={style.table}>
-					<thead>
-						{headerGroups.map((headerGroup) => (
-							<tr {...headerGroup.getHeaderGroupProps()}>
-								{headerGroup.headers.map((column) => (
-									<th
-										{...column.getHeaderProps()}
-										className={style.tableNav}
-										key={column.Header}
-									>
-										{column.render("Header")}
-									</th>
-								))}
-							</tr>
-						))}
-					</thead>
-					<tbody {...getTableBodyProps()}>
-						{rows.map((row) => {
-							prepareRow(row);
-							return (
-								<tr {...row.getRowProps()} key={row.index}>
-									{row.cells.map((cell) => {
-										return (
-											<td
-												{...cell.getCellProps()}
-												className={style.tableCell}
-												key={cell.value}
-											>
-												{cell.render("Cell")}
-											</td>
-										);
-									})}
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+		<div className={'section-wrapper'}>
+			<div className={'container-full'}>
+				<div className="row">
+					<sidebar className={'col-md-4 col-lg-3'}>
+						<div className="block">
+							<React.Suspense fallback={<h6>...loading</h6>}>
+								<AccountNavigation type={'exchanger'} />
+							</React.Suspense>
+						</div>
+					</sidebar>
+					<main className={style.ExchangerCourses + ' col-md-8 col-lg-9'}>
+						<div className="block">
+							<h1 className={style.ExchangerCourses__header}>
+								Загруженные курсы обмена
+							</h1>
+							<div className={style.tableBox}>
+								<table {...getTableProps()} className={style.table}>
+									<thead>
+										{headerGroups.map((headerGroup) => (
+											<tr {...headerGroup.getHeaderGroupProps()}>
+												{headerGroup.headers.map((column) => (
+													<th
+														{...column.getHeaderProps()}
+														className={style.tableNav}
+														key={column.Header}
+													>
+														{column.render("Header")}
+													</th>
+												))}
+											</tr>
+										))}
+									</thead>
+									<tbody {...getTableBodyProps()}>
+										{rows.map((row) => {
+											prepareRow(row);
+											return (
+												<tr {...row.getRowProps()} key={row.index}>
+													{row.cells.map((cell) => {
+														return (
+															<td
+																{...cell.getCellProps()}
+																className={style.tableCell}
+																key={cell.value}
+															>
+																{cell.render("Cell")}
+															</td>
+														);
+													})}
+												</tr>
+											);
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</main>
+				</div>
 			</div>
 		</div>
 	);

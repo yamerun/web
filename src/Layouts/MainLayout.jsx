@@ -68,8 +68,7 @@ export default function MainLayout({ children }) {
 				const userData = response.data.data;
 				localStorage.setItem("userRole", userData.role.code);
 				if (userData.role.code !== null && userData.role.code === "exchanger") {
-					// localStorage.setItem("userId", userData.exchanger_id);
-					localStorage.setItem("userId", userData.role.id);
+					localStorage.setItem("userId", userData.exchanger_id);
 				} else {
 					localStorage.setItem("userId", userData.id);
 				}
