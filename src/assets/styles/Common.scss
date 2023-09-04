@@ -1,3 +1,5 @@
+@import "../../Layouts/vars";
+
 * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -204,7 +206,7 @@ h2 {
 	}
 }
 
-.section-wrapper {
+.section-wrapper:last-of-type {
 	flex: 1 0 auto;
 }
 
@@ -233,4 +235,11 @@ h2 {
 
 .blackbg {
 	background-color: #151517 !important;
+}
+
+@media screen and (max-width: ($break_xs - 1)) {
+	[class*=" col-"]>.block {
+		width: calc(100% - var(--gap));
+		margin-inline: calc(var(--gap) / 2);
+	}
 }
