@@ -8,6 +8,7 @@ export const Articlepage = () => {
 	const { article } = useLoaderData();
 	console.log(article.data);
 	function createMarkup(content) {
+		content = content.replace(/style="[\s\S]*?"/gi, "");
 		return { __html: `${content}` };
 	}
 

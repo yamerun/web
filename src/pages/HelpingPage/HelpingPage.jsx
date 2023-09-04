@@ -21,7 +21,6 @@ export const HelpingPage = () => {
 	function createMarkup(content) {
 		return { __html: `${content}` };
 	}
-	console.log(data)
 
 	return (
 		<div className={'section-wrapper'}>
