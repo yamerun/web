@@ -7,6 +7,7 @@ import { setverifiedPassword } from "../../store/userAccountSlice/AccountSlice";
 import { setEmail } from "../../store/userAccountSlice/AccountSlice";
 import { setPassword } from "../../store/userAccountSlice/AccountSlice";
 import { setName } from "../../store/userAccountSlice/AccountSlice";
+import { RegistrationPopup } from "../RegistrationPopup/Popup";
 
 import img from "../../assets/imgs/icon-social-auth-vk.png";
 import img2 from "../../assets/imgs/icon-social-auth-google.png";
@@ -23,6 +24,7 @@ export const InputRegistration = (e) => {
 
 	const dispatch = useDispatch();
 	const [err, setErr] = useState("");
+	const [isModal, setModal] = useState(false);
 	const navigate = useNavigate();
 	const ref = useRef(null);
 	const Register = () => {
@@ -179,6 +181,7 @@ export const InputRegistration = (e) => {
 					<div className={style.Form__agree}>Нажав «Зарегистрироваться», я принимаю «<Link to="/register">Условия обработки персональных данных</Link>»</div>
 				</div>
 				<span className={style.Form__message}>{err}</span>
+				{/*
 				<div className={style.Form__container__inputBox + ' f-wrap txt-center'}>
 					<h3>Регистрация с помощью:</h3>
 					<div className={style.Form__registerVariants}>
@@ -196,6 +199,7 @@ export const InputRegistration = (e) => {
 						</Link>
 					</div>
 				</div>
+				 */}
 			</div>
 
 			<div className={style.Form__footer}>
@@ -207,7 +211,13 @@ export const InputRegistration = (e) => {
 						Создать аккаунт обменника
 					</Link>
 				</div>
+				{/* <button onClick={() => setModal(true)}>Click Here</button> */}
 			</div>
+
+			<RegistrationPopup
+				isVisible={isModal}
+				onClose={() => setModal(false)}
+			/>
 		</div>
 	);
 };

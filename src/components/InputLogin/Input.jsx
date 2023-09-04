@@ -130,9 +130,10 @@ export const Input = () => {
 					<button className={style.Form__btn} onClick={Login}>
 						Войти
 					</button>
-					<Link className={style.Form__subtext}>Забыли пароль?</Link>
+					<Link className={style.Form__subtext} to="/forget-password/id">Забыли пароль?</Link>
 				</div>
 				<span className={style.Form__message}>{err}</span>
+				{/*
 				<div className={style.Form__container__inputBox + ' f-wrap txt-center'}>
 					<h3>Войти с помощью:</h3>
 					<div className={style.Form__registerVariants}>
@@ -152,6 +153,7 @@ export const Input = () => {
 						</div>
 					</div>
 				</div>
+				*/}
 			</div>
 			<div className={style.Form__footer}>
 				<div className={style.Form__footer__link}>
