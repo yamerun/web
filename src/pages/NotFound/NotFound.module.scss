@@ -1,0 +1,52 @@
+@import "../../Layouts/vars";
+
+.NotFound {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 0;
+	font-family: "BasisGrotesquePro";
+
+	&__headeing {
+		color: white;
+		font-size: 24px;
+		font-weight: 600;
+
+		@media screen and (max-width: ($break_xs - 1)) {
+			font-size: 18px;
+		}
+	}
+
+	&__image {
+		margin: 2rem auto;
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	&__gotohome {
+		display: inline-block;
+		width: 100%;
+		max-width: 200px;
+		padding: 9px 10px;
+		margin: auto;
+		color: white;
+		font-family: "BasisGrotesquePro";
+		font-size: 16px;
+		line-height: 1;
+		text-align: center;
+		text-decoration: none;
+		background-color: #701412;
+		border: 1px solid #701412;
+		border-radius: 20px;
+
+		&:hover {
+			background-color: #df3c3c;
+			border-color: #df3c3c;
+
+		}
+	}
+}
