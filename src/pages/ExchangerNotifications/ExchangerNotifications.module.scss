@@ -1,181 +1,190 @@
 .Notifications {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media screen and (max-width: 1067px) {
-    height: fit-content;
-  }
-  &__container {
-    width: 70%;
-    display: flex;
-    margin: 40px;
-    height: 75%;
-    flex-direction: column;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-    &__btn {
-      width: 130px;
-      background: none;
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      margin-top: 20px;
-      color: #f3f3f3;
-      border: 2px solid #fe0000;
-      border-radius: 60px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
+	&__container {
+		display: flex;
+		flex-direction: column;
 
-    &__header {
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 900;
-      font-size: 45px;
-      color: #f3f3f3;
-    }
+		&__btn {
+			width: 130px;
+			background: none;
+			font-family: "BasisGrotesquePro";
+			font-style: normal;
+			font-weight: 700;
+			font-size: 16px;
+			margin-top: 20px;
+			color: #f3f3f3;
+			border: 2px solid #fe0000;
+			border-radius: 60px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
 
-    &__options {
-      display: flex;
-      margin-top: 30px;
-      justify-content: left;
-      gap: 10px;
-      flex-direction: row;
-      @media screen and (max-width: 1067px) {
-        flex-direction: column;
-      }
-      &__box {
-        border-radius: 20px;
-        background: #2d2d31;
-        width: 400px;
-        height: 200px;
-        padding: 20px;
-        @media screen and (max-width: 800px) {
-          width: 250px;
-        }
-        &__header {
-          color: white;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 20px;
-          border-bottom: 1px solid #5e5e65;
-          padding-bottom: 20px;
-          @media screen and (max-width: 800px) {
-            font-size: 12px;
-          }
-          @media screen and (max-width: 580px) {
-            font-size: 9px;
-          }
-        }
+		&__header {
+			font-family: "BasisGrotesquePro";
+			font-style: normal;
+			font-weight: 900;
+			font-size: 45px;
+			color: #f3f3f3;
+		}
 
-        &__header2 {
-          color: white;
-          font-family: "BasisGrotesquePro";
-          font-style: normal;
-          font-weight: 700;
-          font-size: 20px;
-          border-top: 1px solid #5e5e65;
-          padding-top: 20px;
-          @media screen and (max-width: 800px) {
-            font-size: 14px;
-          }
-        }
-      }
-      &__box2 {
-        border-radius: 20px;
-        background: #2d2d31;
-        width: 500px;
-        height: 200px;
-        padding: 20px;
-        @media screen and (max-width: 800px) {
-          width: 360px;
-        }
-        @media screen and (max-width: 580px) {
-          width: 250px;
-        }
-      }
-    }
-  }
+		&__options {
+			display: flex;
+			margin-top: 30px;
+			justify-content: left;
+			gap: 10px;
+			flex-direction: row;
+
+			@media screen and (max-width: 1067px) {
+				flex-direction: column;
+			}
+
+			&__box {
+				border-radius: 20px;
+				background: #2d2d31;
+				width: 400px;
+				min-height: 200px;
+				padding: 20px;
+
+				@media screen and (max-width: 800px) {
+					width: 250px;
+				}
+
+				&__header {
+					color: white;
+					font-family: "BasisGrotesquePro";
+					font-style: normal;
+					font-weight: 700;
+					font-size: 20px;
+					border-bottom: 1px solid #5e5e65;
+					padding-bottom: 20px;
+
+					@media screen and (max-width: 800px) {
+						font-size: 12px;
+					}
+
+					@media screen and (max-width: 580px) {
+						font-size: 9px;
+					}
+				}
+
+				&__header2 {
+					color: white;
+					font-family: "BasisGrotesquePro";
+					font-style: normal;
+					font-weight: 700;
+					font-size: 20px;
+					border-top: 1px solid #5e5e65;
+					padding-top: 20px;
+
+					@media screen and (max-width: 800px) {
+						font-size: 14px;
+					}
+				}
+			}
+
+			&__box2 {
+				border-radius: 20px;
+				background: #2d2d31;
+				width: 500px;
+				height: 200px;
+				padding: 20px;
+
+				@media screen and (max-width: 800px) {
+					width: 360px;
+				}
+
+				@media screen and (max-width: 580px) {
+					width: 250px;
+				}
+			}
+		}
+	}
 }
 
 .switchCheckBox {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  &__container {
-    display: flex;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 
-    gap: 5px;
+	&__container {
+		display: flex;
+		align-items: center;
 
-    &__header {
-      width: 100px;
-      white-space: nowrap;
-      color: white;
-      font-family: "BasisGrotesquePro";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      @media screen and (max-width: 580px) {
-        white-space: wrap;
-        width: fit-content;
-        font-size: 11px;
-      }
-    }
-  }
+		gap: 5px;
+
+		&__header {
+			width: 100px;
+			white-space: nowrap;
+			color: white;
+			font-family: "BasisGrotesquePro";
+			font-style: normal;
+			font-weight: 500;
+			font-size: 16px;
+
+			@media screen and (max-width: 580px) {
+				white-space: wrap;
+				width: fit-content;
+				font-size: 11px;
+			}
+		}
+	}
 }
 
 .switch {
-  display: inline-block;
-  position: relative;
-  width: 2em;
-  height: 1em;
+	display: inline-block;
+	position: relative;
+	width: 2em;
+	height: 1em;
 }
 
 .switch input {
-  display: none;
+	display: none;
 }
 
 .switch label {
-  display: block;
-  position: absolute;
-  cursor: pointer;
-  background-color: #151517;
-  border: 1px solid #5e5e65;
-  width: 100%;
-  height: 100%;
-  border-radius: 40px;
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	background-color: #151517;
+	border: 1px solid #5e5e65;
+	width: 100%;
+	height: 17px;
+	border-radius: 40px;
 
-  @media screen and (max-width: 580px) {
-    min-width: 30px;
-  }
-  transition: 0.3s;
+	@media screen and (max-width: 580px) {
+		min-width: 30px;
+	}
+
+	transition: 0.3s;
 }
 
 .switch label:before {
-  content: "";
-  display: block;
-  position: absolute;
-  cursor: pointer;
-  background-color: #fe0000;
-  border: 1px solid #5e5e65;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  left: 0;
-  top: 0px;
-  transition: 0.3s;
+	content: "";
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	background-color: #fe0000;
+	border: 1px solid #5e5e65;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+	left: 0;
+	top: 0px;
+	transition: 0.3s;
+	box-sizing: border-box;
 }
 
-.switch input:checked + label {
-  background-color: #151517;
+.switch input:checked+label {
+	background-color: #151517;
 }
 
-.switch input:checked + label:before {
-  transform: translateX(15px);
+.switch input:checked+label:before {
+	transform: translateX(15px);
 }

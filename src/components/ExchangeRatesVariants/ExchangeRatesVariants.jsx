@@ -73,7 +73,7 @@ export default function ExchangeRatesVariants({ open }) {
 					<LineChartStatistics />
 				) : (
 					<>
-						{isTwice != false ? (
+						{isTwice != false && currentFrom && currentTo != "" ? (
 							<thead>
 								<tr className={style.courseBorder__headeritems}>
 									<th>Схема обмена</th>
@@ -93,8 +93,8 @@ export default function ExchangeRatesVariants({ open }) {
 									<th>Обменять</th>
 									<th>Об обменнике</th>
 									{/*
-									// Системное скрытие блоков по ширине 
-									{screenSize.dynamicWidth >= 1050 && <th>Статус</th>} 
+									// Системное скрытие блоков по ширине
+									{screenSize.dynamicWidth >= 1050 && <th>Статус</th>}
 									*/ }
 								</tr>
 							</thead>

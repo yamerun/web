@@ -1,27 +1,26 @@
+@import "../../Layouts/vars";
+
 .EmptyRates {
-  height:90%;
-  margin: 15px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  &__text {
-    color:white;
-    font-size: 32px;
-    font-family: "BasisGrotesquePro";
-    font-weight: 600;
+	padding: 2.5rem 1rem;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: "BasisGrotesquePro";
 
-    @media screen and (max-width:1600px) {
-      font-size:20px;
-    }
-  }
+	&__text {
+		margin-bottom: 2em;
+		color: white;
+		font-size: 34px;
+		font-weight: 600;
 
-  &__img {
+		@media screen and (max-width: ($break_sm - 1)) {
+			font-size: 20px;
+		}
+	}
 
-
-    @media screen and (max-width:709px) {
-     width:250px;
-     height:250px;
-    }
-  }
+	&__img {
+		max-width: 100%;
+		height: auto;
+	}
 }

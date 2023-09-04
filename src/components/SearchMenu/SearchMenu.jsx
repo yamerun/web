@@ -11,6 +11,7 @@ import { setCurrentItemFromReducer } from "../../store/itemsSlice/itemsSlice";
 import { setCurrentItemToReducer } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 import axios from "axios";
+import transliterate from "transliterate";
 
 export const SearchMenu = () => {
 	const ref = useRef(null);
@@ -153,11 +154,10 @@ export const SearchMenu = () => {
 	const ChangeInputVal = (e) => {
 		switch (e.target.name) {
 			case "from":
-				console.log(e.target.value);
-				setInputValue(e.target.value);
+				setInputValue(transliterate(e.target.value));
 				break;
 			case "to":
-				setInput2Value(e.target.value);
+				setInput2Value(transliterate(e.target.value));
 				break;
 		}
 	};

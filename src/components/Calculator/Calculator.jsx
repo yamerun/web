@@ -120,7 +120,7 @@ export const Calculator = () => {
 				</div>
 			</div>
 			<div className="col-lg-2">
-				<div className={style.FormFilter__item + ' d-flex f-center'}>
+				<div className={style.FormFilter__item + ' d-flex f-end'}>
 					<button
 						onClick={clearCalculate}
 						className={style.FormFilter__item__btn + ' ' + style.FormFilter__item__btn__alt}

@@ -81,78 +81,76 @@ export const ExchangerNotifications = () => {
 						</div>
 					</sidebar>
 					<main className={style.Notifications + ' col-md-8 col-lg-9'}>
-						<div className="block">
-							<div className={style.Notifications__container}>
-								<h1 className={style.Notifications__container__header}>
-									Настройка уведомлений
-								</h1>
-								<div className={style.Notifications__container__options}>
-									<div className={style.Notifications__container__options__box}>
-										<h1
-											className={style.Notifications__container__options__box__header}
-										>
-											Отправлять уведомления:
-										</h1>
-										<div className={style.switchCheckBox}>
-											<div className={style.switchCheckBox__container}>
-												<div className={style.switch}>
-													<input
-														type="checkbox"
-														id="email"
-														onClick={(e) => togglePoint(e.target)}
-													/>
-													<label htmlFor="email"></label>
-												</div>
-
-												<h1 className={style.switchCheckBox__container__header}>
-													{" "}
-													E-mail: {user.email}
-												</h1>
+						<div className={style.Notifications__container}>
+							<h1 className={style.Notifications__container__header}>
+								Настройка уведомлений
+							</h1>
+							<div className={style.Notifications__container__options}>
+								<div className={style.Notifications__container__options__box}>
+									<h1
+										className={style.Notifications__container__options__box__header}
+									>
+										Отправлять уведомления:
+									</h1>
+									<div className={style.switchCheckBox}>
+										<div className={style.switchCheckBox__container}>
+											<div className={style.switch}>
+												<input
+													type="checkbox"
+													id="email"
+													onClick={(e) => togglePoint(e.target)}
+												/>
+												<label htmlFor="email"></label>
 											</div>
-											<div className={style.switchCheckBox__container}>
-												<div className={style.switch}>
-													<input
-														type="checkbox"
-														id="telegram"
-														onClick={(e) => togglePoint(e.target)}
-													/>
-													<label htmlFor="telegram"></label>
-												</div>
 
-												<h1 className={style.switchCheckBox__container__header}>
-													Telegram: {user.telegram}
-												</h1>
-											</div>
+											<h1 className={style.switchCheckBox__container__header}>
+												{" "}
+												E-mail: {user.email}
+											</h1>
 										</div>
-										<h1
-											className={style.Notifications__container__options__box__header2}
-										>
-											Уведомления в Telegram-группе →
-										</h1>
+										<div className={style.switchCheckBox__container}>
+											<div className={style.switch}>
+												<input
+													type="checkbox"
+													id="telegram"
+													onClick={(e) => togglePoint(e.target)}
+												/>
+												<label htmlFor="telegram"></label>
+											</div>
+
+											<h1 className={style.switchCheckBox__container__header}>
+												Telegram: {user.telegram}
+											</h1>
+										</div>
 									</div>
-									<div className={style.Notifications__container__options__box2}>
-										<h1
-											className={style.Notifications__container__options__box__header}
-										>
-											Включите тип уведомлений:
-										</h1>
-										<div className={style.switchCheckBox}>
-											{types.map((item) => (
-												<div className={style.switchCheckBox__container}>
-													<div className={style.switch}>
-														<input
-															type="checkbox"
-															id={item.id}
-															onClick={(e) => changeNotflication(e.target)}
-														/>
-														<label for={item.id}></label>
-													</div>
-													<h1 className={style.switchCheckBox__container__header}>
-														{item.name}
-													</h1>
+									<h1
+										className={style.Notifications__container__options__box__header2}
+									>
+										Уведомления в Telegram-группе →
+									</h1>
+								</div>
+								<div className={style.Notifications__container__options__box2}>
+									<h1
+										className={style.Notifications__container__options__box__header}
+									>
+										Включите тип уведомлений:
+									</h1>
+									<div className={style.switchCheckBox}>
+										{types.map((item) => (
+											<div className={style.switchCheckBox__container}>
+												<div className={style.switch}>
+													<input
+														type="checkbox"
+														id={item.id}
+														onClick={(e) => changeNotflication(e.target)}
+													/>
+													<label for={item.id}></label>
 												</div>
-											))}
-										</div>
+												<h1 className={style.switchCheckBox__container__header}>
+													{item.name}
+												</h1>
+											</div>
+										))}
 									</div>
 								</div>
 							</div>

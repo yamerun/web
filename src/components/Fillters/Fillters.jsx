@@ -55,6 +55,7 @@ export const Fillters = () => {
 		if (tab.textContent == "Статистика") {
 			setOpen(true);
 		} else setOpen(false);
+
 		if (tab.textContent == "Двойной обмен") {
 			dispatch(setisTwice(true));
 		} else {
@@ -71,8 +72,6 @@ export const Fillters = () => {
 			{/* Активация первого таба */ }
 			const btnElement = document.querySelector(`.${style.Fillters__navigation__item}`);
 			setTab(btnElement);
-
-
 		}
 	}, [isFilltersClear]);
 
@@ -95,7 +94,7 @@ export const Fillters = () => {
 				<div
 					className={currentFrom && currentTo !== "" ? style.show : style.hide}
 				>
-					<ClearAll />
+					{/* <ClearAll /> */}
 				</div>
 				<div ref={notflications} className={style.Fillters__inActive}>
 					<Notflications />

@@ -60,6 +60,10 @@ export const TwiceExchange = () => {
 		}
 	};
 
+	const clearTwice = () => {
+		dispatch(setisTwice(false));
+	};
+
 	useEffect(() => {
 		if (isTwice == true) {
 			axios
@@ -73,37 +77,60 @@ export const TwiceExchange = () => {
 	}, [currentFrom, currentTo, isTwice]);
 
 	return (
-		<div className={style.TwiceChange}>
-			<div className={style.TwiceChange__inputMenu}>
-				<div className={style.TwiceChange__container}>
-					<h1 className={style.TwiceChange__container__text}>Отдаете : </h1>
+		<div className={style.TwiceChange + ' ' + style.FormFilter + ' row'}>
+			<div className="col-lg-2"></div>
+			<div className="col-lg-3 col-6">
+				<label className={style.FormFilter__item + ' ' + style.left} htmlFor="">
+					<span className={style.FormFilter__label__text}>Oтдаете
+						<span className={style.FormFilter__label__current}>{currentFrom}</span>
+					</span>
 					<input
-						className={style.TwiceChange__container__input}
+						className={style.FormFilter__item__input}
 						onChange={(e) => setCalculetedAmountGive(e)}
 						ref={inputGive}
 					/>
-					<h1 className={style.TwiceChange__container__currentFrom}>
-						{currentFrom}
-					</h1>
-				</div>
-				<div className={style.TwiceChange__container}>
-					<h1 className={style.TwiceChange__container__text}>Получаете : </h1>
+				</label>
+			</div>
+			<div className="col-lg-3 col-6">
+				<label className={style.FormFilter__item + ' ' + style.right} htmlFor="">
+					<span className={style.FormFilter__label__text}>Получаете
+						<span className={style.FormFilter__label__current}>{currentTo}</span>
+					</span>
 					<input
-						className={style.TwiceChange__container__input}
+						className={style.FormFilter__item__input}
 						onChange={(e) => setCalculetedAmountGet(e)}
 						ref={inputGet}
 					/>
-					<h1 className={style.TwiceChange__container__currentTo}>
-						{currentTo}
-					</h1>
+				</label>
+			</div>
+			<div className={style.FormFilter__wrapper + ' col-lg-2'}>
+				<label className={style.FormFilter__item + ' d-flex p-unbottom'} htmlFor="nocommission">
+					<input
+						id="nocommission"
+						className={style.FormFilter__item__checkbox}
+						type="checkbox"
+					/>
+					<span></span>
+					<span className={style.FormFilter__label__text}>Без комиссий ПС</span>
+				</label>
+				<div className={style.FormFilter__item}>
+					<button
+						className={style.FormFilter__item__btn}
+						onClick={getCalculatedValue}
+					>
+						Рассчитать
+					</button>
 				</div>
 			</div>
-			<button className={style.TwiceChange__btn} onClick={getCalculatedValue}>
-				Рассчитать
-			</button>
-			<div className={style.TwiceChange__btnBox}>
-				<button className={style.TwiceChange__btn}>Без комиссий ПС</button>
-				<button className={style.TwiceChange__btn}>Очистить фильтры</button>
+			<div className="col-lg-2">
+				<div className={style.FormFilter__item + ' d-flex f-end'}>
+					<button
+						onClick={clearTwice}
+						className={style.FormFilter__item__btn + ' ' + style.FormFilter__item__btn__alt}
+					>
+						Очистить фильтры
+					</button>
+				</div>
 			</div>
 		</div>
 	);
