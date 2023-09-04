@@ -39,6 +39,8 @@ import { TimerPage } from "./pages/TimerPage";
 // import { FavoriteExchangers } from "./pages/FavoriteExchangers/FavoriteExchangers";
 // import { FavoriteExchangersLoader } from "./pages/FavoriteExchangers/FavoriteExchangers";
 // import SubscribeDetail from "./pages/SubscribeDetail/SubscribeDetail";
+import { ForgotPassword, ForgotPasswordLoader } from "./pages/ForgotPassword/ForgotPassword";
+import { NotFound } from "./pages/NotFound/NotFound";
 const router = createBrowserRouter([
 	{
 		element: <TimerPage />,
@@ -64,6 +66,11 @@ const router = createBrowserRouter([
 			{
 				path: "/login",
 				element: <LoginPage />,
+			},
+			{
+				path: "/forgot-password/:step",
+				element: <ForgotPassword />,
+				loader: ForgotPasswordLoader,
 			},
 			{
 				path: "/register",
@@ -152,6 +159,10 @@ const router = createBrowserRouter([
 			{
 				path: "/exchanger/register",
 				element: <ExchangerRegisterPage />,
+			},
+			{
+				path: "*",
+				element: <NotFound />
 			}
 		],
 	},
