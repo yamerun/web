@@ -1,6 +1,8 @@
+@import "../../Layouts/vars";
+
 .Header {
 	width: 100%;
-	padding: 10px 0;
+	padding: 3px 0;
 	/*
 	position: sticky;
 	left: 0;
@@ -120,6 +122,10 @@
 				border-bottom: 1px solid rgba(255, 255, 255, 0.308);
 				text-align: left;
 				padding-left: 10px;
+			}
+
+			@media screen and (max-width: ($break_xs - 1)) {
+				margin: 1.5rem 0 0;
 			}
 		}
 
