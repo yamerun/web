@@ -54,13 +54,15 @@ export const ItemPage = () => {
 	};
 
 	useEffect(() => {
-		if (hideBlocks === true) {
-			IframeBlock.current.classList.add(`${style.open}`);
-			iframebtn.current.classList.add(`${style.btnActive}`);
-		}
-		if (hideBlocks === false) {
-			IframeBlock.current.classList.remove(`${style.open}`);
-			iframebtn.current.classList.remove(`${style.btnActive}`);
+		if (IframeBlock.current) {
+			if (hideBlocks === true) {
+				IframeBlock.current.classList.add(`${style.open}`);
+				iframebtn.current.classList.add(`${style.btnActive}`);
+			}
+			if (hideBlocks === false) {
+				IframeBlock.current.classList.remove(`${style.open}`);
+				iframebtn.current.classList.remove(`${style.btnActive}`);
+			}
 		}
 	}, [hideBlocks]);
 

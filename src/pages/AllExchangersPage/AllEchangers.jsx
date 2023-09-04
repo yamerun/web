@@ -162,7 +162,7 @@ export const AllEchangers = () => {
 			<div className={'container-full'}>
 				<div className="row">
 					<SearchMenu />
-					<main className={style.Exchangers + ' col-md-8 col-lg-9'}>
+					<main className={style.Exchangers + ' col-lg-9 col-md-8 col-12'}>
 						<div className="block">
 							<div className={style.Exchangers__content__body}>
 								<div className={style.Exchangers__content__body__seacrh}>
@@ -263,20 +263,15 @@ export const AllEchangers = () => {
 												<p>Обменники</p>
 											</th>
 											<th>
-												<p>Отдаете ↑</p>
-											</th>
-											<th>
-												<p>Получаете ↓</p>
-											</th>
-											<th>
 												<p>Резерв</p>
+											</th>
+											<th>
+												<p>Кол-во курсов</p>
 											</th>
 											<th>
 												<p>Отзывы</p>
 											</th>
-											<th>
-												<p>Статус</p>
-											</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody className={style.table}>
@@ -285,28 +280,17 @@ export const AllEchangers = () => {
 												<td className={style.table__row__box}>
 													<div className={style.table__row__exchanger}>
 														<Link
-															to={`/ExchangerPage/${item.id}`}
+															to={`/exchanger/${item.id}`}
 															className={style.table__row__box__link}
 														/>
 														<p>{item.exchanger.name}</p>
 													</div>
 												</td>
 												<td className={style.table__row__box}>
-													<div className={style.table__row__flexbox}>
-														<p className={style.table__row__box__minitext}>
-															{item.from}
-														</p>
-														<p>{(Math.round(item.in * 100) / 100).toFixed(2)}</p>
-													</div>
-												</td>
-												<td className={style.table__row__box}>
-													<div className={style.table__row__flexbox}>
-														<p className={style.table__row__box__minitext}>{item.to}</p>
-														<p>{(Math.round(item.out * 100) / 100).toFixed(2)}</p>
-													</div>
-												</td>
-												<td className={style.table__row__box}>
 													<p>{(Math.round(item.amount * 100) / 100).toFixed(2)}</p>
+												</td>
+												<td className={style.table__row__box}>
+													<p>{item.number_rates ? `${item.number_rates}` : 0}</p>
 												</td>
 												<td className={style.table__row__box}>
 													<p>
@@ -314,14 +298,9 @@ export const AllEchangers = () => {
 													</p>
 												</td>
 												<td className={style.table__row__box}>
-													<p
-														style={{
-															color:
-																item.exchanger.status.title === "Работает" ? "#00FF7F" : "red",
-														}}
-													>
-														{item.exchanger.status.title}
-													</p>
+													<Link
+														to={`/exchanger/${item.id}`}
+													>Подробнее</Link>
 												</td>
 											</tr>
 										))}

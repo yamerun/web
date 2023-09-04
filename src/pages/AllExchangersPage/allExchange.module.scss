@@ -1,3 +1,5 @@
+@import "../../Layouts/vars";
+
 .Exchangers {
 	display: flex;
 	align-items: center;
@@ -53,8 +55,8 @@
 			border-radius: 20px;
 
 			//      min-width: 490px;
-			@media screen and (max-width: 524px) {
-				width: 310px;
+			@media screen and (max-width: ($break_xs - 1)) {
+				padding: 1rem 0.5rem;
 			}
 
 			&__seacrh {
@@ -65,6 +67,10 @@
 				flex-direction: row;
 				border-radius: 20px;
 				padding: 20px;
+
+				@media screen and (max-width: ($break_xs - 1)) {
+					padding: 1rem 0.25rem;
+				}
 
 				&__selected {
 					display: flex;
@@ -93,7 +99,6 @@
 				&__input {
 					position: relative;
 					display: flex;
-					flex-direction: column;
 
 					@media screen and (max-width: 750px) {
 						width: 150px;
