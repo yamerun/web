@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import style from "./Comments.module.scss";
 import StarRatings from "react-star-ratings";
-import { Like } from "../Like/Like";
-import { Dislike } from "../Dislike/Dislike";
+import { Like, LikeFill } from "../Like/Like";
+import { Dislike, DislikeFill } from "../Dislike/Dislike";
 import axios from "axios";
 import { ChildComments } from "../ChildComments/ChildComments";
 
@@ -144,14 +144,22 @@ export const Comments = ({ props, review, w = '100%', st = '' }) => {
 								onClick={RateLike}
 								className={style.Review__likeOrDislike__btn}
 							>
-								<Like />
+								{props.user_score === 1 ? (
+									<LikeFill />
+								) : (
+									<Like />
+								)}
 								<p>{props.likes}</p>
 							</button>
 							<button
 								onClick={RateDisLike}
 								className={style.Review__likeOrDislike__btn}
 							>
-								<Dislike />
+								{props.user_score === 0 ? (
+									<DislikeFill />
+								) : (
+									<Dislike />
+								)}
 								<p>{props.dislikes}</p>
 							</button>
 						</div>

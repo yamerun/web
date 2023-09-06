@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import style from "./AddToFavorite.module.scss";
 import img from '../../assets/imgs/favoriteheart.svg';
@@ -13,6 +13,30 @@ export default function AddToFavorite({ itemid }) {
 	};
 	const [resp, setResp] = React.useState([])
 
+	useEffect(() => {
+		const config = {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+			},
+		};
+		axios
+			.get(`https://change.pro/api/user/favorite/exchangers`, config)
+			.then(function (response) {
+				if (response.data?.data) {
+					const favorites = response.data.data;
+					for (let f of favorites) {
+						if (f.id == itemid) {
+							setResp({ is_favorite: true });
+							break;
+						}
+					}
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}, []);
+
 	const toggleToFavorite = () => {
 		axios
 			.post(
@@ -20,7 +44,6 @@ export default function AddToFavorite({ itemid }) {
 				{
 					exchanger_id: itemid,
 				},
-
 				config
 			)
 			.then(function (response, error) {
