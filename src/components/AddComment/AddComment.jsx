@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./AddComment.module.scss";
 import axios from "axios";
+import { PrivacyPolicyLink } from "../PrivacyPolicyLink/PrivacyPolicyLink";
 
 export default function AddComment({ HideReviews, id, name, review, }) {
 	const Register = () => {
@@ -145,7 +146,7 @@ export default function AddComment({ HideReviews, id, name, review, }) {
 							Оставить отзыв
 						</button>
 						<div className={style.formReviews__subtext}>
-							<p>Нажав «Оставить отзыв», я принимаю «<Link to="/register">Условия обработки персональных данных</Link>»</p>
+							<p>Нажав «Оставить отзыв», я принимаю «<PrivacyPolicyLink />»</p>
 						</div>
 					</div>
 				</div>

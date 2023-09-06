@@ -3,6 +3,7 @@ import style from "./ExchangerRegForm.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputPhone from 'react-phone-number-input/input'
+import { PrivacyPolicyLink } from "../PrivacyPolicyLink/PrivacyPolicyLink";
 
 export default function ExchanngerRegisterForm() {
 	const [login, setLogin] = React.useState("");
@@ -240,7 +241,7 @@ export default function ExchanngerRegisterForm() {
 					</button>
 				</div>
 				<div className={style.Form__container__inputBox}>
-					<div className={style.Form__agree}>Нажав «Регистрация», я принимаю «<Link to="/register">Условия обработки персональных данных</Link>»</div>
+					<div className={style.Form__agree}>Нажав «Регистрация», я принимаю «<PrivacyPolicyLink />»</div>
 				</div>
 
 			</div>

@@ -158,7 +158,8 @@ export const Input = () => {
 			<div className={style.Form__footer}>
 				<div className={style.Form__footer__link}>
 					<Link to="/register">Зарегистрироваться</Link>
-					<div className={style.Form__subtext}>если вы новый пользователь</div>
+					<div className={style.Form__subtext}>если вы новый пользователь<br />или</div>
+					<Link to="/exchanger/register">Создать аккаунт обменника</Link>
 				</div>
 			</div>
 		</div>

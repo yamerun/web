@@ -8,6 +8,7 @@ import { setEmail } from "../../store/userAccountSlice/AccountSlice";
 import { setPassword } from "../../store/userAccountSlice/AccountSlice";
 import { setName } from "../../store/userAccountSlice/AccountSlice";
 import { RegistrationPopup } from "../RegistrationPopup/Popup";
+import { PrivacyPolicyLink } from "../PrivacyPolicyLink/PrivacyPolicyLink";
 
 import img from "../../assets/imgs/icon-social-auth-vk.png";
 import img2 from "../../assets/imgs/icon-social-auth-google.png";
@@ -178,7 +179,7 @@ export const InputRegistration = (e) => {
 					</button>
 				</div>
 				<div className={style.Form__container__inputBox}>
-					<div className={style.Form__agree}>Нажав «Зарегистрироваться», я принимаю «<Link to="/register">Условия обработки персональных данных</Link>»</div>
+					<div className={style.Form__agree}>Нажав «Зарегистрироваться», я принимаю «<PrivacyPolicyLink />»</div>
 				</div>
 				<span className={style.Form__message}>{err}</span>
 				{/*
