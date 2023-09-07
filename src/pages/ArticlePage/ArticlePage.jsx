@@ -6,7 +6,6 @@ import { SearchMenu } from "../../components/SearchMenu/SearchMenu";
 import { Link, useLoaderData } from "react-router-dom";
 export const Articlepage = () => {
 	const { article } = useLoaderData();
-	console.log(article.data);
 	function createMarkup(content) {
 		content = content.replace(/style="[\s\S]*?"/gi, "");
 		return { __html: `${content}` };
@@ -32,7 +31,7 @@ export const Articlepage = () => {
 
 							<section className={style.Article__cover}>
 								<div className="media-ratio">
-									<img alt={article.title} src={article.preview} />
+									<img alt={article.data.title} src={`https://change.pro/${article.data.preview_picture.path}`} />
 								</div>
 							</section>
 

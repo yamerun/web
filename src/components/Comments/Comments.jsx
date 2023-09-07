@@ -18,9 +18,9 @@ export const Comments = ({ props, review, w = '100%', st = '' }) => {
 	useEffect(() => {
 		const isLike = localStorage.getItem(`isLike${props.id}`);
 		const isDislike = localStorage.getItem(`isDislike${props.id}`);
-		if (isLike === "true") {
+		if (isLike === "true" || props.user_score === 1) {
 			setLike(true);
-		} else if (isDislike === "true") {
+		} else if (isDislike === "true" || props.user_score === 0) {
 			setDislike(true);
 		}
 	}, [props.id]);
@@ -30,6 +30,9 @@ export const Comments = ({ props, review, w = '100%', st = '' }) => {
 			setActive(!active);
 		}
 	};
+
+	const setActiveLike = like ? (`${style.Review__likeOrDislike__btn}` + ' ' + `${style.active}`) : `${style.Review__likeOrDislike__btn}`;
+	const setActiveDislike = dislike ? (`${style.Review__likeOrDislike__btn}` + ' ' + `${style.active}`) : `${style.Review__likeOrDislike__btn}`;
 
 	const RateLike = () => {
 		axios
@@ -142,9 +145,9 @@ export const Comments = ({ props, review, w = '100%', st = '' }) => {
 						<div className={style.Review__likeOrDislike}>
 							<button
 								onClick={RateLike}
-								className={style.Review__likeOrDislike__btn}
+								className={setActiveLike}
 							>
-								{props.user_score === 1 ? (
+								{like ? (
 									<LikeFill />
 								) : (
 									<Like />
@@ -153,9 +156,9 @@ export const Comments = ({ props, review, w = '100%', st = '' }) => {
 							</button>
 							<button
 								onClick={RateDisLike}
-								className={style.Review__likeOrDislike__btn}
+								className={setActiveDislike}
 							>
-								{props.user_score === 0 ? (
+								{dislike ? (
 									<DislikeFill />
 								) : (
 									<Dislike />

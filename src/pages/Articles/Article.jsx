@@ -69,7 +69,7 @@ export const Articles = () => {
 													<div className="media-ratio">
 														<img
 															alt={item.title}
-															src={`https://change.pro/${item.preview_picture.path}`}
+															src={`https://change.pro/${item.preview_picture_min.path}`}
 														/>
 													</div>
 												</div>

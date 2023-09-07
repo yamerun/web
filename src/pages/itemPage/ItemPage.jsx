@@ -23,6 +23,11 @@ export const exchangeLoader = async ({ params }) => {
 
 export const ItemPage = () => {
 	const { item } = useLoaderData();
+	if (item.success === false) {
+		window.location.href = '/404';
+		return null;
+	}
+
 	const [review, setReview] = useState();
 	const [screenSize, getDimension] = React.useState({
 		dynamicWidth: window.innerWidth,

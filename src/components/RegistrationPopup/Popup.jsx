@@ -11,11 +11,15 @@ export const RegistrationPopup = ({ isVisible = false, type = 'user', onClose })
 				onClose();
 				break;
 			default:
+				break;
 		}
 	};
 
 	useEffect(() => {
 		switch (type) {
+			case 'reset':
+				setContent('<h4>Пароль обновлён</h4><p>Вы можете войти в свой аккаунт, используя обновлённый пароль.</p>');
+				break;
 			case 'exchanger':
 
 				break;
@@ -38,12 +42,10 @@ export const RegistrationPopup = ({ isVisible = false, type = 'user', onClose })
 					<img src={img} alt="Ok" className={style.Popup__thumb} />
 					<div className={style.Popup__content} dangerouslySetInnerHTML={{ __html: content }}></div>
 					<div className={style.Popup__footer}>
-						<Link className={style.Popup__gotoaccount}>Перейти в Личный кабинет</Link>
-						<Link className={style.Popup__gotohome}>На Главную</Link>
+						<Link className={style.Popup__gotoaccount} to="/login">Перейти в Личный кабинет</Link>
+						<Link className={style.Popup__gotohome} to="/">На Главную</Link>
 					</div>
-
 				</div>
-
 			</div>
 		</div >
 	);
