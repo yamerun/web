@@ -1,8 +1,6 @@
 @import "../../Layouts/vars";
 
 .Exchangers {
-	display: flex;
-	align-items: center;
 	justify-content: center;
 
 	&__content {
@@ -153,8 +151,7 @@
 						padding: 5px;
 
 						&::placeholder {
-							color: white;
-							text-transform: uppercase;
+							color: grey;
 
 							@media screen and (max-width: 1600px) {
 								font-size: 14px;
@@ -167,12 +164,10 @@
 					}
 
 					&__btn {
-						background-image: url("../../assets/imgs/search.svg");
+						background: black url("../../assets/imgs/search.svg") center center no-repeat;
 						border: none;
 						height: 30px;
 						width: 30px;
-						background-repeat: no-repeat;
-						background-color: black;
 
 						@media screen and (max-width: 750px) {
 							display: none;
