@@ -7,16 +7,17 @@ import axios from "axios";
 export default function Reset() {
 	const [login, setLogin] = useState('');
 	const dispatch = useDispatch();
+	const [message, setMessage] = useState('');
 	const ResetPassword = () => {
 		axios
-			.get(`https://change.pro/api/auth/register`, {
-				login: login,
+			.get(`https://change.pro/api/auth/restore_password`, {
+				email: login,
 			})
 			.then(function (response) {
-				navigate("/account");
+				setMessage(response.data.message);
 			})
 			.catch(function (error) {
-				setErr(error.response.data.message);
+				setMessage(error.message);
 			});
 	};
 
@@ -61,9 +62,10 @@ export default function Reset() {
 						<span className={style.Form__container__label__text}>Телефон или E-mail <abbr title="обязательно">*</abbr></span>
 					</label>
 				</div>
+				<span style={{ color: 'white' }}>{message}</span>
 				<div className={style.Form__container__inputBox}>
 					<button className={style.Form__btn} onClick={ResetPassword}>
-						Продолжить
+						Восстановить
 					</button>
 				</div>
 			</div>

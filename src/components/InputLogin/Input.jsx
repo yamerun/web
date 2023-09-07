@@ -130,7 +130,7 @@ export const Input = () => {
 					<button className={style.Form__btn} onClick={Login}>
 						Войти
 					</button>
-					<Link className={style.Form__subtext} to="/forget-password/id">Забыли пароль?</Link>
+					<Link className={style.Form__subtext} to="/reset-password/id">Забыли пароль?</Link>
 				</div>
 				<span className={style.Form__message}>{err}</span>
 				{/*
