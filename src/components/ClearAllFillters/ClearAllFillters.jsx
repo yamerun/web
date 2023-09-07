@@ -7,21 +7,21 @@ import { useDispatch } from "react-redux";
 import { setStatistic } from "../../store/itemsSlice/itemsSlice";
 import { setIsFilltersClear } from "../../store/itemsSlice/itemsSlice";
 export const ClearAll = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const clearAllFillters = () => {
-    dispatch(setCurrentItemFromReducer(''));
-    dispatch(setCurrentItemToReducer(''));
-    dispatch(setCalculated(false));
-    dispatch(setisTwice(false))
-    dispatch(setStatistic([]))
-    dispatch(setIsFilltersClear(true))
-  };
-  return (
-    <div className={style.ClearAll}>
-      <button className={style.ClearAll__btn} onClick={clearAllFillters}>
-        Очистить Фильтры
-      </button>
-    </div>
-  );
+	const clearAllFillters = () => {
+		dispatch(setCurrentItemFromReducer(''));
+		dispatch(setCurrentItemToReducer(''));
+		dispatch(setCalculated(false));
+		dispatch(setisTwice(false))
+		dispatch(setStatistic([]))
+		dispatch(setIsFilltersClear(true))
+	};
+	return (
+		<div className={style.ClearAll}>
+			<button className={style.ClearAll__btn} onClick={clearAllFillters}>
+				Очистить Фильтры
+			</button>
+		</div>
+	);
 };

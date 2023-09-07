@@ -4,9 +4,12 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import {
-	setCalculated,
+	setCurrentItemFromReducer,
 	setisTwice,
-	setitemExchangeRatesReducer,
+	setCurrentItemToReducer,
+	setCalculated,
+	setStatistic,
+	setIsFilltersClear
 } from "../../store/itemsSlice/itemsSlice";
 
 export const Calculator = () => {
@@ -71,6 +74,23 @@ export const Calculator = () => {
 		dispatch(setCalculated(false));
 	};
 
+	const clearAllFillters = () => {
+		dispatch(setCurrentItemFromReducer(''));
+		dispatch(setCurrentItemToReducer(''));
+		dispatch(setCalculated(false));
+		dispatch(setisTwice(false));
+		dispatch(setStatistic([]));
+		dispatch(setIsFilltersClear(true));
+
+		console.log('clearAllFillters');
+
+		document.getElementById('SearchMenuFrom').value = '';
+		document.getElementById('SearchMenuTo').value = '';
+
+		let newUrl = new URL('changePro/', window.location.protocol + '//' + window.location.host);
+		history.pushState({}, '', newUrl);
+	};
+
 	return (
 		<div className={style.Calculator + ' ' + style.FormFilter + ' row'}>
 			<div className="col-lg-2"></div>
@@ -122,7 +142,7 @@ export const Calculator = () => {
 			<div className="col-lg-2">
 				<div className={style.FormFilter__item + ' d-flex f-end'}>
 					<button
-						onClick={clearCalculate}
+						onClick={clearAllFillters}
 						className={style.FormFilter__item__btn + ' ' + style.FormFilter__item__btn__alt}
 					>
 						Очистить фильтры
