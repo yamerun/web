@@ -27,7 +27,7 @@
 			align-items: center;
 			justify-content: space-between;
 			font-family: "BasisGrotesquePro";
-			font-size: 30px;
+			font-size: 24px;
 			font-weight: 700;
 			text-align: left;
 			list-style-type: none;
@@ -84,8 +84,7 @@
 					column-gap: 5px;
 					color: white;
 					font-family: "BasisGrotesquePro";
-					height: 70px;
-					font-size: 22px;
+					font-size: 20px;
 
 					@media screen and (max-width:700px) {
 						font-size: 12px;
