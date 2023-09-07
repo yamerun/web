@@ -80,6 +80,18 @@ export const Notflications = () => {
 	};
 
 	const CreateNotflication = () => {
+		if (currentFrom == '' || currentTo == '') {
+			setError('Выберете валюты для уведомления.');
+			return null;
+		}
+		if (email == '') {
+			setError('Укажите Email.');
+			return null;
+		}
+		if (timeValue == '') {
+			setError('Укажите период для сброса заявки.');
+			return null;
+		}
 		axios
 			.post(`https://change.pro/api/rate/notifications/create`, {
 				from: currentFrom,
@@ -92,7 +104,7 @@ export const Notflications = () => {
 			})
 			.then(function (response) {
 				setError('');
-				setSuccess(`Уведомоление отправлено на ${email}`)
+				setSuccess(`Уведомление отправлено на ${email}`)
 			}).catch(function (error) {
 				setError(error.response.data.message);
 				setSuccess('')
