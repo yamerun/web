@@ -78,10 +78,12 @@
 		background-color: #df3c3c;
 		border: 1px solid #df3c3c;
 		border-radius: 20px;
-
-		&:disabled {
-			background-color: transparent;
-			cursor: not-allowed;
-		}
+		cursor: pointer;
 	}
+}
+
+&__disabled {
+	pointer-events: none;
+	background-color: transparent;
+	cursor: not-allowed;
 }

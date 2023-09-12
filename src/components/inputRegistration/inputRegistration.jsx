@@ -29,6 +29,26 @@ export const InputRegistration = (e) => {
 	const navigate = useNavigate();
 	const ref = useRef(null);
 	const Register = () => {
+		setErr('');
+		let errors = [];
+
+		if (name.length > 45) {
+			errors.push('Логин не должен превышать 45 символов.');
+		}
+
+		if (password.length > 45) {
+			errors.push('Пароль не должен превышать 45 символов.');
+		}
+
+		if (password != verifiedPassword) {
+			errors.push('Пароли не совпадают.');
+		}
+
+		if (errors.length) {
+			setErr(errors.join("\n\r"));
+			return null;
+		}
+
 		axios
 			.post(`https://change.pro/api/auth/register`, {
 				name: name,

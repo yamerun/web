@@ -8,11 +8,11 @@ export default function ChangePassword() {
 	const [message, setMessage] = React.useState('')
 	const ChangeValuePassword = ({ value }) => {
 		setNewPass(value);
-		document.querySelector(`.${style.NewPass__inputBox__submit}`).removeAttribute('disabled');
+		document.querySelector(`.${style.NewPass__inputBox__submit}`).classList.remove(`${style.NewPass__disabled}`);
 	};
 	const ChangeValueConfirmPassword = ({ value }) => {
 		setNewPassConfirm(value);
-		document.querySelector(`.${style.NewPass__inputBox__submit}`).removeAttribute('disabled');
+		document.querySelector(`.${style.NewPass__inputBox__submit}`).classList.remove(`${style.NewPass__disabled}`);
 	};
 
 	const config = {
@@ -35,6 +35,22 @@ export default function ChangePassword() {
 	}
 
 	const ChangePassword = () => {
+		setMessage('');
+		let errors = [];
+
+		if (newPass.length > 45) {
+			errors.push('Пароль не должен превышать 45 символов.');
+		}
+
+		if (newPass != newPassConfirm) {
+			errors.push('Пароли не совпадают.');
+		}
+
+		if (errors.length) {
+			setMessage(errors.join("\n\r"));
+			return null;
+		}
+
 		axios
 			.post(
 				"https://change.pro/api/user/change_password",
@@ -84,8 +100,7 @@ export default function ChangePassword() {
 				<p className="spacer"></p>
 				<button
 					onClick={ChangePassword}
-					className={style.NewPass__inputBox__submit}
-					disabled
+					className={style.NewPass__inputBox__submit + ' ' + style.NewPass__disabled}
 				>Сохранить</button>
 			</div>
 		</div >

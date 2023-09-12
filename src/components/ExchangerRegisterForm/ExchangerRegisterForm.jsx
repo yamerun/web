@@ -93,13 +93,64 @@ export default function ExchanngerRegisterForm() {
 		}
 	});
 
+	function isValidUrl(string) {
+		try {
+			new URL(string);
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
 	const RegisterExchanger = () => {
+		setMessage('');
+		let errors = [];
+
+		if (login.length > 45) {
+			errors.push('Логин не должен превышать 45 символов.');
+		}
+
+		if (pass.length > 45) {
+			errors.push('Пароль не должен превышать 45 символов.');
+		}
+
+		if (pass != confirmpass) {
+			errors.push('Пароли не совпадают.');
+		}
+
+		const phone = num.replace(/[\(\)\s]/g, "");
+		if (phone.length > 12) {
+			errors.push('Телефонный номер не должен превышать 12 знаков.');
+		} else {
+			const phone_match = phone.match(/\+7\d{10}/g);
+			if (!phone_match) {
+				errors.push('Телефонный номер должен быть формата +7 999 999 9999.');
+			}
+		}
+
+		if (telegram.length > 45) {
+			errors.push('Телеграм не должен превышать 45 символов.');
+		}
+
+		if (isValidUrl(fileUrl)) {
+			errors.push('Ссылка на файл с курсами некорректна.');
+		}
+
+		if (isValidUrl(url)) {
+			errors.push('Ссылка на сайт обменника некорректна.');
+		}
+
+		if (errors.length) {
+			setMessage(errors.join("\n\r"));
+			return null;
+		}
+
 		axios.post(`https://change.pro/api/auth/register_exchanger`, {
 			name: login,
 			email: email,
 			password: pass,
 			password_confirmation: confirmpass,
-			phone: num,
+			phone: phone,
 			telegram: telegram,
 			xml_url: fileUrl,
 			site_url: url,
@@ -213,6 +264,7 @@ export default function ExchanngerRegisterForm() {
 							name="exchangerLink"
 							id="echangerLink"
 							placeholder=" "
+							type="url"
 							onChange={(e) => changeValue(e.target)}
 							onBlur={(e) => activeLabel(e.target)}
 							onFocus={(e) => focusLabel(e.target)}
@@ -226,6 +278,7 @@ export default function ExchanngerRegisterForm() {
 							name="fileLink"
 							id="fileLink"
 							placeholder=" "
+							type="url"
 							onChange={(e) => changeValue(e.target)}
 							onBlur={(e) => activeLabel(e.target)}
 							onFocus={(e) => focusLabel(e.target)}
@@ -249,7 +302,7 @@ export default function ExchanngerRegisterForm() {
 			<div className={style.Form__footer}>
 				<div className={style.Form__footer__link}>
 					<Link to="/register">
-						Зарегистрироватсья как пользователь
+						Зарегистрироваться как пользователь
 					</Link>
 				</div>
 			</div>

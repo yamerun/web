@@ -90,7 +90,8 @@
 				}
 			}
 
-			input::-webkit-input-placeholder {
+			input::-webkit-input-placeholder,
+			input::-moz-placeholder {
 				opacity: 0.5;
 			}
 		}
@@ -105,7 +106,8 @@
 				background-color: #2d2d31;
 			}
 
-			input::-webkit-input-placeholder {
+			input::-webkit-input-placeholder,
+			input::-moz-placeholder {
 				opacity: 1;
 			}
 		}
@@ -136,7 +138,8 @@
 				background-color: white;
 				border: 1px solid white;
 
-				&::-webkit-input-placeholder {
+				&::-webkit-input-placeholder,
+				&::-moz-placeholder {
 					opacity: 0;
 				}
 
