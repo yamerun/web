@@ -3,6 +3,7 @@ import { useLoaderData, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./FavoriteExchangers.module.scss";
 import axios from "axios";
+import { EmptyPlaceholder } from "../../components/EmptyPlaceholder/EmptyPlaceholder";
 
 export const FavoriteExchangersLoader = async () => {
 	const key = localStorage.getItem("jwt");
@@ -52,7 +53,7 @@ export default function FavoriteExchangers() {
 
 	return (
 		<div className={style.Favorite + ' row'}>
-			{favorites.map((item) => (
+			{favorites.length ? (favorites.map((item) => (
 				<div className="col-lg-4 col-sm-6">
 					<div className="block">
 						<div className={style.Favorite__item}>
@@ -61,7 +62,7 @@ export default function FavoriteExchangers() {
 								<ToggleToFavorite itemid={item.id} />
 							</div>
 							<Link to={`/exchanger/${item.id}`} className={style.Favorite__item__cover}>
-								<div className="media-ration">
+								<div className="media-ratio">
 									{Object.keys(item?.logo).length !== 0 ? (
 										<React.Suspense
 											fallback={
@@ -90,7 +91,11 @@ export default function FavoriteExchangers() {
 						</div>
 					</div>
 				</div>
-			))}
+			))) : (
+				<div className="col-12">
+					<EmptyPlaceholder type={"favorites"} />
+				</div>
+			)}
 		</div>
 	);
 };

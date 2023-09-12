@@ -3,6 +3,7 @@ import style from "./ExchangerReviews.module.scss";
 import StarRatings from "react-star-ratings";
 import { useLoaderData } from "react-router-dom";
 import { Comments } from "../../components/Comments/Comments";
+import { EmptyPlaceholder } from "../../components/EmptyPlaceholder/EmptyPlaceholder";
 const AccountNavigation = React.lazy(() => import('../../components/PersonalAccountNavigation/AccountNavigation'));
 
 export const reviewloader = async () => {
@@ -15,9 +16,7 @@ export const reviewloader = async () => {
 			},
 		});
 		const info = await getInfo.json();
-		const exchanger_id = info.data.role.id;
-
-		console.log(info);
+		const exchanger_id = info.data.exchanger_id;
 
 		const getReviews = await fetch(
 			`https://change.pro/api/reviews/get?sort=desc&orderBy=id&limit=5&exchanger_id=${exchanger_id}`,
@@ -47,6 +46,9 @@ export const reviewloader = async () => {
 export const ExchangerReviews = () => {
 	const { echangerReviews, exchangerInfo } = useLoaderData();
 	const [review, setReview] = useState();
+
+	console.log('echangerReviews');
+	console.log(echangerReviews?.success == true && echangerReviews.data.length);
 
 	return (
 		<div className={'section-wrapper'}>
@@ -94,7 +96,7 @@ export const ExchangerReviews = () => {
 											</div>
 										</div>
 										<div className={style.ExchangerReviews__commentsBox}>
-											{echangerReviews.data != null ? (
+											{(echangerReviews?.success == true && echangerReviews.data.length) ? (
 												echangerReviews.data.map((item) => (
 													<Comments
 														props={item}
@@ -104,7 +106,9 @@ export const ExchangerReviews = () => {
 													/>
 												))
 											) : (
-												<div></div>
+												<div>
+													<EmptyPlaceholder type={"reviews"} />
+												</div>
 											)}
 										</div>
 									</div>

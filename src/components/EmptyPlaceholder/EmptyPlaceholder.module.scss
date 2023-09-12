@@ -1,0 +1,43 @@
+.Popup {
+	width: 100%;
+	overflow: auto;
+
+	&__wrapper {
+		display: flex;
+		min-height: 100%;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	&__body {
+		width: 100%;
+		min-width: 340px;
+		max-width: 770px;
+		position: relative;
+		padding: 3rem;
+		color: white;
+		font-family: "BasisGrotesquePro";
+		text-align: center;
+		background-color: #2d2d31;
+		border-radius: var(--border-radius-s);
+		box-shadow: var(--shadow);
+	}
+
+	&__content {
+		margin: auto;
+		max-width: 540px;
+		text-align: center;
+
+		h4 {
+			margin-bottom: 1em;
+			color: white;
+			font-size: 18px;
+			font-weight: 600;
+		}
+
+		p {
+			font-size: 16px;
+		}
+	}
+}

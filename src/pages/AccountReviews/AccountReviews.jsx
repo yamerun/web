@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { Comments } from "../../components/Comments/Comments";
+import { EmptyPlaceholder } from "../../components/EmptyPlaceholder/EmptyPlaceholder";
 
 export default function AccountReviews() {
 	const { item } = useLoaderData();
@@ -43,7 +44,9 @@ export default function AccountReviews() {
 						<Comments props={item} st={'blackbg'} />
 					))
 				) : (
-					<div></div>
+					<div>
+						<EmptyPlaceholder type={"reviews-account"} />
+					</div>
 				)}
 			</div>
 			<div className={style.AccountReviews__pagination}></div>
