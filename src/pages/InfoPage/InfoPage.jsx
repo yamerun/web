@@ -19,7 +19,7 @@ export const infoloader = async () => {
 			},
 		});
 		const item = await getInfo.json();
-		const exchanger_id = item.data.role.id;
+		const exchanger_id = item.data.exchanger_id;
 
 		let item2 = null;
 		if (Object.keys(item).length !== 0) {
@@ -87,9 +87,6 @@ export const InfoPage = () => {
 		if (isListing === false) {
 			setIsListing(true);
 		}
-	};
-
-	useEffect(() => {
 		axios
 			.post(
 				`https://change.pro/api/exchangers/edit`,
@@ -99,8 +96,12 @@ export const InfoPage = () => {
 				},
 				config
 			)
-			.then(function (response) { });
-	}, [isListing]);
+			.then(function (response) {
+				if (response.success == true) {
+					setIsListing(response.data.data.is_in_listing);
+				}
+			});
+	};
 
 	const openChangeUrlValue = (e) => {
 		setChangeUrl(!changeUrl);

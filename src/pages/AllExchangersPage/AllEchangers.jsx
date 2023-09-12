@@ -154,7 +154,7 @@ export const AllEchangers = () => {
 												<td className={style.table__row__box}>
 													<div className={style.table__row__exchanger}>
 														<Link
-															to={`/exchanger/${item.id}`}
+															to={`/exchanger/${item.exchanger.id}`}
 															className={style.table__row__box__link}
 														/>
 														<p>{item.exchanger.name}</p>
@@ -173,7 +173,7 @@ export const AllEchangers = () => {
 												</td>
 												<td className={style.table__row__box}>
 													<Link
-														to={`/exchanger/${item.id}`}
+														to={`/exchanger/${item.exchanger.id}`}
 													>Подробнее</Link>
 												</td>
 											</tr>
