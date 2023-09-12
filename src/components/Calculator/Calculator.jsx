@@ -9,7 +9,8 @@ import {
 	setCurrentItemToReducer,
 	setCalculated,
 	setStatistic,
-	setIsFilltersClear
+	setIsFilltersClear,
+	setitemExchangeRatesReducer
 } from "../../store/itemsSlice/itemsSlice";
 
 export const Calculator = () => {
@@ -41,6 +42,8 @@ export const Calculator = () => {
 	};
 
 	const getCalculatedValue = () => {
+		console.log('getCalculatedValue');
+
 		if (inputGet.current.value.length !== 0) {
 			axios
 				.get(

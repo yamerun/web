@@ -1,15 +1,19 @@
 import React from "react";
 import style from "./Header.module.scss";
 import logo from "../../assets/imgs/logo.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 const HeaderRoutes = React.lazy(() =>
 	import("./HeaderNavigationRoutes/HeaderNavigationRoutes")
 );
 export default function Header() {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const goToMain = () => {
-		navigate("/changePro");
+		const homePage = "/changePro";
+		if (location.pathname != homePage) {
+			navigate(homePage);
+		}
 	};
 	const [active, setActive] = React.useState(false);
 	const [screenSize, getDimension] = React.useState({

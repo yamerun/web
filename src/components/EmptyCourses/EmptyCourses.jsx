@@ -14,9 +14,15 @@ export default function EmptyCourse() {
 		} else setAlert("По данным валютам курсов пока нет");
 	}, [currentFrom, currentTo]);
 	return (
-		<div className={style.EmptyRates}>
-			<h4 className={style.EmptyRates__text}>{alert}</h4>
-			<img src={img} className={style.EmptyRates__img} />
-		</div>
+		<tbody>
+			<tr>
+				<td colSpan={7}>
+					<div className={style.EmptyRates}>
+						<h4 className={style.EmptyRates__text}>{alert}</h4>
+						<img src={img} className={style.EmptyRates__img} />
+					</div>
+				</td>
+			</tr>
+		</tbody>
 	);
 }
